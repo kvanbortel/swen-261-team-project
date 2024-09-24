@@ -9,6 +9,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - MEMBER2
 - Max Klot
 - MEMBER4
+- Ryan Richter
 
 
 ## Prerequisites
