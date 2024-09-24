@@ -6,9 +6,8 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 ## Team
 
 - Jonah Witte
-- MEMBER2
+- Kayla Van Bortel
 - Max Klot
-- MEMBER4
 - Ryan Richter
 
 
