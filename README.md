@@ -8,7 +8,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - Jonah Witte
 - MEMBER2
 - MEMBER3
-- MEMBER4
+- Ryan Richter
 
 
 ## Prerequisites
