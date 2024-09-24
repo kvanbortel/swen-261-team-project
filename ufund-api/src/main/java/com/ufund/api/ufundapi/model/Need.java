@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Need {
-    // use the same logger as the HERO example for message handling
+    // use the same logger as the HERO example for message handling?
     private static final Logger LOG = Logger.getLogger(Need.class.getName());
 
     /**
