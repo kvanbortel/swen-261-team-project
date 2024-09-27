@@ -133,7 +133,8 @@ This section describes the web interface flow; this is how the user views and in
 
 ## OO Design Principles
 
-> _**[Sprint 1]**
+> **[Sprint 1]**
+
 Single Responsibility- Each module should have one tightly focused responsibility.
 
 Open-Close- When modifying a module, you should not make changes to existing logic, but rather consider keeping it and creating new logic instead. 
