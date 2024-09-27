@@ -108,7 +108,9 @@ This section describes the web interface flow; this is how the user views and in
  >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
 ### ViewModel Tier
-> _**[Sprint 1]** List the classes supporting this tier and provide a description of there purpose._
+> _**[Sprint 1]** 
+
+The main class for our ViewModel implementation is our NeedsController class. This class serves to interact with the NeedDAO interface.
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -120,7 +122,11 @@ This section describes the web interface flow; this is how the user views and in
 ![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier
-> _**[Sprint 1]** List the classes supporting this tier and provide a description of there purpose._
+> _**[Sprint 1]**
+>
+> The abstract class for our Model Tier implementation is our Need Class. It has generalized members and functions including name, id and fullfillment status.
+>
+> Our DonationNeed class inherits from our Need Class. Our DonationNeed class has specialized members and functions such as cost and it's getter and setter methods.   
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
