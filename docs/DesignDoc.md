@@ -12,7 +12,7 @@ geometry: margin=1in
 * Team name: TEAMNAME
 * Team members
   * Jonah Witte
-  * MEMBER2
+  * Kayla Van Bortel
   * Max Klot
   * Ryan Richter
 
