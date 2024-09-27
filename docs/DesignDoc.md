@@ -124,9 +124,9 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 ### Model Tier
 > _**[Sprint 1]**
 >
-> The abstract class for our Model Tier implementation is our Need Class. It has generalized members and functions including name, id and fullfillment status.
+> The abstract class for our Model Tier implementation is our Need class. It has generalized members and functions including name, id and fullfillment status.
 >
-> Our DonationNeed class inherits from our Need Class. Our DonationNeed class has specialized members and functions such as cost and it's getter and setter methods.   
+> Our DonationNeed class inherits from our Need class. Our DonationNeed class has specialized members and functions such as cost and it's getter and setter methods.   
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -141,9 +141,9 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 
 > **[Sprint 1]**
 
-Single Responsibility- Each module should have one tightly focused responsibility.
+Single Responsibility: Each module should have one tightly focused responsibility.
 
-Open-Close- When modifying a module, you should not make changes to existing logic, but rather consider keeping it and creating new logic instead. 
+Open-Close: When modifying a module, you should not make changes to existing logic, but rather consider keeping it and creating new logic instead. 
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
