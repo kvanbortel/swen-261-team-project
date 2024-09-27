@@ -13,7 +13,7 @@ geometry: margin=1in
 * Team members
   * Jonah Witte
   * MEMBER2
-  * MEMBER3
+  * Max Klot
   * MEMBER4
 
 ## Executive Summary
