@@ -14,7 +14,7 @@ geometry: margin=1in
   * Jonah Witte
   * MEMBER2
   * Max Klot
-  * MEMBER4
+  * Ryan Richter
 
 ## Executive Summary
 
