@@ -11,7 +11,7 @@ geometry: margin=1in
 ## Team Information
 * Team name: TEAMNAME
 * Team members
-  * MEMBER1
+  * Jonah Witte
   * MEMBER2
   * MEMBER3
   * MEMBER4
