@@ -12,7 +12,7 @@ geometry: margin=1in
 * Team name: TEAMNAME
 * Team members
   * MEMBER1
-  * MEMBER2
+  * Kayla Van Bortel
   * MEMBER3
   * MEMBER4
 
