@@ -1,6 +1,7 @@
 package com.ufund.api.ufundapi.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -36,7 +37,7 @@ public class NeedControllerTest {
     }
 
     @Test
-    public void testGetNeed() throws IOException { //testGetNeeds may throw IOException
+    public void testGetNeed() throws IOException { // getNeed may throw IOException
         // Setup
         String id = "MOCKID-0";
         Need need = new Need("MOCKID-0", "NeedA1", "Descr1", 1.0);
@@ -49,5 +50,19 @@ public class NeedControllerTest {
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(need, response.getBody());
+    }
+
+    @Test
+    public void testGetNeedNotFound() throws Exception { // createNeed may throw IOException
+        // Setup
+        String id = "MOCKID-0";
+        // When getNeed is called with the id, the mock NeedDAO will return null, simulating not need found
+        when(mockNeedDAO.getNeed(id)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Need> response = needController.getNeed(id);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 }
