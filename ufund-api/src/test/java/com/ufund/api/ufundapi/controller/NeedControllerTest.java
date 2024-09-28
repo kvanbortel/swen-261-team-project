@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
+import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -36,6 +37,9 @@ public class NeedControllerTest {
         needController = new NeedController(mockNeedDAO);
     }
 
+    // Test getNeed()
+
+    // Test that a valid getNeed succeeds and returns the need
     @Test
     public void testGetNeed() throws IOException { // getNeed may throw IOException
         // Setup
@@ -52,6 +56,7 @@ public class NeedControllerTest {
         assertEquals(need, response.getBody());
     }
 
+    // Test that getNeed of nonexistent id fails with HTTP 404
     @Test
     public void testGetNeedNotFound() throws Exception { // createNeed may throw IOException
         // Setup
@@ -66,6 +71,7 @@ public class NeedControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
+    // Test that if Need#getNeed throws IOException, the server responds with HTTP 500
     @Test
     public void testGetNeedHandleException() throws Exception { // createNeed may throw IOException
         // Setup
@@ -78,5 +84,26 @@ public class NeedControllerTest {
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
+    // Test getNeeds()
+
+    // Test that a valid getNeeds succeeds and returns all needs
+    @Test
+    public void testGetNeeds() throws IOException { // getNeeds may throw IOException
+        // Setup
+        Need[] needs = new Need[] {
+            new Need("MOCKID-0", "NeedA1", "Descr1", 1.0),
+            new Need("MOCKID-1", "NeedA2", "Descr2", 1.0),
+        };
+        // When getNeeds is called reutnr the needs created above
+        when(mockNeedDAO.getNeeds()).thenReturn(needs);
+
+        // Invoke
+        ResponseEntity<Need[]> response = needController.getNeeds();
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(needs, response.getBody());
     }
 }
