@@ -85,6 +85,6 @@ public interface NeedDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    Need[] searchNeed(String search) throws IOException;
+    Need[] searchNeeds(String search) throws IOException;
 
 }
