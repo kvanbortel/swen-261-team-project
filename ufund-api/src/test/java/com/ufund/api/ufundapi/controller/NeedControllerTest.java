@@ -38,7 +38,7 @@ public class NeedControllerTest {
     @Test
     public void testGetNeed() throws IOException {  // getNeed may throw IOException
         // Setup
-        Need need = new Need("99","NeedName", "NeedDescription", 10.3);
+        Need need = new Need("MOCKID-0","NeedName", "NeedDescription", 10.3);
         // When the same id is passed in, our mock Need DAO will return the Need object
         when(mockNeedDAO.getNeed(need.getId())).thenReturn(need);
 
