@@ -60,7 +60,7 @@ public class NeedController {
             if (need == null)
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             else
-                return new ResponseEntity<Need>(need, HttpStatus.OK);
+                return new ResponseEntity<>(need, HttpStatus.OK);
         }
         catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
