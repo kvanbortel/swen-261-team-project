@@ -65,4 +65,18 @@ public class NeedControllerTest {
         // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
+
+    @Test
+    public void testGetNeedHandleException() throws Exception { // createNeed may throw IOException
+        // Setup
+        String id = "MOCKID-0";
+        // When getNeed is called on the mock NeedDAO, throw an IOException
+        doThrow(new IOException()).when(mockNeedDAO).getNeed(id);
+
+        // Invoke
+        ResponseEntity<Need> response = needController.getNeed(id);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
 }
