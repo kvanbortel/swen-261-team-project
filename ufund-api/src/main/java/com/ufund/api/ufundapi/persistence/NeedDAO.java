@@ -76,4 +76,15 @@ public interface NeedDAO {
      * @throws IOException if underlying storage cannot be accessed
      */
     boolean deleteNeed(String id) throws IOException;
+
+    /**
+     * Searches a {@linkplain Need need} containing the given search string
+     * 
+     * @param search The string to check for in each need
+     * @return a list of needs that contain the search string
+     * 
+     * @throws IOException if underlying storage cannot be accessed
+     */
+    Need[] searchNeed(String search) throws IOException;
+
 }
