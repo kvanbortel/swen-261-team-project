@@ -68,6 +68,26 @@ public class NeedController {
         }
     }
 
+    /**
+     * Responds to the GET request for all {@linkplain Need needs}
+     * 
+     * @return ResponseEntity with array of {@link Need need} objects (may be empty) and
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("")
+    public ResponseEntity<Need[]> getNeeds() {
+        LOG.info("GET /cupboard");
+        try {
+            Need[] cupboard = needDao.getNeeds();
+            return new ResponseEntity<Need[]>(cupboard, HttpStatus.OK);
+        }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     /**
      * Creates a {@linkplain Need need} with the provided need object
