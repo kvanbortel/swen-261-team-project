@@ -60,10 +60,10 @@ public class NeedController {
             if (need == null)
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             else
-                return new ResponseEntity<Need>(need,HttpStatus.OK);
+                return new ResponseEntity<Need>(need, HttpStatus.OK);
         }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
