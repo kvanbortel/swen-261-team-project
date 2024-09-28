@@ -1,8 +1,11 @@
 package com.ufund.api.ufundapi.controller;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,6 +66,32 @@ public class NeedController {
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Responds to the GET request for a {@linkplain Need need} for the given id
+     * 
+     * @param id the id used to locate the {@link Hero hero}
+     * 
+     * @return ResponseEntity with {@link Hero hero} object and HTTP status of ok if found<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("")
+    public ResponseEntity<Need> getNeed(@PathVariable String id) {
+        LOG.info("GET /needs/" + id);
+
+        try {
+            Need need = needDao.getNeed(id);
+            if (need != null) {
+                return new ResponseEntity<Need>(need, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
