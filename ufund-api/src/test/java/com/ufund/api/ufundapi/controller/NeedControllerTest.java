@@ -36,17 +36,21 @@ public class NeedControllerTest {
     }
 
     @Test
-    public void testGetNeed() throws IOException {  // getNeed may throw IOException
+    public void testSearchNeeds() throws IOException { // searchNeeds may throw IOException
         // Setup
-        Need need = new Need("MOCKID-0","NeedName", "NeedDescription", 10.3);
-        // When the same id is passed in, our mock Need DAO will return the Need object
-        when(mockNeedDAO.getNeed(need.getId())).thenReturn(need);
+        String searchString = "B";
+        Need[] needs = new Need[3];
+        needs[0] = new Need("MOCKID-0", "NeedA1", "Descr1", 3.9);
+        needs[1] = new Need("MOCKID-1", "NeedB1", "Descr2", 2.2);
+        // When findNeeds is called with the search string, return the two
+        /// needs above
+        when(mockNeedDAO.searchNeeds(searchString)).thenReturn(needs);
 
         // Invoke
-        ResponseEntity<Need> response = needController.getNeed(need.getId());
+        ResponseEntity<Need[]> response = needController.searchNeeds(searchString);
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals(need, response.getBody());
+        assertEquals(needs,response.getBody());
     }
 }

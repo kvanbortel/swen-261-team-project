@@ -49,7 +49,7 @@ public class NeedFileDAOTest {
     @Test
     public void testGetNeedsSearch() {
         // Invoke
-        Need[] needs = needFileDAO.getNeedsSearch("B");
+        Need[] needs = needFileDAO.searchNeeds("B");
 
         // Analyze
         assertEquals(needs.length,2);

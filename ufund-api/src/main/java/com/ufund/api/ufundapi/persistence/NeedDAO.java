@@ -24,7 +24,7 @@ public interface NeedDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Need[] getNeedsSearch(String containsText) throws IOException;
+    Need[] searchNeeds(String containsText) throws IOException;
 
     /**
      * Retrieves a {@linkplain Need Need} with the given id

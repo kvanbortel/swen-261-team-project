@@ -135,7 +135,7 @@ public class NeedFileDAO implements NeedDAO{
     /**
     ** {@inheritDoc}
      */
-    public Need[] getNeedsSearch(String containsText) {
+    public Need[] searchNeeds(String containsText) {
         synchronized(needs){
             return getNeedsArray(containsText);
         }
