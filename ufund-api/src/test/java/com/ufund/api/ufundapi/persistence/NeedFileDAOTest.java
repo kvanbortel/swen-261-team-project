@@ -66,4 +66,13 @@ public class NeedFileDAOTest {
         for (int i = 0; i < testNeeds.length; ++i)
             assertEquals(needs[i], testNeeds[i]);
     }
+
+    @Test
+    public void testGetNeedNotFound() throws IOException {
+        // Invoke
+        Need need = needFileDAO.getNeed("NotAnId");
+
+        // Analyze
+        assertEquals(need, null);
+    }
 }
