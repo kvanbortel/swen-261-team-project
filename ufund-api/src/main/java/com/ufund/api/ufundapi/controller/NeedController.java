@@ -29,6 +29,11 @@ import java.util.logging.Logger;
  @RestController
  @RequestMapping("needs")
 public class NeedController {
+    private static class ErrorResponse {
+        public String message;
+        public ErrorResponse(String message) { this.message = message; }
+    }
+
     private static final Logger LOG = Logger.getLogger(NeedController.class.getName());
     private NeedDAO needDao;
 
@@ -53,14 +58,15 @@ public class NeedController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Need> getNeed(@PathVariable String id) {
+    public ResponseEntity<?> getNeed(@PathVariable String id) {
         LOG.info("GET /needs/" + id);
         try {
             Need need = needDao.getNeed(id);
-            if (need == null)
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            else
-                return new ResponseEntity<>(need, HttpStatus.OK);
+            if (need == null) {
+                return new ResponseEntity<>(new ErrorResponse("Need with id=\"" + id + "\" not found"),
+                                            HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(need, HttpStatus.OK);
         }
         catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());

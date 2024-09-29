@@ -49,7 +49,7 @@ public class NeedControllerTest {
         when(mockNeedDAO.getNeed(id)).thenReturn(need);
 
         // Invoke
-        ResponseEntity<Need> response = needController.getNeed(id);
+        var response = needController.getNeed(id);
 
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -65,7 +65,7 @@ public class NeedControllerTest {
         when(mockNeedDAO.getNeed(id)).thenReturn(null);
 
         // Invoke
-        ResponseEntity<Need> response = needController.getNeed(id);
+        var response = needController.getNeed(id);
 
         // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
@@ -80,7 +80,7 @@ public class NeedControllerTest {
         doThrow(new IOException()).when(mockNeedDAO).getNeed(id);
 
         // Invoke
-        ResponseEntity<Need> response = needController.getNeed(id);
+        var response = needController.getNeed(id);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
