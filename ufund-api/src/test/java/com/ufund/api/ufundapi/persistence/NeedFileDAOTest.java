@@ -57,6 +57,15 @@ public class NeedFileDAOTest {
     }
 
     @Test
+    public void testGetNeedNotFound() throws IOException {
+        // Invoke
+        Need need = needFileDAO.getNeed("NotAnId");
+
+        // Analyze
+        assertEquals(need, null);
+    }
+
+    @Test
     public void testGetNeeds() throws IOException {
         // Invoke
         Need[] needs = needFileDAO.getNeeds();
@@ -68,11 +77,11 @@ public class NeedFileDAOTest {
     }
 
     @Test
-    public void testGetNeedNotFound() throws IOException {
+    public void testGetNeedsEmpty() throws IOException {
         // Invoke
-        Need need = needFileDAO.getNeed("NotAnId");
+        Need[] needs = {};
 
         // Analyze
-        assertEquals(need, null);
+        assertEquals(needs.length, 0);
     }
 }
