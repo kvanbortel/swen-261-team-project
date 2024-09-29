@@ -77,7 +77,7 @@ public class NeedController {
      */
     @GetMapping("")
     public ResponseEntity<Need[]> getNeeds() {
-        LOG.info("GET /cupboard");
+        LOG.info("GET /needs");
         try {
             Need[] cupboard = needDao.getNeeds();
             return new ResponseEntity<Need[]>(cupboard, HttpStatus.OK);
