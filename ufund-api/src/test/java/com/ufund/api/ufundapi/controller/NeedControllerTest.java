@@ -96,7 +96,7 @@ public class NeedControllerTest {
             new Need("MOCKID-0", "NeedA1", "Descr1", 1.0),
             new Need("MOCKID-1", "NeedA2", "Descr2", 1.0),
         };
-        // When getNeeds is called reutnr the needs created above
+        // When getNeeds is called return the needs created above
         when(mockNeedDAO.getNeeds()).thenReturn(needs);
 
         // Invoke
@@ -105,5 +105,20 @@ public class NeedControllerTest {
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(needs, response.getBody());
+    }
+
+    
+    // Test that if Need#getNeeds throws IOException, the server responds with HTTP 500
+    @Test
+    public void testGetNeedsHandleException() throws IOException { // getNeeds may throw IOException
+        // Setup
+        // When getNeeds is called on the mock NeedDAO, throw an IOException
+        doThrow(new IOException()).when(mockNeedDAO).getNeeds();
+
+        // Invoke
+        ResponseEntity<Need[]> response = needController.getNeeds();
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 }
