@@ -70,7 +70,7 @@ public class NeedController {
         }
     }
 
-    @GetMapping("/search/{search}")
+    @GetMapping("")
     public ResponseEntity<Need[]> searchNeeds(@RequestBody String search) {
         LOG.info("GET /needs" + search);
 
