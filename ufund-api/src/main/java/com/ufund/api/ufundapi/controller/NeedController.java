@@ -81,7 +81,6 @@ public class NeedController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    @ResponseBody
     public ResponseEntity<Need> updateNeed(@RequestBody Need need){
         LOG.info("PUT /needs " + need);
         LOG.info("POST /needs " + need);
