@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -53,5 +54,16 @@ public class NeedFileDAOTest {
 
         // Analyze
         assertEquals(need, testNeeds[0]);
+    }
+
+    @Test
+    public void testGetNeeds() throws IOException {
+        // Invoke
+        Need[] needs = needFileDAO.getNeeds();
+
+        // Analyze
+        assertEquals(needs.length, testNeeds.length);
+        for (int i = 0; i < testNeeds.length; ++i)
+            assertEquals(needs[i], testNeeds[i]);
     }
 }
