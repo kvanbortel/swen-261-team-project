@@ -13,7 +13,7 @@ geometry: margin=1in
 * Team members
   * MEMBER1
   * MEMBER2
-  * MEMBER3
+  * Max Klot
   * MEMBER4
 
 ## Executive Summary
