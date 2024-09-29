@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ufund.api.ufundapi.model.Need;
@@ -80,6 +81,7 @@ public class NeedController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
+    @ResponseBody
     public ResponseEntity<Need> updateNeed(@RequestBody Need need){
         LOG.info("PUT /needs " + need);
         LOG.info("POST /needs " + need);
@@ -108,7 +110,7 @@ public class NeedController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Need> deleteNeed(@RequestParam String id){
+    public ResponseEntity<Need> deleteNeed(@PathVariable String id){
         LOG.info("DELETE /needs/" + id);
         try{
             boolean successful = needDao.deleteNeed(id);
