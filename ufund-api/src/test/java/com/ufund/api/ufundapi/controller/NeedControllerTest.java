@@ -107,6 +107,21 @@ public class NeedControllerTest {
         assertEquals(needs, response.getBody());
     }
 
+    // Test that when no products exist, a valid getNeeds succeeds and returns an empty list
+    @Test
+    public void testGetNeedsEmpty() throws IOException { // getNeeds may throw IOException
+        // Setup
+        Need[] needs = {};
+        // When getNeeds is called return the needs created above
+        when(mockNeedDAO.getNeeds()).thenReturn(needs);
+
+        // Invoke
+        ResponseEntity<Need[]> response = needController.getNeeds();
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(needs, response.getBody());
+    }
     
     // Test that if Need#getNeeds throws IOException, the server responds with HTTP 500
     @Test
