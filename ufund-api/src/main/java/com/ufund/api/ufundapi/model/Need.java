@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.model;
 
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Need {
@@ -19,6 +20,8 @@ public class Need {
     @JsonProperty String description; // Description of the need
     @JsonProperty boolean fufillmentStatus; // Whether or not the need is fufilled
     @JsonProperty double demandRating; // Demand of the need
+    @JsonProperty double cost; // Cost of the need
+    @JsonProperty int quantity;
 
 
     /**
@@ -28,12 +31,14 @@ public class Need {
      * @param description A text description of the need
      * @param demandRating A double describing the demand for the need
      */
-    public Need(@JsonProperty("id") String id, @JsonProperty("name") String name, @JsonProperty("description") String description, @JsonProperty("demandRating") double demandRating) {
+    public Need(@JsonProperty("id") String id, @JsonProperty("name") String name, @JsonProperty("description") String description, @JsonProperty("demandRating") double demandRating, @JsonProperty("quantity") int quantity, @JsonProperty("cost") double cost) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.fufillmentStatus = false;
         this.demandRating = demandRating;
+        this.quantity = quantity;
+        this.cost = cost;
     }
 
     /**
@@ -106,6 +111,38 @@ public class Need {
     */
     public void setDemandRating(double rating){
         this.demandRating = rating;
+    }
+
+    /**
+     * Get the quantity of the need
+     * @return the quantity of the need
+    */
+    public int getQuantity(){
+        return this.quantity;
+    }
+
+    /**
+     * Set the quantity of the need
+     * @param quantity the new quantity of the need
+    */
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
+
+    /**
+     * Get the cost of the need
+     * @return the cost of the need
+    */
+    public double getCost(){
+        return this.cost;
+    }
+
+    /**
+     * Set the cost of the need
+     * @param cost the new cost of the need
+    */
+    public void setQuantity(double cost){
+        this.cost = cost;
     }
 
 }
