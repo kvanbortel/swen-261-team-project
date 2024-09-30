@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ufund.api.ufundapi.model.Need;
@@ -17,6 +17,8 @@ import com.ufund.api.ufundapi.persistence.NeedDAO;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.annotation.Generated;
 
 /**
  * Handles the REST API requests for the Need resource
@@ -71,6 +73,17 @@ public class NeedController {
         }
     }
 
+    @GetMapping("")
+    public ResponseEntity<Need[]> searchNeeds(@RequestBody String search) {
+        LOG.info("GET /needs" + search);
+
+        try {
+            Need[] needs = needDao.searchNeeds(search);
+            return new ResponseEntity<Need[]>(needs, HttpStatus.OK);
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     /**
      * Updates the {@linkplain Need need} with the provided {@linkplain Need need} object, if it exists
      * 
