@@ -159,7 +159,7 @@ public class NeedFileDAO implements NeedDAO{
     public Need createNeed(Need need) throws IOException{
         // Create a new need object because the id field is immutable
         // and we need to assign a new unique id
-        Need newNeed = new Need(UUID.randomUUID().toString(), need.getName(), need.getDescription(), need.getDemandRating());
+        Need newNeed = new Need(UUID.randomUUID().toString(), need.getName(), need.getDescription(), need.getDemandRating(), need.getQuantity(), need.getCost());
         needs.put(newNeed.getId(),newNeed);
         save(); // may throw an IOException
         System.out.println(newNeed);
