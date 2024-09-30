@@ -20,11 +20,11 @@ public interface NeedDAO {
      * 
      * @param containsText The text to match against
      * 
-     * @return An array of {@link Need Needs} whose nemes contains the given text, may be empty
+     * @return An array of {@link Need Needs} whose names contains the given text, may be empty
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Need[] findNeeds(String containsText) throws IOException;
+    Need[] searchNeeds(String containsText) throws IOException;
 
     /**
      * Retrieves a {@linkplain Need Need} with the given id

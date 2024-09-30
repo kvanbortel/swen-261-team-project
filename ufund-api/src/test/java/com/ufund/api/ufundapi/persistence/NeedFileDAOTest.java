@@ -83,4 +83,15 @@ public class NeedFileDAOTest {
         // Analyze
         assertEquals(needs.length, 0);
     }
+
+    @Test
+    public void testGetNeedsSearch() {
+        // Invoke
+        Need[] needs = needFileDAO.searchNeeds("B");
+
+        // Analyze
+        assertEquals(needs.length,2);
+        assertEquals(needs[0],testNeeds[1]);
+        assertEquals(needs[1],testNeeds[2]);
+    }
 }
