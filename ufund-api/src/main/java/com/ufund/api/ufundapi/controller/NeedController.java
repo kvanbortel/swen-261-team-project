@@ -149,7 +149,6 @@ public class NeedController {
     @PutMapping("")
     public ResponseEntity<Need> updateNeed(@RequestBody Need need){
         LOG.info("PUT /needs " + need);
-        LOG.info("POST /needs " + need);
         try{
             Need newNeed = needDao.updateNeed(need);
             if(newNeed != null){
