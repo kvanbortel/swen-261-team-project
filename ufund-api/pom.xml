@@ -14,7 +14,7 @@
 	<description>API for U-Fund</description>
 	<properties>
 		<java.version>11</java.version>
-		<jacoco.version>0.8.7</jacoco.version>
+		<jacoco.version>0.8.12</jacoco.version>
 		<exec.maven.version>3.0.0</exec.maven.version>
 	</properties>
 	<dependencies>

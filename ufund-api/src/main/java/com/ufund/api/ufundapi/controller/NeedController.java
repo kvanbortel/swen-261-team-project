@@ -2,6 +2,8 @@ package com.ufund.api.ufundapi.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,6 +34,11 @@ import javax.annotation.Generated;
  @RestController
  @RequestMapping("needs")
 public class NeedController {
+    private static class ErrorResponse {
+        public String message;
+        public ErrorResponse(String message) { this.message = message; }
+    }
+
     private static final Logger LOG = Logger.getLogger(NeedController.class.getName());
     private NeedDAO needDao;
 
@@ -44,6 +51,52 @@ public class NeedController {
      */
     public NeedController(NeedDAO needDao) {
         this.needDao = needDao;
+    }
+
+    /**
+     * Responds to the GET request for a {@linkplain Need need} for the given id
+     * 
+     * @param id The id used to locate the {@link Need need}
+     * 
+     * @return ResponseEntity with {@link Need need} object and HTTP status of OK if found<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getNeed(@PathVariable String id) {
+        LOG.info("GET /needs/" + id);
+        try {
+            Need need = needDao.getNeed(id);
+            if (need == null) {
+                return new ResponseEntity<>(new ErrorResponse("Need with id=\"" + id + "\" not found"),
+                                            HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(need, HttpStatus.OK);
+        }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Responds to the GET request for all {@linkplain Need needs}
+     * 
+     * @return ResponseEntity with array of {@link Need need} objects (may be empty) and
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("")
+    public ResponseEntity<Need[]> getNeeds() {
+        LOG.info("GET /needs");
+        try {
+            Need[] cupboard = needDao.getNeeds();
+            return new ResponseEntity<Need[]>(cupboard, HttpStatus.OK);
+        }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

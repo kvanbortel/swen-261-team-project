@@ -47,6 +47,44 @@ public class NeedFileDAOTest {
     }
 
     @Test
+    public void testGetNeed() throws IOException {
+        // Invoke
+        Need need = needFileDAO.getNeed("MOCKID-0");
+
+        // Analyze
+        assertEquals(need, testNeeds[0]);
+    }
+
+    @Test
+    public void testGetNeedNotFound() throws IOException {
+        // Invoke
+        Need need = needFileDAO.getNeed("NotAnId");
+
+        // Analyze
+        assertEquals(need, null);
+    }
+
+    @Test
+    public void testGetNeeds() throws IOException {
+        // Invoke
+        Need[] needs = needFileDAO.getNeeds();
+
+        // Analyze
+        assertEquals(needs.length, testNeeds.length);
+        for (int i = 0; i < testNeeds.length; ++i)
+            assertEquals(needs[i], testNeeds[i]);
+    }
+
+    @Test
+    public void testGetNeedsEmpty() throws IOException {
+        // Invoke
+        Need[] needs = {};
+
+        // Analyze
+        assertEquals(needs.length, 0);
+    }
+
+    @Test
     public void testGetNeedsSearch() {
         // Invoke
         Need[] needs = needFileDAO.searchNeeds("B");
