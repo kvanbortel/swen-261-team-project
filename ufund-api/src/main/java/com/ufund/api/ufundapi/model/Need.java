@@ -143,7 +143,7 @@ public class Need {
      * Set the cost of the need
      * @param cost the new cost of the need
     */
-    public void setQuantity(double cost){
+    public void setCost(double cost){
         this.cost = cost;
     }
 
