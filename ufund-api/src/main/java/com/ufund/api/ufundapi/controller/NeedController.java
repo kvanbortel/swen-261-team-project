@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -126,9 +127,9 @@ public class NeedController {
         }
     }
 
-    @GetMapping("")
-    public ResponseEntity<Need[]> searchNeeds(@RequestBody String search) {
-        LOG.info("GET /needs" + search);
+    @GetMapping("/")
+    public ResponseEntity<Need[]> searchNeeds(@RequestParam String search) {
+        LOG.info("GET /needs/?need=" + search);
 
         try {
             Need[] needs = needDao.searchNeeds(search);

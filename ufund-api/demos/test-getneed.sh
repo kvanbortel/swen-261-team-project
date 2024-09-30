@@ -23,7 +23,9 @@ id1=$(create_need <<'EOF'
 {
     "name": "NeedA1",
     "description": "Descr1",
-    "demandRating": 1.0
+    "demandRating": 1.0,
+    "cost": 11.0,
+    "quantity": 1
 }
 EOF
 )
@@ -33,7 +35,9 @@ create_need <<'EOF' >/dev/null
 {
     "name": "NeedA2",
     "description": "Descr2",
-    "demandRating": 2.0
+    "demandRating": 2.0,
+    "cost": 22.0,
+    "quantity": 2
 }
 EOF
 
