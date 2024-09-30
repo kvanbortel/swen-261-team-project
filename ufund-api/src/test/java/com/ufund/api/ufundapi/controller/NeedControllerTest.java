@@ -43,7 +43,7 @@ public class NeedControllerTest {
     public void testGetNeed() throws IOException { // getNeed may throw IOException
         // Setup
         String id = "MOCKID-0";
-        Need need = new Need("MOCKID-0", "NeedA1", "Descr1", 1.0);
+        Need need = new Need("MOCKID-0", "NeedA1", "Descr1", 1.0, 5, 15.0);
         // When getNeed is called with the id, return the need above
         when(mockNeedDAO.getNeed(id)).thenReturn(need);
 
@@ -92,8 +92,8 @@ public class NeedControllerTest {
     public void testGetNeeds() throws IOException { // getNeeds may throw IOException
         // Setup
         Need[] needs = new Need[] {
-            new Need("MOCKID-0", "NeedA1", "Descr1", 1.0),
-            new Need("MOCKID-1", "NeedA2", "Descr2", 1.0),
+            new Need("MOCKID-0", "NeedA1", "Descr1", 1.0, 2, 5.0),
+            new Need("MOCKID-1", "NeedA2", "Descr2", 1.0, 3, 7.0),
         };
         // When getNeeds is called return the needs created above
         when(mockNeedDAO.getNeeds()).thenReturn(needs);
@@ -141,8 +141,8 @@ public class NeedControllerTest {
         // Setup
         String searchString = "B";
         Need[] needs = new Need[3];
-        needs[0] = new Need("MOCKID-0", "NeedA1", "Descr1", 3.9);
-        needs[1] = new Need("MOCKID-1", "NeedB1", "Descr2", 2.2);
+        needs[0] = new Need("MOCKID-0", "NeedA1", "Descr1", 3.9, 7, 12.1);
+        needs[1] = new Need("MOCKID-1", "NeedB1", "Descr2", 2.2, 4, 10.5);
         // When findNeeds is called with the search string, return the two
         /// needs above
         when(mockNeedDAO.searchNeeds(searchString)).thenReturn(needs);

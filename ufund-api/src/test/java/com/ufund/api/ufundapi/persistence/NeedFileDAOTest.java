@@ -34,9 +34,9 @@ public class NeedFileDAOTest {
     public void setupNeedFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testNeeds = new Need[3];
-        testNeeds[0] = new Need("MOCKID-0","NeedA1", "Description1", 0);
-        testNeeds[1] = new Need("MOCKID-1","NeedB1", "Description2", 2.9);
-        testNeeds[2] = new Need("MOCKID-2","NeedB2", "Description3", 1.3);
+        testNeeds[0] = new Need("MOCKID-0","NeedA1", "Description1", 0, 3, 12.5);
+        testNeeds[1] = new Need("MOCKID-1","NeedB1", "Description2", 2.9, 10, 5.4);
+        testNeeds[2] = new Need("MOCKID-2","NeedB2", "Description3", 1.3, 6, 12.32);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the hero array above
