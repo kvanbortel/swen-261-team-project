@@ -30,6 +30,8 @@ public class Need {
      * @param name The name of the need
      * @param description A text description of the need
      * @param demandRating A double describing the demand for the need
+     * @param quantity The positive int number of this need
+     * @param cost The monetary cost for this need
      */
     public Need(@JsonProperty("id") String id, @JsonProperty("name") String name, @JsonProperty("description") String description, @JsonProperty("demandRating") double demandRating, @JsonProperty("quantity") int quantity, @JsonProperty("cost") double cost) {
         this.id = id;
