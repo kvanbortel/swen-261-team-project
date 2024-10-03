@@ -129,7 +129,7 @@ public class NeedController {
 
     @GetMapping("/")
     public ResponseEntity<Need[]> searchNeeds(@RequestParam String search) {
-        LOG.info("GET /needs/?need=" + search);
+        LOG.info("GET /needs/?search=" + search);
 
         try {
             Need[] needs = needDao.searchNeeds(search);

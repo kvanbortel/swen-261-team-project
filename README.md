@@ -1,7 +1,7 @@
-# U-Fund:  _____ _replace with your particular fundraising type_ _____
+# U-Fund:  NYS Paws and Claws Foundation
 # Modify this document to expand any and all sections that are applicable for a better understanding from your users/testers/collaborators (remove this comment and other instructions areas for your FINAL release)
 
-An online U-Fund system built in Java 17=> and ___ _replace with other platform requirements_ ___
+An online U-Fund system built in Java 21=> and Angular 17.0
   
 ## Team
 
@@ -13,9 +13,9 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 
 ## Prerequisites
 
-- Java 11=>17 (Make sure to have correct JAVA_HOME setup in your environment)
+- Java 21.0
 - Maven
--  _add any other tech stack requirements_
+- Angular 17.0
 
 
 ## How to run it
