@@ -33,7 +33,7 @@ public class Need {
      * @param quantity The positive int number of this need
      * @param cost The monetary cost for this need
      */
-    public Need(@JsonProperty("id") String id, @JsonProperty("name") String name, @JsonProperty("description") String description, @JsonProperty("demandRating") double demandRating, @JsonProperty("quantity") int quantity, @JsonProperty("cost") double cost) {
+    public Need(@JsonProperty("id") String id, @JsonProperty("name") String name, @JsonProperty("description") String description, @JsonProperty("demandRating") double demandRating, @JsonProperty("quantity") int quantity, @JsonProperty("cost") double cost){
         this.id = id;
         this.name = name;
         this.description = description;

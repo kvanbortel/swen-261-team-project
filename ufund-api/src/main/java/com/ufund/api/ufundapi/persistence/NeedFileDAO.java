@@ -157,6 +157,15 @@ public class NeedFileDAO implements NeedDAO{
     ** {@inheritDoc}
      */
     public Need createNeed(Need need) throws IOException{
+        if(need.getDemandRating() < 0 || need.getDemandRating() > 100){
+            return null;
+        }
+        if(need.getQuantity() <= 0){
+            return null;
+        }
+        if(need.getCost() < 0){
+            return null;
+        }
         // Create a new need object because the id field is immutable
         // and we need to assign a new unique id
         Need newNeed = new Need(UUID.randomUUID().toString(), need.getName(), need.getDescription(), need.getDemandRating(), need.getQuantity(), need.getCost());

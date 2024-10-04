@@ -113,13 +113,14 @@ public class NeedController {
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /needs " + need);
         
-        
         try {
             Need newNeed = needDao.createNeed(need);
             if (newNeed != null)
                 return new ResponseEntity<Need>(newNeed,HttpStatus.CREATED);
-            else
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            else{
+                LOG.log(Level.WARNING, "Invalid arguments");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
