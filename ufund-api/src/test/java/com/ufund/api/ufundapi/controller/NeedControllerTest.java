@@ -38,7 +38,7 @@ public class NeedControllerTest {
 
     // Test that a valid createNeed succeeds and returns the need
     @Test
-    public void testCreateNeed() throws IOException, IllegalArgumentException { 
+    public void testCreateNeed() throws IOException { 
         // Setup
         Need need = new Need("MOCKID-0", "NeedA1", "Descr1", 3.0, 2, 6.5);
 
@@ -54,7 +54,7 @@ public class NeedControllerTest {
 
     // Test that an invalid createNeed fails for bad arguments
     @Test
-    public void testCreateInvalidNeed() throws IOException, IllegalArgumentException { // getNeed may throw IOException
+    public void testCreateInvalidNeed() throws IOException { // getNeed may throw IOException
         // Setup
         Need need = new Need("MOCKID-0", "NeedA1", "Descr1", -1, 2, 6.5);
 
