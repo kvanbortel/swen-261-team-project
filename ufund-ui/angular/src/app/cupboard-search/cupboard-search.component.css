@@ -44,6 +44,7 @@
   
   /* Individual result item styling */
   .search-result li {
+    margin-right: 10px;
     margin-bottom: 10px;
   }
   
