@@ -8,6 +8,7 @@ import { CupboardComponent } from './cupboard/cupboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { CupboardNeedComponent } from './cupboard-need/cupboard-need.component';
+import { CupboardSearchComponent } from './cupboard-search/cupboard-search.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CupboardNeedComponent } from './cupboard-need/cupboard-need.component';
     MessagesComponent,
     CupboardComponent,
     HeaderComponent,
-    CupboardNeedComponent
+    CupboardNeedComponent,
+    CupboardSearchComponent
   ],
   imports: [
     BrowserModule,

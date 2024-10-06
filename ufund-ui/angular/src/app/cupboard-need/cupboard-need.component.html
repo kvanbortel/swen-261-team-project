@@ -1,6 +1,4 @@
-<div *ngIf="need">
-    <h3>{{need.name}}</h3>
-    <ul>
-      {{need.description}}
-    </ul>
-  </div>
+<div *ngIf="need" class="cupboard-need">
+  <h3 class="need-title">{{ need.name }}</h3>
+  <p class="need-description">{{ need.description }}</p>
+</div>
