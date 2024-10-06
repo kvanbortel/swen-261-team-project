@@ -1,0 +1,24 @@
+/* Just some generic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50; /* Green background */
+    padding: 20px;
+    text-align: center; /* Center the title */
+}
+
+header h1 {
+    color: #fff; /* White text */
+    font-size: 2.5rem; /* Increase font size for the title */
+    letter-spacing: 2px; /* Space out the letters */
+}
