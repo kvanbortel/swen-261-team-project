@@ -1,0 +1,82 @@
+.main { 
+  display: flex; 
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 20px; 
+}
+
+/* Container for the search component */
+#search-component.search-container {
+    width: 100%;
+    max-width: 600px;
+    min-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  /* Styling for the label */
+  .search-title {
+    display: block;
+    font-size: 1.2rem;
+    margin-top: -30px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  /* Styling for the search input */
+  .search-input {
+    width: 94%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    margin-bottom: 20px;
+    outline: none;
+  }
+  
+  .search-input:focus {
+    border-color: #4CAF50;
+  }
+  
+  /* Styling for the search result list */
+  .search-result {
+    list-style-type: none;
+    overflow: auto;
+    /* This height should probablyyy be more responsive */
+    height: 430px; 
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Individual result item styling */
+  .search-result li {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for each result item */
+  .search-result li app-cupboard-need {
+    display: block;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect on search results */
+  .search-result li app-cupboard-need:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  /* No results message styling */
+  .no-results {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #888;
+    text-align: center;
+  }
+  
