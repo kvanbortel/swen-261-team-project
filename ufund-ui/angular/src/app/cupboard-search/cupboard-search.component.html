@@ -1,14 +1,26 @@
-<div id="search-component" class="search-container">
+<div class="main">
+  <div id="search-component" class="search-container">
     <label for="search-box" class="search-title">Need Search </label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)"  class="search-input"/>
+    <input
+      #searchBox
+      id="search-box"
+      (input)="search(searchBox.value)"
+      class="search-input"
+    />
 
     <ul *ngIf="(needs$ | async)?.length !== 0" class="search-result">
-      <li *ngFor="let need of needs$ | async" >
-        <app-cupboard-need [need]="need"></app-cupboard-need>
+      <li *ngFor="let need of needs$ | async">
+        <app-cupboard-need
+          (dataFromChild)="selectNeed($event)"
+          [need]="need"
+        ></app-cupboard-need>
       </li>
     </ul>
 
     <div *ngIf="(needs$ | async)?.length === 0" class="no-results">
-        No needs found.
+      No needs found.
     </div>
   </div>
+
+  <app-single-need [need]="selected"></app-single-need>
+</div>

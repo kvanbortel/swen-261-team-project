@@ -1,4 +1,4 @@
-<div *ngIf="need" class="cupboard-need">
+<div *ngIf="need" class="cupboard-need" (click)="sendData()">
   <h3 class="need-title">{{ need.name }}</h3>
   <p class="need-description">{{ need.description }}</p>
 

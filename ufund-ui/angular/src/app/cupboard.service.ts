@@ -23,6 +23,14 @@ export class CupboardService {
     );
   }
 
+  /** GET needs from the server */
+  getNeed(id: string): Observable<Need> {
+    return this.http.get<Need>(this.needsUrl + "/" + id).pipe(
+      tap((_) => this.log('fetched need')),
+      catchError(this.handleError<Need>('getNeeds'))
+    );
+  }
+
   /** SEARCH needs from the server */
   searchNeeds(text: string): Observable<Need[]> {
     return this.http.get<Need[]>(this.needsUrl + "/?search=" + text).pipe(

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Need } from '../Need';
 
 @Component({
@@ -14,4 +14,11 @@ export class CupboardNeedComponent {
   retrieveNeed() {
     return this.need ? Object.keys(this.need) : [];
   }
+
+  @Output() dataFromChild = new EventEmitter<Need>();
+
+  sendData() {
+    this.dataFromChild.emit(this.need);
+  }
+
 }
