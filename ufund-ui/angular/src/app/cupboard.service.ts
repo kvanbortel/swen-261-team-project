@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from './message.service';
 import { catchError, Observable, of, tap } from 'rxjs';
@@ -14,6 +14,10 @@ export class CupboardService {
   ) {}
 
   private needsUrl = 'http://localhost:8080/needs';
+
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
 
   /** GET needs from the server */
   getNeeds(): Observable<Need[]> {
@@ -36,6 +40,14 @@ export class CupboardService {
     return this.http.get<Need[]>(this.needsUrl + "/?search=" + text).pipe(
       tap((_) => this.log('searched needs')),
       catchError(this.handleError<Need[]>('searchNeeds', []))
+    );
+  }
+
+  /** POST need to the server */
+  addNeed(need: Need): Observable<Need> {
+    return this.http.post<Need>(this.needsUrl, need, this.httpOptions).pipe(
+      tap((newNeed: Need) => this.log(`added need w/ id=${newNeed.id}`)),
+      catchError(this.handleError<Need>('addNeed'))
     );
   }
 

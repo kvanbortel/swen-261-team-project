@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { CupboardNeedComponent } from './cupboard-need/cupboard-need.component';
 import { CupboardSearchComponent } from './cupboard-search/cupboard-search.component';
 import { SingleNeedComponent } from './single-need/single-need.component';
+import { CreateNeedComponent } from './create-need/create-need.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { SingleNeedComponent } from './single-need/single-need.component';
     HeaderComponent,
     CupboardNeedComponent,
     CupboardSearchComponent,
-    SingleNeedComponent
+    SingleNeedComponent,
+    CreateNeedComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

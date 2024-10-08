@@ -1,0 +1,50 @@
+<div class="needs-list-container">
+  <!-- Only show this button if the user is an admin -->
+  <!-- <button *ngIf="isAdmin" class="btn btn-primary" (click)="navigateToAddNeed()"> -->
+    <button class="btn add-need-button" (click)="showForm = !showForm">
+        Create New Need
+      </button>
+
+      <div *ngIf="showForm">
+        <form [formGroup]="createNeedForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="name">
+                Name:
+                </label>
+                <input id="name" type="text" formControlName="name">
+            </div>
+          
+            <div>
+                <label for="description">
+                Description:
+                </label>
+                <input id="description" type="text" formControlName="description">
+            </div>
+
+            <div>
+                <label for="cost">
+                Cost:
+                </label>
+                <input id="cost" type="text" formControlName="cost">
+            </div>
+
+
+            <div>
+                <label for="demand">
+                Demand:
+                </label>
+                <input id="demand" type="text" formControlName="demand">
+            </div>
+
+            <div>
+                <label for="quantity">
+                Quantity:
+                </label>
+                <input id="quantity" type="text" formControlName="quantity">
+            </div>
+          
+            <button class="button" type="submit">Save</button>
+          
+          </form>
+      </div>
+</div>
