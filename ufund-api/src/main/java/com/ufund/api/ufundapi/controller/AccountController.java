@@ -19,20 +19,19 @@ import com.ufund.api.ufundapi.persistence.AccountDAO;
 public class AccountController {
 
 
-    public AccountController(){};
 
     private static class ErrorResponse {
         public String message;
         public ErrorResponse(String message) { this.message = message; }
     }
 
-    private static final Logger LOG = Logger.getLogger(NeedController.class.getName());
+    private static final Logger LOG = Logger.getLogger(AccountController.class.getName());
     private AccountDAO accountDAO;
 
     /**
      * Creates a REST API controller to reponds to requests
      * 
-     * @param needDao The {@link NeedDAO Need Data Access Object} to perform CRUD operations
+     * @param accountDao The {@link AccountDAO Need Data Access Object} to perform CRUD operations
      * <br>
      * This dependency is injected by the Spring Framework
      */

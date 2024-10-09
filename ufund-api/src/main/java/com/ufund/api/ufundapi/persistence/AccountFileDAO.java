@@ -8,11 +8,13 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.Need;
 
+@Component
 public class AccountFileDAO implements AccountDAO{
 
     private static final Logger LOG = Logger.getLogger(AccountFileDAO.class.getName());
