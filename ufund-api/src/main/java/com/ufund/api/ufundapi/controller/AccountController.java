@@ -8,10 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.persistence.AccountDAO;
 
+@RestController
+@RequestMapping("accounts")
 public class AccountController {
 
 
@@ -37,7 +41,7 @@ public class AccountController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Account> createNeed(@RequestBody Account account) {
+    public ResponseEntity<Account> createAccount(@RequestBody Account account) {
         LOG.info("POST /accounts " + account);
         
         try {

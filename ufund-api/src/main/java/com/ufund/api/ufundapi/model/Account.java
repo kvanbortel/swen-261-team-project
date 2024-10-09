@@ -27,6 +27,6 @@ public class Account {
 
     public String toString(){
 
-        return "http://localhost:8080/accounts" + getName();
+        return "http://localhost:8080/accounts/" + getName();
     }
 }
