@@ -37,7 +37,7 @@
   }
   
   .search-input:focus {
-    border-color: #4CAF50;
+    border-color: var(--baseOrange);
   }
   
   /* Styling for the search result list */

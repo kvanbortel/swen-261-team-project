@@ -21,4 +21,7 @@ export class CupboardNeedComponent {
     this.dataFromChild.emit(this.need);
   }
 
+  addToBasket(){
+  }
+
 }

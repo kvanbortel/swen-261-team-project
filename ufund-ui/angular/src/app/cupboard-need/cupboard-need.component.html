@@ -1,5 +1,8 @@
 <div *ngIf="need" class="cupboard-need" (click)="sendData()">
-  <h3 class="need-title">{{ need.name }}</h3>
+  <div class="row">
+    <h3 class="need-title">{{ need.name }}</h3>
+  <button class="basket-button" (click)="addToBasket();$event.stopPropagation()">+</button>
+  </div>
   <p class="need-description">{{ need.description }}</p>
 
   <div class="need-info-row">
