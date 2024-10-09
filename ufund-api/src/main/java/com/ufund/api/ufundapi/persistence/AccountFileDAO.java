@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +16,7 @@ import com.ufund.api.ufundapi.model.Need;
 @Component
 public class AccountFileDAO implements AccountDAO{
 
+    // Use the logger from HERO for message handling? 
     private static final Logger LOG = Logger.getLogger(AccountFileDAO.class.getName());
 
     // Local cashe of needs
@@ -28,12 +28,26 @@ public class AccountFileDAO implements AccountDAO{
     // File name to read/write from
     private String filename;
 
+
+    /**
+     * Creates an Account File Data Access Object
+     * 
+     * @param filename Filename to read from and write to
+     * @param objectMapper Provides JSON Object to/from Java Object serialization and deserialization
+     * 
+     * @throws IOException when file cannot be accessed or read from
+     */
     public AccountFileDAO(@Value("${accounts.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();  // load the needs from the file
     }
     
+    /**
+     * Generates an array of {@linkplain Account accounts} from the tree map
+     * 
+     * @return  The array of {@link Account accounts}, may be empty
+     */
     private Account[] getAccountsArray(String containsText) { // if containsText == null, no filter
         ArrayList<Account> accountArrayList = new ArrayList<>();
 
@@ -48,11 +62,23 @@ public class AccountFileDAO implements AccountDAO{
         return accountArray;
     }
     
+    /**
+     * Generates an array of {@linkplain Account accounts} from the tree map
+     * 
+     * @return  The array of {@link Account accounts}, may be empty
+     */
     private Account[] getAccountsArray() {
         return getAccountsArray(null);
     }
     
-
+    /**
+     * Loads {@linkplain Account accounts} from the JSON file into the map
+     * <br>
+     * 
+     * @return true if the file was read successfully
+     * 
+     * @throws IOException when file cannot be accessed or read from
+     */
     private boolean load() throws IOException {
         accounts = new TreeMap<>();
 
@@ -69,6 +95,9 @@ public class AccountFileDAO implements AccountDAO{
         return true;
     }
 
+    /**
+    ** {@inheritDoc}
+     */
     public Account createAccount(Account account) throws IOException{
         
         if( accounts.containsKey(account.getName())){
@@ -82,6 +111,13 @@ public class AccountFileDAO implements AccountDAO{
         return newAccount;
     }
 
+    /**
+     * Saves the {@linkplain Account accounts} from the map into the file as an array of JSON objects
+     * 
+     * @return true if the {@link Account accounts} were written successfully
+     * 
+     * @throws IOException when file cannot be accessed or written to
+     */
     private boolean save() throws IOException {
         Account[] accountsArray = getAccountsArray();
 
@@ -92,12 +128,18 @@ public class AccountFileDAO implements AccountDAO{
         return true;
     }
 
+    /**
+    ** {@inheritDoc}
+     */
     @Override
-    public boolean updateNeed(String id) throws IOException{
+    public boolean updateNeed(Account account) throws IOException{
 
         return false;
     }
 
+    /**
+    ** {@inheritDoc}
+     */
     @Override
     public ArrayList<Need> getNeeds() throws IOException{
 

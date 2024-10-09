@@ -17,18 +17,29 @@ public interface AccountDAO{
     ArrayList<Need> getNeeds() throws IOException;
 
      /**
-     * Deletes a {@linkplain Need Need} with the given id
+     * Updates a {@linkplain Account account} with the given id
      * 
-     * @param id The id of the {@link Need Need}
+     * @param account {@link Account account} Account object 
      * 
-     * @return true if the {@link Need Need} was deleted
+     * @return true if the {@link Account account} was deleted
      * <br>
-     * false if Need with the given id does not exist
+     * false if Account with the given id does not exist
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean updateNeed(String id) throws IOException;
+    boolean updateNeed(Account account) throws IOException;
 
+    /**
+     * Creates and saves a {@linkplain Account account}
+     * 
+     * @param Need {@linkplain Account account} object to be created and saved
+     * <br>
+     * The id of the Account object is ignored and a new uniqe id is assigned
+     *
+     * @return new {@link Account account} if successful, false otherwise 
+     * 
+     * @throws IOException if an issue with underlying storage
+     */
     public Account createAccount(Account account) throws IOException;
 
 }
