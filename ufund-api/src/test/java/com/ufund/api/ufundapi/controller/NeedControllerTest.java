@@ -183,4 +183,24 @@ public class NeedControllerTest {
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(needs,response.getBody());
     }
+
+    @Test
+    public void testSearchNeedsLowercase() throws IOException { // searchNeeds may throw IOException
+        // Setup
+        String searchString = "b";
+        Need[] needs = new Need[3];
+        needs[0] = new Need("MOCKID-0", "NeedA1", "Descr1", 3.9, 7, 12.1);
+        needs[1] = new Need("MOCKID-1", "NeedB1", "Descr2", 2.2, 4, 10.5);
+        needs[2] = new Need("MOCKID-2", "Needb1", "Descr2", 2.2, 4, 10.5);
+        // When findNeeds is called with the search string, return the two
+        /// needs above
+        when(mockNeedDAO.searchNeeds(searchString)).thenReturn(needs);
+
+        // Invoke
+        ResponseEntity<Need[]> response = needController.searchNeeds(searchString);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(needs,response.getBody());
+    }
 }

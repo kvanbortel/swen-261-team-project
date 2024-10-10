@@ -12,7 +12,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50; /* Green background */
+    background-color: var(--baseOrange);; /* Green background */
     padding: 20px;
     text-align: center; /* Center the title */
 }
