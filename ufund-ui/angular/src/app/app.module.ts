@@ -26,6 +26,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { CreateNeedDialogComponent } from './create-need-dialog/create-need-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ValidationErrorsComponent } from './validation-errors/validation-errors.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CupboardSearchComponent,
     SingleNeedComponent,
     CreateNeedComponent,
-    CreateNeedDialogComponent
+    CreateNeedDialogComponent,
+    ValidationErrorsComponent
   ],
   imports: [
     BrowserModule,
