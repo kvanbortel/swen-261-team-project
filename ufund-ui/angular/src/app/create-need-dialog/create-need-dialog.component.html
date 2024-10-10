@@ -1,5 +1,5 @@
 <div>
-    <mat-dialog-content>
+    <mat-dialog-content class="add-need">
         <form [formGroup]="createNeedForm" (ngSubmit)="onSubmit()">
             <div fxLayout="column" fxLayoutAlign="center center">
                 <div fxFlex="100%">
@@ -11,7 +11,7 @@
                 <div fxFlex="100%">
                     <mat-form-field appearance="outline" class="form-field">
                         <mat-label>Description</mat-label>
-                        <input matInput formControlName="description" />
+                        <textarea matInput formControlName="description"></textarea>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
@@ -33,8 +33,9 @@
                     </mat-form-field>
                 </div>
 
-                <button mat-button type="submit" [disabled]="createNeedForm.invalid">Save</button>
-                <button mat-button mat-dialog-close>Cancel</button>
+                <button class="form-button orange-button" mat-button type="submit"
+                        [disabled]="createNeedForm.invalid">Save</button>
+                <button class="form-button gray-button" mat-button mat-dialog-close>Cancel</button>
             </div>
         </form>
     </mat-dialog-content>

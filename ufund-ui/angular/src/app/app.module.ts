@@ -25,6 +25,7 @@ import {
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { CreateNeedDialogComponent } from './create-need-dialog/create-need-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CreateNeedDialogComponent } from './create-need-dialog/create-need-dial
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatDialogModule
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

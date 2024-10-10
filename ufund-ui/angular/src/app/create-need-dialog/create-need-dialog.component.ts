@@ -20,23 +20,20 @@ import { CupboardService } from '../cupboard.service';
 })
 export class CreateNeedDialogComponent {
   createNeedForm: FormGroup;
-  formSubmitted = false;
-  showForm: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<CreateNeedDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private formBuilder: FormBuilder,
-    private router: Router,
     private cupboardService: CupboardService
   ) {
     // Initialize the form with form controls
     this.createNeedForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required, Validators.minLength(10)]],
-      cost: ['', [Validators.required]],
-      demandRating: ['', [Validators.required]],
-      quantity: ['', [Validators.required]],
+      cost: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      demandRating: ['', [Validators.required, Validators.min(0), Validators.max(100), Validators.pattern(/^\d+$/)]],
+      quantity: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     });
   }
 
@@ -46,8 +43,6 @@ export class CreateNeedDialogComponent {
 
   // This method is called when the form is submitted
   onSubmit() {
-    this.formSubmitted = true;
-
     if (this.createNeedForm.invalid) {
       return;
     }
@@ -61,5 +56,6 @@ export class CreateNeedDialogComponent {
         console.error('Error adding need', error);
       }
     });
+    this.dialogRef.close();
   }
 }
