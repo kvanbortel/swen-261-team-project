@@ -30,7 +30,7 @@ export class CreateNeedDialogComponent {
     // Initialize the form with form controls
     this.createNeedForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.minLength(10)]],
+      description: ['', [Validators.required]],
       cost: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       demandRating: ['', [Validators.required, Validators.min(0), Validators.max(100), Validators.pattern(/^\d+$/)]],
       quantity: ['', [Validators.required, Validators.pattern(/^\d+$/)]],

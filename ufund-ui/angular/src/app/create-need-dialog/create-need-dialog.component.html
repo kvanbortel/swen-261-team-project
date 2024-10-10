@@ -6,30 +6,53 @@
                     <mat-form-field appearance="outline" class="form-field">
                         <mat-label>Name</mat-label>
                         <input matInput formControlName="name" />
+                        <mat-error *ngIf="createNeedForm.get('name')?.hasError('required') &&
+                            (createNeedForm.get('name')?.dirty || createNeedForm.get('name')?.touched)">
+                            Name is required.
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
                     <mat-form-field appearance="outline" class="form-field">
                         <mat-label>Description</mat-label>
                         <textarea matInput formControlName="description"></textarea>
+                        <mat-error *ngIf="createNeedForm.get('description')?.hasError('required') &&
+                            (createNeedForm.get('description')?.dirty || createNeedForm.get('description')?.touched)">
+                            Description is required.
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
                     <mat-form-field appearance="outline" class="form-field">
                         <mat-label>Cost</mat-label>
                         <input matInput formControlName="cost" />
+                        <mat-error *ngIf="createNeedForm.get('cost')?.hasError('required') &&
+                            (createNeedForm.get('cost')?.dirty || createNeedForm.get('cost')?.touched)">
+                            Cost is required.
+                        </mat-error>
+                        <mat-error *ngIf="createNeedForm.get('name')?.hasError('pattern')">
+                            Cost must be numerical with up to two decimals of precision.
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
                     <mat-form-field appearance="outline" class="form-field">
                         <mat-label>Demand Rating</mat-label>
                         <input matInput formControlName="demandRating" />
+                        <mat-error *ngIf="createNeedForm.get('demandRating')?.hasError('required') &&
+                            (createNeedForm.get('demandRating')?.dirty || createNeedForm.get('demandRating')?.touched)">
+                            Demand rating is required.
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
                     <mat-form-field appearance="outline" class="form-field">
                         <mat-label>Quantity</mat-label>
                         <input matInput formControlName="quantity" />
+                        <mat-error *ngIf="createNeedForm.get('quantity')?.hasError('required') &&
+                            (createNeedForm.get('quantity')?.dirty || createNeedForm.get('quantity')?.touched)">
+                            Quantity is required.
+                        </mat-error>
                     </mat-form-field>
                 </div>
 
