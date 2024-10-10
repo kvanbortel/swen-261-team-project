@@ -1,15 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
-@Component({
-  selector: 'app-validation-errors',
-  templateUrl: './validation-errors.component.html',
-  styleUrl: './validation-errors.component.css',
+@Injectable({
+  providedIn: 'root'
 })
-export class ValidationErrorsComponent {
-  @Input() control: AbstractControl | null = null;
-  @Input() fieldName: string = '';
-  @Input() errorMessages: { [key: string]: string } = {};
+export class ValidationErrorsService {
+
+  constructor() { }
 
   getErrorMessage(control: AbstractControl | null, fieldName: string, errorMessages: { [key: string]: string }): string {
     if (control?.hasError('required')) {

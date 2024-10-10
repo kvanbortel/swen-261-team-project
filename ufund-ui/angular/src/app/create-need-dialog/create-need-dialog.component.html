@@ -6,102 +6,49 @@
                     <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Name</mat-label>
                         <input matInput formControlName="name" />
-                        <!-- <mat-error *ngIf="createNeedForm.get('name')?.hasError('required') &&
-                            (createNeedForm.get('name')?.dirty || createNeedForm.get('name')?.touched)">
-                            Name is required.
-                        </mat-error> -->
-                        <app-validation-errors
-                            [control]="createNeedForm.get('name')"
-                            fieldName="Name"
-                        ></app-validation-errors>
+                        <mat-error>
+                            {{ getErrorMessage(createNeedForm.get('description'), 'Description', {}) }}
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
                     <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Description</mat-label>
                         <textarea matInput formControlName="description"></textarea>
-                        <!-- <mat-error *ngIf="createNeedForm.get('description')?.hasError('required') &&
-                            (createNeedForm.get('description')?.dirty || createNeedForm.get('description')?.touched)">
-                            Description is required.
-                        </mat-error> -->
-                        <app-validation-errors
-                            [control]="createNeedForm.get('description')"
-                            fieldName="Description"
-                        ></app-validation-errors>
+                        <mat-error>
+                            {{ getErrorMessage(createNeedForm.get('description'), 'Description', {}) }}
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
                     <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Cost</mat-label>
                         <input matInput formControlName="cost" />
-                        <!-- <mat-error *ngIf="createNeedForm.get('cost')?.hasError('required') &&
-                            (createNeedForm.get('cost')?.dirty || createNeedForm.get('cost')?.touched)">
-                            Cost is required.
+                        <mat-error>
+                            {{ getErrorMessage(createNeedForm.get('cost'), 'Cost', {
+                                pattern: 'Cost must be numerical (up to two decimal places).',
+                                min: 'Cost must be at least 0.'
+                            }) }}
                         </mat-error>
-                        <mat-error *ngIf="createNeedForm.get('cost')?.hasError('pattern')">
-                            Cost must be numerical (up to two decimal places).
-                        </mat-error>
-                        <mat-error *ngIf="createNeedForm.get('cost')?.hasError('min')">
-                            Cost must be at least 0.
-                        </mat-error> -->
-                        <app-validation-errors
-                            [control]="createNeedForm.get('cost')"
-                            fieldName="Cost"
-                            [errorMessages]="{
-                            pattern: 'Cost must be numerical (up to two decimal places).',
-                            min: 'Cost must be at least 0.'
-                            }"
-                        ></app-validation-errors>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
                     <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Demand Rating</mat-label>
                         <input matInput formControlName="demandRating" />
-                        <!-- <mat-error *ngIf="createNeedForm.get('demandRating')?.hasError('required') &&
-                            (createNeedForm.get('demandRating')?.dirty || createNeedForm.get('demandRating')?.touched)">
-                            Demand rating is required.
+                        <mat-error>
+                            {{ getErrorMessage(createNeedForm.get('demandRating'), 'Demand rating', {
+                                pattern: 'Demand rating must be a whole number.',
+                                min: 'Demand rating must be at least 0.',
+                                max: 'Demand rating maximum is 100.'
+                            }) }}
                         </mat-error>
-                        <mat-error *ngIf="createNeedForm.get('demandRating')?.hasError('pattern')">
-                            Demand rating must be a whole number.
-                        </mat-error>
-                        <mat-error *ngIf="createNeedForm.get('demandRating')?.hasError('min') ||
-                            createNeedForm.get('demandRating')?.hasError('max')">
-                            Demand rating must be from 0 to 100.
-                        </mat-error> -->
-                        <app-validation-errors
-                            [control]="createNeedForm.get('demandRating')"
-                            fieldName="Demand rating"
-                            [errorMessages]="{
-                            pattern: 'Demand rating must be a whole number.',
-                            min: 'Demand rating must be at least 0.',
-                            max: 'Demand rating maximum is 100.'
-                            }"
-                        ></app-validation-errors>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
                     <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Quantity</mat-label>
                         <input matInput formControlName="quantity" />
-                        <!-- <mat-error *ngIf="createNeedForm.get('quantity')?.hasError('required') &&
-                            (createNeedForm.get('quantity')?.dirty || createNeedForm.get('quantity')?.touched)">
-                            Quantity is required.
-                        </mat-error>
-                        <mat-error *ngIf="createNeedForm.get('quantity')?.hasError('pattern')">
-                            Quantity must be a whole number.
-                        </mat-error>
-                        <mat-error *ngIf="createNeedForm.get('quantity')?.hasError('min')">
-                            Quantity must be at least 0.
-                        </mat-error> -->
-                        <!-- <app-validation-errors
-                            [control]="createNeedForm.get('quantity')"
-                            fieldName="Quantity"
-                            [errorMessages]="{
-                            pattern: 'Quantity must be a whole number.',
-                            min: 'Quantity must be at least 0.'
-                            }"
-                        ></app-validation-errors> -->
                         <mat-error>
                             {{ getErrorMessage(createNeedForm.get('quantity'), 'Quantity', {
                               pattern: 'Quantity must be a whole number.',
