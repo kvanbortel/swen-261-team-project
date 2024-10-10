@@ -26,6 +26,7 @@ public class NeedTest {
     private static final double TEST_DEMAND_RATING = 4.5;
     private static final int TEST_QUANTITY = 100;
     private static final double TEST_COST = 500.0;
+    
     private static final boolean DEFAULT_FULFILLMENT_STATUS = false;
 
     private static final String UPDATED_NAME = "Water";
