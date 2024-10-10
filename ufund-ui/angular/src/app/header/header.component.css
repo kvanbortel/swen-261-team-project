@@ -11,10 +11,20 @@ body {
     color: #333;
 }
 
+.logo{
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+    margin-right: 40px;
+}
+
 header {
-    background-color: var(--baseOrange);; /* Green background */
+    background-color: var(--baseOrange);;
     padding: 20px;
-    text-align: center; /* Center the title */
+    text-align: center;
+    display: flex;
+    justify-content: left;
+    border-radius: 6px;
 }
 
 header h1 {
