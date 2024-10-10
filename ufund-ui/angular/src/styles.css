@@ -2,4 +2,5 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 :root {
     --baseOrange: rgb(241, 176, 97);
+    --hoveredOrange: rgb(239, 164, 74)
 }
