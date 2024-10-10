@@ -9,6 +9,7 @@ import {
   MatDialog,
   MatDialogActions,
   MatDialogClose,
+  MatDialogConfig,
   MatDialogContent,
   MatDialogRef,
   MatDialogTitle,
@@ -47,7 +48,6 @@ export class CreateNeedComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateNeedDialogComponent, {
-      width: '250px',
       data: this.data,
     });
 
@@ -57,13 +57,3 @@ export class CreateNeedComponent {
     });
   }
 }
-
-// @Component({
-//   selector: 'app-create-need-dialog',
-//   templateUrl: './create-need-dialog.component.html',
-// })
-// export class CreateNeedDialog {
-
-
-
-// }

@@ -9,7 +9,7 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CupboardService } from '../cupboard.service';
 
@@ -35,7 +35,7 @@ export class CreateNeedDialogComponent {
       name: ['', [Validators.required]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       cost: ['', [Validators.required]],
-      demand: ['', [Validators.required]],
+      demandRating: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
     });
   }
@@ -53,14 +53,13 @@ export class CreateNeedDialogComponent {
     }
 
     // Call the service to add the need
-    this.cupboardService.addNeed(this.createNeedForm.value).subscribe(
-      (response) => {
-        // Navigate back to the list or show a success message
-        this.router.navigate(['/needs']);
+    this.cupboardService.addNeed(this.createNeedForm.value).subscribe({
+      next: (response) => {
+        console.log(`Sucessfully added need: ${response}`)
       },
-      (error) => {
+      error: (error) => {
         console.error('Error adding need', error);
       }
-    );
+    });
   }
 }
