@@ -10,7 +10,21 @@ import { CupboardNeedComponent } from './cupboard-need/cupboard-need.component';
 import { CupboardSearchComponent } from './cupboard-search/cupboard-search.component';
 import { SingleNeedComponent } from './single-need/single-need.component';
 import { CreateNeedComponent } from './create-need/create-need.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogModule,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { CreateNeedDialogComponent } from './create-need-dialog/create-need-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +34,23 @@ import { ReactiveFormsModule } from '@angular/forms';
     CupboardNeedComponent,
     CupboardSearchComponent,
     SingleNeedComponent,
-    CreateNeedComponent
+    CreateNeedComponent,
+    CreateNeedDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

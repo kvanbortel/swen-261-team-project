@@ -1,0 +1,33 @@
+<div class="needs-list-container">
+    <!-- Only show this button if the user is an admin -->
+    <!-- <button *ngIf="isAdmin" class="btn btn-primary" (click)="navigateToAddNeed()"> -->
+  
+        <div>
+            <mat-dialog-content>
+                <form [formGroup]="createNeedForm" (ngSubmit)="onSubmit()">
+                    <mat-form-field>
+                        <mat-label>Name:</mat-label>
+                        <input matInput [(ngModel)]="data.name" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Description:</mat-label>
+                        <input matInput [(ngModel)]="data.description" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Cost:</mat-label>
+                        <input matInput [(ngModel)]="data.cost" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Demand Rating:</mat-label>
+                        <input matInput [(ngModel)]="data.demandRating" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Quantity:</mat-label>
+                        <input matInput [(ngModel)]="data.quantity" />
+                    </mat-form-field>
+                
+                    <button class="button" type="submit">Save</button>
+                </form>
+            </mat-dialog-content>
+        </div>
+    </div>

@@ -1,8 +1,29 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, Inject, Input, model } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CupboardService } from '../cupboard.service';
 import { Need } from '../Need';
+import {MatButtonModule} from '@angular/material/button';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { CreateNeedDialogComponent } from '../create-need-dialog/create-need-dialog.component';
+
+export interface DialogData {
+  name: string;
+  description: string;
+  cost: number;
+  demandRating: number;
+  quantity: number;
+}
 
 @Component({
   selector: 'app-create-need',
@@ -11,42 +32,38 @@ import { Need } from '../Need';
 })
 export class CreateNeedComponent {
   @Input() need?: Need;
-  createNeedForm: FormGroup;
-  formSubmitted = false;
-  showForm: boolean = false;
+
+  data: DialogData = {
+    name: "",
+    description: "",
+    cost: 0,
+    demandRating: 0,
+    quantity: 0
+  }
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private cupboardService: CupboardService
-  ) {
-    // Initialize the form with form controls
-    this.createNeedForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.minLength(10)]],
-      cost: ['', [Validators.required]],
-      demand: ['', [Validators.required]],
-      quantity: ['', [Validators.required]],
+    public dialog: MatDialog
+  ) {}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreateNeedDialogComponent, {
+      width: '250px',
+      data: this.data,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.data = result;
     });
   }
-
-  // This method is called when the form is submitted
-  onSubmit() {
-    this.formSubmitted = true;
-
-    if (this.createNeedForm.invalid) {
-      return;
-    }
-
-    // Call the service to add the need
-    this.cupboardService.addNeed(this.createNeedForm.value).subscribe(
-      (response) => {
-        // Navigate back to the list or show a success message
-        this.router.navigate(['/needs']);
-      },
-      (error) => {
-        console.error('Error adding need', error);
-      }
-    );
-  }
 }
+
+// @Component({
+//   selector: 'app-create-need-dialog',
+//   templateUrl: './create-need-dialog.component.html',
+// })
+// export class CreateNeedDialog {
+
+
+
+// }
