@@ -3,7 +3,7 @@
         <form [formGroup]="createNeedForm" (ngSubmit)="onSubmit()">
             <div fxLayout="column" fxLayoutAlign="center center">
                 <div fxFlex="100%">
-                    <mat-form-field appearance="outline" class="form-field">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Name</mat-label>
                         <input matInput formControlName="name" />
                         <mat-error *ngIf="createNeedForm.get('name')?.hasError('required') &&
@@ -13,7 +13,7 @@
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
-                    <mat-form-field appearance="outline" class="form-field">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Description</mat-label>
                         <textarea matInput formControlName="description"></textarea>
                         <mat-error *ngIf="createNeedForm.get('description')?.hasError('required') &&
@@ -23,35 +23,51 @@
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
-                    <mat-form-field appearance="outline" class="form-field">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Cost</mat-label>
                         <input matInput formControlName="cost" />
                         <mat-error *ngIf="createNeedForm.get('cost')?.hasError('required') &&
                             (createNeedForm.get('cost')?.dirty || createNeedForm.get('cost')?.touched)">
                             Cost is required.
                         </mat-error>
-                        <mat-error *ngIf="createNeedForm.get('name')?.hasError('pattern')">
-                            Cost must be numerical with up to two decimals of precision.
+                        <mat-error *ngIf="createNeedForm.get('cost')?.hasError('pattern')">
+                            Cost must be numerical (up to two decimal places).
+                        </mat-error>
+                        <mat-error *ngIf="createNeedForm.get('cost')?.hasError('min')">
+                            Cost must be at least 0.
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
-                    <mat-form-field appearance="outline" class="form-field">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Demand Rating</mat-label>
                         <input matInput formControlName="demandRating" />
                         <mat-error *ngIf="createNeedForm.get('demandRating')?.hasError('required') &&
                             (createNeedForm.get('demandRating')?.dirty || createNeedForm.get('demandRating')?.touched)">
                             Demand rating is required.
                         </mat-error>
+                        <mat-error *ngIf="createNeedForm.get('demandRating')?.hasError('pattern')">
+                            Demand rating must be a whole number.
+                        </mat-error>
+                        <mat-error *ngIf="createNeedForm.get('demandRating')?.hasError('min') ||
+                            createNeedForm.get('demandRating')?.hasError('max')">
+                            Demand rating must be from 0 to 100.
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100%">
-                    <mat-form-field appearance="outline" class="form-field">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                         <mat-label>Quantity</mat-label>
                         <input matInput formControlName="quantity" />
                         <mat-error *ngIf="createNeedForm.get('quantity')?.hasError('required') &&
                             (createNeedForm.get('quantity')?.dirty || createNeedForm.get('quantity')?.touched)">
                             Quantity is required.
+                        </mat-error>
+                        <mat-error *ngIf="createNeedForm.get('quantity')?.hasError('pattern')">
+                            Quantity must be a whole number.
+                        </mat-error>
+                        <mat-error *ngIf="createNeedForm.get('quantity')?.hasError('min')">
+                            Quantity must be at least 0.
                         </mat-error>
                     </mat-form-field>
                 </div>

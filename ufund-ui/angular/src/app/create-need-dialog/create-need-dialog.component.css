@@ -16,3 +16,7 @@
 .add-need.mat-mdc-dialog-content {
     max-height: 70vh !important;
 }
+
+.form-field {
+    margin-bottom: 16px;
+}
