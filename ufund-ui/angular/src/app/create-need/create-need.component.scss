@@ -1,0 +1,55 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+.main { 
+    display: flex; 
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 20px; 
+  }
+
+.add-need-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .invalid-feedback {
+    color: red;
+    font-size: 0.875rem;
+  }
+  
+  .is-invalid {
+    border-color: red;
+  }
+
+  .add-need-button {
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    max-width: 600px;
+    min-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    outline: none;
+    transition-duration: 0.4s;
+  }
+
+  .add-need-button:hover {
+    background-color: #449d48; /* Darker shade of green */
+  }
+
+.center {
+  transform: translate(-50%, -50%);
+}
