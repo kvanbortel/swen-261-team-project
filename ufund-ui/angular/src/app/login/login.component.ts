@@ -1,26 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+import { StorageComponent } from '../storage/storage.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent {
 
-  account:string = "";
+  account: string = "";
   admin: number = 0;
   
-  constructor() {}
+  constructor(public storageComponent: StorageComponent) {}
 
   login(account: string){
-    this.account = account;
-    console.log(account);
-    if(this.account == "admin"){
-      this.admin = 1;
+    if(account == "admin"){
+      this.storageComponent.setisAdmin(1);
+      return;
     }
+   this.storageComponent.setName(account);
+   console.log(account);
+    
   }
 
-  isAdmin(){
-    return this.admin;
+  ngOnInit(): void{
+    this.storageComponent.setisAdmin(0);
+    this.storageComponent.setName('');
+
   }
+
 }

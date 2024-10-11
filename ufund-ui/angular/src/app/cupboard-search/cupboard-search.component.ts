@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, startWith, Subject, switchMap } from 'rxjs';
 import { CupboardService } from '../cupboard.service';
 import { Need } from '../Need';
+import { LoginComponent } from '../login/login.component';
+import { StorageComponent } from '../storage/storage.component';
 
 @Component({
   selector: 'app-cupboard-search',
@@ -12,7 +14,7 @@ export class CupboardSearchComponent {
   needs$!: Observable<Need[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private cupboardService: CupboardService) {}
+  constructor(private cupboardService: CupboardService, public storageComponent: StorageComponent) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -20,6 +22,7 @@ export class CupboardSearchComponent {
   }
 
   ngOnInit(): void {
+    
     this.needs$ = this.searchTerms.pipe(
 
       // first search is an empty string, should return all needs
@@ -33,6 +36,8 @@ export class CupboardSearchComponent {
 
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.cupboardService.searchNeeds(term)),
+
+
     );
   }
 }

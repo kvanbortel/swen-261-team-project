@@ -8,7 +8,6 @@ import { LoginComponent } from '../login/login.component';
   styleUrl: './cupboard-need.component.css',
 })
 export class CupboardNeedComponent {
-  isAdmin: number = this.LoginComponent.isAdmin();
   @Input() need?: Need;
 
   constructor(private LoginComponent: LoginComponent) {}

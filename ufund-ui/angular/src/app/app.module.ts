@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { CupboardNeedComponent } from './cupboard-need/cupboard-need.component';
 import { CupboardSearchComponent } from './cupboard-search/cupboard-search.component';
 import { LoginComponent } from './login/login.component';
+import { StorageComponent } from './storage/storage.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     CupboardNeedComponent,
     CupboardSearchComponent,
-    LoginComponent
+    LoginComponent,
+    StorageComponent
   ],
   imports: [
     BrowserModule,

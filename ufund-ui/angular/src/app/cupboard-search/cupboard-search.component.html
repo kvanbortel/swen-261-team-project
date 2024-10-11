@@ -1,4 +1,9 @@
 <div id="search-component" class="search-container">
+        <!-- Only show this button if the user is an admin -->
+    <button *ngIf="storageComponent.isAdmin" class="btn add-need-button">
+      Add
+    </button>
+    <label>"{{this.storageComponent.getName()}}"</label>
     <label for="search-box" class="search-title">Need Search </label>
     <input #searchBox id="search-box" (input)="search(searchBox.value)"  class="search-input"/>
 
@@ -11,4 +16,4 @@
     <div *ngIf="(needs$ | async)?.length === 0" class="no-results">
         No needs found.
     </div>
-  </div>
+</div>
