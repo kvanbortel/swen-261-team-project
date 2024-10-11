@@ -15,7 +15,7 @@ export class DeleteNeedComponent {
 
   constructor(private cupboardService: CupboardService, public dialog: MatDialog){}
   
-  deleteNeed(): void {
+  promptDelete(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       disableClose: false
     });
@@ -24,21 +24,25 @@ export class DeleteNeedComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if (result) {
-        if(!this.need) {
-          console.error('No Need to delete');
-          return;
-        }
-    
-        const id = this.need.id;
-    
-        this.cupboardService.deleteNeed(id).subscribe({
-          next: (response) => {
-            console.log('Sucessfully deleted Need', response);
-          },
-          error: (error) => {
-            console.error('Error deleting Need', error);
-          }
-        });
+        this.deleteNeed();
+      }
+    });
+  }
+
+  private deleteNeed() {
+    if(!this.need) {
+      console.error('No Need to delete');
+      return;
+    }
+
+    const id = this.need.id;
+
+    this.cupboardService.deleteNeed(id).subscribe({
+      next: (response) => {
+        console.log('Sucessfully deleted Need', response);
+      },
+      error: (error) => {
+        console.error('Error deleting Need', error);
       }
     });
   }
