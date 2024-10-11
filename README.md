@@ -21,7 +21,7 @@ An online U-Fund system built in Java 21=> and Angular 17.0
 ## How to run it
 
 1. Clone the repository and go to the root directory.
-2. For the first time only, execute `npm install --save "@angular/material@^17.0.0"` in the `ufund-ui/angular` directory
+2. For the first time only, run `npm i` in the `ufund-ui/angular` directory
 3. Execute `mvn compile exec:java`
 4. Open in your browser `http://localhost:8080/`
 5.  _add any other steps required or examples of how to use/run_
