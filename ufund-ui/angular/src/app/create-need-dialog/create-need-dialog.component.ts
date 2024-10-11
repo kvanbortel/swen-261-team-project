@@ -62,6 +62,8 @@ export class CreateNeedDialogComponent {
       fulfillmentStatus: this.data.need?.fulfillmenStatus
     };
 
+    console.log(`crazy. ${JSON.stringify(needData)}`);
+
     if (this.data.mode === 'add') {
       // Call the service to add the need
       this.cupboardService.addNeed(needData).subscribe({

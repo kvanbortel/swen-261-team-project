@@ -52,8 +52,7 @@ export class CupboardService {
   }
 
   updateNeed(need: Need): Observable<any> {
-    const url = `${this.needsUrl}/${need.id}`;
-    return this.http.put<Need>(url, need, this.httpOptions).pipe(
+    return this.http.put<Need>(this.needsUrl, need, this.httpOptions).pipe(
       tap(_ => this.log(`updated need id=${need.id}`)),
       catchError(this.handleError<Need>('updateNeed'))
     );
