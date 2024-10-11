@@ -7,12 +7,20 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  account:string = "";
+  admin: number = 0;
   
+  constructor() {}
 
-    login(account: string){
-      console.log(account);
-      if(account == "admin"){
-        
-      }
+  login(account: string){
+    this.account = account;
+    console.log(account);
+    if(this.account == "admin"){
+      this.admin = 1;
     }
+  }
+
+  isAdmin(){
+    return this.admin;
+  }
 }

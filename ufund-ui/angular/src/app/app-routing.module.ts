@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { CupboardNeedComponent } from './cupboard-need/cupboard-need.component';
+import { CupboardSearchComponent } from './cupboard-search/cupboard-search.component';
 
 const routes: Routes = [
-
+  
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', loadChildren: () => import('./login/login.component').then(m => m.LoginComponent )}
+  { path: 'home', component: CupboardSearchComponent},
+  //{ path: 'login', loadChildren: () => import('./login/login.component').then(m => m.LoginComponent )}
 ];
 
 @NgModule({
