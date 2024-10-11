@@ -16,6 +16,8 @@ public class Basket {
 
     /* 
      * Creates a Basket given a list of needs
+     * 
+     * @param needs list of BasketNeed objects
     */
     public Basket(@JsonProperty("needs") BasketNeed[] needs) {
         this.needs = new ArrayList<BasketNeed>(Arrays.asList(needs));
