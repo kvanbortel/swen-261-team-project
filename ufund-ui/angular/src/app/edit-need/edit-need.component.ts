@@ -14,9 +14,7 @@ export class EditNeedComponent {
   isAdmin: number = 1;
   data!: DialogData;
 
-  constructor(
-    public dialog: MatDialog,
-  ) {}
+  constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     // Populated with current Need's data

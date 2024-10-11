@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Need } from '../Need';
 import { CupboardService } from '../cupboard.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({

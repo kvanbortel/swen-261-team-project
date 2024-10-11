@@ -1,5 +1,4 @@
 import { Component, Input, } from '@angular/core';
-import { Need } from '../Need';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateNeedDialogComponent } from '../create-need-dialog/create-need-dialog.component';
 
