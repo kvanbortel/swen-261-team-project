@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, startWith, Subject, switchMap } from 'rxjs';
 import { CupboardService } from '../cupboard.service';
 import { Need } from '../Need';
-import { LoginComponent } from '../login/login.component';
-import { StorageComponent } from '../storage/storage.component';
+
+import { AuthService } from '../storage/auth.service';
 
 @Component({
   selector: 'app-cupboard-search',
@@ -15,7 +15,7 @@ export class CupboardSearchComponent {
   private searchTerms = new Subject<string>();
   selected!: Need;
 
-  constructor(private cupboardService: CupboardService, public storageComponent: StorageComponent) {}
+  constructor(private cupboardService: CupboardService, public authService: AuthService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -28,6 +28,9 @@ export class CupboardSearchComponent {
   }
 
   ngOnInit(): void {
+    if(this.authService.getName() == '' && !this.authService.isAdmin){
+      window.location.href = 'login'
+    }
     
     this.needs$ = this.searchTerms.pipe(
 

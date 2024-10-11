@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateNeedDialogComponent } from '../create-need-dialog/create-need-dialog.component';
 import { DialogData } from '../create-need/create-need.component';
 import { Need } from '../Need';
+import { AuthService } from '../storage/auth.service';
 
 @Component({
   selector: 'app-edit-need',
@@ -11,10 +12,10 @@ import { Need } from '../Need';
 })
 export class EditNeedComponent {
   @Input() need?: Need;
-  isAdmin: number = 1;
+  isAdmin: number = this.authService.isAdmin;
   data!: DialogData;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public authService: AuthService) {}
 
   openDialog(): void {
     // Populated with current Need's data

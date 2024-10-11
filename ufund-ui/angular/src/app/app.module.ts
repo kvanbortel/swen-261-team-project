@@ -27,7 +27,7 @@ import { EditNeedComponent } from './edit-need/edit-need.component';
 import { DeleteNeedComponent } from './delete-need/delete-need.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { LoginComponent } from './login/login.component';
-import { StorageComponent } from './storage/storage.component';
+import { AuthService } from './storage/auth.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,6 @@ import { StorageComponent } from './storage/storage.component';
     CupboardNeedComponent,
     CupboardSearchComponent,
     LoginComponent,
-    StorageComponent,
     SingleNeedComponent,
     CreateNeedComponent,
     CreateNeedDialogComponent,

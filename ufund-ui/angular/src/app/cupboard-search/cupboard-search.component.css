@@ -49,7 +49,23 @@
     padding: 0;
     margin: 0;
   }
+
+  .login{
+
+    display: block;
+    font-size: 1rem;
+    margin-top: -30px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+
+  }
   
+  hr{
+    border: none;
+
+  }
+
   /* Individual result item styling */
   .search-result li {
     margin-right: 10px;

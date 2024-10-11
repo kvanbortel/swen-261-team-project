@@ -1,5 +1,5 @@
 import { Component, Injectable } from '@angular/core';
-import { StorageComponent } from '../storage/storage.component';
+import { AuthService } from '../storage/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +11,23 @@ export class LoginComponent {
 
   account: string = "";
   admin: number = 0;
-  
-  constructor(public storageComponent: StorageComponent) {}
+
+  constructor(public authService: AuthService) {}
+
 
   login(account: string){
     if(account == "admin"){
-      this.storageComponent.setisAdmin(1);
+      this.authService.setisAdmin(1);
       return;
     }
-   this.storageComponent.setName(account);
+   this.authService.setName(account);
    console.log(account);
     
   }
 
   ngOnInit(): void{
-    this.storageComponent.setisAdmin(0);
-    this.storageComponent.setName('');
-
+    this.authService.setisAdmin(0);
+    this.authService.setName('');
   }
 
 }

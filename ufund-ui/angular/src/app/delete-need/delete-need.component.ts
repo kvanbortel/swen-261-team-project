@@ -3,6 +3,7 @@ import { Need } from '../Need';
 import { CupboardService } from '../cupboard.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { AuthService } from '../storage/auth.service';
 
 @Component({
   selector: 'app-delete-need',
@@ -11,9 +12,9 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 })
 export class DeleteNeedComponent {
   @Input() need?: Need;
-  isAdmin: number = 1; // TODO: Implement once login is done
+  isAdmin: number = this.authService.isAdmin; // TODO: Implement once login is done
 
-  constructor(private cupboardService: CupboardService, public dialog: MatDialog) {}
+  constructor(private cupboardService: CupboardService, public dialog: MatDialog, public authService: AuthService) {}
   
   promptDelete(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

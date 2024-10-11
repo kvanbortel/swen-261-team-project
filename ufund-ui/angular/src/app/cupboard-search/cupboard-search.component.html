@@ -1,10 +1,7 @@
 <div class="main">
   <div id="search-component" class="search-container">
-        <!-- Only show this button if the user is an admin -->
-    <button *ngIf="storageComponent.isAdmin" class="btn add-need-button">
-      Add
-    </button>
-    <label>"{{this.storageComponent.getName()}}"</label>
+    <label *ngIf="!this.authService.isAdmin" class = "login"> Logged in as: "{{this.authService.getName()}}"</label>
+    <hr><hr>
     <label for="search-box" class="search-title">Need Search </label>
     <div style="display: flex">
       <input
