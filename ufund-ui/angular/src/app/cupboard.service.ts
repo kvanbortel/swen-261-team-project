@@ -58,6 +58,15 @@ export class CupboardService {
     );
   }
 
+  deleteNeed(id: String): Observable<Need> {
+    const url = `${this.needsUrl}/${id}`;
+
+    return this.http.delete<Need>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted need id=${id}`)),
+      catchError(this.handleError<Need>('deleteNeed'))
+    );
+  }
+
   /** Log a CupboardService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`CupboardService: ${message}`);
