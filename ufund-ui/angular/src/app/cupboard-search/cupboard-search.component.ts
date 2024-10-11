@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { debounceTime, distinctUntilChanged, Observable, startWith, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable, startWith, Subject, switchMap, take } from 'rxjs';
 import { CupboardService } from '../cupboard.service';
 import { Need } from '../Need';
 
@@ -9,13 +9,14 @@ import { Need } from '../Need';
   styleUrl: './cupboard-search.component.css'
 })
 export class CupboardSearchComponent {
-  needs$!: Observable<Need[]>;
+  needs$ = new BehaviorSubject<Need[]>([]);
+
   private searchTerms = new Subject<string>();
   selected!: Need;
 
   constructor(private cupboardService: CupboardService) {}
 
-  private currentSearchTerm: string = "";  
+  private currentSearchTerm: string = "";
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -29,11 +30,18 @@ export class CupboardSearchComponent {
   }
 
   updateNeeds(){
-    this.needs$ = this.cupboardService.searchNeeds(this.currentSearchTerm);
+    this.cupboardService.searchNeeds(this.currentSearchTerm).subscribe({
+      next: (response) => this.needs$.next(response) 
+    });
   }
 
   ngOnInit(): void {
-    this.needs$ = this.searchTerms.pipe(
+
+    this.cupboardService.searchNeeds("").subscribe({ 
+      next: (response) => this.needs$.next(response)
+    });
+
+    this.searchTerms.pipe(
 
       // first search is an empty string, should return all needs
       startWith(""),
@@ -45,7 +53,9 @@ export class CupboardSearchComponent {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.cupboardService.searchNeeds(term)),
-    );
+      switchMap((term: string) => this.cupboardService.searchNeeds(term))
+    ).subscribe({
+      next: (response) => this.needs$.next(response)  // Manually emit the result
+    });
   }
 }
