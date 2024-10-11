@@ -19,7 +19,6 @@ export interface DialogData {
   styleUrl: './create-need.component.css'
 })
 export class CreateNeedComponent {
-  @Input() need?: Need;
   isAdmin: number = 1; // TODO: Implement once login is done
 
   data: DialogData = {

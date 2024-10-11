@@ -1,6 +1,7 @@
 <div *ngIf="need" class="cupboard-need" (click)="sendData()">
   <div class="row">
     <h3 class="need-title">{{ need.name }}</h3>
+    <app-delete-need [need]="need"></app-delete-need>
     <app-edit-need [need]="need"></app-edit-need>
     <button class="basket-button" (click)="addToBasket();$event.stopPropagation()">+</button>
   </div>
