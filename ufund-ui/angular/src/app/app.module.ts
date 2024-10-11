@@ -61,7 +61,7 @@ import { StorageComponent } from './storage/storage.component';
     MatDialogModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

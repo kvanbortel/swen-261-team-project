@@ -13,6 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.Need;
 
+import com.ufund.api.ufundapi.model.Basket;
+
 @Component
 public class AccountFileDAO implements AccountDAO{
 

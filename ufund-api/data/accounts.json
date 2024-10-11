@@ -1,1 +1,6 @@
-[{"name":"Max","basket":{"donationNeeds":[],"adoptionNeeds":[],"volunteerNeeds":[]}}]
+[
+    {"name":"Max",
+     "basket": [
+        {"id": "id0", "quantity": 3}, {"id": "id2823", "quantity": 9000}
+    ]}
+]

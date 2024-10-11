@@ -11,7 +11,12 @@ public class Account {
     @JsonProperty String name;
     @JsonProperty Basket basket;
 
-    public Account(@JsonProperty("name") String name){
+    public Account(@JsonProperty("name") String name, @JsonProperty("basket") BasketNeed[] needs){
+        this.name = name;
+        this.basket = new Basket(needs);
+    }
+
+    public Account(String name){
         this.name = name;
         this.basket = new Basket();
     }
