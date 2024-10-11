@@ -9,6 +9,8 @@ import { Need } from '../Need';
 export class CupboardNeedComponent {
   @Input() need?: Need;
 
+  isAdmin: boolean = true;
+
   constructor() {}
 
   retrieveNeed() {
@@ -22,6 +24,11 @@ export class CupboardNeedComponent {
   }
 
   addToBasket(){
+  }
+
+  sendUpdateNeeds(){
+    // tell the parent to update its needs
+    this.dataFromChild.emit();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateNeedDialogComponent } from '../create-need-dialog/create-need-dialog.component';
 import { DialogData } from '../create-need/create-need.component';
@@ -15,6 +15,8 @@ export class EditNeedComponent {
   data!: DialogData;
 
   constructor(public dialog: MatDialog) {}
+
+  @Output() dataFromChild = new EventEmitter<null>();
 
   openDialog(): void {
     // Populated with current Need's data
@@ -35,6 +37,7 @@ export class EditNeedComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.data = result;
+      this.dataFromChild.emit();
     });
   }
 }

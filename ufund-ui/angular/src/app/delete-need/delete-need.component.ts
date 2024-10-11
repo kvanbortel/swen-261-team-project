@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Need } from '../Need';
 import { CupboardService } from '../cupboard.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,6 +29,8 @@ export class DeleteNeedComponent {
     });
   }
 
+  @Output() dataFromChild = new EventEmitter<null>();
+
   private deleteNeed() {
     if(!this.need) {
       console.error('No Need to delete');
@@ -40,6 +42,7 @@ export class DeleteNeedComponent {
     this.cupboardService.deleteNeed(id).subscribe({
       next: (response) => {
         console.log('Sucessfully deleted Need', response);
+        this.dataFromChild.emit();
       },
       error: (error) => {
         console.error('Error deleting Need', error);

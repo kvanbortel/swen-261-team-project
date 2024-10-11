@@ -15,14 +15,21 @@ export class CupboardSearchComponent {
 
   constructor(private cupboardService: CupboardService) {}
 
+  private currentSearchTerm: string = "";  
+
   // Push a search term into the observable stream.
   search(term: string): void {
+    this.currentSearchTerm = term; 
     this.searchTerms.next(term);
   }
 
   selectNeed(data: Need) {
     console.log("Sent", data)
     this.selected = data;
+  }
+
+  updateNeeds(){
+    this.needs$ = this.cupboardService.searchNeeds(this.currentSearchTerm);
   }
 
   ngOnInit(): void {
