@@ -21,7 +21,7 @@ export class StorageComponent {
     this.name = name;
   }
 
-  getName(name:string){
+  getName(){
     return name;
   }
 }
