@@ -4,7 +4,7 @@
     <div style="display: flex; gap: 10px">
       <app-delete-need [need]="need" (dataFromChild)="sendUpdateNeeds()" (click)="$event.stopPropagation()"></app-delete-need>
       <app-edit-need [need]="need" (dataFromChild)="sendUpdateNeeds()" (click)="$event.stopPropagation()"></app-edit-need>
-      <button *ngIf="!isAdmin" class="basket-button fa-solid fa-basket-shopping" (click)="addToBasket();$event.stopPropagation()"></button>
+      <button *ngIf="!this.authService.isAdmin" class="basket-button fa-solid fa-basket-shopping" (click)="addToBasket();$event.stopPropagation()"></button>
     </div>
   </div>
   <p class="need-description">{{ need.description }}</p>
