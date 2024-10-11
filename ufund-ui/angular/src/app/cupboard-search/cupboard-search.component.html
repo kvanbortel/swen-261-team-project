@@ -1,19 +1,34 @@
-<div id="search-component" class="search-container">
+<div class="main">
+  <div id="search-component" class="search-container">
         <!-- Only show this button if the user is an admin -->
     <button *ngIf="storageComponent.isAdmin" class="btn add-need-button">
       Add
     </button>
     <label>"{{this.storageComponent.getName()}}"</label>
     <label for="search-box" class="search-title">Need Search </label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)"  class="search-input"/>
+    <div style="display: flex">
+      <input
+        #searchBox
+        id="search-box"
+        (input)="search(searchBox.value)"
+        class="search-input"
+      />
+      <app-create-need></app-create-need>
+    </div>
 
     <ul *ngIf="(needs$ | async)?.length !== 0" class="search-result">
-      <li *ngFor="let need of needs$ | async" >
-        <app-cupboard-need [need]="need"></app-cupboard-need>
+      <li *ngFor="let need of needs$ | async">
+        <app-cupboard-need
+          (dataFromChild)="selectNeed($event)"
+          [need]="need"
+        ></app-cupboard-need>
       </li>
     </ul>
 
     <div *ngIf="(needs$ | async)?.length === 0" class="no-results">
-        No needs found.
+      No needs found.
     </div>
+  </div>
+
+  <app-single-need [need]="selected"></app-single-need>
 </div>

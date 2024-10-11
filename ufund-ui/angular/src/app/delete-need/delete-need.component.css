@@ -1,0 +1,23 @@
+.delete-button{
+    background-color: var(--baseOrange);
+    padding: 10px;
+    border-radius: 5px;
+    border-style: none;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    font-size: x-large;
+    width: 90px;
+    height: 50px;
+    cursor: pointer;
+  }
+
+  .delete-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .delete-button:hover {
+    background-color: var(--hoveredOrange); /* Darker shade of orange */
+    cursor: pointer;
+  }

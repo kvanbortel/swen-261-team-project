@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from './message.service';
 import { catchError, Observable, of, tap } from 'rxjs';
@@ -15,6 +15,10 @@ export class CupboardService {
 
   private needsUrl = 'http://localhost:8080/needs';
 
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
+
   /** GET needs from the server */
   getNeeds(): Observable<Need[]> {
     return this.http.get<Need[]>(this.needsUrl).pipe(
@@ -23,11 +27,43 @@ export class CupboardService {
     );
   }
 
+  /** GET needs from the server */
+  getNeed(id: string): Observable<Need> {
+    return this.http.get<Need>(this.needsUrl + "/" + id).pipe(
+      tap((_) => this.log('fetched need')),
+      catchError(this.handleError<Need>('getNeeds'))
+    );
+  }
+
   /** SEARCH needs from the server */
   searchNeeds(text: string): Observable<Need[]> {
     return this.http.get<Need[]>(this.needsUrl + "/?search=" + text).pipe(
       tap((_) => this.log('searched needs')),
       catchError(this.handleError<Need[]>('searchNeeds', []))
+    );
+  }
+
+  /** POST need to the server */
+  addNeed(need: Need): Observable<Need> {
+    return this.http.post<Need>(this.needsUrl, need, this.httpOptions).pipe(
+      tap((newNeed: Need) => this.log(`added need w/ id=${newNeed.id}`)),
+      catchError(this.handleError<Need>('addNeed'))
+    );
+  }
+
+  updateNeed(need: Need): Observable<any> {
+    return this.http.put<Need>(this.needsUrl, need, this.httpOptions).pipe(
+      tap(_ => this.log(`updated need id=${need.id}`)),
+      catchError(this.handleError<Need>('updateNeed'))
+    );
+  }
+
+  deleteNeed(id: String): Observable<Need> {
+    const url = `${this.needsUrl}/${id}`;
+
+    return this.http.delete<Need>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted need id=${id}`)),
+      catchError(this.handleError<Need>('deleteNeed'))
     );
   }
 
