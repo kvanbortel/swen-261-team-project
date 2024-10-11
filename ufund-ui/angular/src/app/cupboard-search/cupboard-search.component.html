@@ -10,13 +10,13 @@
         (input)="search(searchBox.value)"
         class="search-input"
       />
-      <app-create-need></app-create-need>
+      <app-create-need (dataFromChild)="updateNeeds()"></app-create-need>
     </div>
 
     <ul *ngIf="(needs$ | async)?.length !== 0" class="search-result">
       <li *ngFor="let need of needs$ | async">
         <app-cupboard-need
-          (dataFromChild)="selectNeed($event)"
+          (dataFromChild)="selectNeed($event); updateNeeds()"
           [need]="need"
         ></app-cupboard-need>
       </li>

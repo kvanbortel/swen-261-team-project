@@ -1,4 +1,4 @@
-import { Component, Input, } from '@angular/core';
+import { Component, EventEmitter, Input, Output, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateNeedDialogComponent } from '../create-need-dialog/create-need-dialog.component';
 import { AuthService } from '../storage/auth.service';
@@ -32,6 +32,8 @@ export class CreateNeedComponent {
 
   constructor(public dialog: MatDialog, public authService: AuthService) {}
 
+  @Output() dataFromChild = new EventEmitter<null>();
+
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateNeedDialogComponent, {
       data: this.data,
@@ -40,6 +42,12 @@ export class CreateNeedComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.data = result;
+      this.sendUpdateNeeds();
     });
+  }
+
+  sendUpdateNeeds(){
+    // tell the parent to update its needs
+    this.dataFromChild.emit();
   }
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Need } from '../Need';
-import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../storage/auth.service';
 
 @Component({
   selector: 'app-cupboard-need',
@@ -10,7 +10,7 @@ import { LoginComponent } from '../login/login.component';
 export class CupboardNeedComponent {
   @Input() need?: Need;
 
-  constructor(private LoginComponent: LoginComponent) {}
+  constructor(public authService: AuthService) {}
 
   retrieveNeed() {
     return this.need ? Object.keys(this.need) : [];
@@ -23,6 +23,11 @@ export class CupboardNeedComponent {
   }
 
   addToBasket(){
+  }
+
+  sendUpdateNeeds(){
+    // tell the parent to update its needs
+    this.dataFromChild.emit();
   }
 
 }
