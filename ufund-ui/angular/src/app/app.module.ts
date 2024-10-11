@@ -25,6 +25,7 @@ import { CreateNeedDialogComponent } from './create-need-dialog/create-need-dial
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditNeedComponent } from './edit-need/edit-need.component';
 import { DeleteNeedComponent } from './delete-need/delete-need.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DeleteNeedComponent } from './delete-need/delete-need.component';
     CreateNeedComponent,
     CreateNeedDialogComponent,
     EditNeedComponent,
-    DeleteNeedComponent
+    DeleteNeedComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
