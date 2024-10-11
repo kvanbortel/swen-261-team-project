@@ -51,6 +51,14 @@ export class CupboardService {
     );
   }
 
+  updateNeed(need: Need): Observable<any> {
+    const url = `${this.needsUrl}/${need.id}`;
+    return this.http.put<Need>(url, need, this.httpOptions).pipe(
+      tap(_ => this.log(`updated need id=${need.id}`)),
+      catchError(this.handleError<Need>('updateNeed'))
+    );
+  }
+
   /** Log a CupboardService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`CupboardService: ${message}`);

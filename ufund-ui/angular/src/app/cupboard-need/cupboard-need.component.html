@@ -1,7 +1,8 @@
 <div *ngIf="need" class="cupboard-need" (click)="sendData()">
   <div class="row">
     <h3 class="need-title">{{ need.name }}</h3>
-  <button class="basket-button" (click)="addToBasket();$event.stopPropagation()">+</button>
+    <app-edit-need [need]="need"></app-edit-need>
+    <button class="basket-button" (click)="addToBasket();$event.stopPropagation()">+</button>
   </div>
   <p class="need-description">{{ need.description }}</p>
 
@@ -20,7 +21,7 @@
     </div>
     <div class="info-box">
       <span class="info-label">Fulfilled:</span>
-      <span class="info-value">{{ need.fufillmentStatus }}</span>
+      <span class="info-value">{{ need.fulfillmentStatus }}</span>
     </div>
   </div>
 </div>

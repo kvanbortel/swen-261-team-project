@@ -38,7 +38,7 @@
                         <input matInput formControlName="demandRating" />
                         <mat-error>
                             {{ getErrorMessage(createNeedForm.get('demandRating'), 'Demand rating', {
-                                pattern: 'Demand rating must be a whole number.',
+                                pattern: 'Demand rating must be numerical (up to one decimal place).',
                                 min: 'Demand rating must be at least 0.',
                                 max: 'Demand rating maximum is 100.'
                             }) }}

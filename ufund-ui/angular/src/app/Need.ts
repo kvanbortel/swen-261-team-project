@@ -2,7 +2,7 @@ export interface Need {
     id: String,
     name: String,
     description: String,
-    fufillmentStatus: boolean,
+    fulfillmentStatus: boolean,
     demandRating: number,
     cost: number,
     quantity: number // int

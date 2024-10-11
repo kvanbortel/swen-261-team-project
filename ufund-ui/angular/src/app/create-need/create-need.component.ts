@@ -4,11 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateNeedDialogComponent } from '../create-need-dialog/create-need-dialog.component';
 
 export interface DialogData {
-  name: string;
-  description: string;
+  name: String;
+  description: String;
   cost: number;
   demandRating: number;
   quantity: number;
+  mode: 'add' | 'update';
+  need?: any;
 }
 
 @Component({
@@ -25,7 +27,8 @@ export class CreateNeedComponent {
     description: "",
     cost: 0,
     demandRating: 0,
-    quantity: 0
+    quantity: 0,
+    mode: 'add'
   }
 
   constructor(

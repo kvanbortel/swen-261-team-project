@@ -142,7 +142,7 @@ public class NeedController {
     /**
      * Updates the {@linkplain Need need} with the provided {@linkplain Need need} object, if it exists
      * 
-     * @param hero The {@link Need need} to update
+     * @param need The {@link Need need} to update
      * 
      * @return ResponseEntity with updated {@link Need need} object and HTTP status of OK if updated<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
@@ -157,7 +157,7 @@ public class NeedController {
                 return new ResponseEntity<>(newNeed, HttpStatus.OK);
             }
             else{
-                return new ResponseEntity<>(newNeed, HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
         catch(IOException e){
