@@ -13,7 +13,7 @@ export class DeleteNeedComponent {
   @Input() need?: Need;
   isAdmin: number = 1; // TODO: Implement once login is done
 
-  constructor(private cupboardService: CupboardService, public dialog: MatDialog){}
+  constructor(private cupboardService: CupboardService, public dialog: MatDialog) {}
   
   promptDelete(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

@@ -29,9 +29,7 @@ export class CreateNeedComponent {
     mode: 'add'
   }
 
-  constructor(
-    public dialog: MatDialog
-  ) {}
+  constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateNeedDialogComponent, {
