@@ -2,8 +2,8 @@
   <div class="row">
     <h3 class="need-title">{{ need.name }}</h3>
     <div style="display: flex; gap: 10px">
-      <app-delete-need [need]="need"></app-delete-need>
-      <app-edit-need [need]="need"></app-edit-need>
+      <app-delete-need [need]="need" (click)="$event.stopPropagation()"></app-delete-need>
+      <app-edit-need [need]="need" (click)="$event.stopPropagation()"></app-edit-need>
       <button class="basket-button" (click)="addToBasket();$event.stopPropagation()">+</button>
     </div>
   </div>
