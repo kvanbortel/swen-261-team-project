@@ -1,0 +1,20 @@
+.add-need-button {
+  background-color: var(--baseOrange);
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+  transition: border-color 0.3s ease;
+  width: 100px;
+  margin: auto 20px;
+  padding: 12px;
+  outline: none;
+  transition-duration: 0.4s;
+  vertical-align: middle;
+}
+
+.add-need-button:hover {
+  background-color: var(--hoveredOrange); /* Darker shade of orange */
+  cursor: pointer;
+}

@@ -39,7 +39,7 @@ public class NeedFileDAOTest {
         testNeeds[2] = new Need("MOCKID-2","NeedB2", "Description3", 1.3, 6, 12.32);
 
         // When the object mapper is supposed to read from the file
-        // the mock object mapper will return the hero array above
+        // the mock object mapper will return the need array above
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"),Need[].class))
                 .thenReturn(testNeeds);
@@ -59,6 +59,82 @@ public class NeedFileDAOTest {
     public void testGetNeedNotFound() throws IOException {
         // Invoke
         Need need = needFileDAO.getNeed("NotAnId");
+
+        // Analyze
+        assertEquals(need, null);
+    }
+
+    @Test
+    public void testCreateNeed() throws IOException {
+        // Setup
+        Need newNeed = new Need("MOCKID-10","NeedA0", "Description0", 10, 5, 15.0);
+
+        // Invoke
+        Need returnedNeed = needFileDAO.createNeed(newNeed);
+        Need fetchedNeed = needFileDAO.getNeed(returnedNeed.getId()); // we know that getNeed works
+
+        // Analyze
+        assertEquals(fetchedNeed, returnedNeed);
+    }
+
+    @Test
+    public void testCreateNeedInvalid() throws IOException {
+        // Setup
+        Need needInvalidDemandLow = new Need("MOCKID-10","NeedX0", "Description0", 104.3, 5, 15.0);
+        Need needInvalidDemandHigh = new Need("MOCKID-10","NeedX0", "Description0", -4.4, 5, 15.0);
+        Need needInvalidQuantity = new Need("MOCKID-10","NeedX1", "Description1", 10.2, -5, 15.0);
+        Need needInvalidCost = new Need("MOCKID-10","NeedX2", "Description2", 10.2, 5, -15.0);
+
+        // Invoke
+        Need returnedNeed0 = needFileDAO.createNeed(needInvalidDemandLow);
+        Need returnedNeed1 = needFileDAO.createNeed(needInvalidDemandHigh);
+        Need returnedNeed2 = needFileDAO.createNeed(needInvalidQuantity);
+        Need returnedNeed3 = needFileDAO.createNeed(needInvalidCost);
+
+        // Analyze
+        assertEquals(returnedNeed0, null);
+        assertEquals(returnedNeed1, null);
+        assertEquals(returnedNeed2, null);
+        assertEquals(returnedNeed3, null);
+    }
+
+    @Test
+    public void testDeleteNeed() throws IOException {
+        // Invoke
+        boolean response = needFileDAO.deleteNeed("MOCKID-0");
+
+        // Analyze
+        assertEquals(response, true);
+    }
+
+    @Test
+    public void testDeleteNeedNotFound() throws IOException {
+        // Invoke
+        boolean response = needFileDAO.deleteNeed("NotAnId");
+
+        // Analyze
+        assertEquals(response, false);
+    }
+
+    @Test
+    public void testUpdateNeed() throws IOException {
+        // Setup
+        Need updatedNeed = new Need("MOCKID-0","Up-NeedA1", "Up-Description1", 1, 12, 53.0);
+
+        // Invoke
+        Need need = needFileDAO.updateNeed(updatedNeed);
+
+        // Analyze
+        assertEquals(need, updatedNeed);
+    }
+
+    @Test
+    public void testUpdateNeedNotFound() throws IOException {
+        // Setup
+        Need updatedNeed = new Need("NOT AN ID","Up-NeedA1", "Up-Description1", 1, 12, 53.0);
+
+        // Invoke
+        Need need = needFileDAO.updateNeed(updatedNeed);
 
         // Analyze
         assertEquals(need, null);

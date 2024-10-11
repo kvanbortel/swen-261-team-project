@@ -13,12 +13,18 @@ import { StorageComponent } from '../storage/storage.component';
 export class CupboardSearchComponent {
   needs$!: Observable<Need[]>;
   private searchTerms = new Subject<string>();
+  selected!: Need;
 
   constructor(private cupboardService: CupboardService, public storageComponent: StorageComponent) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  selectNeed(data: Need) {
+    console.log("Sent", data)
+    this.selected = data;
   }
 
   ngOnInit(): void {

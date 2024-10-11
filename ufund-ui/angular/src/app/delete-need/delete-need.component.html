@@ -1,0 +1,4 @@
+<!-- Only show this button if the user is an admin -->
+<button *ngIf="isAdmin" class="btn delete-button" (click)="promptDelete()">
+    Delete
+</button>
