@@ -1,0 +1,67 @@
+<div>
+    <mat-dialog-content class="add-need">
+        <form [formGroup]="createNeedForm" (ngSubmit)="onSubmit()">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <div fxFlex="100%">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" />
+                        <mat-error>
+                            {{ getErrorMessage(createNeedForm.get('description'), 'Description', {}) }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="100%">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                        <mat-error>
+                            {{ getErrorMessage(createNeedForm.get('description'), 'Description', {}) }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="100%">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                        <mat-label>Cost</mat-label>
+                        <input matInput formControlName="cost" />
+                        <mat-error>
+                            {{ getErrorMessage(createNeedForm.get('cost'), 'Cost', {
+                                pattern: 'Cost must be numerical (up to two decimal places).',
+                                min: 'Cost must be at least 0.'
+                            }) }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="100%">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                        <mat-label>Demand Rating</mat-label>
+                        <input matInput formControlName="demandRating" />
+                        <mat-error>
+                            {{ getErrorMessage(createNeedForm.get('demandRating'), 'Demand rating', {
+                                pattern: 'Demand rating must be numerical (up to one decimal place).',
+                                min: 'Demand rating must be at least 0.',
+                                max: 'Demand rating maximum is 100.'
+                            }) }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="100%">
+                    <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput formControlName="quantity" />
+                        <mat-error>
+                            {{ getErrorMessage(createNeedForm.get('quantity'), 'Quantity', {
+                              pattern: 'Quantity must be a whole number.',
+                              min: 'Quantity must be at least 0.',
+                            }) }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <button class="form-button orange-button" mat-button type="submit"
+                        [disabled]="createNeedForm.invalid">Save</button>
+                <button class="form-button gray-button" mat-button mat-dialog-close>Cancel</button>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>

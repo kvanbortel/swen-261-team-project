@@ -1,7 +1,28 @@
 <div *ngIf="need" class="cupboard-need" (click)="sendData()">
   <div class="row">
     <h3 class="need-title">{{ need.name }}</h3>
-  <button class="basket-button" (click)="addToBasket();$event.stopPropagation()">+</button>
+    <app-delete-need [need]="need"></app-delete-need>
+    <app-edit-need [need]="need"></app-edit-need>
+    <button class="basket-button" (click)="addToBasket();$event.stopPropagation()">+</button>
   </div>
   <p class="need-description">{{ need.description }}</p>
+
+  <div class="need-info-row">
+    <div class="info-box">
+      <span class="info-label">Cost:</span>
+      <span class="info-value">{{ need.cost | currency }}</span>
+    </div>
+    <div class="info-box">
+      <span class="info-label">Demand:</span>
+      <span class="info-value">{{ need.demandRating + "%"}}</span>
+    </div>
+    <div class="info-box">
+      <span class="info-label">Quantity:</span>
+      <span class="info-value">{{ need.quantity }}</span>
+    </div>
+    <div class="info-box">
+      <span class="info-label">Fulfilled:</span>
+      <span class="info-value">{{ need.fulfillmentStatus }}</span>
+    </div>
+  </div>
 </div>

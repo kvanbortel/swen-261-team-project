@@ -51,7 +51,7 @@ public class NeedTest {
         assertEquals(TEST_DEMAND_RATING, need.getDemandRating());
         assertEquals(TEST_QUANTITY, need.getQuantity());
         assertEquals(TEST_COST, need.getCost());
-        assertEquals(DEFAULT_FULFILLMENT_STATUS, need.getFufillmentStatus());
+        assertEquals(DEFAULT_FULFILLMENT_STATUS, need.getFulfillmentStatus());
     }
 
     @Test
@@ -67,9 +67,9 @@ public class NeedTest {
     }
 
     @Test
-    public void testSetFufillmentStatus() {
-        need.setFufillmentStatus(UPDATED_FULFILLMENT_STATUS);
-        assertTrue(need.getFufillmentStatus());
+    public void testSetFulfillmentStatus() {
+        need.setFulfillmentStatus(UPDATED_FULFILLMENT_STATUS);
+        assertTrue(need.getFulfillmentStatus());
     }
 
     @Test

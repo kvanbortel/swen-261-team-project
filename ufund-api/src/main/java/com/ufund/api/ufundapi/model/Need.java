@@ -18,7 +18,7 @@ public class Need {
     @JsonProperty String id; // UUID identifer for the need
     @JsonProperty String name; // Name of the need
     @JsonProperty String description; // Description of the need
-    @JsonProperty boolean fufillmentStatus; // Whether or not the need is fufilled
+    @JsonProperty boolean fulfillmentStatus; // Whether or not the need is fufilled
     @JsonProperty double demandRating; // Demand of the need
     @JsonProperty double cost; // Cost of the need
     @JsonProperty int quantity;
@@ -37,7 +37,7 @@ public class Need {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.fufillmentStatus = false;
+        this.fulfillmentStatus = false;
         this.demandRating = demandRating;
         this.quantity = quantity;
         this.cost = cost;
@@ -87,16 +87,16 @@ public class Need {
      * Get the fufillment status of the need
      * @return the fufillment status of the need
     */
-    public boolean getFufillmentStatus(){
-        return this.fufillmentStatus;
+    public boolean getFulfillmentStatus(){
+        return this.fulfillmentStatus;
     }
 
     /**
      * Set the fufillment status of the need
      * @param status the new fufillment status of the need
     */
-    public void setFufillmentStatus(boolean status){
-        this.fufillmentStatus = status;
+    public void setFulfillmentStatus(boolean status){
+        this.fulfillmentStatus = status;
     }
 
     /**
