@@ -21,8 +21,9 @@ geometry: margin=1in
 This is a summary of the project.
 
 ### Purpose
->  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
-> important user group and user goals._
+>  _**[Sprint 2 & 4]**
+> The purpose of our U-fund application is to allow philanthropists to be able to fund the NYS Paws & Claws foundation,
+and for administrators of the NYS Paws & Claws Foundation to be able to manage the application.
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
@@ -30,6 +31,7 @@ This is a summary of the project.
 | Term | Definition |
 |------|------------|
 | SPA | Single Page |
+
 
 
 ## Requirements
@@ -41,7 +43,11 @@ This section describes the features of the application.
 > maybe Epics and critical Stories._
 
 ### Definition of MVP
-> _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+> _**[Sprint 2 & 4]**
+>
+> In our Minimum Viable Product in Sprint 2, the user is first routed to a login page. If they enter an unrecognized username, a new account is created for them and they are then sent to the home page. If they enter a
+> username that already exists, they are logged in and sent to the home page. If they enter "admin", they are sent a modified "admin" version of the home page. On the home page, you can see a list of needs in the needs
+> cupboard. If you are a helper, you are able to view needs, add needs to your basket, and checkout. As an admin, you are able to modify needs, post new needs, and delete needs. 
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
@@ -130,6 +136,8 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
 > Tier above._
+>
+> In Sprint 2, we decided to implement three new classes within our model tier, the Account and Basket and BasketNeed classes. The Account class represents an account, which has a name and a basket of needs. The basket of needs contains an arraylist of basketneeds, which are object representations of needs that stay inside a user's basket. 
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
@@ -207,4 +215,6 @@ Open/Closed is useful for maintaining backwards compatibility. By not modifying 
 > - (2024/10/1) Decided to keep our DAO as Need/NeedFile rather than Cupboard, as the Cupboard name is a concept for the customer and holds no signficance to working with the Need classes on the backend.
 >
 >**[Sprint 2] decisions**
-> - (2024/10/4) Need creation now fails with an error response if the numerical arguments (cost, quantity, demand) are less than 0. Given the realistic constraints of needs, those values should never be negative. 
+> - (2024/10/4) Need creation now fails with an error response if the numerical arguments (cost, quantity, demand) are less than 0. Given the realistic constraints of needs, those values should never be negative.
+> - (2024/10/11) Updated UI to use icons instead of text for managing needs buttons
+> - (2024/10/12) Added AuthService for user authentication 
