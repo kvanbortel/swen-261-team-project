@@ -25,6 +25,16 @@ import com.ufund.api.ufundapi.persistence.NeedDAO;
 @Tag("Model-tier")
 public class BasketTest {
 
+    private Basket createBasket() {
+        BasketNeed[] needs = {
+            new BasketNeed("id0", 3),
+            new BasketNeed("id1", 2),
+            new BasketNeed("id2", 1)
+        };
+        Basket basket = new Basket(needs);
+        return basket;
+    }
+
     @Test
     public void testSerializeBasket() {}
 
@@ -44,29 +54,39 @@ public class BasketTest {
 
     @Test
     public void testGetBasketNeedsHasNeeds() {
-        BasketNeed[] needs = {
-            new BasketNeed("id1", 5),
-            new BasketNeed("id7", 1),
-            new BasketNeed("id2", 2)
-        };
-        Basket basket = new Basket(needs);
+        Basket basket = createBasket();
 
         ArrayList<BasketNeed> needsList1 = new ArrayList<>();
         ArrayList<BasketNeed> needsList2 = basket.getNeeds();
-        needsList1.add(new BasketNeed("id1", 5));
-        needsList1.add(new BasketNeed("id7", 1));
-        needsList1.add(new BasketNeed("id2", 2));
+        needsList1.add(new BasketNeed("id0", 3));
+        needsList1.add(new BasketNeed("id1", 2));
+        needsList1.add(new BasketNeed("id2", 1));
 
         assertEquals(needsList1, needsList2);
     }
 
-    @Test
-    public void testSearchBasketNeedsOneExists() {}
+    public void getBasketNeed0() {
+        Basket basket = createBasket();
+        BasketNeed expected = new BasketNeed("id0", 3);
+        BasketNeed actual = basket.getBasketNeed("id0");
 
-    @Test
-    public void testSearchBasketNeedsManyExists() {}
+        assertEquals(expected, actual);
+    }
 
-    @Test
-    public void testSearchBasketNeedsNoneExist() {}
+    public void getBasketNeed1() {
+        Basket basket = createBasket();
+        BasketNeed expected = new BasketNeed("id1", 2);
+        BasketNeed actual = basket.getBasketNeed("id1");
+
+        assertEquals(expected, actual);
+    }
+
+    public void getBasketNeed2() {
+        Basket basket = createBasket();
+        BasketNeed expected = new BasketNeed("id2", 1);
+        BasketNeed actual = basket.getBasketNeed("id2");
+
+        assertEquals(expected, actual);
+    }
     
 }

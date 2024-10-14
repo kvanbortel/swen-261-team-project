@@ -34,15 +34,39 @@ public class Basket {
         return needs;
     }
 
-    // stubbing methods (remove this comment when all methods are implemented)
-
+    /**
+     * Gets a BasketNeeds index in this.needs
+     * @param needId
+     * @return int index, -1 if not found
+     */    
+    private int getBasketNeedIndex(String needId) {
+        for (int i=0 ; i<needs.size() ; i++) {
+            // current need
+            BasketNeed curr = needs.get(i);
+            if (curr.id == needId) {
+                return i;
+            }
+        }
+        // if the need is not found return null
+        return -1;
+    }
 
     /**
      * Gets a BasketNeed given its id if it is in the basket, otherwise returns null
      * @param needId
-     * @return
+     * @return BasketNeed if it is found, otherwise null
      */
-    public BasketNeed getBasketNeed(String needId) { return new BasketNeed("FAKEID", 0); }
+    public BasketNeed getBasketNeed(String needId) { 
+        int index = getBasketNeedIndex(needId);
+
+        // if the need is not found, return null
+        if (index == -1) {
+            return null;
+        }
+
+        // otherwise return the need that we found
+        return needs.get(index);
+    }
 
     /**
      * Determines if the basket contains a needId
@@ -51,7 +75,9 @@ public class Basket {
      * 
      * @return whether or not the needId is found
      */
-    public boolean hasNeed(String needId) { return false; }
+    public boolean hasNeed(String needId) { 
+        return getBasketNeedIndex(needId) != -1; 
+    }
 
     /**
      * Adds a need to the basket. If that need has already been added, 
@@ -59,13 +85,33 @@ public class Basket {
      * 
      * @param needId the needId to add to the basket
      */
-    public void addNeed(String needId) {}
+    public void addNeed(String needId) {
+        BasketNeed basketNeed = getBasketNeed(needId);
+
+        if (basketNeed == null) {
+            basketNeed = new BasketNeed(needId, 1);
+            this.needs.add(basketNeed);
+        } else {
+            basketNeed.quantity += 1;
+        }
+    }
 
     /**
      * Removes a need form the basket. If the quantity of that need is 
      * more than 1, just decrements the quantity field
      * 
      * @param needId the neewdId to remove from the basket
+     * 
+     * @throws NullPointerExcception if the specified needId is not found in the basket
      */
-    public void removeNeed(String needId) {}
+    public void removeNeed(String needId) {
+        BasketNeed basketNeed = getBasketNeed(needId);
+
+        if (basketNeed == null) {
+            throw new NullPointerException("The specified need was not found and could not be removed");
+        } else {
+            // decrement the quantity
+            basketNeed.quantity -= 1;
+        }
+    }
 }
