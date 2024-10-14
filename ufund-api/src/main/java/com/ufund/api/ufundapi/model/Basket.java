@@ -3,6 +3,8 @@ package com.ufund.api.ufundapi.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.naming.NameNotFoundException;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -101,17 +103,21 @@ public class Basket {
      * more than 1, just decrements the quantity field
      * 
      * @param needId the neewdId to remove from the basket
-     * 
-     * @throws NullPointerExcception if the specified needId is not found in the basket
      */
     public void removeNeed(String needId) {
-        BasketNeed basketNeed = getBasketNeed(needId);
+        int index = getBasketNeedIndex(needId);
 
-        if (basketNeed == null) {
-            throw new NullPointerException("The specified need was not found and could not be removed");
-        } else {
+        if (index == -1) {
+            // the need already isn't here so no need to remove it
+            return;
+        } 
+
+        BasketNeed basketNeed = needs.get(index);
+        if (basketNeed.quantity > 1) {
             // decrement the quantity
             basketNeed.quantity -= 1;
+        } else {
+            needs.remove(index);
         }
     }
 }
