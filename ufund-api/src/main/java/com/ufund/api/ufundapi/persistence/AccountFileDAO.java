@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.Need;
 
 import com.ufund.api.ufundapi.model.Basket;
+import com.ufund.api.ufundapi.model.BasketNeed;
 
 @Component
 public class AccountFileDAO implements AccountDAO{
@@ -106,7 +108,7 @@ public class AccountFileDAO implements AccountDAO{
 
             return null;
         }
-        Account newAccount = new Account(account.getName());
+        Account newAccount = new Account(account.getName(), account.getBasket());
         accounts.put(newAccount.getName(), account);
         save(); // may throw an IOException
         System.out.println(newAccount);
@@ -158,9 +160,17 @@ public class AccountFileDAO implements AccountDAO{
     ** {@inheritDoc}
      */
     @Override
-    public ArrayList<Need> getNeeds() throws IOException{
+    public ArrayList<BasketNeed> getNeeds(String account) throws IOException{
 
-        return new ArrayList<Need>();
+        return accounts.get(account).getBasket().getNeeds();
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    public Account getAccount(String accountName) throws IOException {
+        load(); // Load the accounts from the file into memory
+        return accounts.get(accountName); // Return the Account object or null if not found
     }
 
 

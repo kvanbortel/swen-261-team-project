@@ -41,11 +41,17 @@ export class LoginComponent {
   }
 
   addAccount(account: Account): void {
-    console.log(account);
     this.http.post("http://localhost:8080/accounts", account, this.httpOptions).pipe(
       catchError(this.handleError<Account>('addAccount'))
-    );
-  }
+    ).subscribe({
+      next: (response) => {
+        console.log('Account created successfully:', response);
+      },
+      error: (err) => {
+        console.error('Error creating account:', err);
+      }
+    });
+}
 
   ngOnInit(): void{
     this.authService.setisAdmin(0);

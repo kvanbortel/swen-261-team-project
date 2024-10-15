@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.naming.NameNotFoundException;
 
@@ -21,8 +22,8 @@ public class Basket {
      * 
      * @param needs list of BasketNeed objects
     */
-    public Basket(@JsonProperty("needs") BasketNeed[] needs) {
-        this.needs = new ArrayList<BasketNeed>(Arrays.asList(needs));
+    public Basket(@JsonProperty("needs") List<BasketNeed> needs) {
+        this.needs = new ArrayList<>((needs));
     }
 
     /*

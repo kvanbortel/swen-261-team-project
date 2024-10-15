@@ -1,6 +1,1 @@
-[
-    {"name":"Max",
-     "basket": {"needs": [ 
-        {"id": "id0", "quantity": 3}, {"id": "id2823", "quantity": 9000}
-    ]}}
-]
+[{"name":"Dee","basket":{"needs":[]}},{"name":"Max","basket":{"needs":[{"id":"need1","quantity":1},{"id":"need2","quantity":1}]}},{"name":"yo mama","basket":{"needs":[]}}]
