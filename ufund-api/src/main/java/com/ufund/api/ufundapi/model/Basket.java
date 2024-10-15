@@ -21,7 +21,7 @@ public class Basket {
      * 
      * @param needs list of BasketNeed objects
     */
-    public Basket(@JsonProperty("basket") BasketNeed[] needs) {
+    public Basket(@JsonProperty("needs") BasketNeed[] needs) {
         this.needs = new ArrayList<BasketNeed>(Arrays.asList(needs));
     }
 
@@ -45,7 +45,7 @@ public class Basket {
         for (int i=0 ; i<needs.size() ; i++) {
             // current need
             BasketNeed curr = needs.get(i);
-            if (curr.id == needId) {
+            if (curr.id.equals(needId)) {
                 return i;
             }
         }

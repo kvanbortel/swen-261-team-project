@@ -1,6 +1,6 @@
 [
     {"name":"Max",
-     "basket": [
+     "basket": {"needs": [ 
         {"id": "id0", "quantity": 3}, {"id": "id2823", "quantity": 9000}
-    ]}
+    ]}}
 ]

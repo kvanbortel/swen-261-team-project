@@ -101,10 +101,10 @@ public class AccountFileDAO implements AccountDAO{
     ** {@inheritDoc}
      */
     public Account createAccount(Account account) throws IOException{
-        
+        load();
         if( accounts.containsKey(account.getName())){
 
-            //TODO: error handling for creating an account with a name that already exists
+            return null;
         }
         Account newAccount = new Account(account.getName());
         accounts.put(newAccount.getName(), account);
@@ -134,9 +134,24 @@ public class AccountFileDAO implements AccountDAO{
     ** {@inheritDoc}
      */
     @Override
-    public boolean updateNeed(Account account) throws IOException{
+    public Account updateNeed(String account, String UUID, Boolean increment) throws IOException{
 
-        return false;
+        Account newAccount = accounts.get(account);
+        if(newAccount != null){
+            if(increment){
+                newAccount.getBasket().addNeed(UUID);
+            }
+            else{
+                newAccount.getBasket().removeNeed(UUID);
+            }
+            save();
+            return newAccount;
+        }
+        else{
+            return null;
+        }
+
+        
     }
 
     /**

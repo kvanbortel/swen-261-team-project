@@ -32,7 +32,7 @@ public class BasketNeed {
     public boolean equals(Object obj) {
         if (obj instanceof BasketNeed) {
             BasketNeed o = (BasketNeed)obj;
-            return (this.id == o.id && this.quantity == o.quantity);
+            return (this.id.equals(o.id) && this.quantity == o.quantity);
         }
         return false;
     }

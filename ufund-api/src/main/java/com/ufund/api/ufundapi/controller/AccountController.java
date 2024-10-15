@@ -7,9 +7,11 @@ import java.util.logging.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.persistence.AccountDAO;
@@ -56,6 +58,21 @@ public class AccountController {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PutMapping("")
+    public ResponseEntity<Account> incrementNeed(@RequestParam String accountName, @RequestParam String UUID, @RequestParam Boolean increment){
+        LOG.info("POST /accounts" + UUID + "/" + increment);
+
+        try{
+            Account account = accountDAO.updateNeed(UUID, accountName, increment);
+            return new ResponseEntity<Account>(account, HttpStatus.OK);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
     
 
