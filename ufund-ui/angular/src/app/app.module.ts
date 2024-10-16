@@ -28,6 +28,8 @@ import { DeleteNeedComponent } from './delete-need/delete-need.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './storage/auth.service';
+import { BasketListComponent } from './basket-list/basket-list.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { AuthService } from './storage/auth.service';
     CreateNeedDialogComponent,
     EditNeedComponent,
     DeleteNeedComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    BasketListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

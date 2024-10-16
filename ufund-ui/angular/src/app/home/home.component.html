@@ -1,0 +1,6 @@
+<div class="main">
+    <input [(ngModel)]="showBasket" type="checkbox">
+    <app-basket-list *ngIf="this.showBasket"></app-basket-list>
+    <app-cupboard-search *ngIf="!this.showBasket"></app-cupboard-search>
+</div>
+
