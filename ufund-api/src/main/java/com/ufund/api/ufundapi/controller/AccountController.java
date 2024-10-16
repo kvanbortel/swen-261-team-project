@@ -54,12 +54,10 @@ public class AccountController {
         
         try {
             Account newAccount = accountDAO.createAccount(name);
-            if (newAccount != null)
+            if (newAccount != null) {
                 return new ResponseEntity<Account>(newAccount, HttpStatus.CREATED);
-            else{
-                LOG.log(Level.WARNING, "Invalid arguments");
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
+            return new ResponseEntity<Account>(this.accountDAO.getAccount(name), HttpStatus.OK);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
@@ -77,9 +75,9 @@ public class AccountController {
      * 404 NOT FOUND if the account does not exist
      * 500 INTERNAL SERVER ERROR otherwise
      */
-    @PutMapping("/{accountName}/needs/{UUID}")
-    public ResponseEntity<Account> incrementNeed(@PathVariable String accountName, @PathVariable Need need, @RequestParam Boolean increment) {
-    LOG.info("PUT /accounts/" + accountName + "/needs/" + need + "/" + increment);
+    @PutMapping("/{accountName}/needs/{increment}")
+    public ResponseEntity<Account> incrementNeed(@PathVariable String accountName, @PathVariable boolean increment, @RequestBody Need need) {
+    LOG.info("PUT /accounts/" + accountName + "/needs/" + increment);
         try {
             Account account = accountDAO.updateNeed(accountName, need, increment);
             if (account == null) {

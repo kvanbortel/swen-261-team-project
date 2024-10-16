@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Account } from '../Account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of, tap } from 'rxjs';
+import { Need } from '../Need';
 
 
 @Injectable({
@@ -29,15 +30,41 @@ export class AuthService {
     return this.name;
   }
 
-  addAccount(account: Account): void {
-    this.http.post("http://localhost:8080/accounts", account, this.httpOptions).pipe(
+  addAccount(name: String): void {
+    this.http.post("http://localhost:8080/accounts", name, this.httpOptions).pipe(
       catchError(this.handleError<Account>('addAccount'))
     ).subscribe({
       next: (response) => {
-        console.log('Account created successfully:', response);
+        console.log('Now logged in as ' + name + ':', response);
       },
       error: (err) => {
-        console.error('Error creating account:', err);
+        console.error('Error logging in:', err);
+      }
+    });
+  }
+
+  addToBasket(need?: Need): void {
+    this.http.put('http://localhost:8080/accounts/' + this.name + '/needs/true', need, this.httpOptions).pipe(
+      catchError(this.handleError<Account>('updateBasketNeed'))
+    ).subscribe({
+      next: (response) => {
+        console.log('Need added to basket successfully:', response);
+      },
+      error: (err) => {
+        console.error('Error adding to basket:', err)
+      }
+    });
+  }
+
+  removeFromBasket(need?: Need): void {
+    this.http.put('http://localhost:8080/accounts/' + this.name + '/needs/false', need, this.httpOptions).pipe(
+      catchError(this.handleError<Account>('updateBasketNeed'))
+    ).subscribe({
+      next: (response) => {
+        console.log('Need removed from basket successfully:', response);
+      },
+      error: (err) => {
+        console.error('Error removing from basket:', err)
       }
     });
   }

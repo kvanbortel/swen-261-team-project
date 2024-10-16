@@ -1,7 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { AuthService } from '../storage/auth.service';
 import { catchError, Observable, of, tap } from 'rxjs';
-import { Account } from '../Account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -23,20 +22,15 @@ export class LoginComponent {
     
   }
 
-  login(account: string){
-    if(account == "admin"){
+  login(name: string){
+    if(name == "admin"){
       this.authService.setisAdmin(1);
       return;
     }
    this.authService.addAccount(
-    {
-      name: account,
-      basket: {
-        needs: []
-      }
-    }
+      name
   );
-   this.authService.setName(account);
+   this.authService.setName(name);
   }
 
   
