@@ -49,7 +49,7 @@ public interface AccountDAO{
      * 
      * @throws IOException if an issue with underlying storage
      */
-    public Account createAccount(Account account) throws IOException;
+    public Account createAccount(String name) throws IOException;
 
     /**
      * Retrieves an account by its name.

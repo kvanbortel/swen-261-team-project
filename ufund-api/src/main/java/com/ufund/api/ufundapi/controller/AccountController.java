@@ -49,11 +49,11 @@ public class AccountController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Account> createAccount(@RequestBody Account account) {
-        LOG.info("POST /accounts " + account);
+    public ResponseEntity<Account> createAccount(@RequestBody String name) {
+        LOG.info("POST /accounts " + name);
         
         try {
-            Account newAccount = accountDAO.createAccount(account);
+            Account newAccount = accountDAO.createAccount(name);
             if (newAccount != null)
                 return new ResponseEntity<Account>(newAccount, HttpStatus.CREATED);
             else{
