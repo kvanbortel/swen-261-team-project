@@ -114,7 +114,18 @@ public class NeedTest {
         Object need1 = null;
 
         assertNotEquals(need0, need1);
-        
+    }
+
+    @Test
+    public void testToString() {
+        Need need = new Need("id0", "name0", "description0", 0, 1, 2);
+
+        String expected = "{id: id0, name: name0, description: description0, quantity: 1, demandRating: 0.0, cost: 2.0}";
+        String actual = need.toString();
+
+        assertEquals(expected, actual);
+
+
     }
 
 }
