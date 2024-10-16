@@ -82,11 +82,10 @@ public class AccountController {
     LOG.info("PUT /accounts/" + accountName + "/needs/" + UUID + "/" + increment);
         try {
             Account account = accountDAO.updateNeed(accountName, UUID, increment);
-            if (account != null) {
-                return new ResponseEntity<>(account, HttpStatus.OK);
-            } else {
+            if (account == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+            } 
+            return new ResponseEntity<>(account, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

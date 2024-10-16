@@ -2,7 +2,6 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -12,9 +11,6 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Need;
-
-import com.ufund.api.ufundapi.model.Basket;
 import com.ufund.api.ufundapi.model.BasketNeed;
 
 @Component
@@ -111,7 +107,6 @@ public class AccountFileDAO implements AccountDAO{
         Account newAccount = new Account(account.getName(), account.getBasket());
         accounts.put(newAccount.getName(), account);
         save(); // may throw an IOException
-        System.out.println(newAccount);
         return newAccount;
     }
 

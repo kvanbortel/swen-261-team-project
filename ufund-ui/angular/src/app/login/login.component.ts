@@ -23,13 +23,12 @@ export class LoginComponent {
     
   }
 
-
   login(account: string){
     if(account == "admin"){
       this.authService.setisAdmin(1);
       return;
     }
-   this.addAccount(
+   this.authService.addAccount(
     {
       name: account,
       basket: {
@@ -40,39 +39,11 @@ export class LoginComponent {
    this.authService.setName(account);
   }
 
-  addAccount(account: Account): void {
-    this.http.post("http://localhost:8080/accounts", account, this.httpOptions).pipe(
-      catchError(this.handleError<Account>('addAccount'))
-    ).subscribe({
-      next: (response) => {
-        console.log('Account created successfully:', response);
-      },
-      error: (err) => {
-        console.error('Error creating account:', err);
-      }
-    });
-}
+  
 
   ngOnInit(): void{
     this.authService.setisAdmin(0);
     this.authService.setName('');
-  }
-
-   /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   *
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-   private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
   }
 
 }
