@@ -26,7 +26,7 @@ public interface AccountDAO{
      * } depending on a Boolean increment
      * @param account {String account} Account name 
      * 
-     * @param UUID {String UUID} Basket ID
+     * @param need {Need need} Basket ID
      * 
      * @param increment {Boolean increment} whether to increment or decrement the need  
      * 
@@ -36,7 +36,7 @@ public interface AccountDAO{
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    public Account updateNeed(String account, String UUID, Boolean increment) throws IOException;
+    public Account updateNeed(String account, Need need, Boolean increment) throws IOException;
 
     /**
      * Creates and saves a {@linkplain Account account}

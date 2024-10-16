@@ -71,17 +71,17 @@ public class AccountController {
      * Updates the quantity of a specified need in an account.
      * 
      * @param accountName the name of the account 
-     * @param UUID the unique identifier of the need to be updated
+     * @param need the basketNeed to be updated
      * @param increment a boolean indicating whether to increment (true) or decrement (false) the quantity of the need
      * @return 200 OK if the update was successful
      * 404 NOT FOUND if the account does not exist
      * 500 INTERNAL SERVER ERROR otherwise
      */
     @PutMapping("/{accountName}/needs/{UUID}")
-    public ResponseEntity<Account> incrementNeed(@PathVariable String accountName, @PathVariable String UUID, @RequestParam Boolean increment) {
-    LOG.info("PUT /accounts/" + accountName + "/needs/" + UUID + "/" + increment);
+    public ResponseEntity<Account> incrementNeed(@PathVariable String accountName, @PathVariable Need need, @RequestParam Boolean increment) {
+    LOG.info("PUT /accounts/" + accountName + "/needs/" + need + "/" + increment);
         try {
-            Account account = accountDAO.updateNeed(accountName, UUID, increment);
+            Account account = accountDAO.updateNeed(accountName, need, increment);
             if (account == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } 

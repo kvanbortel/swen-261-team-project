@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.BasketNeed;
+import com.ufund.api.ufundapi.model.Need;
 
 @Component
 public class AccountFileDAO implements AccountDAO{
@@ -131,15 +132,15 @@ public class AccountFileDAO implements AccountDAO{
     ** {@inheritDoc}
      */
     @Override
-    public Account updateNeed(String account, String UUID, Boolean increment) throws IOException{
+    public Account updateNeed(String account, Need need, Boolean increment) throws IOException{
 
         Account newAccount = accounts.get(account);
         if(newAccount != null){
             if(increment){
-                newAccount.getBasket().addNeed(UUID);
+                newAccount.getBasket().addNeed(need);
             }
             else{
-                newAccount.getBasket().removeNeed(UUID);
+                newAccount.getBasket().removeNeed(need);
             }
             save();
             return newAccount;
