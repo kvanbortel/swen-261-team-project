@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -29,11 +30,12 @@ import com.ufund.api.ufundapi.persistence.NeedDAO;
 public class BasketTest {
 
     private Basket createBasket() {
-        BasketNeed[] needs = {
+        BasketNeed[] needslist = {
             new BasketNeed("id0", 3),
             new BasketNeed("id1", 2),
             new BasketNeed("id2", 1)
         };
+        ArrayList<BasketNeed> needs = new ArrayList<BasketNeed>(Arrays.asList(needslist));
         Basket basket = new Basket(needs);
         return basket;
     }
@@ -47,7 +49,7 @@ public class BasketTest {
     @Test
     public void testGetBasketNeedsEmpty() {
         BasketNeed[] needs = {};
-        Basket basket = new Basket(needs);
+        Basket basket = new Basket(Arrays.asList(needs));
 
         ArrayList<BasketNeed> needsList1 = new ArrayList<>();
         ArrayList<BasketNeed> needsList2 = basket.getNeeds();
