@@ -1,38 +1,47 @@
 package com.ufund.api.ufundapi.persistence;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ufund.api.ufundapi.model.Account;
+import com.ufund.api.ufundapi.model.Basket;
+import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
 
 public interface AccountDAO{
 
     /**
-     * Retrieves all {@linkplain Need Needs}
+     * Retrieves all {@linkplain BasketNeed Needs}
      * 
-     * @return An array of {@link Need Need} objects, may be empty
+     * @param account {String account} Account name 
+     * 
+     * @return An array of {@link BasketNeed Need} objects, may be empty
      * 
      * @throws IOException if an issue with underlying storage
      */
-    ArrayList<Need> getNeeds() throws IOException;
+    ArrayList<BasketNeed> getNeeds(String account) throws IOException;
 
      /**
-     * Updates a {@linkplain Account account} with the given id
+     * Updates a {@linkplain Basket basket} with a {@linkplain BasketNeed BasketNeed
+     * } depending on a Boolean increment
+     * @param account {String account} Account name 
      * 
-     * @param account {@link Account account} Account object 
+     * @param need {Need need} Basket ID
      * 
-     * @return true if the {@link Account account} was deleted
+     * @param increment {Boolean increment} whether to increment or decrement the need  
+     * 
+     * @return true if the {@link Account account} was updated 
      * <br>
      * false if Account with the given id does not exist
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean updateNeed(Account account) throws IOException;
+    public Account updateNeed(String account, Need need, Boolean increment) throws IOException;
 
     /**
      * Creates and saves a {@linkplain Account account}
      * 
-     * @param Need {@linkplain Account account} object to be created and saved
+     * @param Account {@linkplain Account account} object to be created and saved
      * <br>
      * The id of the Account object is ignored and a new uniqe id is assigned
      *
@@ -40,6 +49,15 @@ public interface AccountDAO{
      * 
      * @throws IOException if an issue with underlying storage
      */
-    public Account createAccount(Account account) throws IOException;
+    public Account createAccount(String name) throws IOException;
+
+    /**
+     * Retrieves an account by its name.
+     *
+     * @param accountName the name of the account to retrieve
+     * @return the Account object if found, or null if the account does not exist
+     * @throws IOException if there is an error reading from the data source
+     */
+    Account getAccount(String accountName) throws IOException;
 
 }

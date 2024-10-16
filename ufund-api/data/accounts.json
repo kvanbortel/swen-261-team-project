@@ -1,6 +1,1 @@
-[
-    {"name":"Max",
-     "basket": [
-        {"id": "id0", "quantity": 3}, {"id": "id2823", "quantity": 9000}
-    ]}
-]
+[{"name":"Dee","basket":{"needs":[]}},{"name":"Max","basket":{"needs":[{"need":null,"quantity":1},{"need":null,"quantity":1}]}},{"name":"bichael","basket":{"needs":[{"need":{"id":"03222454-7b1e-48dd-b825-3d362313c9fa","name":"Cat Litter","description":"Large supply of clumping cat litter to maintain clean and odor-free environments for shelter cats.","demandRating":62.8,"quantity":200,"cost":0.1,"fulfillmentStatus":false},"quantity":2},{"need":{"id":"38bd80a4-38f2-45a6-938a-d29b6ff54d34","name":"Cleaning Supply","description":"Disinfectants, mops, and gloves to ensure the shelter remains clean and safe for the animals.","demandRating":73.2,"quantity":150,"cost":850.23,"fulfillmentStatus":false},"quantity":7}]}},{"name":"yo mama","basket":{"needs":[]}}]

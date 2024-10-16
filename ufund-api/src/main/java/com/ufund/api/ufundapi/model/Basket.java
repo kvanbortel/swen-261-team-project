@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.naming.NameNotFoundException;
 
@@ -16,13 +17,13 @@ public class Basket {
     /** a list of basket needs */
     @JsonProperty ArrayList<BasketNeed> needs;
 
-    /* 
+    /*
      * Creates a Basket given a list of needs
      * 
      * @param needs list of BasketNeed objects
     */
-    public Basket(@JsonProperty("basket") BasketNeed[] needs) {
-        this.needs = new ArrayList<BasketNeed>(Arrays.asList(needs));
+    public Basket(@JsonProperty("needs") List<BasketNeed> needs) {
+        this.needs = new ArrayList<>((needs));
     }
 
     /*
@@ -33,19 +34,19 @@ public class Basket {
     }
 
     public ArrayList<BasketNeed> getNeeds() {
-        return needs;
+        return this.needs;
     }
 
     /**
      * Gets a BasketNeeds index in this.needs
-     * @param needId
+     * @param need
      * @return int index, -1 if not found
      */    
-    private int getBasketNeedIndex(String needId) {
+    private int getBasketNeedIndex(Need need) {
         for (int i=0 ; i<needs.size() ; i++) {
             // current need
             BasketNeed curr = needs.get(i);
-            if (curr.id == needId) {
+            if (curr.need.equals(need)) {
                 return i;
             }
         }
@@ -54,12 +55,12 @@ public class Basket {
     }
 
     /**
-     * Gets a BasketNeed given its id if it is in the basket, otherwise returns null
-     * @param needId
+     * Gets a BasketNeed given its need if it is in the basket, otherwise returns null
+     * @param need
      * @return BasketNeed if it is found, otherwise null
      */
-    public BasketNeed getBasketNeed(String needId) { 
-        int index = getBasketNeedIndex(needId);
+    public BasketNeed getBasketNeed(Need need) { 
+        int index = getBasketNeedIndex(need);
 
         // if the need is not found, return null
         if (index == -1) {
@@ -71,27 +72,27 @@ public class Basket {
     }
 
     /**
-     * Determines if the basket contains a needId
+     * Determines if the basket contains a Need
      * 
-     * @param needId needId to search for
+     * @param need need to search for
      * 
-     * @return whether or not the needId is found
+     * @return whether or not the need is found
      */
-    public boolean hasNeed(String needId) { 
-        return getBasketNeedIndex(needId) != -1; 
+    public boolean hasNeed(Need need) { 
+        return getBasketNeedIndex(need) != -1; 
     }
 
     /**
      * Adds a need to the basket. If that need has already been added, 
      * increases the quantity by 1
      * 
-     * @param needId the needId to add to the basket
+     * @param need the need to add to the basket
      */
-    public void addNeed(String needId) {
-        BasketNeed basketNeed = getBasketNeed(needId);
+    public void addNeed(Need need) {
+        BasketNeed basketNeed = getBasketNeed(need);
 
         if (basketNeed == null) {
-            basketNeed = new BasketNeed(needId, 1);
+            basketNeed = new BasketNeed(need, 1);
             this.needs.add(basketNeed);
         } else {
             basketNeed.quantity += 1;
@@ -102,10 +103,10 @@ public class Basket {
      * Removes a need form the basket. If the quantity of that need is 
      * more than 1, just decrements the quantity field
      * 
-     * @param needId the neewdId to remove from the basket
+     * @param need the need to remove from the basket
      */
-    public void removeNeed(String needId) {
-        int index = getBasketNeedIndex(needId);
+    public void removeNeed(Need need) {
+        int index = getBasketNeedIndex(need);
 
         if (index == -1) {
             // the need already isn't here so no need to remove it

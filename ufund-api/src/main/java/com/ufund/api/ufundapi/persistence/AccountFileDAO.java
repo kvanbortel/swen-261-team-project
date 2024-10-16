@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Need;
-
 import com.ufund.api.ufundapi.model.Basket;
+import com.ufund.api.ufundapi.model.BasketNeed;
+import com.ufund.api.ufundapi.model.Need;
 
 @Component
 public class AccountFileDAO implements AccountDAO{
@@ -100,16 +100,14 @@ public class AccountFileDAO implements AccountDAO{
     /**
     ** {@inheritDoc}
      */
-    public Account createAccount(Account account) throws IOException{
-        
-        if( accounts.containsKey(account.getName())){
+    public Account createAccount(String name) throws IOException{
+        if( accounts.containsKey(name)){
 
-            //TODO: error handling for creating an account with a name that already exists
+            return null;
         }
-        Account newAccount = new Account(account.getName());
-        accounts.put(newAccount.getName(), account);
+        Account newAccount = new Account(name, new Basket());
+        accounts.put(name, newAccount);
         save(); // may throw an IOException
-        System.out.println(newAccount);
         return newAccount;
     }
 
@@ -134,18 +132,40 @@ public class AccountFileDAO implements AccountDAO{
     ** {@inheritDoc}
      */
     @Override
-    public boolean updateNeed(Account account) throws IOException{
+    public Account updateNeed(String account, Need need, Boolean increment) throws IOException{
 
-        return false;
+        Account newAccount = accounts.get(account);
+        if(newAccount != null){
+            if(increment){
+                newAccount.getBasket().addNeed(need);
+            }
+            else{
+                newAccount.getBasket().removeNeed(need);
+            }
+            save();
+            return newAccount;
+        }
+        else{
+            return null;
+        }
+
+        
     }
 
     /**
     ** {@inheritDoc}
      */
     @Override
-    public ArrayList<Need> getNeeds() throws IOException{
+    public ArrayList<BasketNeed> getNeeds(String account) throws IOException{
 
-        return new ArrayList<Need>();
+        return accounts.get(account).getBasket().getNeeds();
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    public Account getAccount(String accountName) throws IOException {
+        return accounts.get(accountName); // Return the Account object or null if not found
     }
 
 

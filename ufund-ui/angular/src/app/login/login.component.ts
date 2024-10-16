@@ -1,5 +1,7 @@
 import { Component, Injectable } from '@angular/core';
 import { AuthService } from '../storage/auth.service';
+import { catchError, Observable, of, tap } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,18 +14,26 @@ export class LoginComponent {
   account: string = "";
   admin: number = 0;
 
-  constructor(public authService: AuthService) {}
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
 
+  constructor(public authService: AuthService,  private http: HttpClient) {
+    
+  }
 
-  login(account: string){
-    if(account == "admin"){
+  login(name: string){
+    if(name == "admin"){
       this.authService.setisAdmin(1);
       return;
     }
-   this.authService.setName(account);
-   console.log(account);
-    
+   this.authService.addAccount(
+      name
+  );
+   this.authService.setName(name);
   }
+
+  
 
   ngOnInit(): void{
     this.authService.setisAdmin(0);
