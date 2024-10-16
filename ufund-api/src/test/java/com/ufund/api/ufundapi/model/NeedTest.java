@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -88,6 +89,32 @@ public class NeedTest {
     public void testSetCost() {
         need.setCost(UPDATED_COST);
         assertEquals(UPDATED_COST, need.getCost());
+    }
+
+    @Test
+    public void testNeedEqualTrue() {
+        Need need0 = new Need("id0", "name0", "description0", 0, 1, 2);
+        Need need1 = new Need("id0", "name1", "description1", 0, 1, 2);
+
+        assertEquals(need0, need1);
+
+    }
+
+    @Test
+    public void testNeedEqualFalse() {
+        Need need0 = new Need("id0", "name0", "description0", 0, 1, 2);
+        Need need1 = new Need("id1", "name1", "description1", 0, 1, 2);
+
+        assertNotEquals(need0, need1);
+    }
+
+    @Test
+    public void testNeedEqualObjNotNeed() {
+        Need need0 = new Need("id0", "name0", "description0", 0, 1, 2);
+        Object need1 = null;
+
+        assertNotEquals(need0, need1);
+        
     }
 
 }
