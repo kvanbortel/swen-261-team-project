@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.naming.NameNotFoundException;
+import javax.swing.text.html.HTMLDocument;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -120,5 +121,28 @@ public class Basket {
         } else {
             needs.remove(index);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof Basket){
+            Basket otherBasket = (Basket) other;
+            if(this.getNeeds().isEmpty() && otherBasket.getNeeds().isEmpty()){return true;}
+            for( BasketNeed need : this.getNeeds()){
+                if(!otherBasket.hasNeed(need.getNeed())){
+                    return false;
+                }
+            }
+            for( BasketNeed need : otherBasket.getNeeds()){
+                if(!this.hasNeed(need.getNeed())){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }
