@@ -46,6 +46,13 @@ public class BasketNeed {
     }
 
     /**
+     * Returns private quantity member
+     */
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    /**
      * Represents a BasketNeed as a string
      */
     public String toString() {

@@ -1,6 +1,7 @@
 package com.ufund.api.ufundapi.persistence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -101,6 +102,42 @@ public class AccountFileDAOTest {
         List<BasketNeed> needs = accountFileDAO.getNeeds("Kayla");
 
         assertEquals(testBaskets[1].getNeeds(), needs);
+    }
+
+    @Test
+    public void testCreateAccount() throws IOException {
+        Account created = accountFileDAO.createAccount("Bichael");
+        Account gotten = accountFileDAO.getAccount("Bichael");
+
+        assertEquals(created, gotten);
+    }
+
+    @Test
+    public void testCreateExistingAccount() throws IOException {
+        Account created = accountFileDAO.createAccount("Max");
+
+        assertNull(created);
+    }
+
+    @Test
+    public void testAddNeed() throws IOException {
+        Account ryan = accountFileDAO.updateNeed("Ryan", testNeeds[0], true);
+
+        // this needs to be refactored for law of demeter...
+        assertEquals(ryan.getBasket().getBasketNeed(testNeeds[0]).getQuantity(), 2);
+    }
+
+    @Test
+    public void testRemoveNeed() throws IOException {
+        Account kayla = accountFileDAO.updateNeed("Kayla", testNeeds[1], false);
+
+        // this needs to be ref3 of 14actored for law of demeter...
+        assertEquals(2, kayla.getBasket().getBasketNeed(testNeeds[1]).getQuantity());
+    }
+
+    @Test
+    public void testUpdateNeedForFakeAccount() throws IOException {
+        assertNull(accountFileDAO.updateNeed("FAKE", testNeeds[1], false));
     }
 
     

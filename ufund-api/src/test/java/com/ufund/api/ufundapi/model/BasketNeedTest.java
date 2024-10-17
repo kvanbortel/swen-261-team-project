@@ -61,4 +61,12 @@ public class BasketNeedTest {
         
             assertNotEquals(bNeed1, new Object());
     }
+
+    @Test
+    public void testGetQuantity() {
+        BasketNeed bNeed1 = new BasketNeed(
+            new Need("id", "name", "description", 0, 0, 0), 0);
+
+        assertEquals(0, bNeed1.getQuantity());
+    }
 }
