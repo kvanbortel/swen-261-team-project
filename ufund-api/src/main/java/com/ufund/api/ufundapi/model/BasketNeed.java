@@ -39,6 +39,13 @@ public class BasketNeed {
     }
 
     /**
+     * Returns private need member.
+     */
+    public Need getNeed(){
+        return this.need;
+    }
+
+    /**
      * Represents a BasketNeed as a string
      */
     public String toString() {

@@ -27,13 +27,6 @@ import com.ufund.api.ufundapi.persistence.AccountDAO;
 @RequestMapping("accounts")
 public class AccountController {
 
-
-
-    private static class ErrorResponse {
-        public String message;
-        public ErrorResponse(String message) { this.message = message; }
-    }
-
     private static final Logger LOG = Logger.getLogger(AccountController.class.getName());
     private AccountDAO accountDAO;
 
