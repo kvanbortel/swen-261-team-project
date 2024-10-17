@@ -54,9 +54,13 @@ public class AccountFileDAO implements AccountDAO{
         ArrayList<Account> accountArrayList = new ArrayList<>();
 
         for (Account account : accounts.values()) {
+            accountArrayList.add(account);
+            /* This branch is for searching for accounts. It is currently unreachable
+               So it is being commented out but left in case we want to use it later.
             if (containsText == null || account.getName().contains(containsText)) {
                 accountArrayList.add(account);
             }
+            */
         }
 
         Account[] accountArray = new Account[accountArrayList.size()];
