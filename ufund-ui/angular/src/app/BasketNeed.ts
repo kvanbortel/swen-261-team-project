@@ -1,4 +1,4 @@
 export interface BasketNeed {
-    id: String,
+    name: String,
     quantity: number
   }

@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Account;
+import com.ufund.api.ufundapi.model.Basket;
 import com.ufund.api.ufundapi.model.BasketNeed;
+import com.ufund.api.ufundapi.model.Need;
 
 @Component
 public class AccountFileDAO implements AccountDAO{
@@ -98,14 +100,13 @@ public class AccountFileDAO implements AccountDAO{
     /**
     ** {@inheritDoc}
      */
-    public Account createAccount(Account account) throws IOException{
-        load();
-        if( accounts.containsKey(account.getName())){
+    public Account createAccount(String name) throws IOException{
+        if( accounts.containsKey(name)){
 
             return null;
         }
-        Account newAccount = new Account(account.getName(), account.getBasket());
-        accounts.put(newAccount.getName(), account);
+        Account newAccount = new Account(name, new Basket());
+        accounts.put(name, newAccount);
         save(); // may throw an IOException
         return newAccount;
     }
@@ -131,15 +132,15 @@ public class AccountFileDAO implements AccountDAO{
     ** {@inheritDoc}
      */
     @Override
-    public Account updateNeed(String account, String UUID, Boolean increment) throws IOException{
+    public Account updateNeed(String account, Need need, Boolean increment) throws IOException{
 
         Account newAccount = accounts.get(account);
         if(newAccount != null){
             if(increment){
-                newAccount.getBasket().addNeed(UUID);
+                newAccount.getBasket().addNeed(need);
             }
             else{
-                newAccount.getBasket().removeNeed(UUID);
+                newAccount.getBasket().removeNeed(need);
             }
             save();
             return newAccount;
@@ -164,7 +165,6 @@ public class AccountFileDAO implements AccountDAO{
     ** {@inheritDoc}
      */
     public Account getAccount(String accountName) throws IOException {
-        load(); // Load the accounts from the file into memory
         return accounts.get(accountName); // Return the Account object or null if not found
     }
 

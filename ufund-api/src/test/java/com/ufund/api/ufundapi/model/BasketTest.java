@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -29,13 +30,20 @@ import com.ufund.api.ufundapi.persistence.NeedDAO;
 @Tag("Model-tier")
 public class BasketTest {
 
-    private Basket createBasket() {
-        BasketNeed[] needslist = {
-            new BasketNeed("id0", 3),
-            new BasketNeed("id1", 2),
-            new BasketNeed("id2", 1)
+    private List<BasketNeed> getTestNeeds() {
+        BasketNeed[] needs = {
+            new BasketNeed(new Need("id0", "name0", "descr0", 0, 12, 10), 3),
+            new BasketNeed(new Need("id1", "name1", "descr1", 1, 19, 15), 2),
+            new BasketNeed(new Need("id2", "name2", "descr2", 2, 6, 6), 1),
         };
-        ArrayList<BasketNeed> needs = new ArrayList<BasketNeed>(Arrays.asList(needslist));
+        return Arrays.asList(needs);
+    }
+
+    private Basket createTestBasket() {
+        // not a test...
+        // used to create test baskets
+
+        List<BasketNeed> needs = getTestNeeds();
         Basket basket = new Basket(needs);
         return basket;
     }
@@ -51,75 +59,76 @@ public class BasketTest {
         BasketNeed[] needs = {};
         Basket basket = new Basket(Arrays.asList(needs));
 
-        ArrayList<BasketNeed> needsList1 = new ArrayList<>();
-        ArrayList<BasketNeed> needsList2 = basket.getNeeds();
-
+        List<BasketNeed> needsList1 = new ArrayList<>();
+        List<BasketNeed> needsList2 = basket.getNeeds();
         assertEquals(needsList1, needsList2);
     }
 
     @Test
     public void testGetBasketNeedsHasNeeds() {
-        Basket basket = createBasket();
+        Basket basket = createTestBasket();
 
-        ArrayList<BasketNeed> needsList1 = new ArrayList<>();
-        ArrayList<BasketNeed> needsList2 = basket.getNeeds();
-        needsList1.add(new BasketNeed("id0", 3));
-        needsList1.add(new BasketNeed("id1", 2));
-        needsList1.add(new BasketNeed("id2", 1));
+        List<BasketNeed> needsList1 = getTestNeeds();
+        List<BasketNeed> needsList2 = basket.getNeeds();
 
         assertEquals(needsList1, needsList2);
     }
 
     @Test
     public void testGetBasketNeed0() {
-        Basket basket = createBasket();
-        BasketNeed expected = new BasketNeed("id0", 3);
-        BasketNeed actual = basket.getBasketNeed("id0");
+        Basket basket = createTestBasket();
+        Need need = new Need("id0", "name0", "descr0", 0, 0, 0);
+        BasketNeed expected = new BasketNeed(need, 3);
+        BasketNeed actual = basket.getBasketNeed(need);
 
         assertEquals(expected, actual);
     }
 
     @Test
     public void testGetBasketNeed1() {
-        Basket basket = createBasket();
-        BasketNeed expected = new BasketNeed("id1", 2);
-        BasketNeed actual = basket.getBasketNeed("id1");
+        Basket basket = createTestBasket();
+        Need need = new Need("id1", "name1", "descr1", 1, 1, 1);
+        BasketNeed expected = new BasketNeed(need, 2);
+        BasketNeed actual = basket.getBasketNeed(need);
 
         assertEquals(expected, actual);
     }
 
     @Test
     public void testGetBasketNeed2() {
-        Basket basket = createBasket();
-        BasketNeed expected = new BasketNeed("id2", 1);
-        BasketNeed actual = basket.getBasketNeed("id2");
+        Basket basket = createTestBasket();
+        Need need = new Need("id2", "name2", "descr2", 2, 2, 2);
+        BasketNeed expected = new BasketNeed(need, 1);
+        BasketNeed actual = basket.getBasketNeed(need);
 
         assertEquals(expected, actual);
     }
 
     @Test
     public void testGetBasketNeedNotFound() {
-        Basket basket = createBasket();
+        Basket basket = createTestBasket();
         BasketNeed expected = null;
-        BasketNeed actual = basket.getBasketNeed("NON-EXISTENT-ID");
+        // null will not be found in the basket
+        BasketNeed actual = basket.getBasketNeed(null);
 
         assertEquals(expected, actual);
     }
 
     @Test
     public void testHasNeedTrue() {
-        Basket basket = createBasket();
+        Basket basket = createTestBasket();
+        Need need = basket.getNeeds().get(2).need;
 
-        boolean actual = basket.hasNeed("id2");
+        boolean actual = basket.hasNeed(need);
         
         assertTrue(actual);
     }
 
     @Test
     public void testHasNeedFalse() {
-        Basket basket = createBasket();
+        Basket basket = createTestBasket();
 
-        boolean actual = basket.hasNeed("NON-EXISTENT-ID");
+        boolean actual = basket.hasNeed(null);
         
         assertFalse(actual);
     }
@@ -127,65 +136,68 @@ public class BasketTest {
     @Test
     public void testAdd3Needs() {
         Basket basket = new Basket(); // empty
+        List<BasketNeed> needs = getTestNeeds();
 
-        basket.addNeed("id0");
-        basket.addNeed("id1");
-        basket.addNeed("id2");
+        basket.addNeed(needs.get(0).need);
+        basket.addNeed(needs.get(0).need);
+        basket.addNeed(needs.get(0).need);
+        basket.addNeed(needs.get(1).need);
+        basket.addNeed(needs.get(1).need);
+        basket.addNeed(needs.get(2).need);
 
-        ArrayList<BasketNeed> expected = new ArrayList<>();
-        expected.add(new BasketNeed("id0", 1));
-        expected.add(new BasketNeed("id1", 1));
-        expected.add(new BasketNeed("id2", 1));
+        List<BasketNeed> actual = basket.getNeeds();
 
-        ArrayList<BasketNeed> actual = basket.getNeeds();
-
-        assertEquals(expected, actual);
+        assertEquals(needs, actual);
     }
 
     @Test
     public void testAddNeedTwice() {
         Basket basket = new Basket();
 
-        basket.addNeed("id0");
-        basket.addNeed("id0");
+        Need need = new Need("id0", "name0", "descr0", 0, 1, 2);
 
-        BasketNeed expected = new BasketNeed("id0", 2);
-        BasketNeed actual = basket.getBasketNeed("id0");
+        basket.addNeed(need);
+        basket.addNeed(need);
+
+        BasketNeed expected = new BasketNeed(need, 2);
+        BasketNeed actual = basket.getBasketNeed(need);
 
         assertEquals(expected, actual);
     }
 
     @Test
     public void testRemoveNeedNonOneQuantityExists() {
-        Basket basket = createBasket();
+        Basket basket = createTestBasket();
+        Need need = basket.getNeeds().get(0).need;
 
-        basket.removeNeed("id0");
-        basket.removeNeed("id0");
+        basket.removeNeed(need);
+        basket.removeNeed(need);
 
-        BasketNeed expected = new BasketNeed("id0", 1);
-        BasketNeed actual = basket.getBasketNeed("id0");
+        BasketNeed expected = new BasketNeed(need, 1);
+        BasketNeed actual = basket.getBasketNeed(need);
 
         assertEquals(expected, actual);
     }
 
     @Test 
     public void testRemoveNeedOneExists() {
-        Basket basket = createBasket();
+        Basket basket = createTestBasket();
+        Need need = basket.getNeeds().get(2).need;
 
-        basket.removeNeed("id2");
+        basket.removeNeed(need);
 
-        BasketNeed actual = basket.getBasketNeed("id2");
+        BasketNeed actual = basket.getBasketNeed(need);
 
         assertNull(actual);
     }
 
     @Test 
     public void testRemoveNonExistentNeed() {
-        Basket basket = createBasket();
+        Basket basket = createTestBasket();
 
         ArrayList<BasketNeed> before = basket.getNeeds();
 
-        basket.removeNeed("id4");
+        basket.removeNeed(null);
 
         ArrayList<BasketNeed> after = basket.getNeeds();
 

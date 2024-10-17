@@ -22,7 +22,9 @@ export class CupboardNeedComponent {
     this.dataFromChild.emit(this.need);
   }
 
-  addToBasket(){
+  addToBasket() {
+    console.log(this.need);
+    this.authService.addToBasket(this.need);
   }
 
   sendUpdateNeeds(){
