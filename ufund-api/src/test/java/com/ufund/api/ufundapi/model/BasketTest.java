@@ -1,26 +1,16 @@
 package com.ufund.api.ufundapi.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import com.ufund.api.ufundapi.model.Need;
-import com.ufund.api.ufundapi.persistence.NeedDAO;
 
 /**
  * Test the Basket class
@@ -30,6 +20,7 @@ import com.ufund.api.ufundapi.persistence.NeedDAO;
 @Tag("Model-tier")
 public class BasketTest {
 
+    //list of basketneeds used for testing 
     private List<BasketNeed> getTestNeeds() {
         BasketNeed[] needs = {
             new BasketNeed(new Need("id0", "name0", "descr0", 0, 12, 10), 3),
@@ -39,6 +30,7 @@ public class BasketTest {
         return Arrays.asList(needs);
     }
 
+    //helper function to create a test basket 
     private Basket createTestBasket() {
         // not a test...
         // used to create test baskets
@@ -48,12 +40,15 @@ public class BasketTest {
         return basket;
     }
 
+    //test that basket is serializable 
     @Test
     public void testSerializeBasket() {}
 
+    //test that basket is deserializable
     @Test
     public void testDeserializeBasket() {}
 
+    //test getting all basket needs when there are no need in the basket 
     @Test
     public void testGetBasketNeedsEmpty() {
         BasketNeed[] needs = {};
@@ -64,6 +59,7 @@ public class BasketTest {
         assertEquals(needsList1, needsList2);
     }
 
+    //test getting all basket needs when there are needs in the basket
     @Test
     public void testGetBasketNeedsHasNeeds() {
         Basket basket = createTestBasket();
@@ -74,6 +70,7 @@ public class BasketTest {
         assertEquals(needsList1, needsList2);
     }
 
+    //test getting a basket need, test 0
     @Test
     public void testGetBasketNeed0() {
         Basket basket = createTestBasket();
@@ -84,6 +81,7 @@ public class BasketTest {
         assertEquals(expected, actual);
     }
 
+    //test getting a basket need, test 1
     @Test
     public void testGetBasketNeed1() {
         Basket basket = createTestBasket();
@@ -94,6 +92,7 @@ public class BasketTest {
         assertEquals(expected, actual);
     }
 
+    //test getting a basket need, test 2 
     @Test
     public void testGetBasketNeed2() {
         Basket basket = createTestBasket();
@@ -104,6 +103,7 @@ public class BasketTest {
         assertEquals(expected, actual);
     }
 
+    //test getting a basket need when that need is not found 
     @Test
     public void testGetBasketNeedNotFound() {
         Basket basket = createTestBasket();
@@ -114,6 +114,7 @@ public class BasketTest {
         assertEquals(expected, actual);
     }
 
+    //test has need when the basket does have the need
     @Test
     public void testHasNeedTrue() {
         Basket basket = createTestBasket();
@@ -124,6 +125,7 @@ public class BasketTest {
         assertTrue(actual);
     }
 
+    //test has need when the basket does not have the need 
     @Test
     public void testHasNeedFalse() {
         Basket basket = createTestBasket();
@@ -133,6 +135,7 @@ public class BasketTest {
         assertFalse(actual);
     }
 
+    //test adding a need three times 
     @Test
     public void testAdd3Needs() {
         Basket basket = new Basket(); // empty
@@ -150,6 +153,7 @@ public class BasketTest {
         assertEquals(needs, actual);
     }
 
+    //test adding a need twice 
     @Test
     public void testAddNeedTwice() {
         Basket basket = new Basket();
@@ -165,6 +169,7 @@ public class BasketTest {
         assertEquals(expected, actual);
     }
 
+    //test removing one need when a non one quantity of that need exists
     @Test
     public void testRemoveNeedNonOneQuantityExists() {
         Basket basket = createTestBasket();
@@ -179,6 +184,7 @@ public class BasketTest {
         assertEquals(expected, actual);
     }
 
+    //test removing one need where only one exists
     @Test 
     public void testRemoveNeedOneExists() {
         Basket basket = createTestBasket();
@@ -191,6 +197,7 @@ public class BasketTest {
         assertNull(actual);
     }
 
+    //test removing a basketneed that does not exist 
     @Test 
     public void testRemoveNonExistentNeed() {
         Basket basket = createTestBasket();
@@ -202,5 +209,29 @@ public class BasketTest {
         ArrayList<BasketNeed> after = basket.getNeeds();
 
         assertEquals(before, after);
+    }
+
+    //test true equality of two equal basket objects
+    @Test
+    public void testBasketEqualTrue(){
+        Basket basket = createTestBasket();
+        Basket basket2 = createTestBasket();
+        assertEquals(basket, basket2);
+    }
+
+    //test false equality of two unequal basket objects
+    @Test
+    public void testBasketEqualFalse(){
+        Basket basket = createTestBasket();
+        Basket basket2 = new Basket();
+        assertNotEquals(basket, basket2);
+    }
+
+    //test (false) equality of a basket and an object
+    @Test
+    public void testBasketEqualObjNotBasket(){
+        Basket basket = createTestBasket();
+        Object basket2 = new Object();
+        assertNotEquals(basket, basket2);
     }
 }
