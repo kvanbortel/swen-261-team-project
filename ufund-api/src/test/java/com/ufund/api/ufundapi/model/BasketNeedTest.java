@@ -1,17 +1,14 @@
 package com.ufund.api.ufundapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 @Tag("Model-tier")
 public class BasketNeedTest {
 
+    //test toString() function
     @Test
     public void testToString() {
         BasketNeed bNeed = new BasketNeed(
@@ -23,6 +20,7 @@ public class BasketNeedTest {
         assertEquals(expected, actual);
     }
 
+    //test equal when two basketneeds are equal
     @Test
     public void testEqualsTrue() {
         BasketNeed bNeed1 = new BasketNeed(
@@ -33,6 +31,7 @@ public class BasketNeedTest {
         assertEquals(bNeed1, bNeed2);
     }
 
+    //test equal when there are differing needs
     @Test
     public void testEqualDiffNeed() {
         BasketNeed bNeed1 = new BasketNeed(
@@ -43,6 +42,7 @@ public class BasketNeedTest {
         assertNotEquals(bNeed1, bNeed2);
     }
 
+    //test equal when there are differing quantities
     @Test
     public void testEqualDiffQuantity() {
         BasketNeed bNeed1 = new BasketNeed(
@@ -53,6 +53,7 @@ public class BasketNeedTest {
         assertNotEquals(bNeed1, bNeed2);
     }
 
+    //test equal method when other is an object and not a basketneed
     @Test
     public void testEqualWrongType() {
         BasketNeed bNeed1 = new BasketNeed(
