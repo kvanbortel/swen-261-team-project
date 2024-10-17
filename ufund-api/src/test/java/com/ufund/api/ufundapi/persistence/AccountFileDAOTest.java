@@ -6,6 +6,8 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -45,19 +47,36 @@ public class AccountFileDAOTest {
         testNeeds[2] = new Need("MOCKID-2","NeedB2", "Description3", 1.3, 6, 12.32);
 
         testBasketNeeds = new BasketNeed[5];
-        // testBasketNeeds[0] = new BasketNeed();
+        testBasketNeeds[0] = new BasketNeed(testNeeds[0], 1);
+        testBasketNeeds[1] = new BasketNeed(testNeeds[1], 1);
+        testBasketNeeds[2] = new BasketNeed(testNeeds[2], 1);
+        testBasketNeeds[3] = new BasketNeed(testNeeds[1], 3);
+        testBasketNeeds[4] = new BasketNeed(testNeeds[2], 6);
 
         testBaskets = new Basket[4];        
-        testBaskets[0] = new Basket();
-        testBaskets[0] = new Basket();
-        testBaskets[0] = new Basket();
-        testBaskets[0] = new Basket();
 
+        testBaskets[0] = new Basket(); // empty
+
+        testBaskets[1] = new Basket(); // need0: 1, need3: 3
+        testBaskets[1].addNeed(testNeeds[0]);
+        testBaskets[1].addNeed(testNeeds[1]);
+        testBaskets[1].addNeed(testNeeds[1]);
+        testBaskets[1].addNeed(testNeeds[1]);
+
+        testBaskets[2] = new Basket(); // need4: 6
+        for (int i=0; i<6; i++) {
+            testBaskets[2].addNeed(testNeeds[2]);
+        }
+
+        testBaskets[3] = new Basket(); // need0: 1
+        testBaskets[3].addNeed(testNeeds[0]);
+
+        // accounts baskets match the related index in testBaskets
         testAccounts = new Account[4];
         testAccounts[0] = new Account("Max");
-        testAccounts[1] = new Account("Kayla");
-        testAccounts[2] = new Account("Jonah");
-        testAccounts[3] = new Account("Ryan");
+        testAccounts[1] = new Account("Kayla", testBaskets[1]);
+        testAccounts[2] = new Account("Jonah", testBaskets[2]);
+        testAccounts[3] = new Account("Ryan", testBaskets[3]);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the need array above
@@ -77,8 +96,11 @@ public class AccountFileDAOTest {
     }
 
     @Test
-    public void testGetNeeds() {
+    public void testGetNeeds() throws IOException {
+        // Invoke
+        List<BasketNeed> needs = accountFileDAO.getNeeds("Kayla");
 
+        assertEquals(testBaskets[1].getNeeds(), needs);
     }
 
     
