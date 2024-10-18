@@ -8,6 +8,33 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
+  /* Styling the input field */
+.quantity-form input[type="number"] {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: auto;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+    align-items: end;
+  }
+  
+  /* Focus effect for the input */
+  .quantity-form input[type="number"]:focus {
+    border-color: var(--baseOrange);
+    box-shadow: 0 0 5px rgba(230, 121, 3, 0.4);
+    outline: none;
+  }
+  
+  /* Error message styling */
+  .quantity-form div {
+    justify-self: center;
+    position: absolute;
+    color: #e74c3c;
+    font-size: 14px;
+  }
+
   .row{
     display: flex;
     justify-content: space-between;
