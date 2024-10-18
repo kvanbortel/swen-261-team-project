@@ -1,0 +1,100 @@
+/* Container for each need item */
+.cupboard-need {
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .row{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+  }
+  
+  /* Title of each need item */
+  .need-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  /* Button for adding to basket */
+  .basket-button{
+    background-color: var(--baseOrange);
+    padding: 10px;
+    border-radius: 5px;
+    border-style: none;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    width: 5vh;
+    height: 5vh;
+    cursor: pointer;
+
+    display: inline-block;
+    background-size: calc(3vh);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../assets/add-to-basket.png');
+  }
+
+  /* Hover effect for the entire item */
+  .basket-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .basket-button:hover {
+    background-color: var(--hoveredOrange); /* Darker shade of orange */
+  }
+  
+  /* Description of the need */
+  .need-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* Row of information boxes below the description */
+.need-info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  /* Styling for each info box */
+  .info-box {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 23%; /* Adjust to fit 4 boxes in a row */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Label inside each box */
+  .info-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 5px;
+  }
+  
+  /* Value inside each box */
+  .info-value {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  /* Hover effect for the entire item */
+  .cupboard-need:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+  

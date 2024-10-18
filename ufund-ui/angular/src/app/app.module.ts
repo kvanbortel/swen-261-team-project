@@ -32,6 +32,7 @@ import { BasketListComponent } from './basket-list/basket-list.component';
 import { HomeComponent } from './home/home.component';
 import { ViewChangeButtonComponent } from './view-change-button/view-change-button.component';
 import { BasketPageComponent } from './basket-page/basket-page.component';
+import { BasketNeedComponent } from './basket-need/basket-need.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { BasketPageComponent } from './basket-page/basket-page.component';
     BasketListComponent,
     HomeComponent,
     ViewChangeButtonComponent,
-    BasketPageComponent
+    BasketPageComponent,
+    BasketNeedComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,14 @@
 <ul>
-    <li *ngFor="let bNeed of basketNeeds$ | async">
-        <label>{{bNeed.need.name}}</label>
-    </li>
+
+    <ul *ngIf="(basketNeeds$ | async)?.length !== 0" class="search-result">
+        <li *ngFor="let bNeed of basketNeeds$ | async">
+          <app-basket-need
+            [need]="bNeed"
+          ></app-basket-need>
+        </li>
+      </ul>
+  
+      <div *ngIf="(basketNeeds$ | async)?.length === 0" class="no-results">
+        Your basket is empty. Time to get funding!
+      </div>
 </ul>
