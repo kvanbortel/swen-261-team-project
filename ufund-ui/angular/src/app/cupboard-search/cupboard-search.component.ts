@@ -39,7 +39,7 @@ export class CupboardSearchComponent {
   }
 
   ngOnInit(): void {
-    if(this.authService.getName() == '' && !this.authService.isAdmin){
+    if(this.authService.getName() == '' && !this.authService.isAdmin()){
       window.location.href = 'login'
     }
     

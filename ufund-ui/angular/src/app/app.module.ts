@@ -30,6 +30,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './storage/auth.service';
 import { BasketListComponent } from './basket-list/basket-list.component';
 import { HomeComponent } from './home/home.component';
+import { ViewChangeButtonComponent } from './view-change-button/view-change-button.component';
+import { BasketPageComponent } from './basket-page/basket-page.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { HomeComponent } from './home/home.component';
     DeleteNeedComponent,
     ConfirmationDialogComponent,
     BasketListComponent,
-    HomeComponent
+    HomeComponent,
+    ViewChangeButtonComponent,
+    BasketPageComponent
   ],
   imports: [
     BrowserModule,

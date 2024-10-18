@@ -3,13 +3,15 @@ import { Account } from '../Account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { Need } from '../Need';
+import { BasketNeed } from '../BasketNeed';
+import { Basket } from '../Basket';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  isAdmin: number = 0;
+  admin: boolean = false;
   name: string = '';
 
   constructor(private http: HttpClient){};
@@ -18,8 +20,14 @@ export class AuthService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  setisAdmin(isAdmin:number){
-    this.isAdmin = isAdmin;
+  isAdmin(): boolean {
+    if(this.name === "admin"){
+      this.admin = true;
+    }
+    else{
+      this.admin = false;
+    }
+    return this.admin
   }
   
   setName(name:string){
@@ -41,6 +49,13 @@ export class AuthService {
         console.error('Error logging in:', err);
       }
     });
+  }
+
+  getBasketNeeds(): Observable<BasketNeed[]> {
+    return this.http.get<BasketNeed[]>('http://localhost:8080/accounts/' + this.name + '/needs').pipe(
+      tap((_) => console.log('get basket needs')),
+      catchError(this.handleError<BasketNeed[]>('basketNeeds', []))
+    );
   }
 
   addToBasket(need?: Need): void {

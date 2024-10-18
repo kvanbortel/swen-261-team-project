@@ -19,7 +19,7 @@ export interface DialogData {
   styleUrl: './create-need.component.css'
 })
 export class CreateNeedComponent {
-  isAdmin: number = this.authService.isAdmin;
+  isAdmin: boolean = this.authService.isAdmin();
 
   data: DialogData = {
     name: "",
