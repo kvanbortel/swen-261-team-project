@@ -1,4 +1,6 @@
+import { Need } from "./Need";
+
 export interface BasketNeed {
-    name: String,
+    need: Need,
     quantity: number
   }
