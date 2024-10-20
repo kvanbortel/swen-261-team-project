@@ -96,6 +96,9 @@ public class Basket {
         if (basketNeed == null) {
             basketNeed = new BasketNeed(need, amount);
             this.needs.add(basketNeed);
+            
+            // reverse sort the needs by demand
+            this.needs.sort((n2, n1) -> Double.compare(n1.getNeed().getDemandRating(), n2.getNeed().getDemandRating()));
         } else {
             basketNeed.quantity += amount;
         }
@@ -116,6 +119,9 @@ public class Basket {
         if (basketNeed == null) {
             basketNeed = new BasketNeed(need, 1);
             this.needs.add(basketNeed);
+
+            // reverse sort the needs by demand
+            this.needs.sort((n2, n1) -> Double.compare(n1.getNeed().getDemandRating(), n2.getNeed().getDemandRating()));
         } else {
             basketNeed.quantity += 1;
         }

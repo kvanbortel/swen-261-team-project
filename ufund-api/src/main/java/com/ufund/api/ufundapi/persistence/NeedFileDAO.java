@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import org.apache.logging.log4j.util.PropertySource.Comparator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -75,6 +76,9 @@ public class NeedFileDAO implements NeedDAO{
                 needArrayList.add(need);
             }
         }
+
+        // reverse sort the needs by demand
+        needArrayList.sort((n2, n1) -> Double.compare(n1.getDemandRating(), n2.getDemandRating()));
 
         Need[] needArray = new Need[needArrayList.size()];
         needArrayList.toArray(needArray);
