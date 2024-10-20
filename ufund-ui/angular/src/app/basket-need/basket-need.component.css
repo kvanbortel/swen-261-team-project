@@ -30,7 +30,7 @@
   /* Error message styling */
   .quantity-form div {
     justify-self: center;
-    position: absolute;
+    position: relative;
     color: #e74c3c;
     font-size: 14px;
   }

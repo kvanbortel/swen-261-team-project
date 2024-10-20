@@ -58,8 +58,10 @@ export class AuthService {
     );
   }
 
-  addToBasket(need?: Need): void {
-    this.http.put('http://localhost:8080/accounts/' + this.name + '/needs/true', need, this.httpOptions).pipe(
+  addToBasket(amount: number, need?: Need): void {
+    console.log("changing by", amount)
+    console.log('http://localhost:8080/accounts/' + this.name + '/needs/' + amount)
+    this.http.put('http://localhost:8080/accounts/' + this.name + '/needs/' + amount, need, this.httpOptions).pipe(
       catchError(this.handleError<Account>('updateBasketNeed'))
     ).subscribe({
       next: (response) => {
@@ -67,19 +69,6 @@ export class AuthService {
       },
       error: (err) => {
         console.error('Error adding to basket:', err)
-      }
-    });
-  }
-
-  removeFromBasket(need?: Need): void {
-    this.http.put('http://localhost:8080/accounts/' + this.name + '/needs/false', need, this.httpOptions).pipe(
-      catchError(this.handleError<Account>('updateBasketNeed'))
-    ).subscribe({
-      next: (response) => {
-        console.log('Need removed from basket successfully:', response);
-      },
-      error: (err) => {
-        console.error('Error removing from basket:', err)
       }
     });
   }

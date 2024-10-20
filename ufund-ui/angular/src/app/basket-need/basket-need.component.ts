@@ -65,7 +65,13 @@ export class BasketNeedComponent {
   }
 
   addQuantity() {
-    this.authService.addToBasket()
+    if (this.quantityForm.valid) {
+      this.authService.addToBasket(
+        this.quantityForm.value.quantity - this.need.quantity,
+        this.need.need
+      );
+      this.need.quantity = this.quantityForm.value.quantity
+    }
   }
 
   retrieveNeed() {
