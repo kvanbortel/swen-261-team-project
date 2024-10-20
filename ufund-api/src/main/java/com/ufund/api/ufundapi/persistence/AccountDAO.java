@@ -23,12 +23,12 @@ public interface AccountDAO{
 
      /**
      * Updates a {@linkplain Basket basket} with a {@linkplain BasketNeed BasketNeed
-     * } depending on a Boolean increment
+     * }
      * @param account {String account} Account name 
      * 
      * @param need {Need need} Basket ID
      * 
-     * @param increment {Boolean increment} whether to increment or decrement the need  
+     * @param amount {int amount} the quantity to change the need by
      * 
      * @return true if the {@link Account account} was updated 
      * <br>
@@ -36,7 +36,7 @@ public interface AccountDAO{
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    public Account updateNeed(String account, Need need, Boolean increment) throws IOException;
+    public Account updateNeed(String account, Need need, int amount) throws IOException;
 
     /**
      * Creates and saves a {@linkplain Account account}

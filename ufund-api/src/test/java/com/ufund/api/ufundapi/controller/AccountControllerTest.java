@@ -116,10 +116,10 @@ public class AccountControllerTest {
         
         Account account = new Account(TEST_NAME, TEST_BASKET);
 
-        when(mockAccountDAO.updateNeed(TEST_NAME, TEST_NEED, true)).thenReturn(account);
+        when(mockAccountDAO.updateNeed(TEST_NAME, TEST_NEED, 1)).thenReturn(account);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.incrementNeed(TEST_NAME, true, TEST_NEED);
+        ResponseEntity<Account> response = accountController.updateNeed(TEST_NAME, 1, TEST_NEED);
 
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -133,10 +133,10 @@ public class AccountControllerTest {
         // Setup
         Account account = new Account(TEST_NAME, (TEST_BASKET));
 
-        when(mockAccountDAO.updateNeed(TEST_NAME, TEST_NEED, false)).thenReturn(account);
+        when(mockAccountDAO.updateNeed(TEST_NAME, TEST_NEED, -1)).thenReturn(account);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.incrementNeed(TEST_NAME, false, TEST_NEED);
+        ResponseEntity<Account> response = accountController.updateNeed(TEST_NAME, -1, TEST_NEED);
 
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -148,10 +148,10 @@ public class AccountControllerTest {
     public void testIncrementNeedNotFound() throws Exception {
         
         Account account = new Account(TEST_NAME, (TEST_BASKET));
-        when((mockAccountDAO).updateNeed(TEST_NAME, TEST_NEED, true)).thenReturn(null);
+        when((mockAccountDAO).updateNeed(TEST_NAME, TEST_NEED, 1)).thenReturn(null);
 
         // Invoke
-        var response = accountController.incrementNeed(TEST_NAME, true, TEST_NEED);
+        var response = accountController.updateNeed(TEST_NAME, 1, TEST_NEED);
 
         // Analyze
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
@@ -161,10 +161,10 @@ public class AccountControllerTest {
     @Test
     public void testIncrementNeedHandleError() throws Exception {
         
-        doThrow(new IOException()).when(mockAccountDAO).updateNeed(TEST_NAME, TEST_NEED, true);
+        doThrow(new IOException()).when(mockAccountDAO).updateNeed(TEST_NAME, TEST_NEED, 1);
 
         // Invoke
-        var response = accountController.incrementNeed(TEST_NAME, true, TEST_NEED);
+        var response = accountController.updateNeed(TEST_NAME, 1, TEST_NEED);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());

@@ -153,6 +153,52 @@ public class BasketTest {
         assertEquals(needs, actual);
     }
 
+    //test updating a need for quantity > 1
+    @Test
+    public void testUpdate10() {
+        Basket basket = new Basket();
+
+        Need need = new Need("id0", "name0", "descr0", 0, 1, 2);
+
+        basket.updateNeed(need, 10);
+
+        BasketNeed expected = new BasketNeed(need, 10);
+        BasketNeed actual = basket.getBasketNeed(need);
+
+        assertEquals(expected, actual);
+    }
+
+    //test updating a need for quantity < -1
+    @Test
+    public void testRemove10() {
+        Basket basket = new Basket();
+
+        Need need = new Need("id0", "name0", "descr0", 0, 1, 2);
+        
+        basket.updateNeed(need, 12);
+        basket.updateNeed(need, -10);
+
+        BasketNeed expected = new BasketNeed(need, 2);
+        BasketNeed actual = basket.getBasketNeed(need);
+
+        assertEquals(expected, actual);
+    }
+
+    //test removing a need into the negatives
+    @Test
+    public void testRemoveAll() {
+        Basket basket = new Basket();
+
+        Need need = new Need("id0", "name0", "descr0", 0, 1, 2);
+
+        basket.addNeed(need);
+        basket.updateNeed(need, -5);
+
+        BasketNeed actual = basket.getBasketNeed(need);
+
+        assertNull(actual);
+    }
+
     //test adding a need twice 
     @Test
     public void testAddNeedTwice() {

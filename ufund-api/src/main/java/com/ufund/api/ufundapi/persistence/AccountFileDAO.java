@@ -136,16 +136,11 @@ public class AccountFileDAO implements AccountDAO{
     ** {@inheritDoc}
      */
     @Override
-    public Account updateNeed(String account, Need need, Boolean increment) throws IOException{
+    public Account updateNeed(String account, Need need, int amount) throws IOException{
 
         Account newAccount = accounts.get(account);
         if(newAccount != null){
-            if(increment){
-                newAccount.getBasket().addNeed(need);
-            }
-            else{
-                newAccount.getBasket().removeNeed(need);
-            }
+            newAccount.getBasket().updateNeed(need, amount);
             save();
             return newAccount;
         }

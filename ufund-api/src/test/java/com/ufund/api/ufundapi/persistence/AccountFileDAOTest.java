@@ -121,7 +121,7 @@ public class AccountFileDAOTest {
 
     @Test
     public void testAddNeed() throws IOException {
-        Account ryan = accountFileDAO.updateNeed("Ryan", testNeeds[0], true);
+        Account ryan = accountFileDAO.updateNeed("Ryan", testNeeds[0], 1);
 
         // this needs to be refactored for law of demeter...
         assertEquals(ryan.getBasket().getBasketNeed(testNeeds[0]).getQuantity(), 2);
@@ -129,7 +129,7 @@ public class AccountFileDAOTest {
 
     @Test
     public void testRemoveNeed() throws IOException {
-        Account kayla = accountFileDAO.updateNeed("Kayla", testNeeds[1], false);
+        Account kayla = accountFileDAO.updateNeed("Kayla", testNeeds[1], -1);
 
         // this needs to be ref3 of 14actored for law of demeter...
         assertEquals(2, kayla.getBasket().getBasketNeed(testNeeds[1]).getQuantity());
@@ -137,7 +137,7 @@ public class AccountFileDAOTest {
 
     @Test
     public void testUpdateNeedForFakeAccount() throws IOException {
-        assertNull(accountFileDAO.updateNeed("FAKE", testNeeds[1], false));
+        assertNull(accountFileDAO.updateNeed("FAKE", testNeeds[1], 1));
     }
 
     

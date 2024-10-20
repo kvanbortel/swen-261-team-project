@@ -84,6 +84,27 @@ public class Basket {
     }
 
     /**
+     * Adds or subtracts a need quantity from the basket. If that need is not in the basket, 
+     * add it to the basket, if it would drop below 0, remove it from the basket
+     * 
+     * @param need the need to update in the basket
+     * @param amount the amount to change the need by (positive or negative)
+     */
+    public void updateNeed(Need need, int amount) {
+        BasketNeed basketNeed = getBasketNeed(need);
+
+        if (basketNeed == null) {
+            basketNeed = new BasketNeed(need, amount);
+            this.needs.add(basketNeed);
+        } else {
+            basketNeed.quantity += amount;
+        }
+        if(basketNeed.quantity <= 0){
+            needs.remove(basketNeed);
+        }
+    }
+
+    /**
      * Adds a need to the basket. If that need has already been added, 
      * increases the quantity by 1
      * 
