@@ -68,7 +68,7 @@ public class AccountController {
      * 404 NOT FOUND if the account does not exist
      * 500 INTERNAL SERVER ERROR otherwise
      */
-    @PutMapping("/{accountName}/needs/{increment}")
+    @PutMapping("/{accountName}/needs/{amount}")
     public ResponseEntity<Account> updateNeed(@PathVariable String accountName, @PathVariable int amount, @RequestBody Need need) {
     LOG.info("PUT /accounts/" + accountName + "/needs/" + amount);
         try {
