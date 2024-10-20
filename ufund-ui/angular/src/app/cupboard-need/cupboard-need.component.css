@@ -72,7 +72,7 @@
     padding: 10px;
     border-radius: 5px;
     text-align: center;
-    width: 23%; /* Adjust to fit 4 boxes in a row */
+    width: 31%; /* Adjust to fit 3 boxes in a row */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
   
