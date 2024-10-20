@@ -181,4 +181,7 @@ Open-Close: When modifying a module, you should not make changes to existing log
 >
 > **[Sprint 1] (2024/10/1) decisions**
 > - Switched from integer IDs or unique names for Needs to String UUIDs. This change was agreed upon to simplify the backend logic and limit conflicts based on hidden backend information.
-> - Decided to keep our DAO as Need/NeedFile rather than Cupboard, as the Cupboard name is a concept for the customer and holds no signficance to working with the Need classes on the backend. 
+> - Decided to keep our DAO as Need/NeedFile rather than Cupboard, as the Cupboard name is a concept for the customer and holds no signficance to working with the Need classes on the backend.
+>
+> > **[Sprint 2] (2024/10/24) decisions**
+> > - Needs displayed on the frontend are always sorted in descending demand order, unless otherwise sorted by a user. 
