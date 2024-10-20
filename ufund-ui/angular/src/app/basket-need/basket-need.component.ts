@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  HostBinding,
   Input,
   Output,
   SimpleChanges,
@@ -30,6 +31,8 @@ export class BasketNeedComponent {
     cost: 1.0,
     quantity: 1,
   };
+
+  style: String = ""
 
   emptyBNeed: BasketNeed = { quantity: 1, need: this.emptyNeed };
 
@@ -78,14 +81,13 @@ export class BasketNeedComponent {
     return this.need ? Object.keys(this.need) : [];
   }
 
-  @Output() dataFromChild = new EventEmitter<BasketNeed>();
+  @Output() deleteNeed = new EventEmitter<BasketNeed>();
 
-  sendData() {
-    this.dataFromChild.emit(this.need);
-  }
-
-  sendUpdateNeeds() {
-    // tell the parent to update its needs
-    this.dataFromChild.emit();
+  delete(){
+    this.authService.addToBasket(
+      -this.need.quantity,
+      this.need.need
+    );
+    this.deleteNeed.emit(this.need);
   }
 }

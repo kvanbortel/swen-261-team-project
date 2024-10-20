@@ -21,22 +21,6 @@
   margin-bottom: 10px;
 }
 
-/* Styling for each result item */
-.search-result li app-basket-need {
-  display: block;
-  padding: 1.5vh;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-/* Hover effect on search results */
-.search-result li app-basket-need:hover {
-  background-color: #f1f1f1;
-  cursor: pointer;
-}
-
 /* No results message styling */
 .no-results {
   margin-top: 20px;

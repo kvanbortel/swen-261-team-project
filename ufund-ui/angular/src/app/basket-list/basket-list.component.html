@@ -2,7 +2,7 @@
 
     <ul *ngIf="(basketNeeds$ | async)?.length !== 0" class="search-result">
         <li *ngFor="let bNeed of basketNeeds$ | async">
-          <app-basket-need
+          <app-basket-need (deleteNeed)="onNeedDeleted($event)"
             [need]="bNeed"
           ></app-basket-need>
         </li>

@@ -1,4 +1,4 @@
-<div *ngIf="need" class="cupboard-need" (click)="sendData()">
+<div *ngIf="need" class="basket-need">
   <div class="row">
     <h3 class="need-title">
       {{ getNeed().name }}
@@ -21,6 +21,7 @@
           1 to {{ getNeed().quantity }}.
         </div>
       </form>
+      <button class="delete-button" (click)="delete()" >&nbsp; <i class="fa-solid fa-trash-can"></i> &nbsp;<span class="hide-text">Remove from basket&nbsp;</span></button>
     </div>
   </div>
   <p class="need-description">{{ getNeed().description }}</p>

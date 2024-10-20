@@ -20,4 +20,12 @@ export class BasketListComponent {
       next: (response) => { this.basketNeeds$.next(response); console.log(response)}
     });
   }
+
+  onNeedDeleted(needToDelete: BasketNeed) {
+    const currentNeeds = this.basketNeeds$.getValue();
+
+    const updatedNeeds = currentNeeds.filter(need => need.need.id !== needToDelete.need.id);
+
+    this.basketNeeds$.next(updatedNeeds);
+  }
 }
