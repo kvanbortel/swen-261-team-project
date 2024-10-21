@@ -1,0 +1,10 @@
+HTTP/1.1 400 
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Tue, 15 Oct 2024 01:21:37 GMT
+Connection: close
+
+{"timestamp":1728955297427,"status":400,"error":"Bad Request","message":"JSON parse error: Unexpected character ('e' (code 101)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('e' (code 101)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (PushbackInputStream); line: 1, column: 3]","path":"/accounts"}

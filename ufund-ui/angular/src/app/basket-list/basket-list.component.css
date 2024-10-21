@@ -1,0 +1,86 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling for the search result list */
+.search-result {
+  list-style-type: none;
+  overflow: auto;
+  height: 80vh; /* search height */
+  width: 60vw;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual result item styling */
+.search-result li {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* No results message styling */
+.no-results {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #888;
+  text-align: center;
+}
+
+.checkout-summary {
+  width: 22vw;
+  height: 80vh;
+  margin-left: 5vw;
+  margin-right: 10vw;
+
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 0vh;
+
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-list{
+  margin-top: 2vh;
+  padding: 0;
+  height: 46vh;
+  list-style-type: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.item{
+  margin-top: 2vh;
+}
+
+.fund-button{
+    margin-top: 2vh;
+    font-weight: 600;
+    background-color: var(--baseOrange); 
+    margin-left: 0.5vh;
+    padding: calc(0.5vh);
+    border-radius: 5px;
+    border-style: none;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    font-size: calc(2.5vh);
+    width: 20vw;
+    height: 6vh;
+    cursor: pointer;
+}
+
+.fund-button:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.fund-button:hover {
+  background-color: var(--hoveredOrange); /* Darker shade of orange */
+  cursor: pointer;
+}

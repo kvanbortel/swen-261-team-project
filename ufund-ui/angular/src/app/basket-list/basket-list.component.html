@@ -1,0 +1,37 @@
+<ul class="main">
+  <ul *ngIf="(basketNeeds$ | async)?.length !== 0" class="search-result">
+    <li *ngFor="let bNeed of basketNeeds$ | async">
+      <app-basket-need
+        (deleteNeed)="onNeedDeleted($event)"
+        [need]="bNeed"
+      ></app-basket-need>
+    </li>
+  </ul>
+
+  <div *ngIf="(basketNeeds$ | async)?.length !== 0" class="checkout-summary">
+    <h3><u>Basket Summary</u></h3>
+
+    <div class="item">
+      <b>Different Needs:</b> {{ (basketNeeds$ | async)?.length }}
+    </div>
+
+    <div class="item"><b>Total Need Quantity:</b> {{ getTotalQuantity() }}</div>
+
+    <ul class="summary-list">
+      <li *ngFor="let bNeed of basketNeeds$ | async" class="item">
+        {{ bNeed.quantity }}x <i>{{ bNeed.need.name }}</i
+        ><br />&nbsp; {{ bNeed.quantity * bNeed.need.cost | currency }}
+      </li>
+    </ul>
+
+    <div class="item">
+      <b>Total Need Cost:</b> {{ getTotalCost() | currency }}
+    </div>
+    <!-- TODO: this probably should have a popup confirmation -->
+    <button class="fund-button" (click)="checkout()">Fund It!</button>
+  </div>
+
+  <div *ngIf="(basketNeeds$ | async)?.length === 0" class="no-results">
+    Your basket is empty. Time to get funding!
+  </div>
+</ul>

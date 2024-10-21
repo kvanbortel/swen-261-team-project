@@ -1,0 +1,9 @@
+<html>
+    <div class = "main">
+        <label class = "login-title" for="login-box">Please enter a valid account name below:</label>
+        <br>
+        <input id = "login" class = "login-input" type = "text" #loginBox id="login-box"/>
+        <br>
+        <button class = "login-button" type="button" (click)="login(loginBox.value)" routerLink = "/home">Login</button>
+    </div>
+</html>

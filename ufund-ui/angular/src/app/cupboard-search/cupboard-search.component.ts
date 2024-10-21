@@ -3,6 +3,8 @@ import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable, startW
 import { CupboardService } from '../cupboard.service';
 import { Need } from '../Need';
 
+import { AuthService } from '../storage/auth.service';
+
 @Component({
   selector: 'app-cupboard-search',
   templateUrl: './cupboard-search.component.html',
@@ -14,9 +16,10 @@ export class CupboardSearchComponent {
   private searchTerms = new Subject<string>();
   selected!: Need;
 
-  constructor(private cupboardService: CupboardService) {}
+  constructor(private cupboardService: CupboardService, public authService: AuthService) {}
 
   private currentSearchTerm: string = "";
+  public basketSwitch: boolean = false;
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -36,6 +39,10 @@ export class CupboardSearchComponent {
   }
 
   ngOnInit(): void {
+    if(this.authService.getName() == '' && !this.authService.isAdmin()){
+      window.location.href = 'login'
+    }
+    
 
     this.cupboardService.searchNeeds("").subscribe({ 
       next: (response) => this.needs$.next(response)
@@ -57,5 +64,9 @@ export class CupboardSearchComponent {
     ).subscribe({
       next: (response) => this.needs$.next(response)  // Manually emit the result
     });
+  }
+
+  updateBasketSwitch() : void {
+    this.basketSwitch = !this.basketSwitch
   }
 }

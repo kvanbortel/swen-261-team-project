@@ -1,0 +1,43 @@
+<div *ngIf="need" class="basket-need">
+  <div class="row">
+    <h3 class="need-title">
+      {{ getNeed().name }}
+    </h3>
+    <div style="display: flex; gap: 10px"></div>
+    <div class="row">
+      <div>Edit Current Quantity:</div>
+      <div style="display: flex; gap: 100px">&nbsp;</div>
+      <form [formGroup]="quantityForm" class="quantity-form">
+        <input
+          type="number"
+          min="{{ 1 }}"
+          max="{{ getNeed().quantity }}"
+          [value]="need.quantity"
+          id="quantity"
+          formControlName="quantity"
+          (input)="addQuantity()"
+        />
+        <div *ngIf="quantityForm.controls['quantity'].errors">
+          1 to {{ getNeed().quantity }}.
+        </div>
+      </form>
+      <button class="delete-button" (click)="delete()" >&nbsp; <i class="fa-solid fa-trash-can"></i> &nbsp;<span class="hide-text">Remove from basket&nbsp;</span></button>
+    </div>
+  </div>
+  <p class="need-description">{{ getNeed().description }}</p>
+
+  <div class="need-info-row">
+    <div class="info-box">
+      <span class="info-label">Cost:</span>
+      <span class="info-value">{{ getNeed().cost | currency }}</span>
+    </div>
+    <div class="info-box">
+      <span class="info-label">Demand:</span>
+      <span class="info-value">{{ getNeed().demandRating + "%" }}</span>
+    </div>
+    <div class="info-box">
+      <span class="info-label">Total Quantity:</span>
+      <span class="info-value">{{ getNeed().quantity }}</span>
+    </div>
+  </div>
+</div>

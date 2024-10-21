@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateNeedDialogComponent } from '../create-need-dialog/create-need-dialog.component';
+import { AuthService } from '../storage/auth.service';
 
 export interface DialogData {
   name: String;
@@ -18,7 +19,7 @@ export interface DialogData {
   styleUrl: './create-need.component.css'
 })
 export class CreateNeedComponent {
-  isAdmin: number = 1; // TODO: Implement once login is done
+  isAdmin: boolean = this.authService.isAdmin();
 
   data: DialogData = {
     name: "",
@@ -29,7 +30,7 @@ export class CreateNeedComponent {
     mode: 'add'
   }
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public authService: AuthService) {}
 
   @Output() dataFromChild = new EventEmitter<null>();
 

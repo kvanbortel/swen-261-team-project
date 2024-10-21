@@ -147,4 +147,33 @@ public class Need {
         this.cost = cost;
     }
 
+    /** 
+     * Two needs are equal if they have the same id
+     * 
+     * @param obj Object to compare this to
+     * 
+     * @return boolean: True if they are equivalent
+     */
+    public boolean equals(Object obj) {
+        if (obj instanceof Need) {
+            Need other = (Need)obj;
+            return this.id.equals(other.id);
+        }
+        return false;
+    }
+
+    /**
+     * String representation of a Need
+     */
+    public String toString() {
+        return (
+            "{id: " + id + ", "
+            + "name: " + name + ", "
+            + "description: " + description + ", "
+            + "quantity: " + quantity + ", "
+            + "demandRating: " + demandRating + ", "
+            + "cost: " + cost + "}"
+        );
+    }
+
 }
