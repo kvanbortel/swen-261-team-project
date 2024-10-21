@@ -38,6 +38,7 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | ID | Identifier |
 | UUID | Universally Unique Identifier |
 | REST | Representational State Transfer |
+| OO | Object-Oriented |
 
 
 
