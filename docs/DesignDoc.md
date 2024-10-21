@@ -210,11 +210,9 @@ Open/Closed is useful for maintaining backwards compatibility. By not modifying 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
 >
-> **[Sprint 1] decisions**
-> - (2024/10/1) Switched from integer IDs or unique names for Needs to String UUIDs. This change was agreed upon to simplify the backend logic and limit conflicts based on hidden backend information.
-> - (2024/10/1) Decided to keep our DAO as Need/NeedFile rather than Cupboard, as the Cupboard name is a concept for the customer and holds no signficance to working with the Need classes on the backend.
+> **[Sprint 1] (2024/10/1) decisions**
+> - Switched from integer IDs or unique names for Needs to String UUIDs. This change was agreed upon to simplify the backend logic and limit conflicts based on hidden backend information.
+> - Decided to keep our DAO as Need/NeedFile rather than Cupboard, as the Cupboard name is a concept for the customer and holds no signficance to working with the Need classes on the backend.
 >
->**[Sprint 2] decisions**
-> - (2024/10/4) Need creation now fails with an error response if the numerical arguments (cost, quantity, demand) are less than 0. Given the realistic constraints of needs, those values should never be negative.
-> - (2024/10/11) Updated UI to use icons instead of text for managing needs buttons
-> - (2024/10/12) Added AuthService for user authentication 
+> > **[Sprint 2] (2024/10/24) decisions**
+> > - Needs displayed on the frontend are always sorted in descending demand order, unless otherwise sorted by a user. 
