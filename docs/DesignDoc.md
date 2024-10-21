@@ -33,8 +33,7 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | SPA | Single Page |
 | MVP | Minimum Viable Product |
 | Need | An object contained in our cupboard representing a need |
-| BasketNeed | An object contained in a basket representing a need in a user
-s basket |
+| BasketNeed | An object contained in a basket representing a need in a users basket |
 
 
 
@@ -211,6 +210,8 @@ Open/Closed is useful for maintaining backwards compatibility. By not modifying 
 
 >_**[Sprint 2, 3 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
+
+![Coverage](Jacoco Coverage Report 2024-10-21.png)
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
