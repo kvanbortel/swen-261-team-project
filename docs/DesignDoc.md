@@ -31,6 +31,14 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | Term | Definition |
 |------|------------|
 | SPA | Single Page |
+| HTML | HyperText Markup Language |
+| CSS | Cascading Style Sheets |
+| API | Application Programming Interface |
+| DAO | Data Access Object |
+| ID | Identifier |
+| UUID | Universally Unique Identifier |
+| REST | Representational State Transfer |
+| OO | Object-Oriented |
 | MVP | Minimum Viable Product |
 | Need | An object contained in our cupboard representing a need |
 | BasketNeed | An object contained in a basket representing a need in a users basket |
@@ -68,6 +76,17 @@ This section describes the application domain.
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
 > to each other._
+
+The domain for this application is a New York State based wildlife and animal conservation/refuge organization called NYS Paws and Claws. The application will have:
+-Helpers
+-Admin
+-Needs
+-Cupboard
+-Baskets
+A Helper adds needs to the basket.
+An Admin edits needs in the cupboard.
+A Need goes in the cupboard and a basket.
+A Helper has a basket. 
 
 
 ## Architecture and Design
@@ -165,6 +184,12 @@ NeedController: Only responsible for updating and fetching needs
 NeedDAO: Only responsible for DAO processes related to Needs
 NeedFileDAO: Same as NeedDAO but specialized
 Need: Only needs to be updated if the structure of a need changes
+AccountController: Only responsible for creating, updating, and getting Accounts.
+AccountDAO: Only responsible for DAO processes related to Accounts
+AccountFileDAO: Same as AccountDAO but specialized
+Account: Only needs to be updated in the struture of account changes 
+Basket: Only needs to be updated in the structure of Basket changes 
+BasketNeed: Only needs to be updated if the structure of BasketNeed changes 
 DonationNeed: **FAILS TO COMPLY**: DonationNeed needs to change if either 1) donation items change or 2) the donation process changes. 
 SOLUTION: Make a DonationItem class so that other information or behavior. Right now that would just be a string but in the future an item may have a cost
 VolunteerNeed: **FAILS TO COMPLY**: Changes to volunteer state/behavior OR the volunteer process requires a change to this class
@@ -201,6 +226,10 @@ Open/Closed is useful for maintaining backwards compatibility. By not modifying 
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
+
+When originally testing the acceptance criteria, we ran into a few problems with specific edge cases (For example, an admin deleting a need
+and that need staying in a helper's basket). So, we refined our implementation and tests and added even more edge case tests to ensure the MVP was glitch-free.
+Then, after retesting our acceptance criteria, we got 100% Acceptance. 
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
