@@ -31,6 +31,10 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | Term | Definition |
 |------|------------|
 | SPA | Single Page |
+| MVP | Minimum Viable Product |
+| Need | An object contained in our cupboard representing a need |
+| BasketNeed | An object contained in a basket representing a need in a user
+s basket |
 
 
 
@@ -91,7 +95,8 @@ Both the ViewModel and Model are built using Java and Spring Framework. Details 
 
 This section describes the web interface flow; this is how the user views and interacts with the web application.
 
-> _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
+On page load, a user is met with a login page, prompting them to enter a username. After entering a username, their username is saved to the application (if not admin), and a new account is created for the user. 
+Then, a user is redirected to the cupboard page, where they can search, select, and add needs to their basket. They can also access their basket with a button, where they can edit quantities of needs within their basket. If a user logs in as admin, they are able to edit the needs cupboard and cannot view the funding basket. If at any time a user refreshes their page, their authentication is lost and they will have to sign in again. 
 
 
 ### View Tier
@@ -99,7 +104,7 @@ This section describes the web interface flow; this is how the user views and in
 > Describe the types of components in the tier and describe their
 > responsibilities.  This should be a narrative description, i.e. it has
 > a flow or "story line" that the reader can follow._
-
+. 
 > _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
 > of the design that you are describing.  (**For example**, in a shopping experience application you might create a 
 > sequence diagram of a customer searching for an item and adding to their cart.)
@@ -217,4 +222,6 @@ Open/Closed is useful for maintaining backwards compatibility. By not modifying 
 >**[Sprint 2] decisions**
 > - (2024/10/4) Need creation now fails with an error response if the numerical arguments (cost, quantity, demand) are less than 0. Given the realistic constraints of needs, those values should never be negative.
 > - (2024/10/11) Updated UI to use icons instead of text for managing needs buttons
-> - (2024/10/12) Added AuthService for user authentication 
+> - (2024/10/12) Renamed StorageService to AuthService for user authentication/login functionality
+> - (2024/10/16) Refactored BasketNeed to have a Need and a quantity instead of a UUID and a quantity
+> - (1014/10/20) Changed editing need in basket quantity to dropdown instead of increment/decrement methods
