@@ -1,5 +1,6 @@
 /* Container for each need item */
 .single-need {
+  margin-left: 4vw;
     margin-top: 40px;
     min-width: 30vw;
     max-width: 30vw;
