@@ -212,12 +212,14 @@ Open/Closed is useful for maintaining backwards compatibility. By not modifying 
 > those._
 
 ## Ongoing Rationale
->_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
->
-> **[Sprint 1] (2024/10/1) decisions**
-> - Switched from integer IDs or unique names for Needs to String UUIDs. This change was agreed upon to simplify the backend logic and limit conflicts based on hidden backend information.
-> - Decided to keep our DAO as Need/NeedFile rather than Cupboard, as the Cupboard name is a concept for the customer and holds no signficance to working with the Need classes on the backend.
->
-> > **[Sprint 2] (2024/10/24) decisions**
-> > - Needs displayed on the frontend are always sorted in descending demand order, unless otherwise sorted by a user.
-> > - Demand Rating has precision to the tenth
+_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
+
+ **[Sprint 1] (2024/10/1) decisions**
+ - Switched from integer IDs or unique names for Needs to String UUIDs. This change was agreed upon to simplify the backend logic and limit conflicts based on hidden backend information.
+ - Decided to keep our DAO as Need/NeedFile rather than Cupboard, as the Cupboard name is a concept for the customer and holds no signficance to working with the Need classes on the backend.
+
+**[Sprint 2] (2024/10/24) decisions**
+ - Needs displayed on the frontend are always sorted in descending demand order, unless otherwise sorted by a user.
+ - Demand Rating has precision to the tenth
+ - Use a BasketNeed instead of an identifier so we can store quantities in a basket along with all of the Need information. 
+
