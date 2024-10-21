@@ -68,7 +68,7 @@ export class BasketNeedComponent {
   }
 
   addQuantity() {
-    if (this.quantityForm.valid) {
+    if (this.quantityForm.valid && this.quantityForm.value.quantity > 0) {
       this.authService.addToBasket(
         this.quantityForm.value.quantity - this.need.quantity,
         this.need.need

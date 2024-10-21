@@ -80,7 +80,11 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.fund-button:hover {
+.fund-button:disabled {
+  background-color: rgb(198, 190, 181);
+}
+
+.fund-button:hover:enabled {
   background-color: var(--hoveredOrange); /* Darker shade of orange */
   cursor: pointer;
 }

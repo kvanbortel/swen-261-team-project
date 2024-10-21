@@ -32,21 +32,24 @@ export class BasketListComponent {
 
   getTotalQuantity(): number {
     const currentNeeds = this.basketNeeds$.getValue();
+    console.log("gotten")
     return currentNeeds.reduce((total, need) => total + need.quantity, 0);
   }
 
   checkout(): void{
-    this.authService.checkoutBasket();
+    if(this.getTotalQuantity() > 0){
+      this.authService.checkoutBasket();
 
-    const totalQuantity = this.getTotalQuantity();
-    const totalCost = this.getTotalCost();
-
-    this.router.navigate(['/post-checkout'], {
-      state: {
-        amount: totalQuantity,
-        cost: totalCost
-      }
-    });
+      const totalQuantity = this.getTotalQuantity();
+      const totalCost = this.getTotalCost();
+  
+      this.router.navigate(['/post-checkout'], {
+        state: {
+          amount: totalQuantity,
+          cost: totalCost
+        }
+      });
+    }
   }
 
   getTotalCost(): number {
