@@ -1,6 +1,6 @@
 <div class="main">
   <div id="search-component" class="search-container">
-    <label *ngIf="!this.authService.isAdmin" class = "login"> Logged in as: "{{this.authService.getName()}}"</label>
+    <label *ngIf="!this.authService.isAdmin()" class="login"> Logged in as: "{{this.authService.getName()}}"</label>
     <hr><hr>
     <label for="search-box" class="search-title">Need Search </label>
     <div style="display: flex">
