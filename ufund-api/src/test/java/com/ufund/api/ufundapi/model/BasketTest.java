@@ -135,6 +135,36 @@ public class BasketTest {
         assertFalse(actual);
     }
 
+    // test setting a basket need when no need exists
+    @Test
+    public void testSetNeed(){
+        Basket basket = createTestBasket();
+
+        Need need = new Need("idX", "name0", "descr0", 0, 0, 0);
+
+
+        BasketNeed actual = basket.setNeed(need);
+
+        assertNull(actual);
+    }
+
+    // test that adding a need sorts the basket
+    @Test
+    public void testAddSorts() {
+        Basket basket = new Basket(); // empty
+        List<BasketNeed> needs = getTestNeeds();
+
+        basket.updateNeed(needs.get(2).need, 1);
+        basket.updateNeed(needs.get(1).need, 2);
+        basket.updateNeed(needs.get(0).need, 3);
+
+        List<BasketNeed> actual = basket.getNeeds();
+
+        needs.sort((n2, n1) -> Double.compare(n1.getNeed().getDemandRating(), n2.getNeed().getDemandRating()));
+
+        assertEquals(needs, actual);
+    }
+
     //test adding a need three times 
     @Test
     public void testAdd3Needs() {

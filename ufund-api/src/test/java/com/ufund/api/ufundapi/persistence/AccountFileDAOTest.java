@@ -2,6 +2,8 @@ package com.ufund.api.ufundapi.persistence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.booleanThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -110,6 +112,71 @@ public class AccountFileDAOTest {
         List<BasketNeed> needs = accountFileDAO.getNeeds("Kayla");
 
         assertEquals(testBaskets[1].getNeeds(), needs);
+    }
+
+    @Test
+    public void testGetNeedsNullAccount() throws IOException {
+        // Invoke
+        List<BasketNeed> needs = accountFileDAO.getNeeds("idx");
+
+        assertNull(needs);
+    }
+
+    @Test
+    public void testRemoveNullNeed() throws IOException {
+        // Setup
+
+        when(mockNeedDAO.getNeed(testNeeds[0].getId())).thenReturn(null);
+
+        // Invoke
+
+        List<BasketNeed> needs = accountFileDAO.getNeeds("Kayla");
+
+        assertTrue(needs.size() == 1);
+    }
+
+    @Test
+    public void testDropDecreasedNeed() throws IOException {
+        // Setup
+        Need decreasedNeed = new Need("MOCKID-1","NeedB1", "Description2", 2.9, 1, 5.4);
+
+        when(mockNeedDAO.getNeed("MOCKID-1")).thenReturn(decreasedNeed);
+
+        // Invoke
+
+        List<BasketNeed> needs = accountFileDAO.getNeeds("Kayla");
+
+        for(BasketNeed n: needs){
+            if(n.getNeed().getId() == decreasedNeed.getId()){
+                assertEquals(decreasedNeed, n.getNeed());
+                assertEquals(n.getQuantity(), 1);
+            }
+        }
+    }
+
+    @Test 
+    public void testCheckout() throws IOException {
+        // Setup to fufill all of one need
+        testBaskets[1].updateNeed(testNeeds[0], 3);
+        
+        when(mockNeedDAO.deleteNeed(testNeeds[0].getId())).thenReturn(true);
+
+        // Invoke
+
+        accountFileDAO.checkout("Kayla");
+
+        List<BasketNeed> needs = accountFileDAO.getNeeds("Kayla");
+
+        assertTrue(needs.size() == 0);
+    }
+
+    @Test 
+    public void testCheckoutNullAccount() throws IOException {
+        // Invoke
+
+        boolean checkedout = accountFileDAO.checkout("idx");
+
+        assertTrue(!checkedout);
     }
 
     @Test

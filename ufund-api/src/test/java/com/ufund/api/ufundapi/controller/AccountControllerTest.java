@@ -169,7 +169,43 @@ public class AccountControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
     
+    // Test that a valid checkout succeeds
+    @Test
+    public void testCheckout() throws IOException {
+        // Setup
+        when(mockAccountDAO.checkout(TEST_NAME)).thenReturn(true);
 
+        // Invoke
+        var response = accountController.checkout(TEST_NAME);
+
+        // Analyze.to
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    // Test that an invalid checkout throws a 404
+    @Test
+    public void testCheckoutFail() throws IOException {
+        // Setup
+        when(mockAccountDAO.checkout(TEST_NAME)).thenReturn(false);
+
+        // Invoke
+        var response = accountController.checkout(TEST_NAME);
+
+        // Analyze.to
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    // Test that an invalid checkout throws a 404
+    @Test
+    public void testCheckoutHandleError() throws IOException {
+        // Setup
+        doThrow(new IOException()).when(mockAccountDAO).checkout(TEST_NAME);
+        // Invoke
+        var response = accountController.checkout(TEST_NAME);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
 
     // Test that a valid getNeed succeeds and returns all needs
     @Test
