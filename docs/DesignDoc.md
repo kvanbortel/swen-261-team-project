@@ -34,6 +34,7 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | HTML | HyperText Markup Language |
 | CSS | Cascading Style Sheets |
 | API | Application Programming Interface |
+| DAO | Data Access Object |
 
 
 
