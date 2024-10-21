@@ -150,6 +150,8 @@ public class BasketTest {
 
         List<BasketNeed> actual = basket.getNeeds();
 
+        needs.sort((n2, n1) -> Double.compare(n1.getNeed().getDemandRating(), n2.getNeed().getDemandRating()));
+
         assertEquals(needs, actual);
     }
 

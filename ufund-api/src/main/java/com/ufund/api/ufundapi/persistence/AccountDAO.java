@@ -30,13 +30,13 @@ public interface AccountDAO{
      * 
      * @param amount {int amount} the quantity to change the need by
      * 
-     * @return true if the {@link Account account} was updated 
-     * <br>
-     * false if Account with the given id does not exist
+     * @return the {@link BasketNeed} if the need was updated 
+     * 
+     * null if Account with the given id does not exist
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    public boolean updateNeed(String account, Need need, int amount) throws IOException;
+    public BasketNeed updateNeed(String account, Need need, int amount) throws IOException;
 
     /**
      * Checks out all the needs in a user's basket, reducing their quantities

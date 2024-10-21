@@ -73,11 +73,11 @@ public class AccountController {
     public ResponseEntity<BasketNeed> updateNeed(@PathVariable String accountName, @PathVariable int amount, @RequestBody Need need) {
     LOG.info("PUT /accounts/" + accountName + "/needs/" + amount);
         try {
-            boolean found = accountDAO.updateNeed(accountName, need, amount);
-            if (!found) {
+            BasketNeed found = accountDAO.updateNeed(accountName, need, amount);
+            if (found == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<BasketNeed>(found, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

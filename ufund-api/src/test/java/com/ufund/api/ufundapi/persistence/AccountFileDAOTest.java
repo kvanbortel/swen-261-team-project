@@ -32,6 +32,7 @@ public class AccountFileDAOTest {
     Need[] testNeeds;
     BasketNeed[] testBasketNeeds;
     ObjectMapper mockObjectMapper;
+    NeedDAO mockNeedDAO;
 
     /**
      * Before each test, we will create and inject a Mock Object Mapper to
@@ -84,7 +85,14 @@ public class AccountFileDAOTest {
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"),Account[].class))
                 .thenReturn(testAccounts);
-        accountFileDAO = new AccountFileDAO("doesnt_matter.txt",mockObjectMapper);
+
+        mockNeedDAO = mock(NeedDAO.class);
+
+        for(Need n: testNeeds){
+            when(mockNeedDAO.getNeed(n.getId())).thenReturn(n);
+        }
+
+        accountFileDAO = new AccountFileDAO("doesnt_matter.txt",mockObjectMapper, mockNeedDAO);
     }
 
     @Test
@@ -121,18 +129,16 @@ public class AccountFileDAOTest {
 
     @Test
     public void testAddNeed() throws IOException {
-        Account ryan = accountFileDAO.updateNeed("Ryan", testNeeds[0], 1);
+        BasketNeed ryanNeed = accountFileDAO.updateNeed("Ryan", testNeeds[0], 1);
 
-        // this needs to be refactored for law of demeter...
-        assertEquals(ryan.getBasket().getBasketNeed(testNeeds[0]).getQuantity(), 2);
+        assertEquals(ryanNeed.getQuantity(), 2);
     }
 
     @Test
     public void testRemoveNeed() throws IOException {
-        Account kayla = accountFileDAO.updateNeed("Kayla", testNeeds[1], -1);
+        BasketNeed kaylaNeed = accountFileDAO.updateNeed("Kayla", testNeeds[1], -1);
 
-        // this needs to be ref3 of 14actored for law of demeter...
-        assertEquals(2, kayla.getBasket().getBasketNeed(testNeeds[1]).getQuantity());
+        assertEquals(2, kaylaNeed.getQuantity());
     }
 
     @Test

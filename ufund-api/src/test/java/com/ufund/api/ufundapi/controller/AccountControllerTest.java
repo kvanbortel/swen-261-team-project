@@ -113,17 +113,16 @@ public class AccountControllerTest {
     @Test
     public void testIncrementNeedTrue() throws IOException {
         // Setup
-        
-        Account account = new Account(TEST_NAME, TEST_BASKET);
+        BasketNeed updatedNeed = new BasketNeed(TEST_NEED, 2);
 
-        when(mockAccountDAO.updateNeed(TEST_NAME, TEST_NEED, 1)).thenReturn(account);
+        when(mockAccountDAO.updateNeed(TEST_NAME, TEST_NEED, 1)).thenReturn(updatedNeed);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.updateNeed(TEST_NAME, 1, TEST_NEED);
+        ResponseEntity<BasketNeed> response = accountController.updateNeed(TEST_NAME, 1, TEST_NEED);
 
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(account, response.getBody());
+        assertEquals(updatedNeed, response.getBody());
     }
 
 
@@ -131,16 +130,16 @@ public class AccountControllerTest {
     @Test
     public void testIncrementNeedFalse() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, (TEST_BASKET));
+        BasketNeed updatedNeed = new BasketNeed(TEST_NEED, 2);
 
-        when(mockAccountDAO.updateNeed(TEST_NAME, TEST_NEED, -1)).thenReturn(account);
+        when(mockAccountDAO.updateNeed(TEST_NAME, TEST_NEED, -1)).thenReturn(updatedNeed);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.updateNeed(TEST_NAME, -1, TEST_NEED);
+        ResponseEntity<BasketNeed> response = accountController.updateNeed(TEST_NAME, -1, TEST_NEED);
 
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(account, response.getBody());
+        assertEquals(updatedNeed, response.getBody());
     }
 
     // Test that if a need is not found, the server responds with HTTP 404
