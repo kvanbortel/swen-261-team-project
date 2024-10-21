@@ -157,20 +157,24 @@ A class is considered to comply with the single responsibility principle if ther
 	For example, The DonationNeed fails to comply with this principle. If there is ever a change to a donation item – for example an item needs to store a cost or quantity – the DonationNeed class will need to be updated. This update will either be added state and behavior to DonationNeed (bad), or by replacing the donation items list (of strings) with a list of some DonationItem objects. The second option is preferred because it forces DonationNeed to become singularly responsible again, but this responsibility should be separated from the start. 
 	While the 3 Need specializations are currency only responsible for one thing, that is only because the 2nd thing they are “responsible” for does not do anything. Therefore the mantra that single responsibility is based on things that may change, is what makes these needs fail to comply with the single responsibility principle. 
 
-NeedController: Only responsible for updating and fetching needs
-NeedDAO: Only responsible for DAO processes related to Needs
-NeedFileDAO: Same as NeedDAO but specialized
-Need: Only needs to be updated if the structure of a need changes
+NeedController: Only responsible for updating and fetching needs  
+NeedDAO: Only responsible for DAO processes related to Needs  
+NeedFileDAO: Same as NeedDAO but specialized  
+Need: Only needs to be updated if the structure of a need changes  
+(The following classes need to be updated for our enhancement changes following Sprint 3 Planning)
 DonationNeed: **FAILS TO COMPLY**: DonationNeed needs to change if either 1) donation items change or 2) the donation process changes. 
-SOLUTION: Make a DonationItem class so that other information or behavior. Right now that would just be a string but in the future an item may have a cost
-VolunteerNeed: **FAILS TO COMPLY**: Changes to volunteer state/behavior OR the volunteer process requires a change to this class
-AdoptionNeed: **FAILS TO COMPLY**: Changes to animalType state/behavior OR changes to the adoption process requires changes to the AdoptionNeed class
+SOLUTION: Make a DonationItem class so that other information or behavior. Right now that would just be a string but in the future an item may have a cost  
+VolunteerNeed: **FAILS TO COMPLY**: Changes to volunteer state/behavior OR the volunteer process requires a change to this class  
+AdoptionNeed: **FAILS TO COMPLY**: Changes to animalType state/behavior OR changes to the adoption process requires changes to the AdoptionNeed class  
 
 ### Open/Closed
 A class should be open to expansion but closed to modification. Expansion means that different components can be used in a class but the behavior of the class does not change. A good example of this is the NeedDAO, which does not need to be modified to add more behavior. Instead, we inherit NeedDAO and create a new object (NeedFileDao) which is an extension. 
 
 Our DonationNeed class does not comply with this principle. To add new behavior to a DonationNeed, we must change the items array. For example, adding a cost to each specific item would require us to make a new class (DonationItem) and modify DonationNeed to support this new class. We would also have to modify our methods and fields for storing the cost of a DonationNeed since it is now variable depending on the items in the need. 
 	If we abstract this state and behavior, then we can update the Item by adding methods or state rather than modifying the existing methods and state in DonationNeed. 
+ 	However, this is not an expansion that is expected to ever be made so we have decided that it is not worth the development effort to abstract this state and behavior. 
+
+The Controllers are open to expansion because we can add new methods for different requests, but old methods do not need to be modfied to change the behavior of a request. The behavior of a request is defined by the DAO functions that the controller calls, so the controller is closed to modification. 
 
 Open/Closed is useful for maintaining backwards compatibility. By not modifying existing code, you minimize the chance of breaking old code. Instead you can build new independent functionality on top of the existing code. While the old code can run with what is now a limited feature set, the new code, which depends on new features, is also able to run - removing the need to refactor large parts of code (which depends on the thing being changed) when adding features. 
 
