@@ -169,8 +169,20 @@ public class AccountFileDAO implements AccountDAO {
         Basket basket = accounts.get(account).getBasket();
         List<BasketNeed> needs = new ArrayList<>(basket.getNeeds());
 
+        // make sure the needs are up-to-date with the database
         for (BasketNeed bNeed : needs) {
-            basket.setNeed(needDAO.getNeed(bNeed.getNeed().getId()));
+            Need newNeed = needDAO.getNeed(bNeed.getNeed().getId());
+            if(newNeed == null){
+                // if the need is no longer in the database, remove it from the basket
+                basket.updateNeed(newNeed, -bNeed.getQuantity());
+            }
+            else{
+                basket.setNeed(newNeed);
+                if(newNeed.getQuantity() <= bNeed.getQuantity()){
+                    // if the quantity has been decreased below the amount in our basket, drop by the difference
+                    basket.updateNeed(newNeed, newNeed.getQuantity() - bNeed.getQuantity());
+                }
+            }
         }
 
         return basket.getNeeds();
