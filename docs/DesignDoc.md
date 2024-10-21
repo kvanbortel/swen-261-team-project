@@ -215,4 +215,5 @@ Open/Closed is useful for maintaining backwards compatibility. By not modifying 
 > - Decided to keep our DAO as Need/NeedFile rather than Cupboard, as the Cupboard name is a concept for the customer and holds no signficance to working with the Need classes on the backend.
 >
 > > **[Sprint 2] (2024/10/24) decisions**
-> > - Needs displayed on the frontend are always sorted in descending demand order, unless otherwise sorted by a user. 
+> > - Needs displayed on the frontend are always sorted in descending demand order, unless otherwise sorted by a user.
+> > - Demand Rating has precision to the tenth
