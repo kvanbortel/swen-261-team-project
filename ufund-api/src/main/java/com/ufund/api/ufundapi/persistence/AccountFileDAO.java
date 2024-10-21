@@ -185,6 +185,7 @@ public class AccountFileDAO implements AccountDAO {
                     newNeed.setQuantity(newQuantity);
                     needDAO.updateNeed(newNeed);
                 }
+                basket.updateNeed(bNeed.getNeed(), -bNeed.getQuantity());
             }
             save();
             return true;
