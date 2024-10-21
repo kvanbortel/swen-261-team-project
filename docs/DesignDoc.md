@@ -31,6 +31,9 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | Term | Definition |
 |------|------------|
 | SPA | Single Page |
+| HTML | HyperText Markup Language |
+| CSS | Cascading Style Sheets |
+| API | Application Programming Interface |
 
 
 
