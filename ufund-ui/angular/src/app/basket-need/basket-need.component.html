@@ -8,21 +8,15 @@
       <div>Edit Current Quantity:</div>
       <div style="display: flex; gap: 100px">&nbsp;</div>
       <form [formGroup]="quantityForm" class="quantity-form">
-        <input
-          type="number"
-          min="{{ 1 }}"
-          max="{{ getNeed().quantity }}"
-          [value]="need.quantity"
-          id="quantity"
-          formControlName="quantity"
-          (input)="addQuantity()"
-        />
+        <input type="number" min="{{ 1 }}" max="{{ getNeed().quantity }}" [value]="need.quantity" id="quantity"
+          formControlName="quantity" (input)="addQuantity()" />
         <div *ngIf="quantityForm.controls['quantity'].errors">
           1 to {{ getNeed().quantity }}.
         </div>
       </form>
-      <!-- TODO: Make it a tooltip for easier hovering -->
-      <button class="delete-button" (click)="delete()" >&nbsp; <i class="fa-solid fa-trash-can"></i> &nbsp;<span class="hide-text">Remove from basket&nbsp;</span></button>
+      <button matTooltip="Remove from basket" class="delete-button" (click)="delete()">
+        &nbsp; <i class="fa-solid fa-trash-can"></i>  &nbsp;
+      </button>
     </div>
   </div>
   <p class="need-description">{{ getNeed().description }}</p>
