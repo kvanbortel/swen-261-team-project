@@ -36,7 +36,20 @@ public interface AccountDAO{
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    public Account updateNeed(String account, Need need, int amount) throws IOException;
+    public boolean updateNeed(String account, Need need, int amount) throws IOException;
+
+    /**
+     * Checks out all the needs in a user's basket, reducing their quantities
+     * 
+     * @param account {String account} Account name 
+     * 
+     * @return true if the {@link Account account} was updated 
+     * <br>
+     * false if Account with the given id does not exist
+     * 
+     * @throws IOException if underlying storage cannot be accessed
+     */
+    public boolean checkout(String account) throws IOException;
 
     /**
      * Creates and saves a {@linkplain Account account}

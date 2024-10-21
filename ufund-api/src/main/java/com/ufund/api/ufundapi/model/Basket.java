@@ -115,8 +115,6 @@ public class Basket {
 
         // if the need is found, remove that need and replace it with the new one (with the old quantity)
         BasketNeed newBNeed = new BasketNeed(need, bNeed.quantity);
-        needs.remove(bNeed);
-        needs.add(newBNeed);
 
         // reverse sort the needs by demand
         this.needs.sort((n2, n1) -> Double.compare(n1.getNeed().getDemandRating(), n2.getNeed().getDemandRating()));
@@ -133,19 +131,20 @@ public class Basket {
      * @param amount the amount to change the need by (positive or negative)
      */
     public void updateNeed(Need need, int amount) {
+
         BasketNeed basketNeed = getBasketNeed(need);
 
         if (basketNeed == null) {
-            basketNeed = new BasketNeed(need, amount);
-            this.needs.add(basketNeed);
+            BasketNeed newBasketNeed = new BasketNeed(need, amount);
+            this.needs.add(newBasketNeed);
             
             // reverse sort the needs by demand
             this.needs.sort((n2, n1) -> Double.compare(n1.getNeed().getDemandRating(), n2.getNeed().getDemandRating()));
         } else {
             basketNeed.quantity += amount;
-        }
-        if(basketNeed.quantity <= 0){
-            needs.remove(basketNeed);
+            if(basketNeed.quantity <= 0){
+                needs.remove(basketNeed);
+            }
         }
     }
 

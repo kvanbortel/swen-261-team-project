@@ -70,14 +70,37 @@ public class AccountController {
      * 500 INTERNAL SERVER ERROR otherwise
      */
     @PutMapping("/{accountName}/needs/{amount}")
-    public ResponseEntity<Account> updateNeed(@PathVariable String accountName, @PathVariable int amount, @RequestBody Need need) {
+    public ResponseEntity<BasketNeed> updateNeed(@PathVariable String accountName, @PathVariable int amount, @RequestBody Need need) {
     LOG.info("PUT /accounts/" + accountName + "/needs/" + amount);
         try {
-            Account account = accountDAO.updateNeed(accountName, need, amount);
-            if (account == null) {
+            boolean found = accountDAO.updateNeed(accountName, need, amount);
+            if (!found) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } 
-            return new ResponseEntity<>(account, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Checkout the need basket for a given user.
+     * 
+     * @param accountName the name of the account 
+     * @return 200 OK if the checkout was successful
+     * 404 NOT FOUND if the account does not exist
+     * 500 INTERNAL SERVER ERROR otherwise
+     */
+    @PutMapping("/{accountName}/checkout")
+    public ResponseEntity<BasketNeed> checkout(@PathVariable String accountName) {
+    LOG.info("POST /accounts/" + accountName + "/checkout");
+        try {
+            boolean found = accountDAO.checkout(accountName);
+            if (!found) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } 
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

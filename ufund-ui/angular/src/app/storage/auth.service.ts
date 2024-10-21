@@ -58,6 +58,13 @@ export class AuthService {
     );
   }
 
+  checkoutBasket(): Observable<BasketNeed> {
+    return this.http.put<BasketNeed>('http://localhost:8080/accounts/' + this.name + '/checkout', null).pipe(
+      tap((_) => console.log('checkout basket needs')),
+      catchError(this.handleError<BasketNeed>('basketNeeds'))
+    );
+  }
+
   addToBasket(amount: number, need?: Need): void {
     console.log("changing by", amount)
     console.log('http://localhost:8080/accounts/' + this.name + '/needs/' + amount)

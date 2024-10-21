@@ -34,6 +34,10 @@ export class BasketListComponent {
     return currentNeeds.reduce((total, need) => total + need.quantity, 0);
   }
 
+  checkout(): void{
+    this.authService.checkoutBasket();
+  }
+
   getTotalCost(): number {
     const currentNeeds = this.basketNeeds$.getValue();
     return currentNeeds.reduce((total, need) => total + (need.need.cost) * need.quantity, 0);

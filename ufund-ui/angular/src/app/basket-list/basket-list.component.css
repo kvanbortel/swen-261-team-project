@@ -74,3 +74,13 @@
     height: 6vh;
     cursor: pointer;
 }
+
+.fund-button:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.fund-button:hover {
+  background-color: var(--hoveredOrange); /* Darker shade of orange */
+  cursor: pointer;
+}

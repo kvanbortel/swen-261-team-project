@@ -147,15 +147,49 @@ public class AccountFileDAO implements AccountDAO {
      ** {@inheritDoc}
      */
     @Override
-    public Account updateNeed(String account, Need need, int amount) throws IOException {
+    public boolean updateNeed(String account, Need need, int amount) throws IOException {
 
-        Account newAccount = accounts.get(account);
-        if (newAccount != null) {
-            newAccount.getBasket().updateNeed(need, amount);
+        Account accountObj = accounts.get(account);
+        if (accountObj != null) {
+            accountObj.getBasket().updateNeed(need, amount);
             save();
-            return newAccount;
+            return true;
         } else {
-            return null;
+            return false;
+        }
+
+    }
+
+    /**
+     ** {@inheritDoc}
+     */
+    @Override
+    public boolean checkout(String account) throws IOException {
+
+        Account accountObj = accounts.get(account);
+        if (accountObj != null) {
+            Basket basket = accountObj.getBasket();
+
+            List<BasketNeed> needs = new ArrayList<>(basket.getNeeds());
+
+            for (BasketNeed bNeed : needs) {
+                Need newNeed = bNeed.getNeed();
+                int newQuantity = newNeed.getQuantity() - bNeed.getQuantity();
+                if(newQuantity <= 0){
+                    // really should never be less than 0 but just in case
+                    // TODO: add a check for that probably
+                    needDAO.deleteNeed(newNeed.getId());
+                }
+                else{
+                    // update the remaining quantity of the need
+                    newNeed.setQuantity(newQuantity);
+                    needDAO.updateNeed(newNeed);
+                }
+            }
+            save();
+            return true;
+        } else {
+            return false;
         }
 
     }
@@ -166,7 +200,13 @@ public class AccountFileDAO implements AccountDAO {
     @Override
     public ArrayList<BasketNeed> getNeeds(String account) throws IOException {
 
-        Basket basket = accounts.get(account).getBasket();
+        Account accountObj = accounts.get(account);
+        if(accountObj == null){
+            return null;
+        }
+        
+        Basket basket = accountObj.getBasket();
+
         List<BasketNeed> needs = new ArrayList<>(basket.getNeeds());
 
         // make sure the needs are up-to-date with the database
@@ -174,7 +214,7 @@ public class AccountFileDAO implements AccountDAO {
             Need newNeed = needDAO.getNeed(bNeed.getNeed().getId());
             if(newNeed == null){
                 // if the need is no longer in the database, remove it from the basket
-                basket.updateNeed(newNeed, -bNeed.getQuantity());
+                basket.updateNeed(bNeed.getNeed(), -bNeed.getQuantity());
             }
             else{
                 basket.setNeed(newNeed);

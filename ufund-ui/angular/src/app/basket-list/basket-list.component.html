@@ -28,7 +28,7 @@
       <b>Total Need Cost:</b> {{ getTotalCost() | currency }}
     </div>
 
-    <button class="fund-button">Fund It!</button>
+    <button class="fund-button" (click)="checkout()">Fund It!</button>
   </div>
 
   <div *ngIf="(basketNeeds$ | async)?.length === 0" class="no-results">
