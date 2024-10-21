@@ -35,6 +35,8 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | CSS | Cascading Style Sheets |
 | API | Application Programming Interface |
 | DAO | Data Access Object |
+| ID | Identifier |
+| UUID | Universally Unique Identifier |
 
 
 
