@@ -28,7 +28,7 @@ export class CreateNeedDialogComponent {
       cost: ['', [Validators.required, Validators.min(0), Validators.pattern(/^-?\d+(\.\d{1,2})?$/)]],
       demandRating: ['', [Validators.required, Validators.min(0), Validators.max(100),
                           Validators.pattern(/^-?\d+(\.\d{1})?$/)]],
-      quantity: ['', [Validators.required, Validators.min(0), Validators.pattern(/^-?\d+$/)]],
+      quantity: ['', [Validators.required, Validators.min(1), Validators.pattern(/^-?\d+$/)]],
     });
 
     if (data.mode === 'update') {

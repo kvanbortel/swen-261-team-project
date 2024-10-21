@@ -41,7 +41,6 @@ export class CreateNeedComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.data = result;
       this.sendUpdateNeeds();
     });
   }
