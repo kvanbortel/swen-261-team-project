@@ -37,6 +37,7 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | DAO | Data Access Object |
 | ID | Identifier |
 | UUID | Universally Unique Identifier |
+| REST | Representational State Transfer |
 
 
 
