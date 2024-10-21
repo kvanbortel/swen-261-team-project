@@ -94,7 +94,7 @@ public class AccountController {
      */
     @PutMapping("/{accountName}/checkout")
     public ResponseEntity<BasketNeed> checkout(@PathVariable String accountName) {
-    LOG.info("POST /accounts/" + accountName + "/checkout");
+    LOG.info("PUT /accounts/" + accountName + "/checkout");
         try {
             boolean found = accountDAO.checkout(accountName);
             if (!found) {

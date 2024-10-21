@@ -33,6 +33,7 @@ import { HomeComponent } from './home/home.component';
 import { ViewChangeButtonComponent } from './view-change-button/view-change-button.component';
 import { BasketPageComponent } from './basket-page/basket-page.component';
 import { BasketNeedComponent } from './basket-need/basket-need.component';
+import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { BasketNeedComponent } from './basket-need/basket-need.component';
     HomeComponent,
     ViewChangeButtonComponent,
     BasketPageComponent,
-    BasketNeedComponent
+    BasketNeedComponent,
+    PostCheckoutComponent
   ],
   imports: [
     BrowserModule,

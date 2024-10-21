@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../storage/auth.service';
 import { async, BehaviorSubject } from 'rxjs';
 import { BasketNeed } from '../BasketNeed';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basket-list',
@@ -12,7 +13,7 @@ import { BasketNeed } from '../BasketNeed';
 export class BasketListComponent {
   basketNeeds$ = new BehaviorSubject<BasketNeed[]>([]);
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
 
   ngOnInit(): void {
@@ -36,6 +37,16 @@ export class BasketListComponent {
 
   checkout(): void{
     this.authService.checkoutBasket();
+
+    const totalQuantity = this.getTotalQuantity();
+    const totalCost = this.getTotalCost();
+
+    this.router.navigate(['/post-checkout'], {
+      state: {
+        amount: totalQuantity,
+        cost: totalCost
+      }
+    });
   }
 
   getTotalCost(): number {
