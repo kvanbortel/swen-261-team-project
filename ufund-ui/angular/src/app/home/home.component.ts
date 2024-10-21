@@ -11,6 +11,4 @@ export class HomeComponent {
   constructor(public authService: AuthService) {}
 
   isAdmin: boolean = this.authService.isAdmin();
-
-  public showBasket = false;
 }

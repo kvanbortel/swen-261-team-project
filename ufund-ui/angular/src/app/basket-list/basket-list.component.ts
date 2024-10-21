@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { AuthService } from '../storage/auth.service';
-import { BehaviorSubject } from 'rxjs';
+import { async, BehaviorSubject } from 'rxjs';
 import { BasketNeed } from '../BasketNeed';
 
 @Component({
@@ -27,5 +27,15 @@ export class BasketListComponent {
     const updatedNeeds = currentNeeds.filter(need => need.need.id !== needToDelete.need.id);
 
     this.basketNeeds$.next(updatedNeeds);
+  }
+
+  getTotalQuantity(): number {
+    const currentNeeds = this.basketNeeds$.getValue();
+    return currentNeeds.reduce((total, need) => total + need.quantity, 0);
+  }
+
+  getTotalCost(): number {
+    const currentNeeds = this.basketNeeds$.getValue();
+    return currentNeeds.reduce((total, need) => total + (need.need.cost) * need.quantity, 0);
   }
 }

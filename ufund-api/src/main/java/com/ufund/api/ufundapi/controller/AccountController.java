@@ -22,6 +22,7 @@ import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.AccountDAO;
+import com.ufund.api.ufundapi.persistence.NeedDAO;
 
 @RestController
 @RequestMapping("accounts")
@@ -34,7 +35,7 @@ public class AccountController {
      * Creates a REST API controller to reponds to requests
      * 
      * @param accountDao The {@link AccountDAO Need Data Access Object} to perform CRUD operations
-     * <br>
+     * 
      * This dependency is injected by the Spring Framework
      */
     public AccountController(AccountDAO accountDAO) {

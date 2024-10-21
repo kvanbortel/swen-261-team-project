@@ -1,5 +1,4 @@
 <div class="main">
-    <app-view-change-button [text]="'View Basket'" [icon]="' fa-solid fa-basket-shopping '" [path]="'basket'"></app-view-change-button>
-    <app-basket-list *ngIf="this.showBasket"></app-basket-list>
-    <app-cupboard-search *ngIf="!this.showBasket"></app-cupboard-search>
+    <app-view-change-button *ngIf="!isAdmin" [text]="'View Basket'" [icon]="' fa-solid fa-basket-shopping '" [path]="'basket'"></app-view-change-button>
+    <app-cupboard-search></app-cupboard-search>
 </div>

@@ -56,6 +56,23 @@ public class Basket {
     }
 
     /**
+     * Gets a BasketNeeds by id in this.needs
+     * @param id
+     * @return BasketNeed need, null if not found
+     */    
+    private BasketNeed getBasketNeedById(String id) {
+        for (int i=0 ; i<needs.size() ; i++) {
+            // current need
+            BasketNeed curr = needs.get(i);
+            if (curr.need.id.equals(id)) {
+                return curr;
+            }
+        }
+        // if the need is not found return null
+        return null;
+    }
+
+    /**
      * Gets a BasketNeed given its need if it is in the basket, otherwise returns null
      * @param need
      * @return BasketNeed if it is found, otherwise null
@@ -81,6 +98,31 @@ public class Basket {
      */
     public boolean hasNeed(Need need) { 
         return getBasketNeedIndex(need) != -1; 
+    }
+
+    /**
+     * Set a BasketNeed's need to a given need
+     * @param need
+     * @return new BasketNeed if it is updated successfully, otherwise null
+     */
+    public BasketNeed setNeed(Need need) { 
+        BasketNeed bNeed = getBasketNeedById(need.getId());
+
+        // if the need is not found, return null
+        if (bNeed == null) {
+            return null;
+        }
+
+        // if the need is found, remove that need and replace it with the new one (with the old quantity)
+        BasketNeed newBNeed = new BasketNeed(need, bNeed.quantity);
+        needs.remove(bNeed);
+        needs.add(newBNeed);
+
+        // reverse sort the needs by demand
+        this.needs.sort((n2, n1) -> Double.compare(n1.getNeed().getDemandRating(), n2.getNeed().getDemandRating()));
+
+        // return the newly updated need
+        return newBNeed;
     }
 
     /**

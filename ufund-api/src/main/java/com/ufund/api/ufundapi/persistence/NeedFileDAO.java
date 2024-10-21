@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import org.apache.logging.log4j.util.PropertySource.Comparator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Need;
@@ -19,10 +20,10 @@ import com.ufund.api.ufundapi.model.Need;
  * Implement the NeedDAO to store needs within a JSON database
  * Modified from the HeroFileDAO by RIT SWEN Faculty
  * 
- * {@literal @}Component Spring annotation instantiates a single instance of this
+ * {@literal @}Repository Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
  */
-@Component
+@Repository
 public class NeedFileDAO implements NeedDAO{
     // Use the logger from HERO for message handling? 
     private static final Logger LOG = Logger.getLogger(NeedFileDAO.class.getName());
