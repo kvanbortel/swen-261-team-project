@@ -219,9 +219,9 @@ public class AccountFileDAO implements AccountDAO {
             }
             else{
                 basket.setNeed(newNeed);
-                if(newNeed.getQuantity() <= bNeed.getQuantity()){
+                if(newNeed.getQuantity() <= basket.getBasketNeed(newNeed).getQuantity()){
                     // if the quantity has been decreased below the amount in our basket, drop by the difference
-                    basket.updateNeed(newNeed, newNeed.getQuantity() - bNeed.getQuantity());
+                    basket.updateNeed(newNeed, newNeed.getQuantity() - basket.getBasketNeed(newNeed).getQuantity());
                 }
             }
         }
