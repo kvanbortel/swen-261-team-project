@@ -157,17 +157,19 @@ public class AccountFileDAOTest {
     @Test 
     public void testCheckout() throws IOException {
         // Setup to fufill all of one need
-        testBaskets[1].updateNeed(testNeeds[0], 3);
+        testBaskets[1].updateNeed(testNeeds[0], 3 - testBaskets[1].getBasketNeed(testNeeds[0]).getQuantity());
         
+        when(mockNeedDAO.getNeed(testNeeds[0].getId())).thenReturn(testNeeds[0]);
         when(mockNeedDAO.deleteNeed(testNeeds[0].getId())).thenReturn(true);
 
         // Invoke
 
-        accountFileDAO.checkout("Kayla");
+        boolean checked = accountFileDAO.checkout("Kayla");
 
         List<BasketNeed> needs = accountFileDAO.getNeeds("Kayla");
 
-        assertTrue(needs.size() == 0);
+        assertTrue(checked);
+        assertEquals(needs.size(), 0);
     }
 
     @Test 
@@ -175,6 +177,33 @@ public class AccountFileDAOTest {
         // Invoke
 
         boolean checkedout = accountFileDAO.checkout("idx");
+
+        assertTrue(!checkedout);
+    }
+
+    @Test 
+    public void testCheckoutLowNeed() throws IOException {
+        // Setup 
+        testBaskets[1].updateNeed(testNeeds[0], 5 - testBaskets[1].getBasketNeed(testNeeds[0]).getQuantity());
+
+        when(mockNeedDAO.getNeed(testNeeds[0].getId())).thenReturn(testNeeds[0]);
+        when(mockNeedDAO.deleteNeed(testNeeds[0].getId())).thenReturn(true);
+
+        // Invoke
+
+        boolean checkedout = accountFileDAO.checkout("Kayla");
+
+        assertTrue(!checkedout);
+    }
+
+    @Test 
+    public void testCheckoutNullNeed() throws IOException {
+        // Setup 
+        when(mockNeedDAO.getNeed(testNeeds[0].getId())).thenReturn(null);
+
+        // Invoke
+
+        boolean checkedout = accountFileDAO.checkout("Kayla");
 
         assertTrue(!checkedout);
     }

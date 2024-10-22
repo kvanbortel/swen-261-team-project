@@ -119,8 +119,6 @@ public class Basket {
         updateNeed(need, -bNeed.quantity); // remove the need
         updateNeed(newBNeed.getNeed(), newBNeed.getQuantity()); // add the new one
 
-        System.out.println(getBasketNeed(need));
-
         // reverse sort the needs by demand
         this.needs.sort((n2, n1) -> Double.compare(n1.getNeed().getDemandRating(), n2.getNeed().getDemandRating()));
 

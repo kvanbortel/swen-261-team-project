@@ -12,17 +12,28 @@ import { CurrencyPipe } from '@angular/common';
   selector: 'app-basket-list',
   templateUrl: './basket-list.component.html',
   styleUrl: './basket-list.component.css',
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe],
 })
 export class BasketListComponent {
   basketNeeds$ = new BehaviorSubject<BasketNeed[]>([]);
+  errored: boolean = false;
 
   constructor(
     public authService: AuthService,
     public dialog: MatDialog,
     private router: Router,
     private currencyPipe: CurrencyPipe
-  ) {}
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    console.log(navigation)
+    if (navigation?.extras.state) {
+      this.errored = navigation.extras.state['error'];
+      console.log('Error:', this.errored);
+    } 
+    else {
+      console.log('No data received');
+    }
+  }
 
   ngOnInit(): void {
     this.authService.getBasketNeeds().subscribe({
@@ -45,7 +56,6 @@ export class BasketListComponent {
 
   getTotalQuantity(): number {
     const currentNeeds = this.basketNeeds$.getValue();
-    console.log('gotten');
     return currentNeeds.reduce((total, need) => total + need.quantity, 0);
   }
 
@@ -62,21 +72,38 @@ export class BasketListComponent {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         disableClose: false,
       });
-      dialogRef.componentInstance.confirmMessage = `Are you sure you want to fund ${this.getTotalQuantity()} needs for ${this.currencyPipe.transform(this.getTotalCost(), 'USD', 'symbol', '1.2-2')}?`;
+      dialogRef.componentInstance.confirmMessage = `Are you sure you want to fund ${this.getTotalQuantity()} needs for ${this.currencyPipe.transform(
+        this.getTotalCost(),
+        'USD',
+        'symbol',
+        '1.2-2'
+      )}?`;
 
       dialogRef.afterClosed().subscribe((result) => {
         console.log('The dialog was closed');
         if (result) {
-          this.authService.checkoutBasket();
+          this.authService.checkoutBasket().subscribe((result2) => {
+            if (result2) {
+              console.log("checking out in basket")
 
-          const totalQuantity = this.getTotalQuantity();
-          const totalCost = this.getTotalCost();
+              const totalQuantity = this.getTotalQuantity();
+              const totalCost = this.getTotalCost();
 
-          this.router.navigate(['/post-checkout'], {
-            state: {
-              amount: totalQuantity,
-              cost: totalCost,
-            },
+              this.router.navigate(['/post-checkout'], {
+                state: {
+                  amount: totalQuantity,
+                  cost: totalCost,
+                },
+              });
+            }
+            else {
+              console.log("error checking out in basket")
+              this.router.navigate(['/post-checkout'], {
+                state: {
+                  error: true,
+                },
+              });
+            }
           });
         }
       });

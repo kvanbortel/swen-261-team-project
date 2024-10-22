@@ -93,14 +93,14 @@ public class AccountController {
      * 500 INTERNAL SERVER ERROR otherwise
      */
     @PutMapping("/{accountName}/checkout")
-    public ResponseEntity<BasketNeed> checkout(@PathVariable String accountName) {
+    public ResponseEntity<Boolean> checkout(@PathVariable String accountName) {
     LOG.info("PUT /accounts/" + accountName + "/checkout");
         try {
-            boolean found = accountDAO.checkout(accountName);
-            if (!found) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            boolean success = accountDAO.checkout(accountName);
+            if (!success) {
+                return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
             } 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

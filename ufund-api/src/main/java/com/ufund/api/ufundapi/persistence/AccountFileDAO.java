@@ -172,12 +172,25 @@ public class AccountFileDAO implements AccountDAO {
 
             List<BasketNeed> needs = new ArrayList<>(basket.getNeeds());
 
+            // check that checkout is still valid
+            for(BasketNeed bNeed: needs){
+                
+                Need newNeed = needDAO.getNeed(bNeed.getNeed().getId());
+                if(newNeed == null){
+                    return false;
+                }
+                int newQuantity = newNeed.getQuantity() - bNeed.getQuantity();
+                if(newQuantity < 0){
+                    // can't checkout this need - CHECKOUT FAILS
+                    return false;
+                }
+            }
+
+            // checkout should always succeed past this
             for (BasketNeed bNeed : needs) {
                 Need newNeed = bNeed.getNeed();
                 int newQuantity = newNeed.getQuantity() - bNeed.getQuantity();
-                if(newQuantity <= 0){
-                    // really should never be less than 0 but just in case
-                    // TODO: add a check for that probably
+                if(newQuantity == 0){
                     needDAO.deleteNeed(newNeed.getId());
                 }
                 else{

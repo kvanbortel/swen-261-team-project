@@ -61,22 +61,16 @@ export class AuthService {
       );
   }
 
-  checkoutBasket(): void {
-    this.http
-      .put<BasketNeed>(
+  checkoutBasket(): Observable<boolean> {
+    return this.http
+      .put<boolean>(
         'http://localhost:8080/accounts/' + this.name + '/checkout',
         null,
         this.httpOptions
-      )
-      .pipe(catchError(this.handleError<BasketNeed>('basketNeeds')))
-      .subscribe({
-        next: (response) => {
-          console.log('Checked out successfully:', response);
-        },
-        error: (err) => {
-          console.error('Error checking out:', err);
-        },
-      });
+      ).pipe(
+        tap((_) => console.log('get basket needs')),
+        catchError(this.handleError<boolean>('basketNeeds', false))
+      );
   }
 
   addToBasket(amount: number, need?: Need): void {

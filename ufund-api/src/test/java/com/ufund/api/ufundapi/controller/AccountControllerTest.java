@@ -179,6 +179,7 @@ public class AccountControllerTest {
         var response = accountController.checkout(TEST_NAME);
 
         // Analyze.to
+        assertEquals(true, response.getBody());
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
@@ -192,6 +193,7 @@ public class AccountControllerTest {
         var response = accountController.checkout(TEST_NAME);
 
         // Analyze.to
+        assertEquals(false, response.getBody());
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
@@ -200,6 +202,7 @@ public class AccountControllerTest {
     public void testCheckoutHandleError() throws IOException {
         // Setup
         doThrow(new IOException()).when(mockAccountDAO).checkout(TEST_NAME);
+
         // Invoke
         var response = accountController.checkout(TEST_NAME);
 
