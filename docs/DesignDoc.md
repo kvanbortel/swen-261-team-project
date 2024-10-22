@@ -244,6 +244,8 @@ Then, after retesting our acceptance criteria, we got 100% Acceptance.
 
 ![Coverage](Jacoco_Coverage_Report_2024-10-21.png)
 
+The missing one percent is the main method running the Spring application, which theoretically shouldn't ever fail.
+
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
 >
@@ -256,4 +258,6 @@ Then, after retesting our acceptance criteria, we got 100% Acceptance.
 > - (2024/10/11) Updated UI to use icons instead of text for managing needs buttons
 > - (2024/10/12) Renamed StorageService to AuthService for user authentication/login functionality
 > - (2024/10/16) Refactored BasketNeed to have a Need and a quantity instead of a UUID and a quantity
-> - (1014/10/20) Changed editing need in basket quantity to dropdown instead of increment/decrement methods
+> - (2024/10/20) Changed editing need in basket quantity to numerical input instead of increment/decrement methods
+> - (2024/10/20) Needs are not allowed to be added to the basket if they would overflow the maximum available quantity
+> - (2024/10/20) All Needs are auto-sorted by Demand rating in the UI
