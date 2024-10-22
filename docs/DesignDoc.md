@@ -181,6 +181,12 @@ A class is considered to comply with the single responsibility principle if ther
 
 NeedController: Only responsible for updating and fetching needs
 
+NeedDAO: Only responsible for DAO processes related to Needs. Implementation changes are handled by new concrete classes.  
+
+NeedFileDAO: Specific implementation of NeedDAO. It is only responsible for FILE NeedDAO operations. 
+
+Need: Only needs to be updated if the structure of a need changes. 
+
 NeedDAO: Only responsible for DAO processes related to Needs
 
 NeedFileDAO: Same as NeedDAO but specialized
