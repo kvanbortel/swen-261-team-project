@@ -204,8 +204,7 @@ BasketNeed: Only needs to be updated if the structure of BasketNeed changes
 ### Open/Closed
 A class should be open to expansion but closed to modification. Expansion means that different components can be used in a class but the behavior of the class does not change. A good example of this is the NeedDAO, which does not need to be modified to add more behavior. Instead, we inherit NeedDAO and create a new object (NeedFileDao) which is an extension. 
 
-Our DonationNeed class does not comply with this principle. To add new behavior to a DonationNeed, we must change the items array. For example, adding a cost to each specific item would require us to make a new class (DonationItem) and modify DonationNeed to support this new class. We would also have to modify our methods and fields for storing the cost of a DonationNeed since it is now variable depending on the items in the need. 
-	If we abstract this state and behavior, then we can update the Item by adding methods or state rather than modifying the existing methods and state in DonationNeed. 
+Our Need class does not comply with this principle. To add new behavior to a Need, we must change all the Needs within the Need database. For example, adding a "type" field to each Need would require us to migrate the entire database in order to preserve our data while supporting the new value of Need. We would also have to modify our methods and parsers for creating and testing Needs to support the new field. 
 
 Open/Closed is useful for maintaining backwards compatibility. By not modifying existing code, you minimize the chance of breaking old code. Instead you can build new independent functionality on top of the existing code. While the old code can run with what is now a limited feature set, the new code, which depends on new features, is also able to run - removing the need to refactor large parts of code (which depends on the thing being changed) when adding features. 
 
