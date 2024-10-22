@@ -62,7 +62,6 @@ export class CreateNeedDialogComponent {
       fulfillmentStatus: this.data.need?.fulfillmenStatus
     };
 
-    // TODO: Set the mode back, right now it bugs out if we try to open the add form twice
     if (this.data.mode === 'add') {
       // Call the service to add the need
       this.cupboardService.addNeed(needData).subscribe({

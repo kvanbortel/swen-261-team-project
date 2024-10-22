@@ -34,6 +34,7 @@ import { ViewChangeButtonComponent } from './view-change-button/view-change-butt
 import { BasketPageComponent } from './basket-page/basket-page.component';
 import { BasketNeedComponent } from './basket-need/basket-need.component';
 import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTooltipModule,
     FormsModule,
     MatButtonModule,
     MatDialogTitle,
