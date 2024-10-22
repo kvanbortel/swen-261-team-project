@@ -24,6 +24,9 @@ export class LoginComponent {
   ) {}
 
   login(name: string) {
+    if(name == '' || name == null){
+      return
+    }
     this.authService.addAccount(name);
     this.authService.setName(name);
 

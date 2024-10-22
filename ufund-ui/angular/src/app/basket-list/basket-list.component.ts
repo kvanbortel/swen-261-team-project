@@ -36,6 +36,12 @@ export class BasketListComponent {
   }
 
   ngOnInit(): void {
+    if(this.authService.getName() == '' || this.authService.getName() == null){
+      this.router.navigate(['/login'], {
+        state: {
+        },
+      });
+    }
     this.authService.getBasketNeeds().subscribe({
       next: (response) => {
         this.basketNeeds$.next(response);
