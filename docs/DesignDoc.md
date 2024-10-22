@@ -180,19 +180,24 @@ A class is considered to comply with the single responsibility principle if ther
 	While the 3 Need specializations are currency only responsible for one thing, that is only because the 2nd thing they are “responsible” for does not do anything. Therefore the mantra that single responsibility is based on things that may change, is what makes these needs fail to comply with the single responsibility principle. 
 
 NeedController: Only responsible for updating and fetching needs
+
 NeedDAO: Only responsible for DAO processes related to Needs
+
 NeedFileDAO: Same as NeedDAO but specialized
+
 Need: Only needs to be updated if the structure of a need changes
+
 AccountController: Only responsible for creating, updating, and getting Accounts.
+
 AccountDAO: Only responsible for DAO processes related to Accounts
+
 AccountFileDAO: Same as AccountDAO but specialized
+
 Account: Only needs to be updated in the struture of account changes 
+
 Basket: Only needs to be updated in the structure of Basket changes 
+
 BasketNeed: Only needs to be updated if the structure of BasketNeed changes 
-DonationNeed: **FAILS TO COMPLY**: DonationNeed needs to change if either 1) donation items change or 2) the donation process changes. 
-SOLUTION: Make a DonationItem class so that other information or behavior. Right now that would just be a string but in the future an item may have a cost
-VolunteerNeed: **FAILS TO COMPLY**: Changes to volunteer state/behavior OR the volunteer process requires a change to this class
-AdoptionNeed: **FAILS TO COMPLY**: Changes to animalType state/behavior OR changes to the adoption process requires changes to the AdoptionNeed class
 
 ### Open/Closed
 A class should be open to expansion but closed to modification. Expansion means that different components can be used in a class but the behavior of the class does not change. A good example of this is the NeedDAO, which does not need to be modified to add more behavior. Instead, we inherit NeedDAO and create a new object (NeedFileDao) which is an extension. 
