@@ -240,8 +240,7 @@ Then, after retesting our acceptance criteria, we reached 100% acceptance criter
 > those._
 
 ![Coverage](Jacoco_Coverage_Report_2024-10-21.png)
-
-The missing one percent is the main method running the Spring application, which theoretically shouldn't ever fail.
+_Anomaly Note:_ The missing one percent coverage is the main method running the Spring application, which theoretically shouldn't ever fail.
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
