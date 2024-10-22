@@ -261,5 +261,6 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > - (2024/10/12) Renamed StorageService to AuthService for user authentication/login functionality
 > - (2024/10/16) Refactored BasketNeed to have a Need and a quantity instead of a UUID and a quantity
 > - (2024/10/20) Changed editing need in basket quantity to numerical input instead of increment/decrement methods
-> - (2024/10/20) Needs are not allowed to be added to the basket if they would overflow the maximum available quantity
+> - (2024/10/20) Needs are not allowed to be added to the basket if they would overflow the maximum available quantity. We're not sure if the Paws and Claws foundation has the space to store surplus, and we don't want it to go to waste. 
 > - (2024/10/20) All Needs are auto-sorted by Demand rating in the UI
+> - (2024/10/22) If two users both try to fund the same basket need at the same time and there's not enough to go around, the first one to fund the needs gets to fund them and the later person gets an error message. 
