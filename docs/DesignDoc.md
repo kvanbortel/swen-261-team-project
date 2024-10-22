@@ -147,7 +147,6 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
 > 
-![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier
 > **[Sprint 1]**
@@ -166,8 +165,6 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
-> 
-![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
 
 ## OO Design Principles
 
@@ -183,14 +180,29 @@ A class is considered to comply with the single responsibility principle if ther
 	While the 3 Need specializations are currency only responsible for one thing, that is only because the 2nd thing they are “responsible” for does not do anything. Therefore the mantra that single responsibility is based on things that may change, is what makes these needs fail to comply with the single responsibility principle. 
 
 NeedController: Only responsible for updating and fetching needs
+
 NeedDAO: Only responsible for DAO processes related to Needs. Implementation changes are handled by new concrete classes.  
+
 NeedFileDAO: Specific implementation of NeedDAO. It is only responsible for FILE NeedDAO operations. 
+
 Need: Only needs to be updated if the structure of a need changes. 
+
+NeedDAO: Only responsible for DAO processes related to Needs
+
+NeedFileDAO: Same as NeedDAO but specialized
+
+Need: Only needs to be updated if the structure of a need changes
+
 AccountController: Only responsible for creating, updating, and getting Accounts.
+
 AccountDAO: Only responsible for DAO processes related to Accounts
+
 AccountFileDAO: Same as AccountDAO but specialized
+
 Account: Only needs to be updated in the struture of account changes 
+
 Basket: Only needs to be updated in the structure of Basket changes 
+
 BasketNeed: Only needs to be updated if the structure of BasketNeed changes 
 
 ### Open/Closed
@@ -225,9 +237,9 @@ Open/Closed is useful for maintaining backwards compatibility. By not modifying 
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
 
-When originally testing the acceptance criteria, we ran into a few problems with specific edge cases (For example, an admin deleting a need
-and that need staying in a helper's basket). So, we refined our implementation and tests and added even more edge case tests to ensure the MVP was glitch-free.
-Then, after retesting our acceptance criteria, we got 100% Acceptance. 
+When originally testing the acceptance criteria, we ran into a few problems with specific edge cases (For example, an admin deleting a need and that need staying in a helper's basket). So, we refined our implementation and tests and explored some more edge case tests (negative numbers of Needs, users checking out while the admin was changing Need values, confirmation popups, etc) to ensure the MVP was glitch-free. 
+
+Then, after retesting our acceptance criteria, we reached 100% acceptance critera completion within our acceptance critera spreadsheet, which is where we now stand as of the current implementation.
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
@@ -239,6 +251,7 @@ Then, after retesting our acceptance criteria, we got 100% Acceptance.
 > those._
 
 ![Coverage](Jacoco_Coverage_Report_2024-10-21.png)
+_Anomaly Note:_ The missing one percent coverage is the main method running the Spring application, which theoretically shouldn't ever fail.
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
@@ -252,4 +265,6 @@ Then, after retesting our acceptance criteria, we got 100% Acceptance.
 > - (2024/10/11) Updated UI to use icons instead of text for managing needs buttons
 > - (2024/10/12) Renamed StorageService to AuthService for user authentication/login functionality
 > - (2024/10/16) Refactored BasketNeed to have a Need and a quantity instead of a UUID and a quantity
-> - (1014/10/20) Changed editing need in basket quantity to dropdown instead of increment/decrement methods
+> - (2024/10/20) Changed editing need in basket quantity to numerical input instead of increment/decrement methods
+> - (2024/10/20) Needs are not allowed to be added to the basket if they would overflow the maximum available quantity
+> - (2024/10/20) All Needs are auto-sorted by Demand rating in the UI
