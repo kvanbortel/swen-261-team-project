@@ -147,7 +147,6 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
 > 
-![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier
 > **[Sprint 1]**
@@ -166,8 +165,6 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
-> 
-![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
 
 ## OO Design Principles
 
