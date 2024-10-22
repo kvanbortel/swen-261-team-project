@@ -175,17 +175,13 @@ Single Responsibility: Each module should have one tightly focused responsibilit
 Open-Close: When modifying a module, you should not make changes to existing logic, but rather consider keeping it and creating new logic instead. 
 
 ### The Single Responsibility
-A class is considered to comply with the single responsibility principle if there is one and only one reason for the class to change. One “thing” is not necessarily well defined, but it refers to one group of related behaviors and states. 
-	For example, The DonationNeed fails to comply with this principle. If there is ever a change to a donation item – for example an item needs to store a cost or quantity – the DonationNeed class will need to be updated. This update will either be added state and behavior to DonationNeed (bad), or by replacing the donation items list (of strings) with a list of some DonationItem objects. The second option is preferred because it forces DonationNeed to become singularly responsible again, but this responsibility should be separated from the start. 
-	While the 3 Need specializations are currency only responsible for one thing, that is only because the 2nd thing they are “responsible” for does not do anything. Therefore the mantra that single responsibility is based on things that may change, is what makes these needs fail to comply with the single responsibility principle. 
+ A class is considered to comply with the single responsibility principle if there is one and only one reason for the class to change. One “thing” is not necessarily well defined, but it refers to one group of related behaviors and states. 
+ 
+For example, each of our Java classes has a single function that it conforms to, and we've outlined those responsibilities below to showcase how each class remains independent to its purpose, and doesn't need to change based on other components. 
+ 
+ The only class that potentially violates the Single Resposibility is the AccountDAO, which requires changes when either the Account process _or_ the basket-checkout proccess changes, as the checkout functionality requires both an Account basket and a Need cupboard. 
 
 NeedController: Only responsible for updating and fetching needs
-
-NeedDAO: Only responsible for DAO processes related to Needs. Implementation changes are handled by new concrete classes.  
-
-NeedFileDAO: Specific implementation of NeedDAO. It is only responsible for FILE NeedDAO operations. 
-
-Need: Only needs to be updated if the structure of a need changes. 
 
 NeedDAO: Only responsible for DAO processes related to Needs
 
@@ -195,7 +191,7 @@ Need: Only needs to be updated if the structure of a need changes
 
 AccountController: Only responsible for creating, updating, and getting Accounts.
 
-AccountDAO: Only responsible for DAO processes related to Accounts
+AccountDAO: Only responsible for DAO processes related to Accounts (**and** checking out need baskets)
 
 AccountFileDAO: Same as AccountDAO but specialized
 
