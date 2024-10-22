@@ -226,9 +226,9 @@ Open/Closed is useful for maintaining backwards compatibility. By not modifying 
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
 
-When originally testing the acceptance criteria, we ran into a few problems with specific edge cases (For example, an admin deleting a need
-and that need staying in a helper's basket). So, we refined our implementation and tests and added even more edge case tests to ensure the MVP was glitch-free.
-Then, after retesting our acceptance criteria, we got 100% Acceptance. 
+When originally testing the acceptance criteria, we ran into a few problems with specific edge cases (For example, an admin deleting a need and that need staying in a helper's basket). So, we refined our implementation and tests and explored some more edge case tests (negative numbers of Needs, users checking out while the admin was changing Need values, confirmation popups, etc) to ensure the MVP was glitch-free. 
+
+Then, after retesting our acceptance criteria, we reached 100% acceptance critera completion within our acceptance critera spreadsheet, which is where we now stand as of the current implementation.
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
