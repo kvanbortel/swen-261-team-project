@@ -8,32 +8,54 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Ryan Richter
  */
 public class BasketNeed {
-    /** id of the need that the BasketNeed is tracking */
-    @JsonProperty String id;
+    /** The need stored in the basket. Need is a reference
+     * So it must be immutable (therefore final) */
+    @JsonProperty final Need need;
     /** quantity of the need that is being tracked */
     @JsonProperty int quantity;
 
     /**
      * Creates a BasketNeed with the given properties. 
      * 
-     * @param id The id of the Need. 
+     * @param need The actual need object. 
      * @param quantity The quantity of this need that is in the basket. 
      */
-    public BasketNeed(@JsonProperty("id") String id, @JsonProperty("quantity") int quantity) {
-        this.id = id;
+    public BasketNeed(@JsonProperty("need") Need need, @JsonProperty("quantity") int quantity) {
+        this.need = need;
         this.quantity = quantity;
     }
 
     /**
      * Determines if 2 BasketNeeds are equal
      * 
-     * 2 basket needs are equal if BOTH their id and quantity are the same. 
+     * 2 basket needs are equal if BOTH their need and quantity are the same. 
      */
     public boolean equals(Object obj) {
         if (obj instanceof BasketNeed) {
             BasketNeed o = (BasketNeed)obj;
-            return (this.id.equals(o.id) && this.quantity == o.quantity);
+            return (this.need.equals(o.need) && this.quantity == o.quantity);
         }
         return false;
+    }
+
+    /**
+     * Returns private need member.
+     */
+    public Need getNeed(){
+        return this.need;
+    }
+
+    /**
+     * Returns private quantity member
+     */
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    /**
+     * Represents a BasketNeed as a string
+     */
+    public String toString() {
+        return "{need: " + need.toString() + ", quantity: " + quantity + "}";
     }
 }

@@ -12,7 +12,7 @@ import { AuthService } from '../storage/auth.service';
 })
 export class DeleteNeedComponent {
   @Input() need?: Need;
-  isAdmin: number = this.authService.isAdmin; // TODO: Implement once login is done
+  isAdmin: boolean = this.authService.isAdmin();
 
   constructor(private cupboardService: CupboardService, public dialog: MatDialog, public authService: AuthService) {}
   

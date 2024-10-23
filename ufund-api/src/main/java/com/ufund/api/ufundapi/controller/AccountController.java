@@ -22,17 +22,11 @@ import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.AccountDAO;
+import com.ufund.api.ufundapi.persistence.NeedDAO;
 
 @RestController
 @RequestMapping("accounts")
 public class AccountController {
-
-
-
-    private static class ErrorResponse {
-        public String message;
-        public ErrorResponse(String message) { this.message = message; }
-    }
 
     private static final Logger LOG = Logger.getLogger(AccountController.class.getName());
     private AccountDAO accountDAO;
@@ -41,7 +35,7 @@ public class AccountController {
      * Creates a REST API controller to reponds to requests
      * 
      * @param accountDao The {@link AccountDAO Need Data Access Object} to perform CRUD operations
-     * <br>
+     * 
      * This dependency is injected by the Spring Framework
      */
     public AccountController(AccountDAO accountDAO) {
@@ -49,17 +43,15 @@ public class AccountController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Account> createAccount(@RequestBody Account account) {
-        LOG.info("POST /accounts " + account);
+    public ResponseEntity<Account> createAccount(@RequestBody String name) {
+        LOG.info("POST /accounts " + name);
         
         try {
-            Account newAccount = accountDAO.createAccount(account);
-            if (newAccount != null)
+            Account newAccount = accountDAO.createAccount(name);
+            if (newAccount != null) {
                 return new ResponseEntity<Account>(newAccount, HttpStatus.CREATED);
-            else{
-                LOG.log(Level.WARNING, "Invalid arguments");
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
+            return new ResponseEntity<Account>(this.accountDAO.getAccount(name), HttpStatus.OK);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
@@ -71,21 +63,44 @@ public class AccountController {
      * Updates the quantity of a specified need in an account.
      * 
      * @param accountName the name of the account 
-     * @param UUID the unique identifier of the need to be updated
-     * @param increment a boolean indicating whether to increment (true) or decrement (false) the quantity of the need
+     * @param need the basketNeed to be updated
+     * @param increment int the quantity of the need to be changed
      * @return 200 OK if the update was successful
      * 404 NOT FOUND if the account does not exist
      * 500 INTERNAL SERVER ERROR otherwise
      */
-    @PutMapping("/{accountName}/needs/{UUID}")
-    public ResponseEntity<Account> incrementNeed(@PathVariable String accountName, @PathVariable String UUID, @RequestParam Boolean increment) {
-    LOG.info("PUT /accounts/" + accountName + "/needs/" + UUID + "/" + increment);
+    @PutMapping("/{accountName}/needs/{amount}")
+    public ResponseEntity<BasketNeed> updateNeed(@PathVariable String accountName, @PathVariable int amount, @RequestBody Need need) {
+    LOG.info("PUT /accounts/" + accountName + "/needs/" + amount);
         try {
-            Account account = accountDAO.updateNeed(accountName, UUID, increment);
-            if (account == null) {
+            BasketNeed found = accountDAO.updateNeed(accountName, need, amount);
+            if (found == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } 
-            return new ResponseEntity<>(account, HttpStatus.OK);
+            return new ResponseEntity<BasketNeed>(found, HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Checkout the need basket for a given user.
+     * 
+     * @param accountName the name of the account 
+     * @return 200 OK if the checkout was successful
+     * 404 NOT FOUND if the account does not exist
+     * 500 INTERNAL SERVER ERROR otherwise
+     */
+    @PutMapping("/{accountName}/checkout")
+    public ResponseEntity<Boolean> checkout(@PathVariable String accountName) {
+    LOG.info("PUT /accounts/" + accountName + "/checkout");
+        try {
+            boolean success = accountDAO.checkout(accountName);
+            if (!success) {
+                return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+            } 
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

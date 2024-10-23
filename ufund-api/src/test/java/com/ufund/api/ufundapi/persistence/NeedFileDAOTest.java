@@ -6,7 +6,11 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
+import org.apache.logging.log4j.util.PropertySource.Comparator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -145,10 +149,16 @@ public class NeedFileDAOTest {
         // Invoke
         Need[] needs = needFileDAO.getNeeds();
 
+        ArrayList<Need> needsList = new ArrayList<>(Arrays.asList(testNeeds));
+
+        needsList.sort((n2, n1) -> Double.compare(n1.getDemandRating(), n2.getDemandRating()));
+
+        Need[] sortedNeedArray = needsList.toArray(new Need[0]);
+
         // Analyze
-        assertEquals(needs.length, testNeeds.length);
-        for (int i = 0; i < testNeeds.length; ++i)
-            assertEquals(needs[i], testNeeds[i]);
+        assertEquals(needs.length, sortedNeedArray.length);
+        for (int i = 0; i < sortedNeedArray.length; ++i)
+            assertEquals(needs[i], sortedNeedArray[i]);
     }
 
     @Test

@@ -28,6 +28,13 @@ import { DeleteNeedComponent } from './delete-need/delete-need.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './storage/auth.service';
+import { BasketListComponent } from './basket-list/basket-list.component';
+import { HomeComponent } from './home/home.component';
+import { ViewChangeButtonComponent } from './view-change-button/view-change-button.component';
+import { BasketPageComponent } from './basket-page/basket-page.component';
+import { BasketNeedComponent } from './basket-need/basket-need.component';
+import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -42,7 +49,13 @@ import { AuthService } from './storage/auth.service';
     CreateNeedDialogComponent,
     EditNeedComponent,
     DeleteNeedComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    BasketListComponent,
+    HomeComponent,
+    ViewChangeButtonComponent,
+    BasketPageComponent,
+    BasketNeedComponent,
+    PostCheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +64,7 @@ import { AuthService } from './storage/auth.service';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTooltipModule,
     FormsModule,
     MatButtonModule,
     MatDialogTitle,

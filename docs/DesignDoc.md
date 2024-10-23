@@ -39,9 +39,6 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | UUID | Universally Unique Identifier |
 | REST | Representational State Transfer |
 | OO | Object-Oriented |
-| MVP | Minimum Viable Product |
-| Need | An object contained in our cupboard representing a need |
-| BasketNeed | An object contained in a basket representing a need in a users basket |
 
 
 

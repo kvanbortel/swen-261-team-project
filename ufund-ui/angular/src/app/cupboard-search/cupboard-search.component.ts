@@ -19,6 +19,7 @@ export class CupboardSearchComponent {
   constructor(private cupboardService: CupboardService, public authService: AuthService) {}
 
   private currentSearchTerm: string = "";
+  public basketSwitch: boolean = false;
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -38,7 +39,7 @@ export class CupboardSearchComponent {
   }
 
   ngOnInit(): void {
-    if(this.authService.getName() == '' && !this.authService.isAdmin){
+    if(this.authService.getName() == '' && !this.authService.isAdmin()){
       window.location.href = 'login'
     }
     
@@ -63,5 +64,9 @@ export class CupboardSearchComponent {
     ).subscribe({
       next: (response) => this.needs$.next(response)  // Manually emit the result
     });
+  }
+
+  updateBasketSwitch() : void {
+    this.basketSwitch = !this.basketSwitch
   }
 }

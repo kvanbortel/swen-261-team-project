@@ -1,0 +1,8 @@
+<div class="main">
+    <h3 *ngIf="error" class="errored">There was an error funding, please try again.</h3>
+
+    <h3 *ngIf="!error">Thank you!</h3>
+    <p *ngIf="!error">You just funded <b>{{amount}} needs</b>, for a total of <b>{{cost | currency}}</b></p>
+
+    <button class="home-button" routerLink="/home"><i class="fa-solid fa-home"></i> &nbsp;Return to Dashboard</button>
+</div>

@@ -1,49 +1,45 @@
 import { Component, Injectable } from '@angular/core';
 import { AuthService } from '../storage/auth.service';
 import { catchError, Observable, of, tap } from 'rxjs';
-import { Account } from '../Account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
-
 export class LoginComponent {
-
-  account: string = "";
+  account: string = '';
   admin: number = 0;
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(public authService: AuthService,  private http: HttpClient) {
-    
+  constructor(
+    public authService: AuthService,
+    private http: HttpClient,
+    private router: Router
+  ) {}
+
+  login(name: string) {
+    if(name == '' || name == null){
+      return
+    }
+    this.authService.addAccount(name);
+    this.authService.setName(name);
+
+    this.router.navigate(['/home'], {});
   }
 
-  login(account: string){
-    if(account == "admin"){
-      this.authService.setisAdmin(1);
-      return;
+  submitEnter(event: KeyboardEvent, value: string) {
+    if (event.key === 'Enter') {
+      this.login(value);
     }
-   this.authService.addAccount(
-    {
-      name: account,
-      basket: {
-        needs: []
-      }
-    }
-  );
-   this.authService.setName(account);
   }
 
-  
-
-  ngOnInit(): void{
-    this.authService.setisAdmin(0);
+  ngOnInit(): void {
     this.authService.setName('');
   }
-
 }

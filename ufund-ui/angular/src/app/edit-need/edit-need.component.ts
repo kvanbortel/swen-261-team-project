@@ -12,7 +12,7 @@ import { AuthService } from '../storage/auth.service';
 })
 export class EditNeedComponent {
   @Input() need?: Need;
-  isAdmin: number = this.authService.isAdmin;
+  isAdmin: boolean = this.authService.isAdmin();
   data!: DialogData;
 
   constructor(public dialog: MatDialog, public authService: AuthService) {}

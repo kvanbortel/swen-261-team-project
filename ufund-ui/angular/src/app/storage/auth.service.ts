@@ -2,46 +2,99 @@ import { Injectable } from '@angular/core';
 import { Account } from '../Account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of, tap } from 'rxjs';
-
+import { Need } from '../Need';
+import { BasketNeed } from '../BasketNeed';
+import { Basket } from '../Basket';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  isAdmin: number = 0;
+  admin: boolean = false;
   name: string = '';
 
-  constructor(private http: HttpClient){};
+  constructor(private http: HttpClient) {}
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  setisAdmin(isAdmin:number){
-    this.isAdmin = isAdmin;
+  isAdmin(): boolean {
+    if (this.name === 'admin') {
+      this.admin = true;
+    } else {
+      this.admin = false;
+    }
+    return this.admin;
   }
-  
-  setName(name:string){
+
+  setName(name: string) {
     this.name = name;
   }
 
-  getName(){
+  getName() {
     return this.name;
   }
 
-  addAccount(account: Account): void {
-    this.http.post("http://localhost:8080/accounts", account, this.httpOptions).pipe(
-      catchError(this.handleError<Account>('addAccount'))
-    ).subscribe({
-      next: (response) => {
-        console.log('Account created successfully:', response);
-      },
-      error: (err) => {
-        console.error('Error creating account:', err);
-      }
-    });
+  addAccount(name: String): void {
+    this.http
+      .post('http://localhost:8080/accounts', name, this.httpOptions)
+      .pipe(catchError(this.handleError<Account>('addAccount')))
+      .subscribe({
+        next: (response) => {
+          console.log('Now logged in as ' + name + ':', response);
+        },
+        error: (err) => {
+          console.error('Error logging in:', err);
+        },
+      });
   }
-  
+
+  getBasketNeeds(): Observable<BasketNeed[]> {
+    return this.http
+      .get<BasketNeed[]>(
+        'http://localhost:8080/accounts/' + this.name + '/needs'
+      )
+      .pipe(
+        tap((_) => console.log('get basket needs')),
+        catchError(this.handleError<BasketNeed[]>('basketNeeds', []))
+      );
+  }
+
+  checkoutBasket(): Observable<boolean> {
+    return this.http
+      .put<boolean>(
+        'http://localhost:8080/accounts/' + this.name + '/checkout',
+        null,
+        this.httpOptions
+      ).pipe(
+        tap((_) => console.log('get basket needs')),
+        catchError(this.handleError<boolean>('basketNeeds', false))
+      );
+  }
+
+  addToBasket(amount: number, need?: Need): void {
+    console.log('changing by', amount);
+    console.log(
+      'http://localhost:8080/accounts/' + this.name + '/needs/' + amount
+    );
+    this.http
+      .put(
+        'http://localhost:8080/accounts/' + this.name + '/needs/' + amount,
+        need,
+        this.httpOptions
+      )
+      .pipe(catchError(this.handleError<Account>('updateBasketNeed')))
+      .subscribe({
+        next: (response) => {
+          console.log('Need added to basket successfully:', response);
+        },
+        error: (err) => {
+          console.error('Error adding to basket:', err);
+        },
+      });
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -51,7 +104,6 @@ export class AuthService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
       // Let the app keep running by returning an empty result.
