@@ -63,14 +63,6 @@ To run tests on all the tiers in isolation do this:
 2. Execute `mvn exec:exec@docs`
 3. The generated PDF will be in `PROJECT_DOCS_HOME/` directory
 
-
-## How to setup/run/test program 
-1. Tester, first obtain the Acceptance Test plan
-2. IP address of target machine running the app
-3. Execute ________
-4. ...
-5. ...
-
 ## License
 
 MIT License
