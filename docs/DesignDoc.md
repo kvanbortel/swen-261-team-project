@@ -76,10 +76,15 @@ This section describes the application domain.
 
 The domain for this application is a New York State based wildlife and animal conservation/refuge organization called NYS Paws and Claws. The application will have:
 -Helpers
+
 -Admin
+
 -Needs
+
 -Cupboard
+
 -Baskets
+
 A Helper adds needs to the basket.
 An Admin edits needs in the cupboard.
 A Need goes in the cupboard and a basket.
