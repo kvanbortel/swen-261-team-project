@@ -29,10 +29,8 @@ An online U-Fund system built in Java 21=> and Angular 17.0
 7. Alternatively, go [our website](https://pawsnclaws.pages.dev) to use the latest deployed version of the app! 
 
 ## Known bugs and disclaimers
-(It may be the case that your implementation is not perfect.)
 
-Document any known bug or nuisance.
-If any shortcomings, make clear what these are and where they are located.
+On some Chrome browsers with certain font packs installed, the website icons fail to load (only in the [cloud hosted app](https://pawsnclaws.pages.dev)).
 
 ## How to test it
 
