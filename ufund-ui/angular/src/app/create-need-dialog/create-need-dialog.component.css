@@ -25,3 +25,10 @@
     margin-bottom: 16px;
     width: 26vw;
 }
+
+@media only screen and (max-width: 600px) {
+    .form-field {
+        margin-bottom: 16px;
+        width: 80vw;
+    }
+  }
