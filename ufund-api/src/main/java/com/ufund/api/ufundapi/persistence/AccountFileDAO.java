@@ -188,7 +188,7 @@ public class AccountFileDAO implements AccountDAO {
 
             // checkout should always succeed past this
             for (BasketNeed bNeed : needs) {
-                Need newNeed = bNeed.getNeed();
+                Need newNeed = needDAO.getNeed(bNeed.getNeed().getId());
                 int newQuantity = newNeed.getQuantity() - bNeed.getQuantity();
                 if(newQuantity == 0){
                     needDAO.deleteNeed(newNeed.getId());
