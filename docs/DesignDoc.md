@@ -75,6 +75,7 @@ This section describes the application domain.
 > to each other._
 
 The domain for this application is a New York State based wildlife and animal conservation/refuge organization called NYS Paws and Claws. The application will have:
+
 -Helpers
 
 -Admin
