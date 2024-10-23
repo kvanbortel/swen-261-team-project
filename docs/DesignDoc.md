@@ -148,9 +148,8 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 ### Model Tier
 > **[Sprint 1]**
 >
-> The abstract class for our Model Tier implementation is our Need class. It has generalized members and functions including name, id and fullfillment status.
->
-> Our DonationNeed class inherits from our Need class. Our DonationNeed class has specialized members and functions such as cost and it's getter and setter methods.   
+> The basic data class for our Model Tier implementation is our Need class. It has generalized members and functions including name, id and fullfillment status.
+> 
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
