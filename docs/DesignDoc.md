@@ -68,7 +68,7 @@ This section describes the features of the application.
 
 This section describes the application domain.
 
-![Domain Model](UL.png)
+![Domain Model](U-Fund Team (NYS Paws & Claws Foundation).png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
