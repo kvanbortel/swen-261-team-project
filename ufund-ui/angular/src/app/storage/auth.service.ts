@@ -13,6 +13,8 @@ export class AuthService {
   admin: boolean = false;
   name: string = '';
 
+  private AccountURL = "https://halfcourt.fly.dev/accounts";
+
   constructor(private http: HttpClient) {}
 
   httpOptions = {
@@ -38,7 +40,7 @@ export class AuthService {
 
   addAccount(name: String): void {
     this.http
-      .post('http://localhost:8080/accounts', name, this.httpOptions)
+      .post(this.AccountURL, name, this.httpOptions)
       .pipe(catchError(this.handleError<Account>('addAccount')))
       .subscribe({
         next: (response) => {
@@ -53,7 +55,7 @@ export class AuthService {
   getBasketNeeds(): Observable<BasketNeed[]> {
     return this.http
       .get<BasketNeed[]>(
-        'http://localhost:8080/accounts/' + this.name + '/needs'
+        this.AccountURL + '/' + this.name + '/needs'
       )
       .pipe(
         tap((_) => console.log('get basket needs')),
@@ -64,7 +66,7 @@ export class AuthService {
   checkoutBasket(): Observable<boolean> {
     return this.http
       .put<boolean>(
-        'http://localhost:8080/accounts/' + this.name + '/checkout',
+        this.AccountURL + '/' + this.name + '/checkout',
         null,
         this.httpOptions
       ).pipe(
@@ -76,11 +78,11 @@ export class AuthService {
   addToBasket(amount: number, need?: Need): void {
     console.log('changing by', amount);
     console.log(
-      'http://localhost:8080/accounts/' + this.name + '/needs/' + amount
+      this.AccountURL + '/' + this.name + '/needs/' + amount
     );
     this.http
       .put(
-        'http://localhost:8080/accounts/' + this.name + '/needs/' + amount,
+        this.AccountURL + '/' + this.name + '/needs/' + amount,
         need,
         this.httpOptions
       )
