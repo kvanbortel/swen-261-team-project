@@ -13,7 +13,7 @@ export class AuthService {
   admin: boolean = false;
   name: string = '';
 
-  private AccountURL = "https://halfcourt.fly.dev/accounts";
+  private AccountURL = "http://localhost:8080/needs";
 
   constructor(private http: HttpClient) {}
 
