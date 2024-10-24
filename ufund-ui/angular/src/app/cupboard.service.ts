@@ -13,7 +13,7 @@ export class CupboardService {
     private messageService: MessageService
   ) {}
 
-  private needsUrl = 'http://localhost:8080/needs';
+  private needsUrl = 'https://halfcourt.fly.dev/needs';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

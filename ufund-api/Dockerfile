@@ -1,9 +1,11 @@
 FROM openjdk:17-jdk-slim
 
-WORKDIR /ufund-api
+WORKDIR /app
 
-COPY src/ufund-api/target/ufund-api-0.0.1-SNAPSHOT.jar /ufund-api/UFUND.jar
+COPY target/ufund-api-0.0.1-SNAPSHOT.jar /app/ufund-api.jar
+
+COPY data /app/data
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/ufund-api/UFUND.jar"]
+ENTRYPOINT ["java", "-jar", "/app/ufund-api.jar"]
