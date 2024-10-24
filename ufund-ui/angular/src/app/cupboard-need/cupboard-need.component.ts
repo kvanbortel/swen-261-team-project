@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Need } from '../Need';
 import { AuthService } from '../storage/auth.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-cupboard-need',
@@ -10,7 +11,7 @@ import { AuthService } from '../storage/auth.service';
 export class CupboardNeedComponent {
   @Input() need?: Need;
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private messageService: MessageService) {}
 
   retrieveNeed() {
     return this.need ? Object.keys(this.need) : [];
@@ -25,6 +26,7 @@ export class CupboardNeedComponent {
   addToBasket() {
     console.log(this.need);
     this.authService.addToBasket(1, this.need);
+    this.messageService.add("Added 1 " + this.need?.name)
   }
 
   sendUpdateNeeds(){

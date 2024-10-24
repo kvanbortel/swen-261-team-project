@@ -13,7 +13,7 @@ export class AuthService {
   admin: boolean = false;
   name: string = '';
 
-  private AccountURL = "http://localhost:8080/needs";
+  private AccountURL = "http://localhost:8080/accounts";
 
   constructor(private http: HttpClient) {}
 
