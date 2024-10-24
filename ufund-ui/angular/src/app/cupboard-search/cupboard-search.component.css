@@ -101,4 +101,9 @@
       min-width: 90vw;
       padding: 2vh;
     }
+
+    /* Styling for the search input */
+    .search-input {
+      width: 50vw;
+    }
   }
