@@ -1,16 +1,4 @@
 [
-  { "name": " ", "basket": { "needs": [] } },
-  { "name": "Dee", "basket": { "needs": [] } },
-  { "name": "Jonah", "basket": { "needs": [] } },
-  {
-    "name": "Max",
-    "basket": {
-      "needs": [
-        { "need": null, "quantity": 1 },
-        { "need": null, "quantity": 1 }
-      ]
-    }
-  },
   {
     "name": "a",
     "basket": {
@@ -30,8 +18,6 @@
       ]
     }
   },
-  { "name": "admin", "basket": { "needs": [] } },
-  { "name": "b", "basket": { "needs": [] } },
   {
     "name": "bichael",
     "basket": {
@@ -118,10 +104,6 @@
       ]
     }
   },
-  { "name": "jone", "basket": { "needs": [] } },
-  { "name": "powaifwa", "basket": { "needs": [] } },
-  { "name": "r", "basket": { "needs": [] } },
-  { "name": "yo mama", "basket": { "needs": [] } },
   {
     "name": "\uD83D\uDE0A\uD83C\uDF6C",
     "basket": {
