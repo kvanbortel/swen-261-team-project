@@ -265,4 +265,8 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > - (2024/10/20) Changed editing need in basket quantity to numerical input instead of increment/decrement methods
 > - (2024/10/20) Needs are not allowed to be added to the basket if they would overflow the maximum available quantity. We're not sure if the Paws and Claws foundation has the space to store surplus, and we don't want it to go to waste. 
 > - (2024/10/20) All Needs are auto-sorted by Demand rating in the UI
-> - (2024/10/22) If two users both try to fund the same basket need at the same time and there's not enough to go around, the first one to fund the needs gets to fund them and the later person gets an error message. 
+> - (2024/10/22) If two users both try to fund the same basket need at the same time and there's not enough to go around, the first one to fund the needs gets to fund them and the later person gets an error message.
+>
+> **[Sprint 3] decisions**
+> - (2024/10/24) Refactored logout system. Previously, we were using local service variables to store authenticated usernames. However, on any page refresh/initialization these credentials were removed. The application now instead uses
+> localStorage to store credentials so these persist across pages. This also allowed us to add an authentication guard to non-login pages, so indexing a route without authentication is cleaner. 
