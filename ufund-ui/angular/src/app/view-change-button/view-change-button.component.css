@@ -36,3 +36,9 @@
 .basket-button:hover {
   background-color: var(--hoveredOrange); /* Darker shade of orange */
 }
+
+@media only screen and (max-width: 600px) {
+  .basket-button:hover .hide-text {
+    display:none;
+  }
+}

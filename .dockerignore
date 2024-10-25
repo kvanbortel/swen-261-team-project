@@ -1,0 +1,82 @@
+# flyctl launch added from ufund-api\.gitignore
+ufund-api\**\target
+!ufund-api\**\.mvn\wrapper\maven-wrapper.jar
+!ufund-api\**\**\src\main\**\target
+!ufund-api\**\**\src\test\**\target
+
+### STS ###
+ufund-api\**\.apt_generated
+ufund-api\**\.classpath
+ufund-api\**\.factorypath
+ufund-api\**\.project
+ufund-api\**\.settings
+ufund-api\**\.springBeans
+ufund-api\**\.sts4-cache
+
+### IntelliJ IDEA ###
+ufund-api\**\.idea
+ufund-api\**\*.iws
+ufund-api\**\*.iml
+ufund-api\**\*.ipr
+
+### NetBeans ###
+ufund-api\nbproject\private
+ufund-api\nbbuild
+ufund-api\dist
+ufund-api\nbdist
+ufund-api\.nb-gradle
+ufund-api\**\build
+!ufund-api\**\**\src\main\**\build
+!ufund-api\**\**\src\test\**\build
+
+### VS Code ###
+ufund-api\**\.vscode
+
+
+### Data ###
+ufund-api\**\ufund-api\data
+
+# flyctl launch added from ufund-ui\angular\.gitignore
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+ufund-ui\angular\dist
+ufund-ui\angular\tmp
+ufund-ui\angular\out-tsc
+ufund-ui\angular\bazel-out
+
+# Node
+ufund-ui\angular\node_modules
+ufund-ui\angular\**\npm-debug.log
+ufund-ui\angular\**\yarn-error.log
+
+# IDEs and editors
+ufund-ui\angular\**\.idea
+ufund-ui\angular\**\.project
+ufund-ui\angular\**\.classpath
+ufund-ui\angular\**\.c9
+ufund-ui\angular\**\*.launch
+ufund-ui\angular\**\.settings
+ufund-ui\angular\**\*.sublime-workspace
+
+# Visual Studio Code
+ufund-ui\angular\**\.vscode\*
+!ufund-ui\angular\**\.vscode\settings.json
+!ufund-ui\angular\**\.vscode\tasks.json
+!ufund-ui\angular\**\.vscode\launch.json
+!ufund-ui\angular\**\.vscode\extensions.json
+ufund-ui\angular\**\.history\*
+
+# Miscellaneous
+ufund-ui\angular\.angular\cache
+ufund-ui\angular\**\.sass-cache
+ufund-ui\angular\connect.lock
+ufund-ui\angular\coverage
+ufund-ui\angular\libpeerconnection.log
+ufund-ui\angular\**\testem.log
+ufund-ui\angular\typings
+
+# System files
+ufund-ui\angular\**\.DS_Store
+ufund-ui\angular\**\Thumbs.db
+fly.toml

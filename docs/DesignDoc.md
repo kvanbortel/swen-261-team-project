@@ -68,18 +68,24 @@ This section describes the features of the application.
 
 This section describes the application domain.
 
-![Domain Model](UML.png)
+![Domain Model](Domain_UML.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
 > to each other._
 
 The domain for this application is a New York State based wildlife and animal conservation/refuge organization called NYS Paws and Claws. The application will have:
+
 -Helpers
+
 -Admin
+
 -Needs
+
 -Cupboard
+
 -Baskets
+
 A Helper adds needs to the basket.
 An Admin edits needs in the cupboard.
 A Need goes in the cupboard and a basket.
@@ -148,9 +154,8 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 ### Model Tier
 > **[Sprint 1]**
 >
-> The abstract class for our Model Tier implementation is our Need class. It has generalized members and functions including name, id and fullfillment status.
->
-> Our DonationNeed class inherits from our Need class. Our DonationNeed class has specialized members and functions such as cost and it's getter and setter methods.   
+> The basic data class for our Model Tier implementation is our Need class. It has generalized members and functions including name, id and fullfillment status.
+> 
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View

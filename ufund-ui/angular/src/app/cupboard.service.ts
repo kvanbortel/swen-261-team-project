@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MessageService } from './message.service';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { Need } from './Need';
 
@@ -10,7 +9,6 @@ import { Need } from './Need';
 export class CupboardService {
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
   ) {}
 
   private needsUrl = 'http://localhost:8080/needs';
@@ -22,7 +20,7 @@ export class CupboardService {
   /** GET needs from the server */
   getNeeds(): Observable<Need[]> {
     return this.http.get<Need[]>(this.needsUrl).pipe(
-      tap((_) => this.log('fetched needs')),
+      tap((_) => console.log('fetched needs')),
       catchError(this.handleError<Need[]>('getNeeds', []))
     );
   }
@@ -30,7 +28,7 @@ export class CupboardService {
   /** GET needs from the server */
   getNeed(id: string): Observable<Need> {
     return this.http.get<Need>(this.needsUrl + "/" + id).pipe(
-      tap((_) => this.log('fetched need')),
+      tap((_) => console.log('fetched need')),
       catchError(this.handleError<Need>('getNeeds'))
     );
   }
@@ -38,7 +36,7 @@ export class CupboardService {
   /** SEARCH needs from the server */
   searchNeeds(text: string): Observable<Need[]> {
     return this.http.get<Need[]>(this.needsUrl + "/?search=" + text).pipe(
-      tap((_) => this.log('searched needs')),
+      tap((_) => console.log('searched needs')),
       catchError(this.handleError<Need[]>('searchNeeds', []))
     );
   }
@@ -46,14 +44,14 @@ export class CupboardService {
   /** POST need to the server */
   addNeed(need: Need): Observable<Need> {
     return this.http.post<Need>(this.needsUrl, need, this.httpOptions).pipe(
-      tap((newNeed: Need) => this.log(`added need w/ id=${newNeed.id}`)),
+      tap((newNeed: Need) => console.log(`added need w/ id=${newNeed.id}`)),
       catchError(this.handleError<Need>('addNeed'))
     );
   }
 
   updateNeed(need: Need): Observable<any> {
     return this.http.put<Need>(this.needsUrl, need, this.httpOptions).pipe(
-      tap(_ => this.log(`updated need id=${need.id}`)),
+      tap(_ => console.log(`updated need id=${need.id}`)),
       catchError(this.handleError<Need>('updateNeed'))
     );
   }
@@ -62,14 +60,9 @@ export class CupboardService {
     const url = `${this.needsUrl}/${id}`;
 
     return this.http.delete<Need>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted need id=${id}`)),
+      tap(_ => console.log(`deleted need id=${id}`)),
       catchError(this.handleError<Need>('deleteNeed'))
     );
-  }
-
-  /** Log a CupboardService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add(`CupboardService: ${message}`);
   }
 
   /**
@@ -85,7 +78,7 @@ export class CupboardService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      console.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

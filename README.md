@@ -24,13 +24,13 @@ An online U-Fund system built in Java 21=> and Angular 17.0
 2. For the first time only, run `npm i` in the `ufund-ui/angular` directory
 3. Execute `mvn compile exec:java`
 4. Open in your browser `http://localhost:8080/`
-5.  _add any other steps required or examples of how to use/run_
+5. From the `ufund-ui/angular` directory, run `ng serve --open`
+6. The app will then open in your browser. 
+7. Alternatively, go [our website](https://pawsnclaws.pages.dev) to use the latest deployed version of the app! 
 
 ## Known bugs and disclaimers
-(It may be the case that your implementation is not perfect.)
 
-Document any known bug or nuisance.
-If any shortcomings, make clear what these are and where they are located.
+On some Chrome browsers with certain font packs installed, the website icons fail to load (only in the [cloud hosted app](https://pawsnclaws.pages.dev)).
 
 ## How to test it
 
@@ -62,14 +62,6 @@ To run tests on all the tiers in isolation do this:
 1. Access the `PROJECT_DOCS_HOME/` directory
 2. Execute `mvn exec:exec@docs`
 3. The generated PDF will be in `PROJECT_DOCS_HOME/` directory
-
-
-## How to setup/run/test program 
-1. Tester, first obtain the Acceptance Test plan
-2. IP address of target machine running the app
-3. Execute ________
-4. ...
-5. ...
 
 ## License
 
