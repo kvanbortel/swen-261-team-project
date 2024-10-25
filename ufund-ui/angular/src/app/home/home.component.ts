@@ -25,4 +25,13 @@ export class HomeComponent {
   constructor(public authService: AuthService, public messageService: MessageService) {}
 
   isAdmin: boolean = this.authService.isAdmin();
+
+  ngOnInit(){
+    let name = localStorage.getItem("name");
+    if(name != null){
+      this.authService.setName(name);
+    }
+    this.isAdmin = this.authService.isAdmin();
+
+  }
 }

@@ -90,4 +90,5 @@ export class BasketNeedComponent {
     );
     this.deleteNeed.emit(this.need);
   }
+  
 }

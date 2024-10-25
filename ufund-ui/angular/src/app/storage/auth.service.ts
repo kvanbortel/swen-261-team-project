@@ -5,17 +5,18 @@ import { catchError, Observable, of, tap } from 'rxjs';
 import { Need } from '../Need';
 import { BasketNeed } from '../BasketNeed';
 import { Basket } from '../Basket';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
 
   private AccountURL = "http://localhost:8080/accounts";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -28,6 +29,34 @@ export class AuthService {
       this.admin = false;
     }
     return this.admin;
+  }
+
+  logout(){
+    this.admin = false;
+    this.name = '';
+    localStorage.setItem("name", '');
+  }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean {
+      console.log('CanActivate called');
+    let isLoggedIn = this.isAuthenticated();
+    console.log("logged in?" + isLoggedIn)
+    if (isLoggedIn){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+    
+  }
+
+  isAuthenticated() {
+    if(!(localStorage.getItem("isAdmin") === "true") && localStorage.getItem("name") === ''){
+      return false;
+    } 
+    return true;
   }
 
   setName(name: string) {

@@ -27,8 +27,11 @@ export class LoginComponent {
     if(name == '' || name == null){
       return
     }
-    this.authService.addAccount(name);
     this.authService.setName(name);
+    localStorage.setItem("isAdmin", this.authService.isAdmin().toString() );
+    localStorage.setItem("name", name);
+    this.authService.addAccount(name);  
+
 
     this.router.navigate(['/home'], {});
   }
@@ -41,5 +44,6 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.authService.setName('');
+    localStorage.setItem("name", '');
   }
 }
