@@ -6,14 +6,15 @@ import { CupboardSearchComponent } from './cupboard-search/cupboard-search.compo
 import { HomeComponent } from './home/home.component';
 import { BasketPageComponent } from './basket-page/basket-page.component';
 import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
+import { AuthService } from './storage/auth.service';
 
 const routes: Routes = [
   
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent},
-  { path: 'basket', component: BasketPageComponent},
-  { path: 'post-checkout', component: PostCheckoutComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthService]},
+  { path: 'basket', component: BasketPageComponent, canActivate: [AuthService]},
+  { path: 'post-checkout', component: PostCheckoutComponent, canActivate: [AuthService]},
   //{ path: 'login', loadChildren: () => import('./login/login.component').then(m => m.LoginComponent )}
 ];
 

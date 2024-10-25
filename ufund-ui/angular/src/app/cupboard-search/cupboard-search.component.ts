@@ -39,11 +39,10 @@ export class CupboardSearchComponent {
   }
 
   ngOnInit(): void {
-    if(this.authService.getName() == '' && !this.authService.isAdmin()){
-      window.location.href = 'login'
+    let name = localStorage.getItem("name");
+    if(name != null){
+      this.authService.setName(name);
     }
-    
-
     this.cupboardService.searchNeeds("").subscribe({ 
       next: (response) => this.needs$.next(response)
     });

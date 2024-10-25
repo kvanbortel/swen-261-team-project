@@ -49,4 +49,12 @@ export class CreateNeedComponent {
     // tell the parent to update its needs
     this.dataFromChild.emit();
   }
+
+  ngOnInit(){
+    let name = localStorage.getItem("name");
+    if(name != null){
+      this.authService.setName(name);
+      this.isAdmin = this.authService.isAdmin();
+    }
+  }
 }
