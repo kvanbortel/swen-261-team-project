@@ -7,6 +7,10 @@
     <button class="login-button" type="button" (click)="login(loginBox.value)">
         Login
     </button>
+    <ul class="error-area">
+        <div class="popup" *ngFor='let message of messageLoginService.messages'> {{message.message}} </div>
+    </ul>
+
 </div>
 
 </html>
