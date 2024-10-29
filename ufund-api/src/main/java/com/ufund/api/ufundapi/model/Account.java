@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Max Klot
  * 
  */
-public class Account {
+public class Account implements Comparable<Account> {
 
     private static final Logger LOG = Logger.getLogger(Account.class.getName());
 
@@ -113,5 +113,13 @@ public class Account {
            }
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Account other) {
+        if (this.getMoneyFunded() > other.getMoneyFunded()) { return  1;}
+        if (this.getMoneyFunded() < other.getMoneyFunded()) { return -1;}
+        // if they're the same
+        return 0;
     }
 }

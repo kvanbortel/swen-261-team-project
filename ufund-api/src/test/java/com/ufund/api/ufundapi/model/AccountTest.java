@@ -1,6 +1,9 @@
 package com.ufund.api.ufundapi.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -133,5 +136,58 @@ public class AccountTest {
         int newQuantity = account.addNeedsFunded(addMe);
 
         assertEquals(addMe, newQuantity);
+    }
+
+    @Test
+    public void testOrderAccounts() {
+        Account account1 = new Account("account1");
+        Account account2 = new Account("account2");
+        List<Account> accounts= new ArrayList<Account>();
+        accounts.add(account1);
+        accounts.add(account2);
+
+        List<Account> expected= new ArrayList<Account>();
+        expected.add(account2);
+        expected.add(account1);
+
+        account1.addMoneyFunded(100);
+        account2.addMoneyFunded(15);
+
+        Collections.sort(accounts);
+
+        assertEquals(expected, accounts);
+    }
+
+    @Test
+    public void testCompareGT() {
+        Account account1 = new Account("account1");
+        Account account2 = new Account("account2");
+
+        account1.addMoneyFunded(100);
+        account2.addMoneyFunded(15);
+        
+        assertEquals(1, account1.compareTo(account2));
+    }
+
+    @Test
+    public void testCompareEQ() {
+        Account account1 = new Account("account1");
+        Account account2 = new Account("account2");
+
+        account1.addMoneyFunded(15);
+        account2.addMoneyFunded(15);
+        
+        assertEquals(0, account1.compareTo(account2));
+    }
+
+    @Test
+    public void testCompareLT() {
+        Account account1 = new Account("account1");
+        Account account2 = new Account("account2");
+
+        account1.addMoneyFunded(2);
+        account2.addMoneyFunded(15);
+        
+        assertEquals(-1, account1.compareTo(account2));
     }
 }
