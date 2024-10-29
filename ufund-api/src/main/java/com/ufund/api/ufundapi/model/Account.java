@@ -34,7 +34,7 @@ public class Account {
      * @param amount
      * @return the new value for this.moneyFunded
      */
-    double addMoneyFunded(double amount) {
+    public double addMoneyFunded(double amount) {
         moneyFunded += amount;
         return moneyFunded;
     }
@@ -44,16 +44,16 @@ public class Account {
      * @param quantity
      * @return the new value for this.needsFunded
      */
-    int addNeedsFunded(int quantity) {
+    public int addNeedsFunded(int quantity) {
         needsFunded += quantity;
         return needsFunded;
     }
 
-    double getMoneyFunded() {
+    public double getMoneyFunded() {
         return moneyFunded;
     }
 
-    int getNeedsFunded() {
+    public int getNeedsFunded() {
         return needsFunded;
     }
 
