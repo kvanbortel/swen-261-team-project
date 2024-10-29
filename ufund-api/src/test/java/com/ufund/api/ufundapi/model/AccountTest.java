@@ -94,4 +94,44 @@ public class AccountTest {
         Object account2 = null;
         assertNotEquals(account1, account2);
     }
+
+    @Test 
+    public void testGetMoneyFunded() {
+        Account account = new Account("NAME");
+
+        double amount = account.getMoneyFunded();
+
+        assertEquals(0.0, amount);
+    }
+
+    @Test 
+    public void testGetNeedsFunded() {
+        Account account = new Account("NAME");
+
+        int quantity = account.getNeedsFunded();
+
+        assertEquals(0.0, quantity);
+    }
+
+    @Test
+    public void testAddMoneyFunded() {
+        Account account = new Account("NAME");
+
+        double addMe = 38.28;
+
+        double newAmount = account.addMoneyFunded(addMe);
+
+        assertEquals(addMe, newAmount);
+    }
+
+    @Test
+    public void testAddNeedsFunded() {
+        Account account = new Account("NAME");
+
+        int addMe = 7;
+
+        int newQuantity = account.addNeedsFunded(addMe);
+
+        assertEquals(addMe, newQuantity);
+    }
 }

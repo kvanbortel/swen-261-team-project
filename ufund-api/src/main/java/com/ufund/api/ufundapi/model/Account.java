@@ -22,6 +22,41 @@ public class Account {
     // link to the profile picture
     @JsonProperty String imageLink;
 
+    /// THIS WILL CAUSE A MERGE CONFLICT!!!
+    // REMOVE BEFORE MERGE
+    // amount spend on funding needs
+    @JsonProperty double moneyFunded = 0;
+    // number of needs funded
+    @JsonProperty int needsFunded = 0;
+
+    /**
+     * Add an amount to money funded
+     * @param amount
+     * @return the new value for this.moneyFunded
+     */
+    double addMoneyFunded(double amount) {
+        moneyFunded += amount;
+        return moneyFunded;
+    }
+
+    /**
+     * Add a number of needs to needsFunded
+     * @param quantity
+     * @return the new value for this.needsFunded
+     */
+    int addNeedsFunded(int quantity) {
+        needsFunded += quantity;
+        return needsFunded;
+    }
+
+    double getMoneyFunded() {
+        return moneyFunded;
+    }
+
+    int getNeedsFunded() {
+        return needsFunded;
+    }
+
     /**
      * Constructs an account object using a given name and a given Basket
      * @param name a name for the account object
