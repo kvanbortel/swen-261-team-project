@@ -3,6 +3,7 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -250,6 +251,16 @@ public class AccountFileDAO implements AccountDAO {
      */
     public Account getAccount(String accountName) throws IOException {
         return accounts.get(accountName); // Return the Account object or null if not found
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public List<Account> getRankList() {
+        List<Account> accountList = new ArrayList<>(this.accounts.values());
+        // sort it
+        Collections.sort(accountList);
+        return accountList;
     }
 
 }

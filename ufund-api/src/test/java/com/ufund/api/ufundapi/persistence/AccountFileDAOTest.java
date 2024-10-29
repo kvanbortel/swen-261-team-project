@@ -11,10 +11,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Account;
@@ -61,9 +65,6 @@ public class AccountFileDAOTest {
 
         testBaskets[0] = new Basket(); // empty
 
-        // need0: 1, need3: 3
-        // cost: 49.46
-        // count: 4
         testBaskets[1] = new Basket(); // need0: 1, need3: 3
         testBaskets[1].addNeed(testNeeds[0]);
         testBaskets[1].addNeed(testNeeds[1]);
@@ -258,6 +259,49 @@ public class AccountFileDAOTest {
         assertEquals(expectedCount, account.getNeedsFunded());
 
     }
+
+    // @Test
+    // public void testAccountOrder() throws IOException {
+    //     // checkout 2 users and make sure they are in the correct part of the tree
+
+    //     Account kayla = accountFileDAO.getAccount("Kayla");
+    //     Account max = accountFileDAO.getAccount("Max");
+    //     Account jonah = accountFileDAO.getAccount("Jonah");
+    //     Account ryan = accountFileDAO.getAccount("Ryan");
+
+    //     Map<String, Account> accounts = accountFileDAO.accounts;
+    //     MatcherAssert.assertThat(accounts.keySet(), Matchers.contains("Max", "Ryan", "Kayla", "Jonah"));
+
+    //     accountFileDAO.addMoneyFunded(kayla, 12); 
+    //     accountFileDAO.addMoneyFunded(max, 2); 
+    //     accountFileDAO.addMoneyFunded(jonah, 19); 
+    //     accountFileDAO.addMoneyFunded(ryan, 7); 
+        
+
+    //     MatcherAssert.assertThat(accounts.keySet(), Matchers.contains("Max", "Ryan", "Kayla", "Jonah"));
+    // }
+
+    @Test
+    public void testGetRanks() throws IOException {
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        Account max = accountFileDAO.getAccount("Max");
+        Account jonah = accountFileDAO.getAccount("Jonah");
+        Account ryan = accountFileDAO.getAccount("Ryan");
+
+        kayla.addMoneyFunded(12); 
+        max.addMoneyFunded(2); 
+        jonah.addMoneyFunded(19); 
+        ryan.addMoneyFunded(7); 
+
+        List<Account> expected = new ArrayList<>();
+        expected.add(jonah); // rank 1
+        expected.add(kayla);
+        expected.add(ryan);
+        expected.add(max); // max doesn't wanna save the world
+
+        assertEquals(expected, accountFileDAO.getRankList());
+    }
+
 
     
 }
