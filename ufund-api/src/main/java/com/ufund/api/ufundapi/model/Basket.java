@@ -224,4 +224,12 @@ public class Basket {
         }
         return cost;
     }
+
+    public int getNeedCount() {
+        int count = 0;
+        for (BasketNeed bNeed: this.needs) {
+            count += bNeed.getQuantity();
+        }
+        return count;
+    }
 }

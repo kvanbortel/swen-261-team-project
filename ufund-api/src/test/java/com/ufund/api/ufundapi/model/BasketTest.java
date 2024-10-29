@@ -320,6 +320,14 @@ public class BasketTest {
         double cost = basket.getCost();
 
         assertEquals(66, cost);
+    }
 
+    @Test
+    public void testNeedCount() {
+        Basket basket = createTestBasket();
+
+        int count = basket.getNeedCount();
+
+        assertEquals(6, count);
     }
 }
