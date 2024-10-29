@@ -100,7 +100,7 @@ public class AccountTest {
 
     @Test 
     public void testGetMoneyFunded() {
-        Account account = new Account("NAME");
+        Account account = new Account("NAME", "pass");
 
         double amount = account.getMoneyFunded();
 
@@ -109,7 +109,7 @@ public class AccountTest {
 
     @Test 
     public void testGetNeedsFunded() {
-        Account account = new Account("NAME");
+        Account account = new Account("NAME", "pass");
 
         int quantity = account.getNeedsFunded();
 
@@ -118,7 +118,7 @@ public class AccountTest {
 
     @Test
     public void testAddMoneyFunded() {
-        Account account = new Account("NAME");
+        Account account = new Account("NAME", "pass");
 
         double addMe = 38.28;
 
@@ -129,7 +129,7 @@ public class AccountTest {
 
     @Test
     public void testAddNeedsFunded() {
-        Account account = new Account("NAME");
+        Account account = new Account("NAME", "pass");
 
         int addMe = 7;
 
@@ -140,8 +140,8 @@ public class AccountTest {
 
     @Test
     public void testOrderAccounts() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("account1", "pass");
+        Account account2 = new Account("account2", "pass");
         List<Account> accounts= new ArrayList<Account>();
         accounts.add(account1);
         accounts.add(account2);
@@ -160,8 +160,8 @@ public class AccountTest {
 
     @Test
     public void testCompareGT() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("account1", "pass");
+        Account account2 = new Account("account2", "pass");
 
         account1.addMoneyFunded(100);
         account2.addMoneyFunded(15);
@@ -171,8 +171,8 @@ public class AccountTest {
 
     @Test
     public void testCompareEQ() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("account1", "pass");
+        Account account2 = new Account("account2", "pass");
 
         account1.addMoneyFunded(15);
         account2.addMoneyFunded(15);
@@ -182,8 +182,8 @@ public class AccountTest {
 
     @Test
     public void testCompareLT() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("account1", "pass");
+        Account account2 = new Account("account2", "pass");
 
         account1.addMoneyFunded(2);
         account2.addMoneyFunded(15);
