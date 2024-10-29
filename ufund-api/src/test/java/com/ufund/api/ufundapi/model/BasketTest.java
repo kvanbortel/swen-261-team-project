@@ -312,4 +312,14 @@ public class BasketTest {
         Object basket2 = new Object();
         assertNotEquals(basket, basket2);
     }
+
+    @Test
+    public void testBasketCost() {
+        Basket basket = createTestBasket();
+
+        double cost = basket.getCost();
+
+        assertEquals(66, cost);
+
+    }
 }

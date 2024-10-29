@@ -216,4 +216,12 @@ public class Basket {
         }
         return false;
     }
+
+    public double getCost() {
+        double cost = 0;
+        for (BasketNeed bNeed: this.needs) {
+            cost += bNeed.getCost();
+        }
+        return cost;
+    }
 }
