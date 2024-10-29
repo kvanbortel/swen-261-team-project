@@ -186,6 +186,10 @@ public class AccountFileDAO implements AccountDAO {
             }
 
             // checkout should always succeed past this
+            // update funding data for users
+            // this MUST happen before the basket is changed
+            accountObj.addMoneyFunded(basket.getCost());
+            accountObj.addNeedsFunded(basket.getNeedCount());
             for (BasketNeed bNeed : needs) {
                 Need newNeed = needDAO.getNeed(bNeed.getNeed().getId());
                 int newQuantity = newNeed.getQuantity() - bNeed.getQuantity();
