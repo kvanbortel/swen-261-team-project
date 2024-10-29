@@ -65,6 +65,9 @@ public class AccountFileDAOTest {
 
         testBaskets[0] = new Basket(); // empty
 
+        // need0: 1, need3: 3
+        // cost: 49.46
+        // count: 4
         testBaskets[1] = new Basket(); // need0: 1, need3: 3
         testBaskets[1].addNeed(testNeeds[0]);
         testBaskets[1].addNeed(testNeeds[1]);
@@ -258,6 +261,18 @@ public class AccountFileDAOTest {
         byte[] img = Files.readAllBytes(Paths.get(path));
 
         assertNull(accountFileDAO.addImage("FAKE", img));
+    @Test 
+    public void testCheckoutUpdatesFundingData() throws IOException {
+        Account account = accountFileDAO.getAccount("Kayla");
+
+        double expectedMoney = testBaskets[1].getCost();
+        int expectedCount = testBaskets[1].getNeedCount();
+
+        boolean checked = accountFileDAO.checkout("Kayla");
+
+        assertEquals(expectedMoney, account.getMoneyFunded());
+        assertEquals(expectedCount, account.getNeedsFunded());
+
     }
 
     
