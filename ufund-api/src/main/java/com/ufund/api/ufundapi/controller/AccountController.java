@@ -45,7 +45,12 @@ public class AccountController {
     @PostMapping("")
     public ResponseEntity<Account> createAccount(@RequestBody String name) {
         LOG.info("POST /accounts " + name);
-        
+
+        String usernameRegex = "^[a-zA-Z][a-zA-Z0-9]{0,12}$";
+        if (!name.matches(usernameRegex)) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         try {
             Account newAccount = accountDAO.createAccount(name);
             if (newAccount != null) {
