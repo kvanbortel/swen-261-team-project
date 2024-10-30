@@ -1,5 +1,6 @@
 package com.ufund.api.ufundapi.model;
 
+import java.time.Instant;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,17 +14,25 @@ public class Account {
 
     private static final Logger LOG = Logger.getLogger(Account.class.getName());
 
-    //serializable name
-    @JsonProperty String name;
-    //serializable basket
+    // serializable variables
+    @JsonProperty String name; // username
     @JsonProperty Basket basket;
+    @JsonProperty boolean isGod;
+    @JsonProperty boolean isPublic; // whether others can view user's profile
+    @JsonProperty int moneyFunded;
+    @JsonProperty int needsFunded;
+    @JsonProperty Instant lastDonated; // time of user's last donation
+    @JsonProperty int rank; // user's numerical position on the leaderboard
 
     /**
      * Constructs an account object using a given name and a given Basket
      * @param name a name for the account object
      * @param basket a basket for the account object
      */
-    public Account(@JsonProperty("name") String name, @JsonProperty("basket") Basket basket) {
+    public Account(
+                @JsonProperty("name") String name,
+                @JsonProperty("basket") Basket basket
+                ) {
         this.name = name;
         this.basket = basket;
     }
