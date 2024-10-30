@@ -21,7 +21,7 @@ public class ProfileInfo {
      * @param profilePic a link to the user's profile picture
      * @param pronouns the user's pronouns
      * @param alias the user's nickname to appear on the leaderboard
-     * @param bio the users's bio
+     * @param bio the user's bio
      * @param region the region of New York State the user is from
      * @param phoneNumber the user's phone number
      * @param email the user's email address
@@ -74,7 +74,7 @@ public class ProfileInfo {
     }
 
     /**
-     * Return the user's nickanme for the leaderboard
+     * Return the user's nickname for the leaderboard
      * @return the user's alias
      */
     public String getAlias() {
