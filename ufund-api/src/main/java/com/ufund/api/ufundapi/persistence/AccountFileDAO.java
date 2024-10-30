@@ -119,7 +119,7 @@ public class AccountFileDAO implements AccountDAO {
 
             return null;
         }
-        Account newAccount = new Account(name, new Basket());
+        Account newAccount = new Account(name);
         accounts.put(name, newAccount);
         save(); // may throw an IOException
         return newAccount;

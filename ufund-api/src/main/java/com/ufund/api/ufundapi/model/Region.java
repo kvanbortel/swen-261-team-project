@@ -1,6 +1,6 @@
 package com.ufund.api.ufundapi.model;
 
-enum Region {
+public enum Region {
     WESTERN_NEW_YORK,
     FINGER_LAKES,
     SOUTHERN_TIER,
