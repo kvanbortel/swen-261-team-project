@@ -269,4 +269,5 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 >
 > **[Sprint 3] decisions**
 > - (2024/10/24) Refactored logout system. Previously, we were using local service variables to store authenticated usernames. However, on any page refresh/initialization these credentials were removed. The application now instead uses
-> localStorage to store credentials so these persist across pages. This also allowed us to add an authentication guard to non-login pages, so indexing a route without authentication is cleaner. 
+> localStorage to store credentials so these persist across pages. This also allowed us to add an authentication guard to non-login pages, so indexing a route without authentication is cleaner.
+> - (2024/10/31) Decided to use an md5 library to hash passwords so they are not stored in plaintext by our backend. 
