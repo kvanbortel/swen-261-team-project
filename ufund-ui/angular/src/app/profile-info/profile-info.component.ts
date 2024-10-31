@@ -19,7 +19,6 @@ export class ProfileInfoComponent {
 
   ngOnInit(): void {
     this.profileForm = this.formBuilder.group({
-      profilePic: [''],
       alias: [''],
       password: ['', Validators.required],
       email: ['', Validators.email],
