@@ -4,6 +4,9 @@ import { catchError, Observable, of, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MessageService } from '../message.service';
+import { md5 } from 'js-md5';
+import { Account } from '../Account'
+import { waitForAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +14,7 @@ import { MessageService } from '../message.service';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  account: string = '';
+  name: string = '';
   admin: number = 0;
 
   httpOptions = {
@@ -25,35 +28,57 @@ export class LoginComponent {
     public messageLoginService: MessageService
   ) {}
 
-  login(name: string) {
+  login(name: string, password: string) {
     this.messageLoginService.clear()
-    if(name == '' || name == null){
+    let passwordHash = md5(password)
+    if(name == '' || name == null || password == ''){
+      console.log("no pass")
+      this.messageLoginService.add("Username and password must have substance.", false)
       return
     }
     if(!this.onlyLettersAndNumbers(name)){
       this.messageLoginService.add("Only usernames containing alphanumeric characters allowed.", false)
       return
     }
-    if(name.length > 13){
-      this.messageLoginService.add("Only usernames of length 13 or less allowed.", false)
+    if(name.length > 13 || password.length > 13 || name.length < 4 || password.length < 4){
+      this.messageLoginService.add("Only usernames and passwords of length greater than 4 and less than 13.", false)
       return
     }
     if(!this.isAlpha(name.substring(0, 1))){
       this.messageLoginService.add("Only usernames starting with a letter allowed.", false)
       return
     }
-    this.authService.setName(name);
-    localStorage.setItem("isAdmin", this.authService.isAdmin().toString() );
-    localStorage.setItem("name", name);
-    this.authService.addAccount(name);  
+    this.authService.getAccount(name).subscribe( (result) =>{
+      if(result){
+        if(passwordHash != result.passwordHash){
+          this.messageLoginService.add("Invalid password.", false)
+          return
+        }
+        this.authService.setName(name); 
+        localStorage.setItem("name", name); 
+        this.router.navigate(['/home']);  
+      }
+      else{
+        this.authService.addAccount(name, passwordHash).subscribe({
+          next: (response) => {
+              this.authService.setName(name);
+              localStorage.setItem("name", name);
+              this.router.navigate(['/home']);
+          },
+          error: (err) => {
+              console.error("Error creating account:", err);
+              this.messageLoginService.add("Failed to create account. Please try again.", false);
+          }
+      });
+      }
 
-
-    this.router.navigate(['/home'], {});
+    })
   }
 
-  submitEnter(event: KeyboardEvent, value: string) {
+
+  submitEnter(event: KeyboardEvent, name: string, passwordHash: string) {
     if (event.key === 'Enter') {
-      this.login(value);
+      this.login(name, passwordHash);
     }
   }
 
@@ -70,4 +95,6 @@ export class LoginComponent {
   isAlpha(str: string) {
     return Boolean(str.match("[a-zA-Z]+"));
 }
+
+  
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../Account';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { Need } from '../Need';
 import { BasketNeed } from '../BasketNeed';
 import { Basket } from '../Basket';
@@ -67,18 +67,15 @@ export class AuthService implements CanActivate{
     return this.name;
   }
 
-  addAccount(name: String): void {
-    this.http
-      .post(this.AccountURL, name, this.httpOptions)
-      .pipe(catchError(this.handleError<Account>('addAccount')))
-      .subscribe({
-        next: (response) => {
-          console.log('Now logged in as ' + name + ':', response);
-        },
-        error: (err) => {
-          console.error('Error logging in:', err);
-        },
-      });
+
+  addAccount(name: string, passwordHash: string): Observable<any> {
+    const body = {name, passwordHash };
+    return this.http
+      .post(this.AccountURL, body, this.httpOptions)
+      .pipe(catchError((error) => {
+        console.error('Error occurred:', error);
+        return throwError(error);
+      }))
   }
 
   getBasketNeeds(): Observable<BasketNeed[]> {
@@ -89,6 +86,16 @@ export class AuthService implements CanActivate{
       .pipe(
         tap((_) => console.log('get basket needs')),
         catchError(this.handleError<BasketNeed[]>('basketNeeds', []))
+      );
+  }
+
+  getAccount(name: string): Observable<Account>{
+    return this.http
+      .get<Account>(
+        this.AccountURL + '/' + name
+      ).pipe(
+        tap((_) => console.log('get account' + name)),
+        catchError(this.handleError<Account>('account'))
       );
   }
 
