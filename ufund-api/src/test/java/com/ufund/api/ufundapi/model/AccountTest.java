@@ -70,7 +70,7 @@ public class AccountTest {
         assertNotEquals(account1, account2);
     }
 
-    //test for false equality between two accounts depending on name
+    //test for false equality between two accounts depending on password hash
     @Test
     public void testAccountEqualFalsePasswordHash() {
         Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);

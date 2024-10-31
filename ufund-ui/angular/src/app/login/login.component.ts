@@ -32,7 +32,6 @@ export class LoginComponent {
     this.messageLoginService.clear()
     let passwordHash = md5(password)
     if(name == '' || name == null || password == ''){
-      console.log("no pass")
       this.messageLoginService.add("Username and password must have substance.", false)
       return
     }
@@ -51,7 +50,7 @@ export class LoginComponent {
     this.authService.getAccount(name).subscribe( (result) =>{
       if(result){
         if(passwordHash != result.passwordHash){
-          this.messageLoginService.add("Invalid password.", false)
+          this.messageLoginService.add("Incorrect password.", false)
           return
         }
         this.authService.setName(name); 

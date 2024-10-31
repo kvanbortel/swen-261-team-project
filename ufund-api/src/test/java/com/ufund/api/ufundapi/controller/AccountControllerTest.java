@@ -243,6 +243,7 @@ public class AccountControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
+    //test getting an account that does exist 
     @Test
     public void testGetAccountTrue() throws IOException {
         // Setup
@@ -258,6 +259,7 @@ public class AccountControllerTest {
         assertEquals(account, response.getBody());
     }
 
+    //test http response when getting an account that doesnt exist 
     @Test
     public void testGetAccountNotFound() throws IOException {
         // Setup
@@ -271,6 +273,7 @@ public class AccountControllerTest {
         assertEquals(null, response.getBody());
     }
 
+    //test handling exception when getting accounts
     @Test
     public void testGetAccountHandleException() throws IOException {
         // Setup
