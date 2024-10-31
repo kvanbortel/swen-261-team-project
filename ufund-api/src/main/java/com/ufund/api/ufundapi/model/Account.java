@@ -24,6 +24,7 @@ public class Account {
     @JsonProperty int needsFunded;
     @JsonProperty Instant lastDonated;
     @JsonProperty int rank;
+    @JsonProperty Level level;
 
     /**
      * Constructs an account object using a given name and a given Basket
@@ -36,6 +37,7 @@ public class Account {
      * @param needsFunded the total amount of Needs user funded
      * @param lastDonated the time the user last donated
      * @param rank the user's numerical position on the leaderboard
+     * @param level the user's level
      */
     public Account(
             @JsonProperty("name") String name,
@@ -46,7 +48,8 @@ public class Account {
             @JsonProperty("moneyFunded") int moneyFunded,
             @JsonProperty("needsFunded") int needsFunded,
             @JsonProperty("lastDonated") Instant lastDonated,
-            @JsonProperty("rank") int rank
+            @JsonProperty("rank") int rank,
+            @JsonProperty("level") Level level
             ) {
         this.name = name;
         this.basket = basket;
@@ -57,6 +60,7 @@ public class Account {
         this.needsFunded = needsFunded;
         this.lastDonated = lastDonated;
         this.rank = rank;
+        this.level = level;
     }
 
     /**
@@ -96,49 +100,43 @@ public class Account {
      * Returns the isGod status for an account object
      * @return the isGod status for an account object
      */
-    public boolean isGod() {
-        return isGod;
-    }
+    public boolean isGod() { return isGod; }
 
     /**
      * Returns the isPublic status for an account object
      * @return the isPublic status for an account object
      */
-    public boolean isPublic() {
-        return isPublic;
-    }
+    public boolean isPublic() { return isPublic; }
 
     /**
      * Returns the amount of money a user funded
      * @return the amount of money a user funded
      */
-    public int getMoneyFunded() {
-        return moneyFunded;
-    }
+    public int getMoneyFunded() { return moneyFunded; }
 
     /**
      * Returns the amount of needs a user funded
      * @return the amount of needs a user funded
      */
-    public int getNeedsFunded() {
-        return needsFunded;
-    }
+    public int getNeedsFunded() { return needsFunded; }
 
     /**
      * Returns the timestamp a user last donated
      * @return the timestamp a user last donated
      */
-    public Instant getLastDonated() {
-        return lastDonated;
-    }
+    public Instant getLastDonated() { return lastDonated; }
 
     /**
      * Returns the rank of a user
      * @return the rank of a user
      */
-    public int getRank() {
-        return rank;
-    }
+    public int getRank() { return rank; }
+
+    /**
+     * Returns the level of the user
+     * @return the user's level (noob, pro, master, champion)
+     */
+    public Level getLevel() { return level; }
 
     /**
      * {@inheritDoc}

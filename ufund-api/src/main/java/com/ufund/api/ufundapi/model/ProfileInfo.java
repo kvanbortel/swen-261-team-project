@@ -53,71 +53,53 @@ public class ProfileInfo {
      * Returns the user's password
      * @return the user's password
      */
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
     /**
      * Return the user's profile picture
      * @return the user's profile picture
      */
-    public String getProfilePic() {
-        return profilePic;
-    }
+    public String getProfilePic() { return profilePic; }
 
     /**
      * Return the user's pronouns
      * @return the user's pronouns
      */
-    public String getPronouns() {
-        return pronouns;
-    }
+    public String getPronouns() { return pronouns; }
 
     /**
      * Return the user's nickname for the leaderboard
      * @return the user's alias
      */
-    public String getAlias() {
-        return alias;
-    }
+    public String getAlias() { return alias; }
 
     /**
      * Return the user's bio
      * @return the user's bio
      */
-    public String getBio() {
-        return bio;
-    }
+    public String getBio() { return bio; }
 
     /**
      * Return the region of New York State the user is from
      * @return the user's region
      */
-    public Region getRegion() {
-        return region;
-    }
+    public Region getRegion() { return region; }
 
     /**
      * Return the user's phone number
      * @return the user's phone number
      */
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    public String getPhoneNumber() { return phoneNumber; }
 
     /**
      * Return the user's email address
      * @return the user's email address
      */
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
     /**
      * Return the user's social security number
      * @return the user's social security number
      */
-    public String getSsn() {
-        return ssn;
-    }
+    public String getSsn() { return ssn; }
 }
