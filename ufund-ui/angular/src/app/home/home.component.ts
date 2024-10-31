@@ -5,7 +5,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-page',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   animations: [
