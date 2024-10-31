@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {ValidationErrorsService} from "../validation-errors.service";
+import {Region} from "../region";
 
 @Component({
   selector: 'app-profile-info',

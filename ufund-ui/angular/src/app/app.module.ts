@@ -36,6 +36,7 @@ import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
+import {MatOption, MatSelect} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,9 @@ import { ProfileInfoComponent } from './profile-info/profile-info.component';
     MatDialogActions,
     MatDialogClose,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSelect,
+    MatOption
   ],
   providers: [LoginComponent],
   bootstrap: [AppComponent]

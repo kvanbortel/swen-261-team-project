@@ -23,10 +23,10 @@
       <div fxFlex="100%">
         <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
           <mat-label>Region of NYS</mat-label>
-          <mat-select [(ngModel)]="selectedValue">
-            <mat-option *ngFor="let option of options" [value]="option.value">
-              {{ option.label }}
-            </mat-option>
+          <mat-select formControlName="region">
+            <mat-option value="">Prefer not to say</mat-option> <!-- Option to clear selection -->
+            <mat-option value="" disabled>Select a region</mat-option>
+            <mat-option *ngFor="let region of regions" [value]="region">{{ region }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
