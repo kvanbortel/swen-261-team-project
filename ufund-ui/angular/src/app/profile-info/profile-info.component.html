@@ -1,0 +1,23 @@
+<div class="main">
+  <header>Name</header>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div fxFlex="100%">
+        <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error>
+            {{ getErrorMessage(profileForm.get('name'), 'Name', {}) }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100%">
+        <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+          <mat-label>Bio</mat-label>
+          <input matInput formControlName="bio" />
+          <mat-error>
+            {{ getErrorMessage(profileForm.get('bio'), 'Bio', {}) }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+</div>
