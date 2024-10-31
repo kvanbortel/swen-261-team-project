@@ -20,12 +20,12 @@ export class ProfileInfoComponent {
   ngOnInit(): void {
     this.profileForm = this.formBuilder.group({
       alias: [''],
+      region: ['', Validators.required],
+      pronouns: [''],
+      bio: ['', Validators.max(150)],
       password: ['', Validators.required],
       email: ['', Validators.email],
       phoneNumber: ['', Validators.pattern(/(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/)],
-      pronouns: [''],
-      bio: ['', Validators.max(150)],
-      region: ['', Validators.required],
       ssn: ['', Validators.pattern(/^\d{3}-\d{2}-\d{4}$/)]
     });
   }
