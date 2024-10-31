@@ -9,6 +9,7 @@ import {ValidationErrorsService} from "../validation-errors.service";
 })
 export class ProfileInfoComponent {
   profileForm: any;
+  regions = Object.values(Region); // Get enum values for dropdown
 
   constructor(
     private formBuilder: FormBuilder,
