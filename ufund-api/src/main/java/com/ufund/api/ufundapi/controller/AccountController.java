@@ -139,16 +139,12 @@ public class AccountController {
     public ResponseEntity<Account> getAccount(@PathVariable String accountName) {
         LOG.info("GET /accounts/" + accountName);
         try {
-            //LOG.info("getting");
             Account account = accountDAO.getAccount(accountName);
-            //LOG.info("gotten");
-
-            System.out.println("added");
             if(account != null){
                 return new ResponseEntity<Account>(account, HttpStatus.OK);
             }
             else{
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
         catch (IOException e) {

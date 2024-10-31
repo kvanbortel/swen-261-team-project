@@ -17,26 +17,27 @@ import org.junit.jupiter.api.Test;
 public class AccountTest {
     private static final String TEST_NAME = "Max";
     private static final Basket TEST_BASKET = new Basket();
+    private static final String TEST_PASSWORD_HASH = "thisisnotahash";
     
     private Account account;
 
     @BeforeEach
     public void setUp() {
-        account = new Account(TEST_NAME, TEST_BASKET);
+        account = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
     }
 
     //Test for creating an account with no basket parameter
     @Test
     public void testConstructorNoBasket() {
-        Account newAccount =  new Account(TEST_NAME);
+        Account newAccount =  new Account(TEST_NAME, TEST_PASSWORD_HASH);
         assertEquals(TEST_NAME, account.getName());
         assertEquals(new Basket(), account.getBasket());
     }
 
-    //Test for creating an account with no basket parameter
+    //Test for creating an account with basket parameter
     @Test
     public void testConstructorBasket() {
-        Account newAccount =  new Account(TEST_NAME, TEST_BASKET);
+        Account newAccount =  new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
         assertEquals(TEST_NAME, account.getName());
         assertEquals(TEST_BASKET, account.getBasket());
     }
@@ -56,32 +57,40 @@ public class AccountTest {
     //test for true equality between two accounts
     @Test
     public void testAccountEqualTrue() {
-        Account account1 = new Account(TEST_NAME, TEST_BASKET);
-        Account account2 = new Account(TEST_NAME, TEST_BASKET);
+        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
+        Account account2 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
         assertEquals(account1, account2);
     }
 
     //test for false equality between two accounts depending on name
     @Test
     public void testAccountEqualFalseName() {
-        Account account1 = new Account(TEST_NAME, TEST_BASKET);
-        Account account2 = new Account("Different Name", TEST_BASKET);
+        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
+        Account account2 = new Account("Different Name", TEST_BASKET, TEST_PASSWORD_HASH);
+        assertNotEquals(account1, account2);
+    }
+
+    //test for false equality between two accounts depending on name
+    @Test
+    public void testAccountEqualFalsePasswordHash() {
+        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
+        Account account2 = new Account(TEST_NAME, TEST_BASKET, "badpass");
         assertNotEquals(account1, account2);
     }
 
     //test for false equality between two accounts depending on basket
     @Test
     public void testAccountEqualFalseBasket() {
-        Account account1 = new Account(TEST_NAME, TEST_BASKET);
+        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
         BasketNeed[] needs = {new BasketNeed(new Need("hello", "hello", "hello", 10, 10, 0), 0)};
-        Account account2 = new Account(TEST_NAME, new Basket(Arrays.asList(needs)));
+        Account account2 = new Account(TEST_NAME, new Basket(Arrays.asList(needs)), TEST_PASSWORD_HASH);
         assertNotEquals(account1, account2);
     }
 
     //test for false equality between an account and an object
     @Test
     public void testAccountEqualObjNotNeed() {
-        Account account1 = new Account(TEST_NAME, TEST_BASKET);
+        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
         Object account2 = null;
         assertNotEquals(account1, account2);
     }

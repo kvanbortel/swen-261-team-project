@@ -32,6 +32,7 @@ public class AccountControllerTest {
 
     // Local test data variables
     private static final String TEST_NAME = "AccountA1";
+    private static final String TEST_PASSWORD_HASH = "thisisnotahash";
     private static final Need TEST_NEED = new Need("123456", "NeedA1", "Need for testing", 0, 1, 0);
     
     private static BasketNeed[] basketNeedArray = {(new BasketNeed(TEST_NEED, 1))};
@@ -52,12 +53,13 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountNoBasket() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME);
+        Account account = new Account(TEST_NAME, TEST_PASSWORD_HASH);
 
-        when(mockAccountDAO.createAccount(TEST_NAME)).thenReturn(account);
+        when(mockAccountDAO.createAccount(TEST_NAME, TEST_PASSWORD_HASH)).thenReturn(account);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.createAccount(TEST_NAME);
+        AccountRequest accountRequest = new AccountRequest(TEST_NAME, TEST_PASSWORD_HASH);
+        ResponseEntity<Account> response = accountController.createAccount(accountRequest);
 
         // Analyze
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -68,12 +70,13 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountBasket() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET);
+        Account account = new Account(TEST_NAME, TEST_PASSWORD_HASH);
 
-        when(mockAccountDAO.createAccount(TEST_NAME)).thenReturn(account);
+        when(mockAccountDAO.createAccount(TEST_NAME, TEST_PASSWORD_HASH)).thenReturn(account);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.createAccount(TEST_NAME);
+        AccountRequest accountRequest = new AccountRequest(TEST_NAME, TEST_PASSWORD_HASH);
+        ResponseEntity<Account> response = accountController.createAccount(accountRequest);
 
         // Analyze
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -84,12 +87,13 @@ public class AccountControllerTest {
     @Test
     public void testCreateExistingAccount() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET);
+        Account account = new Account(TEST_NAME, TEST_PASSWORD_HASH);
 
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.createAccount(TEST_NAME);
+        AccountRequest accountRequest = new AccountRequest(TEST_NAME, TEST_PASSWORD_HASH);
+        ResponseEntity<Account> response = accountController.createAccount(accountRequest);
 
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -100,10 +104,11 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountHandleException() throws Exception {
         
-        doThrow(new IOException()).when(mockAccountDAO).createAccount(TEST_NAME);
+        doThrow(new IOException()).when(mockAccountDAO).createAccount(TEST_NAME, TEST_PASSWORD_HASH);
 
         // Invoke
-        var response = accountController.createAccount(TEST_NAME);
+        AccountRequest accountRequest = new AccountRequest(TEST_NAME, TEST_PASSWORD_HASH);
+        ResponseEntity<Account> response = accountController.createAccount(accountRequest);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
@@ -146,7 +151,6 @@ public class AccountControllerTest {
     @Test
     public void testIncrementNeedNotFound() throws Exception {
         
-        Account account = new Account(TEST_NAME, (TEST_BASKET));
         when((mockAccountDAO).updateNeed(TEST_NAME, TEST_NEED, 1)).thenReturn(null);
 
         // Invoke
@@ -214,7 +218,8 @@ public class AccountControllerTest {
     @Test
     public void testGetNeeds() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, (TEST_BASKET));
+        
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PASSWORD_HASH);
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
@@ -233,6 +238,47 @@ public class AccountControllerTest {
 
         // Invoke
         var response = accountController.getNeeds(TEST_NAME);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    @Test
+    public void testGetAccountTrue() throws IOException {
+        // Setup
+        
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PASSWORD_HASH);
+        when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
+
+        // Invoke
+        var response = accountController.getAccount(TEST_NAME);
+
+        // Analyze.to
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(account, response.getBody());
+    }
+
+    @Test
+    public void testGetAccountNotFound() throws IOException {
+        // Setup
+        when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(null);
+
+        // Invoke
+        var response = accountController.getAccount(TEST_NAME);
+
+        // Analyze.to
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
+    }
+
+    @Test
+    public void testGetAccountHandleException() throws IOException {
+        // Setup
+        doThrow(new IOException()).when(mockAccountDAO).getAccount(TEST_NAME);
+
+        // Invoke
+        
+        ResponseEntity<Account> response = accountController.getAccount(TEST_NAME);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
