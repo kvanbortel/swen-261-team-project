@@ -10,5 +10,6 @@ public enum Region {
     CAPITAL_DISTRICT,
     HUDSON_VALLEY,
     NEW_YORK_CITY,
-    LONG_ISLAND
+    LONG_ISLAND,
+    NONE
 }
