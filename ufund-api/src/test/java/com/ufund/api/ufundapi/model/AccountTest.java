@@ -190,4 +190,11 @@ public class AccountTest {
         
         assertEquals(-1, account1.compareTo(account2));
     }
+
+    @Test
+    public void testToString() {
+        Account account = new Account("ACCOUNT_NAME");
+
+        assertEquals("Account(ACCOUNT_NAME)", account.toString());
+    }
 }

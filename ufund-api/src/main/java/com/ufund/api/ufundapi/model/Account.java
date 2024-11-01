@@ -134,4 +134,9 @@ public class Account implements Comparable<Account> {
         // if they're the same
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "Account(" + name + ")";
+    }
 }
