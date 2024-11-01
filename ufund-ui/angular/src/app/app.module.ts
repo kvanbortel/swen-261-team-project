@@ -37,6 +37,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import {MatOption, MatSelect} from "@angular/material/select";
+import { ProfileSectionComponent } from './profile-section/profile-section.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {MatOption, MatSelect} from "@angular/material/select";
     BasketNeedComponent,
     PostCheckoutComponent,
     ProfilePageComponent,
-    ProfileInfoComponent
+    ProfileInfoComponent,
+    ProfileSectionComponent
   ],
   imports: [
     BrowserModule,

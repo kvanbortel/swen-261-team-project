@@ -1,6 +1,9 @@
 <div class="main">
   <app-view-change-button [text]="'Home'" [icon]="' fa-solid fa-home'" [path]="'home'"></app-view-change-button>
-  <label *ngIf="!this.authService.isAdmin()" class="login">{{this.authService.getName()}}</label>
-  <header>Profile pic</header>
+  <div class="flex-container">
+    <img class="profilePic" src="assets/Paws&Claws.png">
+    <label *ngIf="!this.authService.isAdmin()" class="username">{{this.authService.getName()}}</label>
+  </div>
   <app-profile-info></app-profile-info>
+  <app-profile-section [userId]="userId"></app-profile-section>
 </div>
