@@ -3,6 +3,7 @@ package com.ufund.api.ufundapi.controller;
 import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.ProfileInfo;
 import com.ufund.api.ufundapi.persistence.AccountDAO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -114,6 +115,19 @@ public class AccountController {
         try {
             ArrayList<BasketNeed> needs = accountDAO.getNeeds(accountName);
             return new ResponseEntity<>(needs, HttpStatus.OK);
+        }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{accountName}/profileInfo")
+    public ResponseEntity<ProfileInfo> getProfileInfo(@PathVariable String accountName) {
+        LOG.info("GET /accounts/" + accountName + "/profileInfo");
+        try {
+            ProfileInfo profileInfo = accountDAO.getProfileInfo(accountName);
+            return new ResponseEntity<ProfileInfo>(profileInfo, HttpStatus.OK);
         }
         catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
