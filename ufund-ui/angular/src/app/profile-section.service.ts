@@ -16,11 +16,11 @@ export interface UserProfile {
   providedIn: 'root'
 })
 export class ProfileSectionService {
-  private usersUrl = 'http://localhost:8080/users';
+  private usersUrl = 'http://localhost:8080/accounts';
 
   constructor(private http: HttpClient) { }
 
-  getUserProfile(userId: string): Observable<UserProfile> {
-    return this.http.get<UserProfile>(`${this.usersUrl}/${userId}`);
+  getUserProfile(accountName: string): Observable<UserProfile> {
+    return this.http.get<UserProfile>(`${this.usersUrl}/${accountName}/profileInfo`);
   }
 }

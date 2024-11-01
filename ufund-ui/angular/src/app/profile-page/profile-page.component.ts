@@ -8,18 +8,14 @@ import {ProfileSectionService} from "../profile-section.service";
   styleUrl: './profile-page.component.css'
 })
 export class ProfilePageComponent {
-  userId!: string;
-
   constructor(public authService: AuthService, private profileSectionService: ProfileSectionService) {
   }
 
   ngOnInit(): void {
-    let currentUserId = localStorage.getItem("id");
-      if (currentUserId != null)
-        this.profileSectionService.setUserId("userId");
-
     let name = localStorage.getItem("name");
-    if(name != null)
+    if(name != null) {
       this.authService.setName(name);
+      this.profileSectionService.setAccountName("accountName");
+    }
   }
 }

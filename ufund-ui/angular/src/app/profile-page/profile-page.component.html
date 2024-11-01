@@ -5,5 +5,5 @@
     <label *ngIf="!this.authService.isAdmin()" class="username">{{this.authService.getName()}}</label>
   </div>
   <app-profile-info></app-profile-info>
-  <app-profile-section [userId]="userId"></app-profile-section>
+  <app-profile-section [accountName]="accountName"></app-profile-section>
 </div>

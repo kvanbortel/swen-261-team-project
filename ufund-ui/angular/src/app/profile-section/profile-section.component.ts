@@ -7,13 +7,13 @@ import {UserProfile, ProfileSectionService} from "../profile-section.service";
   styleUrl: './profile-section.component.css'
 })
 export class ProfileSectionComponent {
-  @Input() userId!: string;
+  @Input() accountName!: string;
   userProfile!: UserProfile;
 
   constructor(private profileSectionService: ProfileSectionService) {}
 
   ngOnInit(): void {
-    this.profileSectionService.getUserProfile(this.userId).subscribe(profile => {
+    this.profileSectionService.getUserProfile(this.accountName).subscribe(profile => {
       this.userProfile = profile;
     });
   }
