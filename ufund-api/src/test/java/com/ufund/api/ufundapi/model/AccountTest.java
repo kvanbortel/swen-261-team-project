@@ -241,4 +241,22 @@ public class AccountTest {
 
         assertEquals("Account(ACCOUNT_NAME)", account.toString());
     }
+
+    @Test
+    public void testRank3() {
+        Account account1 = new Account("account1");
+        Account account2 = new Account("account2");
+        Account account3 = new Account("account3");
+        Account account4 = new Account("account4");
+
+        // ordered by alpha because there are no needs or money funded
+
+        List<Account> accounts = new ArrayList<>();
+        accounts.add(account1);
+        accounts.add(account2);
+        accounts.add(account3);
+        accounts.add(account4);
+        assertEquals(3, account3.getRank(accounts));
+
+    }
 }
