@@ -1,0 +1,35 @@
+.main{
+  width: 26vw;
+  margin: 0 auto;
+}
+
+.form-field {
+  margin-bottom: 16px;
+  width: 26vw;
+}
+
+.form-button {
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  float: right;
+  margin: 5px;
+}
+
+.orange-button {
+  background-color: var(--baseOrange);
+}
+
+.gray-button {
+  background-color: #F4F4F4;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-field {
+    margin-bottom: 16px;
+    width: 70vw;
+  }
+
+  .main{
+    width: 80vw;
+  }
+}

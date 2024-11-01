@@ -1,80 +1,83 @@
+<div class="main">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                    <mat-label>Alias</mat-label>
+                    <input matInput formControlName="alias" />
+                    <mat-error>
+                        {{ getErrorMessage(profileForm.get('alias'), 'Alias', {}) }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                    <mat-label>Region of NYS</mat-label>
+                    <mat-select formControlName="region">
+                        <mat-option value="">Prefer not to say</mat-option> <!-- Option to clear selection -->
+                        <mat-option value="" disabled>Select a region</mat-option>
+                        <mat-option *ngFor="let region of regions" [value]="region">{{ region }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                    <mat-label>Pronouns</mat-label>
+                    <input matInput formControlName="pronouns" />
+                    <mat-error>
+                        {{ getErrorMessage(profileForm.get('pronouns'), 'Pronouns', {}) }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                    <mat-label>Bio</mat-label>
+                    <input matInput formControlName="bio" />
+                    <mat-error>
+                        {{ getErrorMessage(profileForm.get('bio'), 'Bio', {}) }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" />
+                    <mat-error>
+                        {{ getErrorMessage(profileForm.get('password'), 'Password', {}) }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="bio" />
+                    <mat-error>
+                        {{ getErrorMessage(profileForm.get('email'), 'Email', {}) }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="bio" />
+                    <mat-error>
+                        {{ getErrorMessage(profileForm.get('phoneNumber'), 'Phone Number', {}) }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+                    <mat-label>SSN</mat-label>
+                    <input matInput formControlName="bio" />
+                    <mat-error>
+                        {{ getErrorMessage(profileForm.get('ssn'), 'SSN', {}) }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
 
-<header>Name</header>
-<header>Profile pic</header>
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <div fxLayout="column" fxLayoutAlign="center center">
-        <div fxFlex="100%">
-            <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
-                <mat-label>Alias</mat-label>
-                <input matInput formControlName="alias" />
-                <mat-error>
-                    {{ getErrorMessage(profileForm.get('alias'), 'Alias', {}) }}
-                </mat-error>
-            </mat-form-field>
+            <button class="form-button orange-button" mat-button type="submit"
+                    [disabled]="profileForm.invalid">Save</button>
+            <button class="form-button gray-button" mat-button mat-dialog-close>Cancel</button>
         </div>
-        <div fxFlex="100%">
-            <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
-                <mat-label>Region of NYS</mat-label>
-                <mat-select formControlName="region">
-                    <mat-option value="">Prefer not to say</mat-option> <!-- Option to clear selection -->
-                    <mat-option value="" disabled>Select a region</mat-option>
-                    <mat-option *ngFor="let region of regions" [value]="region">{{ region }}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div fxFlex="100%">
-            <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
-                <mat-label>Pronouns</mat-label>
-                <input matInput formControlName="pronouns" />
-                <mat-error>
-                    {{ getErrorMessage(profileForm.get('pronouns'), 'Pronouns', {}) }}
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <div fxFlex="100%">
-            <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
-                <mat-label>Bio</mat-label>
-                <input matInput formControlName="bio" />
-                <mat-error>
-                    {{ getErrorMessage(profileForm.get('bio'), 'Bio', {}) }}
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <div fxFlex="100%">
-            <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
-                <mat-label>Password</mat-label>
-                <input matInput formControlName="password" />
-                <mat-error>
-                    {{ getErrorMessage(profileForm.get('password'), 'Password', {}) }}
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <div fxFlex="100%">
-            <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="bio" />
-                <mat-error>
-                    {{ getErrorMessage(profileForm.get('email'), 'Email', {}) }}
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <div fxFlex="100%">
-            <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
-                <mat-label>Phone Number</mat-label>
-                <input matInput formControlName="bio" />
-                <mat-error>
-                    {{ getErrorMessage(profileForm.get('phoneNumber'), 'Phone Number', {}) }}
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <div fxFlex="100%">
-            <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
-                <mat-label>SSN</mat-label>
-                <input matInput formControlName="bio" />
-                <mat-error>
-                    {{ getErrorMessage(profileForm.get('ssn'), 'SSN', {}) }}
-                </mat-error>
-            </mat-form-field>
-        </div>
-    </div>
-</form>
+    </form>
+</div>
