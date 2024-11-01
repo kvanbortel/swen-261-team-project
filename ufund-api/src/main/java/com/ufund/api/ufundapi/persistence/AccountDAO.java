@@ -81,4 +81,17 @@ public interface AccountDAO{
       */
     ProfileInfo getProfileInfo(String account) throws IOException;
 
+    /**
+     * Updates a user's {@linkplain ProfileInfo profileInfo} with given data
+     *
+     * @param account {String account} Account name
+     *
+     * @param info {ProfileInfo info} profile info data
+     *
+     * @return the {@link ProfileInfo} if the profileInfo was updated
+     * null if the Account with the given id does not exist
+     *
+     * @throws IOException if underlying storage cannot be accessed
+     */
+    ProfileInfo updateProfileInfo(String account, ProfileInfo info) throws IOException;
 }
