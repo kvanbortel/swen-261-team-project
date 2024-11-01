@@ -8,6 +8,8 @@ import {ProfileSectionService} from "../profile-section.service";
   styleUrl: './profile-page.component.css'
 })
 export class ProfilePageComponent {
+  accountName!: string;
+
   constructor(public authService: AuthService, private profileSectionService: ProfileSectionService) {
   }
 
@@ -15,7 +17,6 @@ export class ProfilePageComponent {
     let name = localStorage.getItem("name");
     if(name != null) {
       this.authService.setName(name);
-      this.profileSectionService.setAccountName("accountName");
     }
   }
 }

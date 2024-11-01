@@ -18,7 +18,9 @@ export interface UserProfile {
 export class ProfileSectionService {
   private usersUrl = 'http://localhost:8080/accounts';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    let accountName = localStorage.getItem("name");
+  }
 
   getUserProfile(accountName: string): Observable<UserProfile> {
     return this.http.get<UserProfile>(`${this.usersUrl}/${accountName}/profileInfo`);

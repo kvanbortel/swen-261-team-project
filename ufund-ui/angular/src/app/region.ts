@@ -8,5 +8,6 @@ export enum Region {
   CAPITAL_DISTRICT = "Capital District",
   HUDSON_VALLEY = "Hudson Valley",
   NEW_YORK_CITY = "New York City",
-  LONG_ISLAND = "Long Island"
+  LONG_ISLAND = "Long Island",
+  NONE = "Prefer not to say"
 }

@@ -13,8 +13,10 @@ export class ProfileSectionComponent {
   constructor(private profileSectionService: ProfileSectionService) {}
 
   ngOnInit(): void {
-    this.profileSectionService.getUserProfile(this.accountName).subscribe(profile => {
-      this.userProfile = profile;
-    });
+    if (this.accountName != null) {
+      this.profileSectionService.getUserProfile(this.accountName).subscribe(profile => {
+        this.userProfile = profile;
+      });
+    }
   }
 }
