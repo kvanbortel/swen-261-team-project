@@ -120,6 +120,14 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/{accountName}/profileInfo")
+    public ResponseEntity<ArrayList<ProfileInfo>> getProfileInfo(@PathVariable String accountName) {
+        LOG.info("GET /accounts/" + accountName + "/profileInfo");
+        try {
+            ArrayList<ProfileInfo> profileInfo = accountDAO.get
+        }
+    }
 }
     
 

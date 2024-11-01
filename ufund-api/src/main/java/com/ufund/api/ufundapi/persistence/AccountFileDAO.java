@@ -9,15 +9,12 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 
+import com.ufund.api.ufundapi.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Basket;
-import com.ufund.api.ufundapi.model.BasketNeed;
-import com.ufund.api.ufundapi.model.Need;
 
 @Repository
 public class AccountFileDAO implements AccountDAO {
@@ -240,6 +237,21 @@ public class AccountFileDAO implements AccountDAO {
         }
 
         return basket.getNeeds();
+    }
+
+    /**
+     ** {@inheritDoc}
+     */
+    @Override
+    public ArrayList<ProfileInfo> getProfileInfo(String account) throws IOException {
+        Account accountObj = accounts.get(account);
+        if(accountObj == null){
+            return null;
+        }
+
+        ProfileInfo info = accountObj.getProfileInfo();
+
+        List<ProfileInfo> infos = new ArrayList<>(info.getProfileInfo());
     }
 
     /**

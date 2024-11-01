@@ -3,10 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Basket;
-import com.ufund.api.ufundapi.model.BasketNeed;
-import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.*;
 
 public interface AccountDAO{
 
@@ -20,6 +17,17 @@ public interface AccountDAO{
      * @throws IOException if an issue with underlying storage
      */
     ArrayList<BasketNeed> getNeeds(String account) throws IOException;
+
+    /**
+     * Retrieves all {@linkplain ProfileInfo} profile information
+     *
+     * @param account {String account} Account name
+     *
+     * @return An array of {@link ProfileInfo Info} objects, may be empty
+     *
+     * @throws IOException if an issue with underlying storage
+     */
+    ArrayList<ProfileInfo> getProfileInfo(String account) throws IOException;
 
      /**
      * Updates a {@linkplain Basket basket} with a {@linkplain BasketNeed BasketNeed
@@ -72,5 +80,4 @@ public interface AccountDAO{
      * @throws IOException if there is an error reading from the data source
      */
     Account getAccount(String accountName) throws IOException;
-
 }
