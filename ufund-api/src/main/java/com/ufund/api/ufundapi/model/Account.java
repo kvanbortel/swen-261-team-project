@@ -128,10 +128,21 @@ public class Account implements Comparable<Account> {
     }
 
     @Override
+    /**
+     * Compares the RANK of 2 users
+     * -1 if the rank of this is less than rank of other
+     * 1 if the rank of this is more than rank of other
+     */
     public int compareTo(Account other) {
-        if (this.getMoneyFunded() > other.getMoneyFunded()) { return  1;}
-        if (this.getMoneyFunded() < other.getMoneyFunded()) { return -1;}
-        // if they're the same
+        if (this.getMoneyFunded() > other.getMoneyFunded()) { return  -1;}
+        if (this.getMoneyFunded() < other.getMoneyFunded()) { return 1;}
+        // if they're the same... (tie-breaker 1)
+        if (this.getNeedsFunded() > other.getNeedsFunded()) { return -1; }
+        if (this.getNeedsFunded() < other.getNeedsFunded()) { return 1; }
+        // if they're the same again... take them in alpha order
+        if (this.getName().compareTo(other.getName()) < 0) { return -1; }
+        if (this.getName().compareTo(other.getName()) > 0) { return 1; }
+        // only possible if they are the same account
         return 0;
     }
 

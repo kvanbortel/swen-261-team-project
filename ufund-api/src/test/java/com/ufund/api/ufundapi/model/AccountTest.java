@@ -143,12 +143,12 @@ public class AccountTest {
         Account account1 = new Account("account1", "pass");
         Account account2 = new Account("account2", "pass");
         List<Account> accounts= new ArrayList<Account>();
-        accounts.add(account1);
         accounts.add(account2);
+        accounts.add(account1);
 
         List<Account> expected= new ArrayList<Account>();
-        expected.add(account2);
         expected.add(account1);
+        expected.add(account2);
 
         account1.addMoneyFunded(100);
         account2.addMoneyFunded(15);
@@ -163,7 +163,7 @@ public class AccountTest {
         Account account1 = new Account("account1", "pass");
         Account account2 = new Account("account2", "pass");
 
-        account1.addMoneyFunded(100);
+        account1.addMoneyFunded(1);
         account2.addMoneyFunded(15);
         
         assertEquals(1, account1.compareTo(account2));
@@ -185,15 +185,61 @@ public class AccountTest {
         Account account1 = new Account("account1", "pass");
         Account account2 = new Account("account2", "pass");
 
-        account1.addMoneyFunded(2);
+        account1.addMoneyFunded(100);
         account2.addMoneyFunded(15);
         
         assertEquals(-1, account1.compareTo(account2));
     }
 
     @Test
+    public void testCompareNeedTiebreakLT() {
+        Account account1 = new Account("account1", "pass");
+        Account account2 = new Account("account2", "pass");
+
+        account1.addMoneyFunded(15);
+        account2.addMoneyFunded(15);
+
+        account1.addNeedsFunded(3);
+        account2.addNeedsFunded(2);
+
+        assertEquals(-1, account1.compareTo(account2));
+    }
+    
+    @Test
+    public void testCompareNeedTiebreakGT() {
+        Account account1 = new Account("account1", "pass");
+        Account account2 = new Account("account2", "pass");
+
+        account1.addMoneyFunded(15);
+        account2.addMoneyFunded(15);
+
+        account1.addNeedsFunded(1);
+        account2.addNeedsFunded(2);
+
+        assertEquals(1, account1.compareTo(account2));
+    }
+
+    @Test 
+    public void testCompareNameTiebreakLT() {
+        Account account1 = new Account("account1", "pass");
+        Account account2 = new Account("account2", "pass");
+        // needsFunded and moneyFunded = 0
+
+        assertEquals(-1, account1.compareTo(account2));
+    }
+
+    @Test 
+    public void testCompareNameTiebreakGT() {
+        Account account1 = new Account("xaccount1", "pass");
+        Account account2 = new Account("account2", "pass");
+        // needsFunded and moneyFunded = 0
+
+        assertEquals(1, account1.compareTo(account2));
+    }
+
+    @Test
     public void testToString() {
-        Account account = new Account("ACCOUNT_NAME");
+        Account account = new Account("ACCOUNT_NAME", "pass");
 
         assertEquals("Account(ACCOUNT_NAME)", account.toString());
     }
