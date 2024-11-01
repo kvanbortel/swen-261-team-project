@@ -1,6 +1,9 @@
 package com.ufund.api.ufundapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.context.annotation.Profile;
+
+import java.lang.reflect.Field;
 
 public class ProfileInfo {
 
@@ -102,4 +105,24 @@ public class ProfileInfo {
      * @return the user's social security number
      */
     public String getSsn() { return ssn; }
+
+    /**
+     * Updates user's profile information
+     * @param info user's profile info from frontend form submission
+     */
+    public void updateProfileInfo(ProfileInfo info) {
+        if (info != null) {
+            for (Field field : ProfileInfo.class.getDeclaredFields()) {
+                field.setAccessible(true); // Allow access to private fields
+                try {
+                    Object value = field.get(info);
+                    if (value != null) {
+                        field.set(this, value);
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
