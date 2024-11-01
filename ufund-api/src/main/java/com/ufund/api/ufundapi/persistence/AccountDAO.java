@@ -18,17 +18,6 @@ public interface AccountDAO{
      */
     ArrayList<BasketNeed> getNeeds(String account) throws IOException;
 
-    /**
-     * Retrieves all {@linkplain ProfileInfo} profile information
-     *
-     * @param account {String account} Account name
-     *
-     * @return An array of {@link ProfileInfo Info} objects, may be empty
-     *
-     * @throws IOException if an issue with underlying storage
-     */
-    ArrayList<ProfileInfo> getProfileInfo(String account) throws IOException;
-
      /**
      * Updates a {@linkplain Basket basket} with a {@linkplain BasketNeed BasketNeed
      * }

@@ -242,21 +242,6 @@ public class AccountFileDAO implements AccountDAO {
     /**
      ** {@inheritDoc}
      */
-    @Override
-    public ArrayList<ProfileInfo> getProfileInfo(String account) throws IOException {
-        Account accountObj = accounts.get(account);
-        if(accountObj == null){
-            return null;
-        }
-
-        ProfileInfo info = accountObj.getProfileInfo();
-
-        List<ProfileInfo> infos = new ArrayList<>(info.getProfileInfo());
-    }
-
-    /**
-     ** {@inheritDoc}
-     */
     public Account getAccount(String accountName) throws IOException {
         return accounts.get(accountName); // Return the Account object or null if not found
     }
