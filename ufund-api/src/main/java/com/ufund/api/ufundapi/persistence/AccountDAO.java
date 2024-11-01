@@ -69,4 +69,16 @@ public interface AccountDAO{
      * @throws IOException if there is an error reading from the data source
      */
     Account getAccount(String accountName) throws IOException;
+
+    /**
+      * Retrieves all {@linkplain ProfileInfo} profile information
+      *
+      * @param account {String account} Account name
+      *
+      * @return A {@link ProfileInfo Info} object, may be empty
+      *
+      * @throws IOException if an issue with underlying storage
+      */
+    ProfileInfo getProfileInfo(String account) throws IOException;
+
 }
