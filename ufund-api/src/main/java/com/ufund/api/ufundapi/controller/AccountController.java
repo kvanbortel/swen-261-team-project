@@ -136,6 +136,9 @@ public class AccountController {
         LOG.info("GET /accounts/" + accountName + "/profileInfo");
         try {
             ProfileInfo profileInfo = accountDAO.getProfileInfo(accountName);
+            if (profileInfo == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
             return new ResponseEntity<ProfileInfo>(profileInfo, HttpStatus.OK);
         }
         catch (IOException e) {
