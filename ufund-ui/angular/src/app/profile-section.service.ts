@@ -20,6 +20,7 @@ export interface UserProfile {
 })
 export class ProfileSectionService {
   private usersUrl = 'http://localhost:8080/accounts';
+  accountName: string = '';
 
   constructor(private http: HttpClient, public authService: AuthService) {
     let accountName = localStorage.getItem("name");
@@ -34,7 +35,7 @@ export class ProfileSectionService {
   }
 
   updateProfileInfo(profileInfo: ProfileInfo): Observable<any> {
-      return this.http.put<ProfileInfo>(this.usersUrl, profileInfo, this.httpOptions).pipe(
+      return this.http.put<ProfileInfo>(`${this.usersUrl}/${this.accountName}/profileInfo`, profileInfo, this.httpOptions).pipe(
         tap(_ => console.log(`updated profileInfo for account name=${this.authService.name}`)),
         catchError(this.handleError<ProfileInfo>('updateProfileInfo'))
       );
