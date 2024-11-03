@@ -5,18 +5,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../storage/auth.service";
 import {CreateNeedDialogComponent} from "../create-need-dialog/create-need-dialog.component";
 import {EditProfileDialogComponent} from "../edit-profile-dialog/edit-profile-dialog.component";
-
-export interface ProfileData {
- alias: string,
- region: Region,
- pronouns: string,
- bio: string,
- password: string,
- email: string,
- phoneNumber: string,
- ssn: string
- profile?: any;
-}
+import {ProfileData} from "../ProfileData";
+import {ProfileInfo} from "../ProfileInfo";
 
 @Component({
   selector: 'app-edit-profile',

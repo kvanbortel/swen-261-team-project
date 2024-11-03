@@ -3,10 +3,9 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {ValidationErrorsService} from "../validation-errors.service";
 import {Region} from "../region";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {DialogData} from "../create-need/create-need.component";
-import {CupboardService} from "../cupboard.service";
-import {ProfileData} from "../edit-profile/edit-profile.component";
-import {Need} from "../Need";
+import {ProfileData} from "../ProfileData";
+import {ProfileInfo} from "../ProfileInfo";
+import {ProfileSectionService} from "../profile-section.service";
 
 @Component({
   selector: 'app-profile-info',
@@ -22,6 +21,7 @@ export class EditProfileDialogComponent {
     private validationService: ValidationErrorsService,
     public dialogRef: MatDialogRef<EditProfileDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ProfileData,
+    private profileSectionService: ProfileSectionService
   ) {
     this.profileForm = this.formBuilder.group({
       alias: [''],
@@ -56,7 +56,7 @@ export class EditProfileDialogComponent {
     }
 
     const profileData: ProfileInfo = {
-      id: this.data.profile?.id, // Include the ID for updates
+      profilePic: this.data.profile?.profilePic,
       alias: this.profileForm.value.alias,
       region: this.profileForm.value.region,
       pronouns: this.profileForm.value.pronouns,
@@ -64,7 +64,7 @@ export class EditProfileDialogComponent {
       password: this.profileForm.value.password,
       email: this.profileForm.value.email,
       phoneNumber: this.profileForm.value.phoneNumber,
-      ssn: this.profileForm.value.ssn,
+      ssn: this.profileForm.value.ssn
     };
 
     // Call the service to update the need
