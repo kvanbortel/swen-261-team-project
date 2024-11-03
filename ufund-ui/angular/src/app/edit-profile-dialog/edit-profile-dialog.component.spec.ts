@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import {EditProfileDialogComponent} from './edit-profile-dialog.component';
 
-describe('ProfileInfoComponent', () => {
+describe('EditProfileDialogComponent', () => {
   let component: EditProfileDialogComponent;
   let fixture: ComponentFixture<EditProfileDialogComponent>;
 

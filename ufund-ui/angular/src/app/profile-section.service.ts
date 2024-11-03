@@ -21,7 +21,7 @@ export interface UserProfile {
 export class ProfileSectionService {
   private usersUrl = 'http://localhost:8080/accounts';
 
-  constructor(private http: HttpClient, private authService = AuthService) {
+  constructor(private http: HttpClient, public authService: AuthService) {
     let accountName = localStorage.getItem("name");
   }
 

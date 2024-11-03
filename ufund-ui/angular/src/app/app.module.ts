@@ -12,10 +12,11 @@ import { CreateNeedComponent } from './create-need/create-need.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {
+  MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
-  MatDialogModule,
+  MatDialogModule, MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -35,7 +36,6 @@ import { BasketNeedComponent } from './basket-need/basket-need.component';
 import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { ProfileInfoComponent } from './edit-profile-dialog/edit-profile-dialog.component';
 import {MatOption, MatSelect} from "@angular/material/select";
 import { ProfileSectionComponent } from './profile-section/profile-section.component';
 import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-dialog.component';
@@ -61,10 +61,9 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     BasketNeedComponent,
     PostCheckoutComponent,
     ProfilePageComponent,
-    ProfileInfoComponent,
     ProfileSectionComponent,
     EditProfileDialogComponent,
-    EditProfileComponent
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +84,10 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     MatSelect,
     MatOption
   ],
-  providers: [LoginComponent],
+  providers: [LoginComponent,
+              {provide: MatDialogRef, useValue: {}},
+              {provide: MAT_DIALOG_DATA, useValue: {}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

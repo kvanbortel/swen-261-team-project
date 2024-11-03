@@ -4,6 +4,6 @@
     <img class="profilePic" src="assets/Paws&Claws.png">
     <label *ngIf="!this.authService.isAdmin()" class="username">{{this.authService.getName()}}</label>
   </div>
-  <app-profile-info></app-profile-info>
+  <app-edit-profile-dialog></app-edit-profile-dialog>
   <app-profile-section [accountName]="this.accountName"></app-profile-section>
 </div>

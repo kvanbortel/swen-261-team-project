@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, Optional} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidationErrorsService} from "../validation-errors.service";
 import {Region} from "../region";
@@ -8,7 +8,7 @@ import {ProfileInfo} from "../ProfileInfo";
 import {ProfileSectionService} from "../profile-section.service";
 
 @Component({
-  selector: 'app-profile-info',
+  selector: 'app-edit-profile-dialog',
   templateUrl: './edit-profile-dialog.component.html',
   styleUrl: './edit-profile-dialog.component.css'
 })
@@ -19,7 +19,7 @@ export class EditProfileDialogComponent {
   constructor(
     private formBuilder: FormBuilder,
     private validationService: ValidationErrorsService,
-    public dialogRef: MatDialogRef<EditProfileDialogComponent>,
+    @Optional() public dialogRef: MatDialogRef<EditProfileDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ProfileData,
     private profileSectionService: ProfileSectionService
   ) {
@@ -70,7 +70,7 @@ export class EditProfileDialogComponent {
     // Call the service to update the profileInfo
     this.profileSectionService.updateProfileInfo(profileData).subscribe({
       next: (response) => {
-        console.log(`Sucessfully updated profileInfo: ${response}`)
+        console.log(`Successfully updated profileInfo: ${response}`)
         this.dialogRef.close(response);
       },
       error: (error) => {
