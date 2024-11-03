@@ -67,14 +67,14 @@ export class EditProfileDialogComponent {
       ssn: this.profileForm.value.ssn
     };
 
-    // Call the service to update the need
+    // Call the service to update the profileInfo
     this.profileSectionService.updateProfileInfo(profileData).subscribe({
       next: (response) => {
-        console.log(`Sucessfully updated need: ${response}`)
+        console.log(`Sucessfully updated profileInfo: ${response}`)
         this.dialogRef.close(response);
       },
       error: (error) => {
-        console.error('Error updating need', error);
+        console.error('Error updating profileInfo', error);
       }
     });
   }
