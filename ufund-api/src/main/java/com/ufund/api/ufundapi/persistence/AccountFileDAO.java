@@ -251,6 +251,9 @@ public class AccountFileDAO implements AccountDAO {
      */
     @Override
     public ProfileInfo getProfileInfo(String accountName) throws IOException {
+        if (accountName == null) {
+            throw new IllegalArgumentException("accountName cannot be null");
+        }
         return accounts.get(accountName).getProfileInfo();
     }
 
