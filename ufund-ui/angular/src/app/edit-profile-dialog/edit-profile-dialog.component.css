@@ -1,11 +1,5 @@
 .main{
-  width: 26vw;
-  margin: 0 auto;
-}
-
-.form-field {
-  margin-bottom: 16px;
-  width: 26vw;
+  width: 30vw;
 }
 
 .form-button {
@@ -21,6 +15,15 @@
 
 .gray-button {
   background-color: #F4F4F4;
+}
+
+.edit-profile.mat-mdc-dialog-content {
+  max-height: 70vh !important;
+}
+
+.form-field {
+  margin-bottom: 16px;
+  width: 26vw;
 }
 
 @media only screen and (max-width: 600px) {
