@@ -50,7 +50,7 @@
             <div fxFlex="100%">
                 <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="bio" />
+                    <input matInput formControlName="email" />
                     <mat-error>
                         {{ getErrorMessage(profileForm.get('email'), 'Email', {}) }}
                     </mat-error>
@@ -59,7 +59,7 @@
             <div fxFlex="100%">
                 <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                     <mat-label>Phone Number</mat-label>
-                    <input matInput formControlName="bio" />
+                    <input matInput formControlName="phoneNumber" />
                     <mat-error>
                         {{ getErrorMessage(profileForm.get('phoneNumber'), 'Phone Number', {}) }}
                     </mat-error>
@@ -68,7 +68,7 @@
             <div fxFlex="100%">
                 <mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
                     <mat-label>SSN</mat-label>
-                    <input matInput formControlName="bio" />
+                    <input matInput formControlName="ssn" />
                     <mat-error>
                         {{ getErrorMessage(profileForm.get('ssn'), 'SSN', {}) }}
                     </mat-error>
