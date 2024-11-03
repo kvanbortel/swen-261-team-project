@@ -34,7 +34,6 @@ export class ProfileSectionService {
 
   updateProfileInfo(profileInfo: ProfileInfo): Observable<any> {
       let accountName = this.authService.getName();
-      console.log("Testing: " + accountName);
       return this.http.put<ProfileInfo>(`${this.usersUrl}/${accountName}/profileInfo`, profileInfo, this.httpOptions).pipe(
         tap(_ => console.log(`updated profileInfo for account name=${this.authService.name}`)),
         catchError(this.handleError<ProfileInfo>('updateProfileInfo'))

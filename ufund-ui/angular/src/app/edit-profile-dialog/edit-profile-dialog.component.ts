@@ -58,7 +58,7 @@ export class EditProfileDialogComponent {
     const profileData: ProfileInfo = {
       profilePic: this.data.profile?.profilePic,
       alias: this.profileForm.value.alias,
-      region: this.profileForm.value.region,
+      region: this.getRegionKey(this.profileForm.value.region),
       pronouns: this.profileForm.value.pronouns,
       bio: this.profileForm.value.bio,
       password: this.profileForm.value.password,
@@ -70,12 +70,19 @@ export class EditProfileDialogComponent {
     // Call the service to update the profileInfo
     this.profileSectionService.updateProfileInfo(profileData).subscribe({
       next: (response) => {
-        console.log(`Successfully updated profileInfo: ${response}`)
+        console.log("Profile data region: " + profileData.region);
+        console.log(`Successfully updated profileInfo: ${response}`);
         this.dialogRef.close(response);
       },
       error: (error) => {
         console.error('Error updating profileInfo', error);
       }
     });
+  }
+
+  // Helper function to get the enum key from the string value
+  private getRegionKey(regionValue: string): Region {
+    const regionKeys = Object.keys(Region).filter(key => Region[key as keyof typeof Region] === regionValue);
+    return regionKeys.length > 0 ? regionKeys[0] as Region : Region.NONE; // Default to NONE if not found
   }
 }
