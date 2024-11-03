@@ -70,6 +70,7 @@ public class Account {
     public Account(String name){
         this.name = name;
         this.basket = new Basket();
+        this.profileInfo = new ProfileInfo();
     }
 
     /**

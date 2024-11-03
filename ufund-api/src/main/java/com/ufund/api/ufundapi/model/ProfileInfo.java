@@ -53,6 +53,21 @@ public class ProfileInfo {
     }
 
     /**
+     * Construct empty ProfileInfo
+     */
+    public ProfileInfo() {
+        this.password = null;
+        this.profilePic = null;
+        this.pronouns = "";
+        this.alias = "";
+        this.bio = "";
+        this.region = Region.NONE;
+        this.phoneNumber = "";
+        this.email = "";
+        this.ssn = "";
+    }
+
+    /**
      * Returns the user's password
      * @return the user's password
      */
