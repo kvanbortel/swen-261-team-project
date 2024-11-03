@@ -1,23 +1,23 @@
 <div class="profile-section">
-  <div *ngIf="userProfile?.alias">
-    <strong>Alias:</strong> {{ userProfile.alias }}
+  <div *ngIf="profileInfo?.alias">
+    <strong>Alias:</strong> {{ profileInfo.alias }}
   </div>
-  <div *ngIf="userProfile?.region">
-    <strong>Region:</strong> {{ userProfile.region }}
+  <div *ngIf="profileInfo?.region && profileInfo.region !== Region.NONE">
+    <strong>Region:</strong> {{ profileInfo.region }}
   </div>
-  <div *ngIf="userProfile?.pronouns">
-    <strong>Pronouns:</strong> {{ userProfile.pronouns }}
+  <div *ngIf="profileInfo?.pronouns">
+    <strong>Pronouns:</strong> {{ profileInfo.pronouns }}
   </div>
-  <div *ngIf="userProfile?.bio">
-    <strong>Bio:</strong> {{ userProfile.bio }}
+  <div *ngIf="profileInfo?.bio">
+    <strong>Bio:</strong> {{ profileInfo.bio }}
   </div>
-  <div *ngIf="userProfile?.email">
-    <strong>Email:</strong> {{ userProfile.email }}
+  <div *ngIf="profileInfo?.email">
+    <strong>Email:</strong> {{ profileInfo.email }}
   </div>
-  <div *ngIf="userProfile?.phoneNumber">
-    <strong>Phone Number:</strong> {{ userProfile.phoneNumber }}
+  <div *ngIf="profileInfo?.phoneNumber">
+    <strong>Phone Number:</strong> {{ profileInfo.phoneNumber }}
   </div>
-  <div *ngIf="userProfile?.ssn">
-    <strong>SSN:</strong> {{ userProfile.ssn }}
+  <div *ngIf="profileInfo?.ssn">
+    <strong>SSN:</strong> {{ profileInfo.ssn }}
   </div>
 </div>

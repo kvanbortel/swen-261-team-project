@@ -5,8 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../storage/auth.service";
 import {CreateNeedDialogComponent} from "../create-need-dialog/create-need-dialog.component";
 import {EditProfileDialogComponent} from "../edit-profile-dialog/edit-profile-dialog.component";
-import {ProfileData} from "../ProfileData";
-import {ProfileInfo} from "../ProfileInfo";
+import {ProfileInfo} from "../profile-info";
 
 @Component({
   selector: 'app-edit-profile',
@@ -17,43 +16,19 @@ export class EditProfileComponent {
   @Input() profileInfo?: ProfileInfo;
   isAdmin: boolean = this.authService.isAdmin();
 
-  data: ProfileData = {
-    alias: "",
-    region: Region.NONE,
-    pronouns: "",
-    bio: "",
-    password: "",
-    email: "",
-    phoneNumber: "",
-    ssn: ""
-  }
-
   constructor(public dialog: MatDialog, public authService: AuthService) {}
 
-  @Output() dataFromChild = new EventEmitter<null>();
+  @Output() dataFromChild = new EventEmitter<ProfileInfo>();
 
   openDialog(): void {
-    // Populated with current profile's data
-    this.data = {
-      alias: this.profileInfo?.alias ?? "",
-      region: this.profileInfo?.region ?? Region.NONE,
-      pronouns: this.profileInfo?.pronouns ?? "",
-      bio: this.profileInfo?.bio ?? "",
-      password: this.profileInfo?.password ?? "",
-      email: this.profileInfo?.email ?? "",
-      phoneNumber: this.profileInfo?.phoneNumber ?? "",
-      ssn: this.profileInfo?.ssn ?? "",
-      profile: this.profileInfo
-    }
-
     const dialogRef = this.dialog.open(EditProfileDialogComponent, {
-      data: this.data,
+      data: this.profileInfo,
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.data = result;
-      this.dataFromChild.emit();
+      this.profileInfo = result;
+      this.dataFromChild.emit(result);
     });
   }
 }

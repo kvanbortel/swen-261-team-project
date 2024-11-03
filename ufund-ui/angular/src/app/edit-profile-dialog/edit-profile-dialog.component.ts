@@ -3,9 +3,8 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {ValidationErrorsService} from "../validation-errors.service";
 import {Region} from "../region";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProfileData} from "../ProfileData";
-import {ProfileInfo} from "../ProfileInfo";
 import {ProfileSectionService} from "../profile-section.service";
+import {ProfileInfo} from "../profile-info";
 
 @Component({
   selector: 'app-edit-profile-dialog',
@@ -20,7 +19,7 @@ export class EditProfileDialogComponent {
     private formBuilder: FormBuilder,
     private validationService: ValidationErrorsService,
     @Optional() public dialogRef: MatDialogRef<EditProfileDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ProfileData,
+    @Inject(MAT_DIALOG_DATA) public data: ProfileInfo,
     private profileSectionService: ProfileSectionService
   ) {
     this.profileForm = this.formBuilder.group({
@@ -55,8 +54,8 @@ export class EditProfileDialogComponent {
       return;
     }
 
-    const profileData: ProfileInfo = {
-      profilePic: this.data.profile?.profilePic,
+    const profileData: ProfileInfo = new ProfileInfo({
+      profilePic: this.data.profilePic,
       alias: this.profileForm.value.alias,
       region: this.getRegionKey(this.profileForm.value.region),
       pronouns: this.profileForm.value.pronouns,
@@ -65,12 +64,11 @@ export class EditProfileDialogComponent {
       email: this.profileForm.value.email,
       phoneNumber: this.profileForm.value.phoneNumber,
       ssn: this.profileForm.value.ssn
-    };
+    });
 
     // Call the service to update the profileInfo
     this.profileSectionService.updateProfileInfo(profileData).subscribe({
       next: (response) => {
-        console.log("Profile data region: " + profileData.region);
         console.log(`Successfully updated profileInfo: ${response}`);
         this.dialogRef.close(response);
       },

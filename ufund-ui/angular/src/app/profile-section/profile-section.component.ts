@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {UserProfile, ProfileSectionService} from "../profile-section.service";
+import {ProfileSectionService} from "../profile-section.service";
+import {Region} from "../region";
+import {ProfileInfo} from "../profile-info";
 
 @Component({
   selector: 'app-profile-section',
@@ -8,15 +10,9 @@ import {UserProfile, ProfileSectionService} from "../profile-section.service";
 })
 export class ProfileSectionComponent {
   @Input() accountName!: string;
-  userProfile!: UserProfile;
+  @Input() profileInfo!: ProfileInfo;
 
   constructor(private profileSectionService: ProfileSectionService) {}
 
-  ngOnInit(): void {
-    if (this.accountName != null) {
-      this.profileSectionService.getUserProfile(this.accountName).subscribe(profile => {
-        this.userProfile = profile;
-      });
-    }
-  }
+  protected readonly Region = Region;
 }
