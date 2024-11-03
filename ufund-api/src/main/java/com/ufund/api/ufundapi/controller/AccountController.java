@@ -122,6 +122,15 @@ public class AccountController {
         }
     }
 
+    /**
+     * Responds to the GET request for a {@linkplain ProfileInfo info} in a specific account
+     *
+     * @param accountName the name of the account to retrieve
+     *
+     * @return ResponseEntity a {@link ProfileInfo info} object (may be empty) and
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
     @GetMapping("/{accountName}/profileInfo")
     public ResponseEntity<ProfileInfo> getProfileInfo(@PathVariable String accountName) {
         LOG.info("GET /accounts/" + accountName + "/profileInfo");
@@ -132,6 +141,32 @@ public class AccountController {
         catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Update the ProfileInfo for a specified account
+     * @param accountName the name of the user to update info for
+     * @param profileInfo the info to update the user with
+     * @return 200 OK if the update was successful
+     * 404 NOT FOUND if the account does not exist
+     * 500 INTERNAL SERVER ERROR otherwise
+     */
+    @PutMapping("/{accountName}/profileInfo")
+    public ResponseEntity<ProfileInfo> updateProfileInfo(@PathVariable String accountName, @RequestBody ProfileInfo profileInfo) {
+        LOG.info("PUT /accounts/" + accountName + "/profileInfo");
+
+        try {
+            ProfileInfo updatedProfileInfo = accountDAO.updateProfileInfo(accountName, profileInfo);
+
+            if (updatedProfileInfo == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Account not found
+            }
+
+            return new ResponseEntity<>(updatedProfileInfo, HttpStatus.OK); // Successfully updated
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // Handle internal errors
         }
     }
 }
