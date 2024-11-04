@@ -7,9 +7,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import java.time.Instant;
 
 /**
  * Class for testing the Account model class
@@ -100,7 +103,7 @@ public class AccountTest {
 
     @Test 
     public void testGetMoneyFunded() {
-        Account account = new Account("NAME");
+        Account account = new Account("NAME", "PASS");
 
         double amount = account.getMoneyFunded();
 
@@ -109,7 +112,7 @@ public class AccountTest {
 
     @Test 
     public void testGetNeedsFunded() {
-        Account account = new Account("NAME");
+        Account account = new Account("NAME", "PASS");
 
         int quantity = account.getNeedsFunded();
 
@@ -118,7 +121,7 @@ public class AccountTest {
 
     @Test
     public void testAddMoneyFunded() {
-        Account account = new Account("NAME");
+        Account account = new Account("NAME", "PASS");
 
         double addMe = 38.28;
 
@@ -129,7 +132,7 @@ public class AccountTest {
 
     @Test
     public void testAddNeedsFunded() {
-        Account account = new Account("NAME");
+        Account account = new Account("NAME", "PASS");
 
         int addMe = 7;
 
@@ -140,8 +143,8 @@ public class AccountTest {
 
     @Test
     public void testOrderAccounts() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("account1", "PASS");
+        Account account2 = new Account("account2", "PASS");
         List<Account> accounts= new ArrayList<Account>();
         accounts.add(account2);
         accounts.add(account1);
@@ -160,8 +163,8 @@ public class AccountTest {
 
     @Test
     public void testCompareGT() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("account1", "PASS");
+        Account account2 = new Account("account2", "PASS");
 
         account1.addMoneyFunded(1);
         account2.addMoneyFunded(15);
@@ -171,17 +174,21 @@ public class AccountTest {
 
     @Test
     public void testCompareEQ() {
-        Account account1 = new Account("account");
-        Account account2 = new Account("account");
+        Account account1 = new Account("account", "PASS");
+        Account account2 = new Account("account", "PASS");
         // names, needsFunded, and moneyFundeda are the same
+
+        Instant instant = Instant.EPOCH;
+        account1.setLastCheckoutInstant(instant);
+        account2.setLastCheckoutInstant(instant);
         
         assertEquals(0, account1.compareTo(account2));
     }
 
     @Test
     public void testCompareLT() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("account1", "PASS");
+        Account account2 = new Account("account2", "PASS");
 
         account1.addMoneyFunded(100);
         account2.addMoneyFunded(15);
@@ -191,8 +198,8 @@ public class AccountTest {
 
     @Test
     public void testCompareNeedTiebreakLT() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("account1", "PASS");
+        Account account2 = new Account("account2", "PASS");
 
         account1.addMoneyFunded(15);
         account2.addMoneyFunded(15);
@@ -205,8 +212,8 @@ public class AccountTest {
     
     @Test
     public void testCompareNeedTiebreakGT() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("account1", "PASS");
+        Account account2 = new Account("account2", "PASS");
 
         account1.addMoneyFunded(15);
         account2.addMoneyFunded(15);
@@ -218,9 +225,9 @@ public class AccountTest {
     }
 
     @Test 
-    public void testCompareNameTiebreakLT() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
+    public void testCompareInstantTiebreakLT() {
+        Account account1 = new Account("account1", "PASS");
+        Account account2 = new Account("account2", "PASS");
         // needsFunded and moneyFunded = 0
 
         assertEquals(-1, account1.compareTo(account2));
@@ -228,26 +235,26 @@ public class AccountTest {
 
     @Test 
     public void testCompareNameTiebreakGT() {
-        Account account1 = new Account("xaccount1");
-        Account account2 = new Account("account2");
+        Account account1 = new Account("xaccount1", "PASS");
+        Account account2 = new Account("account2", "PASS");
         // needsFunded and moneyFunded = 0
 
-        assertEquals(1, account1.compareTo(account2));
+        assertEquals(1, account2.compareTo(account1));
     }
 
     @Test
     public void testToString() {
-        Account account = new Account("ACCOUNT_NAME");
+        Account account = new Account("ACCOUNT_NAME", "PASS");
 
         assertEquals("Account(ACCOUNT_NAME)", account.toString());
     }
 
     @Test
     public void testRank3() {
-        Account account1 = new Account("account1");
-        Account account2 = new Account("account2");
-        Account account3 = new Account("account3");
-        Account account4 = new Account("account4");
+        Account account1 = new Account("account1", "PASS");
+        Account account2 = new Account("account2", "PASS");
+        Account account3 = new Account("account3", "PASS");
+        Account account4 = new Account("account4", "PASS");
 
         // ordered by alpha because there are no needs or money funded
 
@@ -258,5 +265,31 @@ public class AccountTest {
         accounts.add(account4);
         assertEquals(3, account3.getRank(accounts));
 
+    }
+
+    @Test
+    public void testSetLast() {
+        Instant instant = Instant.EPOCH;
+
+        Account account = new Account("ACCOUNT", "PASS");
+
+        account.setLastCheckoutInstant(instant);
+
+        assertEquals(instant, account.getLastCheckoutInstant());
+    }
+
+    @Test 
+    void testSetLastAuto() {
+        Account account = new Account("ACCOUNT", "PASS");
+        Instant before = Instant.now();
+
+        account.setLastCheckoutInstant();
+
+        Instant after = Instant.now();
+
+        boolean isBetween = before.compareTo(account.getLastCheckoutInstant()) < 0
+            && after.compareTo(account.getLastCheckoutInstant()) > 0;
+
+        assertTrue(isBetween);
     }
 }

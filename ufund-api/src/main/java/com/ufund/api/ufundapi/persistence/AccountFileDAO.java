@@ -20,6 +20,8 @@ import com.ufund.api.ufundapi.model.Basket;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
 
+import java.time.*;
+
 @Repository
 public class AccountFileDAO implements AccountDAO {
 
@@ -191,6 +193,7 @@ public class AccountFileDAO implements AccountDAO {
             // this MUST happen before the basket is changed
             accountObj.addMoneyFunded(basket.getCost());
             accountObj.addNeedsFunded(basket.getNeedCount());
+            accountObj.setLastCheckoutInstant(Instant.now());
             for (BasketNeed bNeed : needs) {
                 Need newNeed = needDAO.getNeed(bNeed.getNeed().getId());
                 int newQuantity = newNeed.getQuantity() - bNeed.getQuantity();
