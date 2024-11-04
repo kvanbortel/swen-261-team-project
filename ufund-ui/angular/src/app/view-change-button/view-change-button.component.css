@@ -1,11 +1,11 @@
-/* Button for adding to basket */
-.basket-button {
+.change-button {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   background-color: var(--baseOrange);
   position: absolute;
   right: 3vh;
+  margin-top: 0vh;
   padding: 10px;
   border-radius: 5px;
   border-style: none;
@@ -20,25 +20,25 @@
 }
 
 /* Hover effect for the entire item */
-.basket-button:active {
+.change-button:active {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.basket-button:hover .hide-text {
+.change-button:hover .hide-text {
   display:contents;
 }
 
-.basket-button .hide-text {
+.change-button .hide-text {
   display: none;
 }
 
-.basket-button:hover {
+.change-button:hover {
   background-color: var(--hoveredOrange); /* Darker shade of orange */
 }
 
 @media only screen and (max-width: 600px) {
-  .basket-button:hover .hide-text {
+  .change-button:hover .hide-text {
     display:none;
   }
 }

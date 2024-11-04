@@ -260,17 +260,22 @@ public class AccountFileDAO implements AccountDAO {
     public Boolean addImage(String accountName, byte[] img) throws IOException{
         Dotenv dotenv = Dotenv.load();
         Cloudinary cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
-        System.out.println(cloudinary.config.cloudName);
 
         Map params1 = ObjectUtils.asMap(
-            "use_filename", true,
-            "unique_filename", false,
-            "overwrite", true
+            "public_id", accountName
         );
 
-        System.out.println(cloudinary.uploader().upload(img, params1));
+        String newLink = (String)cloudinary.uploader().upload(img, params1).get("url");
 
-        return false;
+        Account accountObj = accounts.get(accountName);
+
+        if(accountObj == null){
+            return false;
+        }
+
+        accountObj.setImageLink(newLink);
+
+        return true;
     }
 
 }

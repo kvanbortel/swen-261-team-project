@@ -13,6 +13,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
+  image: string = '';
 
   private AccountURL = "http://localhost:8080/accounts";
 
@@ -67,6 +68,14 @@ export class AuthService implements CanActivate{
     return this.name;
   }
 
+  setImage(img: string){
+    this.image = img; 
+  }
+
+  getImage() {
+    return this.image;
+  }
+
   addAccount(name: String): void {
     this.http
       .post(this.AccountURL, name, this.httpOptions)
@@ -74,6 +83,9 @@ export class AuthService implements CanActivate{
       .subscribe({
         next: (response) => {
           console.log('Now logged in as ' + name + ':', response);
+          this.image = (response as Account).imageLink
+          localStorage.setItem("image", this.image)
+          console.log("LOGGING", this.image)
         },
         error: (err) => {
           console.error('Error logging in:', err);

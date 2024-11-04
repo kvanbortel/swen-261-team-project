@@ -32,7 +32,6 @@ export class LoginComponent {
     localStorage.setItem("name", name);
     this.authService.addAccount(name);  
 
-
     this.router.navigate(['/home'], {});
   }
 
@@ -45,5 +44,6 @@ export class LoginComponent {
   ngOnInit(): void {
     this.authService.setName('');
     localStorage.setItem("name", '');
+    localStorage.setItem("image", '');
   }
 }

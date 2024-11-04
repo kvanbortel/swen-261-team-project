@@ -17,6 +17,8 @@ public class Account {
     @JsonProperty String name;
     //serializable basket
     @JsonProperty Basket basket;
+    // link to the profile picture
+    @JsonProperty String imageLink;
 
     /**
      * Constructs an account object using a given name and a given Basket
@@ -26,6 +28,7 @@ public class Account {
     public Account(@JsonProperty("name") String name, @JsonProperty("basket") Basket basket) {
         this.name = name;
         this.basket = basket;
+        this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
     }
 
     /**
@@ -51,6 +54,14 @@ public class Account {
      */
     public Basket getBasket(){
         return this.basket;
+    }
+
+    /**
+     * Set the profile picture of an account object
+     * @param imageL the new image link for a profile picture
+     */
+    public void setImageLink(String imageL){
+        this.imageLink = imageL;
     }
 
     /**
