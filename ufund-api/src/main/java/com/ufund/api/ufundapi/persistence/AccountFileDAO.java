@@ -257,7 +257,7 @@ public class AccountFileDAO implements AccountDAO {
     /**
      ** {@inheritDoc}
      */
-    public Boolean addImage(String accountName, byte[] img) throws IOException{
+    public String addImage(String accountName, byte[] img) throws IOException{
         Dotenv dotenv = Dotenv.load();
         Cloudinary cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
 
@@ -270,12 +270,12 @@ public class AccountFileDAO implements AccountDAO {
         Account accountObj = accounts.get(accountName);
 
         if(accountObj == null){
-            return false;
+            return null;
         }
 
         accountObj.setImageLink(newLink);
 
-        return true;
+        return newLink;
     }
 
 }

@@ -146,11 +146,13 @@ export class AuthService implements CanActivate{
     console.log("posting image")
     console.log(image)
     this.http
-      .post(this.AccountURL, image)
-      .pipe(catchError(this.handleError<Account>('addAccount')))
+      .post(this.AccountURL + '/' + this.name + "/image", formData, { responseType: 'text' })
+      .pipe(catchError(this.handleError<String>('addAccount')))
       .subscribe({
         next: (response) => {
           console.log('Image posted successfully:', response);
+          localStorage.setItem("image", response as string)
+          this.image = response as string
         },
         error: (err) => {
           console.error('Error logging in:', err);

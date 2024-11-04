@@ -79,9 +79,9 @@ public interface AccountDAO{
      *
      * @param accountName the name of the account to retrieve
      * @param img the file to be stored as an image
-     * @return true if uploaded sucessfully, otherwise false
+     * @return the link to the new image
      * @throws IOException if there is an error reading from the data source
      */
-    Boolean addImage(String accountName, byte[] img) throws IOException;
+    String addImage(String accountName, byte[] img) throws IOException;
 
 }

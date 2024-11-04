@@ -1,5 +1,5 @@
 .main{
-    margin-top: -10vh;
+    margin-top: 2vh;
     
 }
 
@@ -13,7 +13,7 @@
 }
 
 .popup {
-  background-color: rgba(92, 92, 92, 0.3);
+  background-color: rgba(241, 176, 97, 0.3);
   border-radius: 10px;
   white-space: nowrap;
   display: inline-block;

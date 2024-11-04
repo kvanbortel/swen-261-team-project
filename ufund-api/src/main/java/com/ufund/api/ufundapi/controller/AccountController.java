@@ -135,12 +135,12 @@ public class AccountController {
         try {
             byte[] imageBytes = imageFile.getBytes();
 
-            boolean upload = accountDAO.addImage(accountName, imageBytes);
+            String upload = accountDAO.addImage(accountName, imageBytes);
 
-            if(!upload){
+            if(upload == null){
                 return  new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
             }
-            return ResponseEntity.ok("Image uploaded successfully");
+            return ResponseEntity.ok(upload);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
