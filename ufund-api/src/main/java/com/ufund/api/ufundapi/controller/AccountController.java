@@ -129,10 +129,11 @@ public class AccountController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain BasketNeed needs} in a specific account
+     * Responds to the GET request for a specific {@linkplain Account account} 
      * 
-     * @return ResponseEntity with array of {@link BasketNeed need} objects (may be empty) and
+     * @return ResponseEntity with an {@link Account account} objects
      * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if no such account exists
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{accountName}")

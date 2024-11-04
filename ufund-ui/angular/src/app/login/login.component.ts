@@ -31,25 +31,26 @@ export class LoginComponent {
   login(name: string, password: string) {
     this.messageLoginService.clear()
     let passwordHash = md5(password)
-    if(name == '' || name == null || password == ''){
+    if(name == '' || name == null || password == ''){//check username and password aren't empty
       this.messageLoginService.add("Username and password must have substance.", false)
       return
     }
-    if(!this.onlyLettersAndNumbers(name)){
+    if(!this.onlyLettersAndNumbers(name)){//check that username only contains alphanumeric numbers
       this.messageLoginService.add("Only usernames containing alphanumeric characters allowed.", false)
       return
     }
-    if(name.length > 13 || password.length > 13 || name.length < 4 || password.length < 4){
+    if(name.length > 13 || password.length > 13 || name.length < 4 || password.length < 4){ 
+      //check that usernames and passwords are >= than 4 and <= 13 in length
       this.messageLoginService.add("Only usernames and passwords of length greater than 4 and less than 13.", false)
       return
     }
-    if(!this.isAlpha(name.substring(0, 1))){
+    if(!this.isAlpha(name.substring(0, 1))){ //check that usernames start with a letter 
       this.messageLoginService.add("Only usernames starting with a letter allowed.", false)
       return
     }
-    this.authService.getAccount(name).subscribe( (result) =>{
-      if(result){
-        if(passwordHash != result.passwordHash){
+    this.authService.getAccount(name).subscribe( (result) =>{ //get account from backend and subscribe to the result
+      if(result){ 
+        if(passwordHash != result.passwordHash){ //if account already exists, check if password hashes are equal
           this.messageLoginService.add("Incorrect password.", false)
           return
         }
@@ -58,7 +59,7 @@ export class LoginComponent {
         this.router.navigate(['/home']);  
       }
       else{
-        this.authService.addAccount(name, passwordHash).subscribe({
+        this.authService.addAccount(name, passwordHash).subscribe({ //add new account if it doesn't exist
           next: (response) => {
               this.authService.setName(name);
               localStorage.setItem("name", name);
@@ -70,27 +71,29 @@ export class LoginComponent {
           }
       });
       }
-
     })
   }
 
-
+  //function mapping enter key to login function for input fields in login component
   submitEnter(event: KeyboardEvent, name: string, passwordHash: string) {
     if (event.key === 'Enter') {
       this.login(name, passwordHash);
     }
   }
 
+  //runs on initialization, resets credentials on login page
   ngOnInit(): void {
     this.messageLoginService.add('', false);
     this.authService.setName('');
     localStorage.setItem("name", '');
   }
 
+  //regex function that returns whether a string only consists of letters and numbers
   onlyLettersAndNumbers(str : string) {
     return Boolean(str.match(/^[A-Za-z0-9]*$/));
   }
 
+  //regex function that returns whether a string only consists of letters
   isAlpha(str: string) {
     return Boolean(str.match("[a-zA-Z]+"));
 }
