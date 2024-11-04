@@ -119,12 +119,11 @@ public class AccountFileDAO implements AccountDAO {
     /**
      ** {@inheritDoc}
      */
-    public Account createAccount(String name) throws IOException {
+    public Account createAccount(String name, String passwordHash) throws IOException {
         if (accounts.containsKey(name)) {
-
             return null;
         }
-        Account newAccount = new Account(name, new Basket());
+        Account newAccount = new Account(name, passwordHash);
         accounts.put(name, newAccount);
         save(); // may throw an IOException
         return newAccount;

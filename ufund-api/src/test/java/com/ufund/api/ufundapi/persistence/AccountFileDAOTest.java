@@ -77,10 +77,10 @@ public class AccountFileDAOTest {
 
         // accounts baskets match the related index in testBaskets
         testAccounts = new Account[4];
-        testAccounts[0] = new Account("Max");
-        testAccounts[1] = new Account("Kayla", testBaskets[1]);
-        testAccounts[2] = new Account("Jonah", testBaskets[2]);
-        testAccounts[3] = new Account("Ryan", testBaskets[3]);
+        testAccounts[0] = new Account("Max", "pass");
+        testAccounts[1] = new Account("Kayla", testBaskets[1], "pass");
+        testAccounts[2] = new Account("Jonah", testBaskets[2], "pass");
+        testAccounts[3] = new Account("Ryan", testBaskets[3], "pass");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the need array above
@@ -210,7 +210,7 @@ public class AccountFileDAOTest {
 
     @Test
     public void testCreateAccount() throws IOException {
-        Account created = accountFileDAO.createAccount("Bichael");
+        Account created = accountFileDAO.createAccount("Bichael", "pass");
         Account gotten = accountFileDAO.getAccount("Bichael");
 
         assertEquals(created, gotten);
@@ -218,7 +218,7 @@ public class AccountFileDAOTest {
 
     @Test
     public void testCreateExistingAccount() throws IOException {
-        Account created = accountFileDAO.createAccount("Max");
+        Account created = accountFileDAO.createAccount("Max", "pass");
 
         assertNull(created);
     }

@@ -1,12 +1,20 @@
 <html>
 <div class="main">
-    <label class="login-title" for="login-box">Please enter a valid account name below:</label>
+    <div class = "input-container">
+        <label class="login-title" for="login-box">Please enter a valid username:</label>
+        <input id="login" class="login-input" (keydown)="submitEnter($event, userBox.value, passwordBox.value)" type="text" #userBox id="login-box" />
+    </div>
     <br />
-    <input id="login" class="login-input" (keydown)="submitEnter($event, loginBox.value)" type="text" #loginBox id="login-box" />
-    <br />
-    <button class="login-button" type="button" (click)="login(loginBox.value)">
+    <div class = "input-container">
+        <label class="login-title" for="login-box">Please enter a valid password:</label>
+        <input id="login" class="login-input" (keydown)="submitEnter($event, userBox.value, passwordBox.value)" type="text" #passwordBox id="login-box" />
+    </div>
+    <button class="login-button" type="button" (click)="login(userBox.value, passwordBox.value)">
         Login
     </button>
+     <ul class="error-area">
+        <div class="popup" *ngFor='let message of messageLoginService.messages'> {{message.message}} </div>
+    </ul>
 </div>
 
 </html>
