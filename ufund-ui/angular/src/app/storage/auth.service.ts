@@ -138,6 +138,26 @@ export class AuthService implements CanActivate{
       });
   }
 
+  postImage(image: File): void{
+    const formData = new FormData();
+    formData.append('image', image);
+
+
+    console.log("posting image")
+    console.log(image)
+    this.http
+      .post(this.AccountURL, image)
+      .pipe(catchError(this.handleError<Account>('addAccount')))
+      .subscribe({
+        next: (response) => {
+          console.log('Image posted successfully:', response);
+        },
+        error: (err) => {
+          console.error('Error logging in:', err);
+        },
+      });
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
