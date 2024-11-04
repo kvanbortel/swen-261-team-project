@@ -26,7 +26,7 @@ export class CupboardNeedComponent {
   addToBasket() {
     console.log(this.need);
     this.authService.addToBasket(1, this.need);
-    this.messageService.add("Added 1 " + this.need?.name)
+    this.messageService.add("Added 1 " + this.need?.name, true)
   }
 
   sendUpdateNeeds(){

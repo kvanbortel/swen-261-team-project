@@ -44,15 +44,15 @@ public class AccountController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Account> createAccount(@RequestBody String name) {
-        LOG.info("POST /accounts " + name);
+    public ResponseEntity<Account> createAccount(@RequestBody AccountRequest accountRequest) {
+        LOG.info("POST /accounts " + accountRequest.getName());
         
         try {
-            Account newAccount = accountDAO.createAccount(name);
+            Account newAccount = accountDAO.createAccount(accountRequest.getName(), accountRequest.getPasswordHash());
             if (newAccount != null) {
                 return new ResponseEntity<Account>(newAccount, HttpStatus.CREATED);
             }
-            return new ResponseEntity<Account>(this.accountDAO.getAccount(name), HttpStatus.OK);
+            return new ResponseEntity<Account>(this.accountDAO.getAccount(accountRequest.getName()), HttpStatus.OK);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
@@ -122,6 +122,32 @@ public class AccountController {
             Account account = accountDAO.getAccount(accountName);
             ArrayList<BasketNeed> needs = accountDAO.getNeeds(accountName);
             return new ResponseEntity<ArrayList<BasketNeed>>(needs, HttpStatus.OK);
+        }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Responds to the GET request for a specific {@linkplain Account account} 
+     * 
+     * @return ResponseEntity with an {@link Account account} objects
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if no such account exists
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("/{accountName}")
+    public ResponseEntity<Account> getAccount(@PathVariable String accountName) {
+        LOG.info("GET /accounts/" + accountName);
+        try {
+            Account account = accountDAO.getAccount(accountName);
+            if(account != null){
+                return new ResponseEntity<Account>(account, HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
         catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());

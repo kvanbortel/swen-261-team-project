@@ -7,14 +7,16 @@ import { Message } from './Message';
 export class MessageService {
   messages: Message[] = [];
 
-  add(message: string) {
+  add(message: string, timeout: boolean) {
     const id: string = this.generateFakeUUID()
     const data: Message = {message: message, id: id}
     this.messages.push(data);
 
-    setTimeout(() => {
-      this.messages = this.messages.filter(m => m.id !== id);
-    }, 2000);
+    if(timeout){
+      setTimeout(() => {
+        this.messages = this.messages.filter(m => m.id !== id);
+      }, 2000);
+    }
   }
 
   clear() {
