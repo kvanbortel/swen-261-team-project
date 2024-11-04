@@ -28,6 +28,8 @@ import com.ufund.api.ufundapi.model.Basket;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
 
+import java.time.*;
+
 /**
  * 
  */
@@ -262,6 +264,8 @@ public class AccountFileDAOTest {
         byte[] img = Files.readAllBytes(Paths.get(path));
 
         assertNull(accountFileDAO.addImage("FAKE", img));
+    }
+
     @Test 
     public void testCheckoutUpdatesFundingData() throws IOException {
         Account account = accountFileDAO.getAccount("Kayla");
