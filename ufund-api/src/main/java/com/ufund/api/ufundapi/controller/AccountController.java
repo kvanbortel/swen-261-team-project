@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -118,11 +119,29 @@ public class AccountController {
     public ResponseEntity<ArrayList<BasketNeed>> getNeeds(@PathVariable String accountName) {
         LOG.info("GET /accounts/" + accountName + "/needs");
         try {
+            accountDAO.addImage(accountName, null);
             Account account = accountDAO.getAccount(accountName);
             ArrayList<BasketNeed> needs = accountDAO.getNeeds(accountName);
             return new ResponseEntity<ArrayList<BasketNeed>>(needs, HttpStatus.OK);
         }
         catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/{accountName}/image")
+    public ResponseEntity<String> handleImageUpload(@PathVariable String accountName, @RequestParam("image") MultipartFile imageFile) {
+        try {
+            byte[] imageBytes = imageFile.getBytes();
+
+            boolean upload = accountDAO.addImage(accountName, imageBytes);
+
+            if(!upload){
+                return  new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+            }
+            return ResponseEntity.ok("Image uploaded successfully");
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

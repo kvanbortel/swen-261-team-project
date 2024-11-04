@@ -19,6 +19,11 @@ import com.ufund.api.ufundapi.model.Basket;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
 
+import com.cloudinary.*;
+import com.cloudinary.utils.ObjectUtils;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.springframework.web.multipart.MultipartFile;
+
 @Repository
 public class AccountFileDAO implements AccountDAO {
 
@@ -247,6 +252,25 @@ public class AccountFileDAO implements AccountDAO {
      */
     public Account getAccount(String accountName) throws IOException {
         return accounts.get(accountName); // Return the Account object or null if not found
+    }
+
+    /**
+     ** {@inheritDoc}
+     */
+    public Boolean addImage(String accountName, byte[] img) throws IOException{
+        Dotenv dotenv = Dotenv.load();
+        Cloudinary cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
+        System.out.println(cloudinary.config.cloudName);
+
+        Map params1 = ObjectUtils.asMap(
+            "use_filename", true,
+            "unique_filename", false,
+            "overwrite", true
+        );
+
+        System.out.println(cloudinary.uploader().upload(img, params1));
+
+        return false;
     }
 
 }

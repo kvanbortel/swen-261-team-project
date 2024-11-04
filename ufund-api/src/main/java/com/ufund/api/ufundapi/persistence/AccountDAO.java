@@ -1,4 +1,5 @@
 package com.ufund.api.ufundapi.persistence;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,5 +73,15 @@ public interface AccountDAO{
      * @throws IOException if there is an error reading from the data source
      */
     Account getAccount(String accountName) throws IOException;
+
+    /**
+     * Add a profile picture to an account
+     *
+     * @param accountName the name of the account to retrieve
+     * @param img the file to be stored as an image
+     * @return true if uploaded sucessfully, otherwise false
+     * @throws IOException if there is an error reading from the data source
+     */
+    Boolean addImage(String accountName, byte[] img) throws IOException;
 
 }
