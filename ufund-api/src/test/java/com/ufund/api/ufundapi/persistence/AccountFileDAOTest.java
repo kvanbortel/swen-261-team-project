@@ -12,21 +12,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ufund.api.ufundapi.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Basket;
-import com.ufund.api.ufundapi.model.BasketNeed;
-import com.ufund.api.ufundapi.model.Need;
 
 /**
  * 
  */
 @Tag("Persistence-tier")
 public class AccountFileDAOTest {
+    private static final ProfileInfo TEST_PROFILE_INFO = new ProfileInfo();
+    private static final Level TEST_LEVEL = Level.NOOB;
 
     AccountFileDAO accountFileDAO;
     Account[] testAccounts;
@@ -78,9 +77,9 @@ public class AccountFileDAOTest {
         // accounts baskets match the related index in testBaskets
         testAccounts = new Account[4];
         testAccounts[0] = new Account("Max");
-        testAccounts[1] = new Account("Kayla", testBaskets[1]);
-        testAccounts[2] = new Account("Jonah", testBaskets[2]);
-        testAccounts[3] = new Account("Ryan", testBaskets[3]);
+        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL);
+        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL);
+        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the need array above
