@@ -8,7 +8,6 @@ import java.lang.reflect.Field;
 public class ProfileInfo {
 
     // Serializable variables
-    @JsonProperty String password;
     @JsonProperty String profilePic;
     @JsonProperty String pronouns;
     @JsonProperty String alias;
@@ -20,7 +19,6 @@ public class ProfileInfo {
 
     /**
      * Constructs a ProfileInfo object using a given name and a given Basket
-     * @param password the user's password
      * @param profilePic a link to the user's profile picture
      * @param pronouns the user's pronouns
      * @param alias the user's nickname to appear on the leaderboard
@@ -31,7 +29,6 @@ public class ProfileInfo {
      * @param ssn the user's social security number
      */
     public ProfileInfo(
-            @JsonProperty("password") String password,
             @JsonProperty("profilePic") String profilePic,
             @JsonProperty("pronouns") String pronouns,
             @JsonProperty("alias") String alias,
@@ -41,7 +38,6 @@ public class ProfileInfo {
             @JsonProperty("email") String email,
             @JsonProperty("ssn") String ssn
             ) {
-        this.password = password;
         this.profilePic = profilePic;
         this.pronouns = pronouns;
         this.alias = alias;
@@ -56,7 +52,6 @@ public class ProfileInfo {
      * Construct empty ProfileInfo
      */
     public ProfileInfo() {
-        this.password = null;
         this.profilePic = null;
         this.pronouns = "";
         this.alias = "";
@@ -66,12 +61,6 @@ public class ProfileInfo {
         this.email = "";
         this.ssn = "";
     }
-
-    /**
-     * Returns the user's password
-     * @return the user's password
-     */
-    public String getPassword() { return password; }
 
     /**
      * Return the user's profile picture
