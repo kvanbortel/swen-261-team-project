@@ -251,7 +251,7 @@ public class AccountFileDAOTest {
     }
 
     /**
-     * 
+     * tests creating an account
      * @throws IOException
      */
     @Test
@@ -262,6 +262,10 @@ public class AccountFileDAOTest {
         assertEquals(created, gotten);
     }
 
+    /**
+     * Tests attempting to create an already existing account
+     * @throws IOException
+     */
     @Test
     public void testCreateExistingAccount() throws IOException {
         Account created = accountFileDAO.createAccount("Max", "pass");
@@ -269,6 +273,10 @@ public class AccountFileDAOTest {
         assertNull(created);
     }
 
+    /**
+     * tests adding a need to an account's basket
+     * @throws IOException
+     */
     @Test
     public void testAddNeed() throws IOException {
         BasketNeed ryanNeed = accountFileDAO.updateNeed("Ryan", testNeeds[0], 1);
@@ -276,6 +284,10 @@ public class AccountFileDAOTest {
         assertEquals(ryanNeed.getQuantity(), 2);
     }
 
+    /**
+     * tests removing a need from a basket
+     * @throws IOException
+     */
     @Test
     public void testRemoveNeed() throws IOException {
         BasketNeed kaylaNeed = accountFileDAO.updateNeed("Kayla", testNeeds[1], -1);
@@ -283,11 +295,19 @@ public class AccountFileDAOTest {
         assertEquals(2, kaylaNeed.getQuantity());
     }
 
+    /**
+     * tests updating a need when the account doesn't exist
+     * @throws IOException
+     */
     @Test
     public void testUpdateNeedForFakeAccount() throws IOException {
         assertNull(accountFileDAO.updateNeed("FAKE", testNeeds[1], 1));
     }
 
+    /**
+     * tests that checkout updates an account's moneyFunded and needsFunded
+     * @throws IOException
+     */
     @Test 
     public void testCheckoutUpdatesFundingData() throws IOException {
         Account account = accountFileDAO.getAccount("Kayla");
@@ -302,6 +322,10 @@ public class AccountFileDAOTest {
 
     }
 
+    /**
+     * tests getting all accounts in order of rank
+     * @throws IOException
+     */
     @Test
     public void testGetRanks() throws IOException {
         Account kayla = accountFileDAO.getAccount("Kayla");

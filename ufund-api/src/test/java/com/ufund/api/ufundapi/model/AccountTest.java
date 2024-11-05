@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -101,6 +102,9 @@ public class AccountTest {
         assertNotEquals(account1, account2);
     }
 
+    /**
+     * Gets the money funded for an account
+     */
     @Test 
     public void testGetMoneyFunded() {
         Account account = new Account("NAME", "PASS");
@@ -110,6 +114,9 @@ public class AccountTest {
         assertEquals(0.0, amount);
     }
 
+    /**
+     * Test getting number of needs funded
+     */
     @Test 
     public void testGetNeedsFunded() {
         Account account = new Account("NAME", "PASS");
@@ -119,6 +126,9 @@ public class AccountTest {
         assertEquals(0.0, quantity);
     }
 
+    /**
+     * tests adding money to moneyFunded
+     */
     @Test
     public void testAddMoneyFunded() {
         Account account = new Account("NAME", "PASS");
@@ -130,6 +140,7 @@ public class AccountTest {
         assertEquals(addMe, newAmount);
     }
 
+    /** tests adding a number of needs funded */
     @Test
     public void testAddNeedsFunded() {
         Account account = new Account("NAME", "PASS");
@@ -141,6 +152,7 @@ public class AccountTest {
         assertEquals(addMe, newQuantity);
     }
 
+    /** tests ordering accounts based on rank */
     @Test
     public void testOrderAccounts() {
         Account account1 = new Account("account1", "PASS");
@@ -161,6 +173,7 @@ public class AccountTest {
         assertEquals(expected, accounts);
     }
 
+    /** tests comparing a rank that is GT another */
     @Test
     public void testCompareGT() {
         Account account1 = new Account("account1", "PASS");
@@ -172,6 +185,7 @@ public class AccountTest {
         assertEquals(1, account1.compareTo(account2));
     }
 
+    /** tests comparing 2 ranks */
     @Test
     public void testCompareEQ() {
         Account account1 = new Account("account", "PASS");
@@ -185,6 +199,7 @@ public class AccountTest {
         assertEquals(0, account1.compareTo(account2));
     }
 
+    /** tests comparing 2 ranks */
     @Test
     public void testCompareLT() {
         Account account1 = new Account("account1", "PASS");
@@ -196,6 +211,7 @@ public class AccountTest {
         assertEquals(-1, account1.compareTo(account2));
     }
 
+    /** tests comparing 2 ranks with the same moneyFunded */
     @Test
     public void testCompareNeedTiebreakLT() {
         Account account1 = new Account("account1", "PASS");
@@ -210,6 +226,7 @@ public class AccountTest {
         assertEquals(-1, account1.compareTo(account2));
     }
     
+    /** tests comparing 2 ranks with the same moneyFunded */
     @Test
     public void testCompareNeedTiebreakGT() {
         Account account1 = new Account("account1", "PASS");
@@ -224,24 +241,29 @@ public class AccountTest {
         assertEquals(1, account1.compareTo(account2));
     }
 
+    /** tests comparing 2 ranks with the same moneyFunded and needsFunded */
     @Test 
-    public void testCompareInstantTiebreakLT() {
+    public void testCompareInstantTiebreakLT() throws InterruptedException {
         Account account1 = new Account("account1", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
         Account account2 = new Account("account2", "PASS");
         // needsFunded and moneyFunded = 0
 
         assertEquals(-1, account1.compareTo(account2));
     }
 
+    /** tests comparing 2 ranks with the same moneyFunded and needsFunded */
     @Test 
-    public void testCompareInstantTiebreakGT() {
+    public void testCompareInstantTiebreakGT() throws InterruptedException {
         Account account1 = new Account("xaccount1", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
         Account account2 = new Account("account2", "PASS");
         // needsFunded and moneyFunded = 0
 
-        assertEquals(1, account2.compareTo(account1));
+        assertEquals(1, account2.compareTo(account1), account1.toString() + "\n" + account2.toString());
     }
 
+    /** tests creating a string for account */
     @Test
     public void testToString() {
         Account account = new Account("ACCOUNT_NAME", "PASS");
@@ -249,14 +271,18 @@ public class AccountTest {
         assertEquals("Account(ACCOUNT_NAME)", account.toString());
     }
 
+    /** tests getting the rank of an account */
     @Test
-    public void testRank3() {
+    public void testRank3() throws InterruptedException {
         Account account1 = new Account("account1", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
         Account account2 = new Account("account2", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
         Account account3 = new Account("account3", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
         Account account4 = new Account("account4", "PASS");
 
-        // ordered by alpha because there are no needs or money funded
+        // ordered by time because there are no needs or money funded
 
         List<Account> accounts = new ArrayList<>();
         accounts.add(account1);
@@ -267,6 +293,7 @@ public class AccountTest {
 
     }
 
+    /** tests setting the last checkout instant */
     @Test
     public void testSetLast() {
         Instant instant = Instant.EPOCH;
@@ -278,6 +305,7 @@ public class AccountTest {
         assertEquals(instant, account.getLastCheckoutInstant());
     }
 
+    /** tests that setting lastCheckoutInstant works when nothing is passed */
     @Test 
     void testSetLastAuto() {
         Account account = new Account("ACCOUNT", "PASS");
