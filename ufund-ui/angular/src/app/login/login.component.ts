@@ -56,6 +56,8 @@ export class LoginComponent {
         }
         this.authService.setName(name); 
         localStorage.setItem("name", name); 
+        localStorage.setItem("image", result.imageLink)
+        console.log("logged in as user", result)
         this.router.navigate(['/home']);  
       }
       else{
@@ -63,6 +65,8 @@ export class LoginComponent {
           next: (response) => {
               this.authService.setName(name);
               localStorage.setItem("name", name);
+              localStorage.setItem("image", response.imageLink)
+              console.log("logged in as user", response)
               this.router.navigate(['/home']);
           },
           error: (err) => {
@@ -86,6 +90,7 @@ export class LoginComponent {
     this.messageLoginService.add('', false);
     this.authService.setName('');
     localStorage.setItem("name", '');
+    localStorage.setItem("image", '');
   }
 
   //regex function that returns whether a string only consists of letters and numbers

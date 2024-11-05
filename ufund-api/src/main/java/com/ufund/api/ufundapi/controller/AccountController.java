@@ -119,7 +119,6 @@ public class AccountController {
     public ResponseEntity<ArrayList<BasketNeed>> getNeeds(@PathVariable String accountName) {
         LOG.info("GET /accounts/" + accountName + "/needs");
         try {
-            accountDAO.addImage(accountName, null);
             Account account = accountDAO.getAccount(accountName);
             ArrayList<BasketNeed> needs = accountDAO.getNeeds(accountName);
             return new ResponseEntity<ArrayList<BasketNeed>>(needs, HttpStatus.OK);
@@ -158,15 +157,16 @@ public class AccountController {
 
     @PostMapping("/{accountName}/image")
     public ResponseEntity<String> handleImageUpload(@PathVariable String accountName, @RequestParam("image") MultipartFile imageFile) {
+        LOG.info("POST /accounts/" + accountName + "/image");
         try {
             byte[] imageBytes = imageFile.getBytes();
 
-            boolean upload = accountDAO.addImage(accountName, imageBytes);
+            String upload = accountDAO.addImage(accountName, imageBytes);
 
-            if(!upload){
+            if(upload == null){
                 return  new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
             }
-            return ResponseEntity.ok("Image uploaded successfully");
+            return ResponseEntity.ok(upload);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

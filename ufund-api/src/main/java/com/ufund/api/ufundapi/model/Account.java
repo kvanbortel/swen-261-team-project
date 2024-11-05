@@ -19,6 +19,8 @@ public class Account {
     @JsonProperty Basket basket;
     //serializable password hash
     @JsonProperty String passwordHash;
+    // link to the profile picture
+    @JsonProperty String imageLink;
 
     /**
      * Constructs an account object using a given name and a given Basket
@@ -29,6 +31,7 @@ public class Account {
         this.name = name;
         this.basket = basket;
         this.passwordHash = passwordHash;
+        this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
     }
 
     /**
@@ -39,6 +42,7 @@ public class Account {
         this.name = name;
         this.basket = new Basket();
         this.passwordHash = passwordHash;
+        this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
     }
 
     /**
@@ -65,6 +69,14 @@ public class Account {
         return this.passwordHash;
     }
 
+
+    /**
+     * Set the profile picture of an account object
+     * @param imageL the new image link for a profile picture
+     */
+    public void setImageLink(String imageLink){
+        this.imageLink = imageLink;
+    }
 
     /**
      * {@inheritDoc}

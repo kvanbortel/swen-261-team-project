@@ -72,7 +72,7 @@ export class BasketNeedComponent {
       this.authService.addToBasket(
         this.quantityForm.value.quantity - this.need.quantity,
         this.need.need
-      );
+      ).subscribe();
       this.need.quantity = this.quantityForm.value.quantity
     }
   }
@@ -87,7 +87,7 @@ export class BasketNeedComponent {
     this.authService.addToBasket(
       -this.need.quantity,
       this.need.need
-    );
+    ).subscribe();
     this.deleteNeed.emit(this.need);
   }
   

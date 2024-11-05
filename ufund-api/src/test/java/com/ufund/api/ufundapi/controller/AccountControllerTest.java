@@ -1,6 +1,10 @@
 package com.ufund.api.ufundapi.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -13,6 +17,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.Basket;
@@ -282,6 +288,62 @@ public class AccountControllerTest {
         // Invoke
         
         ResponseEntity<Account> response = accountController.getAccount(TEST_NAME);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    //test sucessful image upload
+    @Test
+    public void testUploadImageSuccess() throws IOException {
+        // Setup
+
+        String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
+        
+        byte[] img = Files.readAllBytes(Paths.get(path));
+        when(mockAccountDAO.addImage(TEST_NAME, img)).thenReturn(path);
+
+        // Invoke
+        MultipartFile result = new MockMultipartFile("image", new FileInputStream(new File(path)));
+        var response = accountController.handleImageUpload(TEST_NAME, result);
+
+        // Analyze.to
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(path, response.getBody());
+    }
+
+    //test unsucessful image upload
+    @Test
+    public void testUploadImageFail() throws IOException {
+        // Setup
+
+        String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
+        
+        byte[] img = Files.readAllBytes(Paths.get(path));
+        when(mockAccountDAO.addImage(TEST_NAME, img)).thenReturn(null);
+
+        // Invoke
+        MultipartFile result = new MockMultipartFile("image", new FileInputStream(new File(path)));
+        var response = accountController.handleImageUpload(TEST_NAME, result);
+
+        // Analyze.to
+        assertEquals(HttpStatus.UNSUPPORTED_MEDIA_TYPE, response.getStatusCode());
+    }
+
+    //test throw database error
+    @Test
+    public void testUploadImageException() throws IOException {
+        // Setup
+
+        String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
+        
+        byte[] img = Files.readAllBytes(Paths.get(path));
+
+        doThrow(new IOException()).when(mockAccountDAO).addImage(TEST_NAME, img);
+
+        // Invoke
+        MultipartFile result = new MockMultipartFile("image", new FileInputStream(new File(path)));
+        var response = accountController.handleImageUpload(TEST_NAME, result);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());

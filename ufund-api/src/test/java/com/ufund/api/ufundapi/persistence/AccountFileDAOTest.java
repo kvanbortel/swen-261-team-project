@@ -9,6 +9,8 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,8 @@ public class AccountFileDAOTest {
     BasketNeed[] testBasketNeeds;
     ObjectMapper mockObjectMapper;
     NeedDAO mockNeedDAO;
+
+    String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
 
     /**
      * Before each test, we will create and inject a Mock Object Mapper to
@@ -240,6 +244,20 @@ public class AccountFileDAOTest {
     @Test
     public void testUpdateNeedForFakeAccount() throws IOException {
         assertNull(accountFileDAO.updateNeed("FAKE", testNeeds[1], 1));
+    }
+
+    @Test
+    public void testAddImage() throws IOException {
+        byte[] img = Files.readAllBytes(Paths.get(path));
+
+        assertEquals("http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730819252/Kayla.png", accountFileDAO.addImage("Kayla", img));
+    }
+
+    @Test
+    public void testAddImageFakeAccount() throws IOException {
+        byte[] img = Files.readAllBytes(Paths.get(path));
+
+        assertNull(accountFileDAO.addImage("FAKE", img));
     }
 
     

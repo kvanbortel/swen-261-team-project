@@ -13,6 +13,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
+  image: string = '';
 
   private AccountURL = "http://localhost:8080/accounts";
 
@@ -67,6 +68,14 @@ export class AuthService implements CanActivate{
     return this.name;
   }
 
+  setImage(img: string){
+    this.image = img; 
+  }
+
+  getImage() {
+    return this.image;
+  }
+
 
   addAccount(name: string, passwordHash: string): Observable<any> {
     const body = {name, passwordHash };
@@ -111,24 +120,37 @@ export class AuthService implements CanActivate{
       );
   }
 
-  addToBasket(amount: number, need?: Need): void {
-    console.log('changing by', amount);
-    console.log(
-      this.AccountURL + '/' + this.name + '/needs/' + amount
-    );
-    this.http
-      .put(
+  addToBasket(amount: number, need?: Need): Observable<BasketNeed> {
+    return this.http
+      .put<BasketNeed>(
         this.AccountURL + '/' + this.name + '/needs/' + amount,
         need,
         this.httpOptions
       )
-      .pipe(catchError(this.handleError<Account>('updateBasketNeed')))
+      .pipe(
+          tap((response) => console.log('need added to basket', response)),
+          catchError(this.handleError<BasketNeed>('basketNeeds'))
+        );
+  }
+
+  postImage(image: File): void{
+    const formData = new FormData();
+    formData.append('image', image);
+
+
+    console.log("posting image")
+    console.log(image)
+    this.http
+      .post(this.AccountURL + '/' + this.name + "/image", formData, { responseType: 'text' })
+      .pipe(catchError(this.handleError<String>('addAccount')))
       .subscribe({
         next: (response) => {
-          console.log('Need added to basket successfully:', response);
+          console.log('Image posted successfully:', response);
+          localStorage.setItem("image", response as string)
+          this.image = response as string
         },
         error: (err) => {
-          console.error('Error adding to basket:', err);
+          console.error('Error logging in:', err);
         },
       });
   }

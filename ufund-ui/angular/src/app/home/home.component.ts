@@ -31,7 +31,10 @@ export class HomeComponent {
     if(name != null){
       this.authService.setName(name);
     }
+    let image = localStorage.getItem("image")
+    if(image != null){
+      this.authService.setImage(image);
+    }
     this.isAdmin = this.authService.isAdmin();
-
   }
 }
