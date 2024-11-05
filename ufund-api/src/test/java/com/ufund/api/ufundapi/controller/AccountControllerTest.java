@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.ufund.api.ufundapi.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Basket;
-import com.ufund.api.ufundapi.model.BasketNeed;
-import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.AccountDAO;
 
 /**
@@ -33,7 +33,9 @@ public class AccountControllerTest {
     // Local test data variables
     private static final String TEST_NAME = "AccountA1";
     private static final Need TEST_NEED = new Need("123456", "NeedA1", "Need for testing", 0, 1, 0);
-    
+    private static final ProfileInfo TEST_PROFILE_INFO = new ProfileInfo();
+    private static final Level TEST_LEVEL = Level.NOOB;
+
     private static BasketNeed[] basketNeedArray = {(new BasketNeed(TEST_NEED, 1))};
     private static final ArrayList<BasketNeed> basketNeeds = new ArrayList<>(Arrays.asList(basketNeedArray));
     private static final Basket TEST_BASKET = new Basket();
@@ -68,7 +70,7 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountBasket() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL);
 
         when(mockAccountDAO.createAccount(TEST_NAME)).thenReturn(account);
 
@@ -84,7 +86,7 @@ public class AccountControllerTest {
     @Test
     public void testCreateExistingAccount() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL);
 
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
@@ -146,7 +148,7 @@ public class AccountControllerTest {
     @Test
     public void testIncrementNeedNotFound() throws Exception {
         
-        Account account = new Account(TEST_NAME, (TEST_BASKET));
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL);
         when((mockAccountDAO).updateNeed(TEST_NAME, TEST_NEED, 1)).thenReturn(null);
 
         // Invoke
@@ -214,7 +216,7 @@ public class AccountControllerTest {
     @Test
     public void testGetNeeds() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, (TEST_BASKET));
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL);
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
