@@ -25,8 +25,23 @@ export class CupboardNeedComponent {
 
   addToBasket() {
     console.log(this.need);
-    this.authService.addToBasket(1, this.need);
-    this.messageService.add("Added 1 " + this.need?.name, true)
+    this.authService.addToBasket(1, this.need).subscribe({
+        next: (response) => {
+          if(response.quantity > response.need.quantity){
+            // trying to add over the max
+            this.messageService.add("Cannot add more of this need", true)
+          }
+          else{
+            // all good to add
+            this.messageService.add("Added 1 " + this.need?.name, true)
+          }
+        },
+        error: (err) => {
+          console.error('Error adding to basket:', err);
+        },
+      }
+    );
+
   }
 
   sendUpdateNeeds(){

@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="!this.authService.isAdmin()" class="container">
 <img class="pic" src="{{this.authService.getImage()}}">
 
 <div class="file-upload-container">

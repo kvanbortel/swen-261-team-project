@@ -120,26 +120,17 @@ export class AuthService implements CanActivate{
       );
   }
 
-  addToBasket(amount: number, need?: Need): void {
-    console.log('changing by', amount);
-    console.log(
-      this.AccountURL + '/' + this.name + '/needs/' + amount
-    );
-    this.http
-      .put(
+  addToBasket(amount: number, need?: Need): Observable<BasketNeed> {
+    return this.http
+      .put<BasketNeed>(
         this.AccountURL + '/' + this.name + '/needs/' + amount,
         need,
         this.httpOptions
       )
-      .pipe(catchError(this.handleError<Account>('updateBasketNeed')))
-      .subscribe({
-        next: (response) => {
-          console.log('Need added to basket successfully:', response);
-        },
-        error: (err) => {
-          console.error('Error adding to basket:', err);
-        },
-      });
+      .pipe(
+          tap((response) => console.log('need added to basket', response)),
+          catchError(this.handleError<BasketNeed>('basketNeeds'))
+        );
   }
 
   postImage(image: File): void{
