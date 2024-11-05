@@ -18,12 +18,6 @@ public class Account {
     @JsonProperty String name;
     @JsonProperty Basket basket;
     @JsonProperty ProfileInfo profileInfo;
-    @JsonProperty boolean isGod;
-    @JsonProperty boolean isPublic;
-    @JsonProperty int moneyFunded;
-    @JsonProperty int needsFunded;
-    @JsonProperty Instant lastDonated;
-    @JsonProperty int rank;
     @JsonProperty Level level;
 
     /**
@@ -31,35 +25,17 @@ public class Account {
      * @param name the username
      * @param basket the user's basket object
      * @param profileInfo the user's profile information
-     * @param isGod whether the user has god status
-     * @param isPublic whether the account is visible for searches
-     * @param moneyFunded the total amount of money user funded
-     * @param needsFunded the total amount of Needs user funded
-     * @param lastDonated the time the user last donated
-     * @param rank the user's numerical position on the leaderboard
      * @param level the user's level
      */
     public Account(
             @JsonProperty("name") String name,
             @JsonProperty("basket") Basket basket,
             @JsonProperty("profileInfo") ProfileInfo profileInfo,
-            @JsonProperty("isGod") boolean isGod,
-            @JsonProperty("isPublic") boolean isPublic,
-            @JsonProperty("moneyFunded") int moneyFunded,
-            @JsonProperty("needsFunded") int needsFunded,
-            @JsonProperty("lastDonated") Instant lastDonated,
-            @JsonProperty("rank") int rank,
             @JsonProperty("level") Level level
             ) {
         this.name = name;
         this.basket = basket;
         this.profileInfo = profileInfo;
-        this.isGod = isGod;
-        this.isPublic = isPublic;
-        this.moneyFunded = moneyFunded;
-        this.needsFunded = needsFunded;
-        this.lastDonated = lastDonated;
-        this.rank = rank;
         this.level = level;
     }
 
@@ -96,42 +72,6 @@ public class Account {
     public ProfileInfo getProfileInfo() {
         return this.profileInfo;
     }
-
-    /**
-     * Returns the isGod status for an account object
-     * @return the isGod status for an account object
-     */
-    public boolean isGod() { return isGod; }
-
-    /**
-     * Returns the isPublic status for an account object
-     * @return the isPublic status for an account object
-     */
-    public boolean isPublic() { return isPublic; }
-
-    /**
-     * Returns the amount of money a user funded
-     * @return the amount of money a user funded
-     */
-    public int getMoneyFunded() { return moneyFunded; }
-
-    /**
-     * Returns the amount of needs a user funded
-     * @return the amount of needs a user funded
-     */
-    public int getNeedsFunded() { return needsFunded; }
-
-    /**
-     * Returns the timestamp a user last donated
-     * @return the timestamp a user last donated
-     */
-    public Instant getLastDonated() { return lastDonated; }
-
-    /**
-     * Returns the rank of a user
-     * @return the rank of a user
-     */
-    public int getRank() { return rank; }
 
     /**
      * Returns the level of the user
