@@ -11,7 +11,7 @@ import {ProfileInfo} from "../profile-info";
   templateUrl: './edit-profile-dialog.component.html',
   styleUrl: './edit-profile-dialog.component.css'
 })
-export class EditProfileDialogComponent implements  OnChanges {
+export class EditProfileDialogComponent {
   profileForm: FormGroup;
   regions = Object.values(Region); // Get enum values for dropdown
 
@@ -32,21 +32,17 @@ export class EditProfileDialogComponent implements  OnChanges {
       phoneNumber: ['', Validators.pattern(/(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/)],
       ssn: ['', Validators.pattern(/^\d{3}-\d{2}-\d{4}$/)]
     });
-  }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['data'] && this.data) {
-      this.profileForm.patchValue({
-        alias: this.data.alias,
-        region: this.data.region,
-        pronouns: this.data.pronouns,
-        bio: this.data.bio,
-        password: this.data.password,
-        email: this.data.email,
-        phoneNumber: this.data.phoneNumber,
-        ssn: this.data.ssn
-      });
-    }
+    this.profileForm.patchValue({
+      alias: this.data.alias,
+      region: this.data.region,
+      pronouns: this.data.pronouns,
+      bio: this.data.bio,
+      password: this.data.password,
+      email: this.data.email,
+      phoneNumber: this.data.phoneNumber,
+      ssn: this.data.ssn
+    });
   }
 
   getErrorMessage(control: AbstractControl | null, fieldName: string, errorMessages: { [key: string]: string }): string {

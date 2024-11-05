@@ -3,7 +3,7 @@
   <div class="flex-container">
     <img class="profilePic" src="assets/Paws&Claws.png">
     <label *ngIf="!this.authService.isAdmin()" class="username">{{this.authService.getName()}}</label>
-    <app-edit-profile [profileInfo] = "this.profileInfo" (dataFromChild)="this.setProfileInfo()"></app-edit-profile>
+    <app-edit-profile [profileInfo] = "this.profileInfo" (dataFromChild)="this.setProfileInfo($event)"></app-edit-profile>
   </div>
   <app-profile-section *ngIf="this.accountName" [accountName]="this.accountName" [profileInfo]="this.profileInfo"></app-profile-section>
 </div>

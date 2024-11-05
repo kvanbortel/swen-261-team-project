@@ -19,7 +19,7 @@ export class ProfilePageComponent {
 
   ngOnInit(): void {
     this.accountName = localStorage.getItem("name");
-    if(this.accountName != null){
+    if (this.accountName != null){
       this.authService.setName(this.accountName);
       this.profileSectionService.getProfileInfo(this.accountName).subscribe(profile => {
         this.profileInfo = profile
@@ -27,7 +27,7 @@ export class ProfilePageComponent {
     }
   }
 
-  setProfileInfo() {
-    this.dataFromChild.emit();
+  setProfileInfo(profileInfo: ProfileInfo) {
+    this.profileInfo = profileInfo;
   }
 }
