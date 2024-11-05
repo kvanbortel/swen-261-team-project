@@ -33,7 +33,7 @@ export class CupboardNeedComponent {
           }
           else{
             // all good to add
-            this.messageService.add("Added 1 " + this.need?.name, true)
+            this.messageService.add(response.quantity + " " + this.need?.name + " in basket", true)
           }
         },
         error: (err) => {
