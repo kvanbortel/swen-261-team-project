@@ -307,11 +307,15 @@ public class AccountTest {
 
     /** tests that setting lastCheckoutInstant works when nothing is passed */
     @Test 
-    void testSetLastAuto() {
+    void testSetLastAuto() throws InterruptedException{
         Account account = new Account("ACCOUNT", "PASS");
         Instant before = Instant.now();
+        
+        TimeUnit.MILLISECONDS.sleep(10);
 
         account.setLastCheckoutInstant();
+
+        TimeUnit.MILLISECONDS.sleep(10);
 
         Instant after = Instant.now();
 
