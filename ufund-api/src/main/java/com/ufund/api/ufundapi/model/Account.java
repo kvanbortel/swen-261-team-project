@@ -42,6 +42,7 @@ public class Account {
         this.name = name;
         this.basket = new Basket();
         this.passwordHash = passwordHash;
+        this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
     }
 
     /**
