@@ -5,7 +5,6 @@ export interface ProfileInfoJSON {
   region: string;
   pronouns: string;
   bio: string;
-  password: string;
   email: string;
   phoneNumber: string;
   ssn: string;
