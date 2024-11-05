@@ -234,7 +234,7 @@ public class AccountTest {
     }
 
     @Test 
-    public void testCompareNameTiebreakGT() {
+    public void testCompareInstantTiebreakGT() {
         Account account1 = new Account("xaccount1", "PASS");
         Account account2 = new Account("account2", "PASS");
         // needsFunded and moneyFunded = 0

@@ -103,6 +103,10 @@ public class AccountFileDAOTest {
         accountFileDAO = new AccountFileDAO("doesnt_matter.txt",mockObjectMapper, mockNeedDAO);
     }
 
+    /**
+     * Tests getting an account
+     * @throws IOException
+     */
     @Test
     public void testGetAccount() throws IOException {
         // Invoke
@@ -112,6 +116,10 @@ public class AccountFileDAOTest {
         assertEquals(testAccounts[0], acc);
     }
 
+    /**
+     * Tests getting needs for an Account
+     * @throws IOException
+     */
     @Test
     public void testGetNeeds() throws IOException {
         // Invoke
@@ -120,6 +128,10 @@ public class AccountFileDAOTest {
         assertEquals(testBaskets[1].getNeeds(), needs);
     }
 
+    /**
+     * Tests getting needs for an account that doesn't exist
+     * @throws IOException
+     */
     @Test
     public void testGetNeedsNullAccount() throws IOException {
         // Invoke
@@ -128,6 +140,10 @@ public class AccountFileDAOTest {
         assertNull(needs);
     }
 
+    /**
+     * Tests removing a null Need
+     * @throws IOException
+     */
     @Test
     public void testRemoveNullNeed() throws IOException {
         // Setup
@@ -141,6 +157,10 @@ public class AccountFileDAOTest {
         assertTrue(needs.size() == 1);
     }
 
+    /**
+     * Tests the FileDAO returning a decreased need
+     * @throws IOException
+     */
     @Test
     public void testDropDecreasedNeed() throws IOException {
         // Setup
@@ -160,6 +180,10 @@ public class AccountFileDAOTest {
         }
     }
 
+    /**
+     * tests the checkout functionality
+     * @throws IOException
+     */
     @Test 
     public void testCheckout() throws IOException {
         // Setup to fufill all of one need
@@ -178,6 +202,10 @@ public class AccountFileDAOTest {
         assertEquals(needs.size(), 0);
     }
 
+    /**
+     * tests checking out for a null account
+     * @throws IOException
+     */
     @Test 
     public void testCheckoutNullAccount() throws IOException {
         // Invoke
@@ -187,6 +215,10 @@ public class AccountFileDAOTest {
         assertTrue(!checkedout);
     }
 
+    /**
+     * Tests checkout for a need with a low quantity (checks out to become zero quantity)
+     * @throws IOException
+     */
     @Test 
     public void testCheckoutLowNeed() throws IOException {
         // Setup 
@@ -202,6 +234,10 @@ public class AccountFileDAOTest {
         assertTrue(!checkedout);
     }
 
+    /**
+     * checks out a null need
+     * @throws IOException
+     */
     @Test 
     public void testCheckoutNullNeed() throws IOException {
         // Setup 
@@ -214,6 +250,10 @@ public class AccountFileDAOTest {
         assertTrue(!checkedout);
     }
 
+    /**
+     * 
+     * @throws IOException
+     */
     @Test
     public void testCreateAccount() throws IOException {
         Account created = accountFileDAO.createAccount("Bichael", "pass");
@@ -261,27 +301,6 @@ public class AccountFileDAOTest {
         assertEquals(expectedCount, account.getNeedsFunded());
 
     }
-
-    // @Test
-    // public void testAccountOrder() throws IOException {
-    //     // checkout 2 users and make sure they are in the correct part of the tree
-
-    //     Account kayla = accountFileDAO.getAccount("Kayla");
-    //     Account max = accountFileDAO.getAccount("Max");
-    //     Account jonah = accountFileDAO.getAccount("Jonah");
-    //     Account ryan = accountFileDAO.getAccount("Ryan");
-
-    //     Map<String, Account> accounts = accountFileDAO.accounts;
-    //     MatcherAssert.assertThat(accounts.keySet(), Matchers.contains("Max", "Ryan", "Kayla", "Jonah"));
-
-    //     accountFileDAO.addMoneyFunded(kayla, 12); 
-    //     accountFileDAO.addMoneyFunded(max, 2); 
-    //     accountFileDAO.addMoneyFunded(jonah, 19); 
-    //     accountFileDAO.addMoneyFunded(ryan, 7); 
-        
-
-    //     MatcherAssert.assertThat(accounts.keySet(), Matchers.contains("Max", "Ryan", "Kayla", "Jonah"));
-    // }
 
     @Test
     public void testGetRanks() throws IOException {
