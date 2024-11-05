@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {AuthService} from "../storage/auth.service";
 import {ProfileSectionService} from "../profile-section.service";
 import {ProfileInfo} from "../profile-info";
@@ -15,6 +15,8 @@ export class ProfilePageComponent {
   constructor(public authService: AuthService, private profileSectionService: ProfileSectionService) {
   }
 
+  @Output() dataFromChild = new EventEmitter<null>();
+
   ngOnInit(): void {
     this.accountName = localStorage.getItem("name");
     if(this.accountName != null){
@@ -25,7 +27,7 @@ export class ProfilePageComponent {
     }
   }
 
-  setProfileInfo(profileInfo: ProfileInfo) {
-      this.profileInfo = profileInfo;
+  setProfileInfo() {
+    this.dataFromChild.emit();
   }
 }

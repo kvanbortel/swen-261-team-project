@@ -28,7 +28,7 @@ export class EditProfileComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.profileInfo = result;
-      this.dataFromChild.emit(result);
+      this.dataFromChild.emit();
     });
   }
 }
