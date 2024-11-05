@@ -216,4 +216,30 @@ public class Basket {
         }
         return false;
     }
+
+    /**
+     * Gets the total cost of a Basket. 
+     * Equivalent to the amount spent on checking out a basket
+     * @return The sum of all BasketNeed costs in the Basket
+     */
+    public double getCost() {
+        double cost = 0;
+        for (BasketNeed bNeed: this.needs) {
+            cost += bNeed.getCost();
+        }
+        return cost;
+    }
+
+    /**
+     * Gets the NeedCount of a Basket
+     * 
+     * @return The sum of the quantities of all BasketNeeds in the Basket
+     */
+    public int getNeedCount() {
+        int count = 0;
+        for (BasketNeed bNeed: this.needs) {
+            count += bNeed.getQuantity();
+        }
+        return count;
+    }
 }

@@ -3,6 +3,7 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.web.multipart.MultipartFile;
+import java.time.*;
 
 @Repository
 public class AccountFileDAO implements AccountDAO {
@@ -191,6 +193,11 @@ public class AccountFileDAO implements AccountDAO {
             }
 
             // checkout should always succeed past this
+            // update funding data for users
+            // this MUST happen before the basket is changed
+            accountObj.addMoneyFunded(basket.getCost());
+            accountObj.addNeedsFunded(basket.getNeedCount());
+            accountObj.setLastCheckoutInstant(Instant.now());
             for (BasketNeed bNeed : needs) {
                 Need newNeed = needDAO.getNeed(bNeed.getNeed().getId());
                 int newQuantity = newNeed.getQuantity() - bNeed.getQuantity();
@@ -275,6 +282,15 @@ public class AccountFileDAO implements AccountDAO {
         accountObj.setImageLink(newLink);
 
         return newLink;
+    }
+     /**
+     * @inheritdoc
+     */
+    public List<Account> getRankList() {
+        List<Account> accountList = new ArrayList<>(this.accounts.values());
+        // sort it
+        Collections.sort(accountList);
+        return accountList;
     }
 
 }
