@@ -295,7 +295,7 @@ public class AccountControllerTest {
 
     //test sucessful image upload
     @Test
-    public void testUploadImage() throws IOException {
+    public void testUploadImageSuccess() throws IOException {
         // Setup
 
         String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";

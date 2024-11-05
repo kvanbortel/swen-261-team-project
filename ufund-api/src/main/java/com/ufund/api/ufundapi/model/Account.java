@@ -74,8 +74,8 @@ public class Account {
      * Set the profile picture of an account object
      * @param imageL the new image link for a profile picture
      */
-    public void setImageLink(String imageL){
-        this.imageLink = imageL;
+    public void setImageLink(String imageLink){
+        this.imageLink = imageLink;
     }
 
     /**
