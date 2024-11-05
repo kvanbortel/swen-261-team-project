@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MessagesComponent } from './messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { CupboardNeedComponent } from './cupboard-need/cupboard-need.component';
@@ -39,7 +38,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent,
     HeaderComponent,
     CupboardNeedComponent,
     CupboardSearchComponent,

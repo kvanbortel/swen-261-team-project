@@ -3,6 +3,7 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,8 @@ import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.Basket;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
+
+import java.time.*;
 
 @Repository
 public class AccountFileDAO implements AccountDAO {
@@ -114,12 +117,11 @@ public class AccountFileDAO implements AccountDAO {
     /**
      ** {@inheritDoc}
      */
-    public Account createAccount(String name) throws IOException {
+    public Account createAccount(String name, String passwordHash) throws IOException {
         if (accounts.containsKey(name)) {
-
             return null;
         }
-        Account newAccount = new Account(name, new Basket());
+        Account newAccount = new Account(name, passwordHash);
         accounts.put(name, newAccount);
         save(); // may throw an IOException
         return newAccount;
@@ -187,6 +189,11 @@ public class AccountFileDAO implements AccountDAO {
             }
 
             // checkout should always succeed past this
+            // update funding data for users
+            // this MUST happen before the basket is changed
+            accountObj.addMoneyFunded(basket.getCost());
+            accountObj.addNeedsFunded(basket.getNeedCount());
+            accountObj.setLastCheckoutInstant(Instant.now());
             for (BasketNeed bNeed : needs) {
                 Need newNeed = needDAO.getNeed(bNeed.getNeed().getId());
                 int newQuantity = newNeed.getQuantity() - bNeed.getQuantity();
@@ -247,6 +254,16 @@ public class AccountFileDAO implements AccountDAO {
      */
     public Account getAccount(String accountName) throws IOException {
         return accounts.get(accountName); // Return the Account object or null if not found
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public List<Account> getRankList() {
+        List<Account> accountList = new ArrayList<>(this.accounts.values());
+        // sort it
+        Collections.sort(accountList);
+        return accountList;
     }
 
 }

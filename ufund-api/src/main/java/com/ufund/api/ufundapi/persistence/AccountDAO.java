@@ -62,7 +62,7 @@ public interface AccountDAO{
      * 
      * @throws IOException if an issue with underlying storage
      */
-    public Account createAccount(String name) throws IOException;
+    public Account createAccount(String name, String passwordHash) throws IOException;
 
     /**
      * Retrieves an account by its name.
@@ -73,4 +73,14 @@ public interface AccountDAO{
      */
     Account getAccount(String accountName) throws IOException;
 
+    /**
+     * Accounts may not always have the most up to date rank,
+     * But all ranks will have been defined at the same time
+     * There is no accessor for a rank list because you should ALWAYS
+     * update the rank before accessing it
+     * 
+     * @return List<Account> of lists starting with Rank1, then Rank2, and so on
+     *         Use `list.indexOf(account) + 1` to find the rank of a specific account
+     */
+    public List<Account> getRankList();
 }

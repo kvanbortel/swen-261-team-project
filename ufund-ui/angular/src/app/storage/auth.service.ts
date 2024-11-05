@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../Account';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { Need } from '../Need';
 import { BasketNeed } from '../BasketNeed';
 import { Basket } from '../Basket';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
 
-  constructor(private http: HttpClient) {}
+  private AccountURL = "http://localhost:8080/accounts";
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -28,6 +31,34 @@ export class AuthService {
     return this.admin;
   }
 
+  logout(){
+    this.admin = false;
+    this.name = '';
+    localStorage.setItem("name", '');
+  }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean {
+      console.log('CanActivate called');
+    let isLoggedIn = this.isAuthenticated();
+    console.log("logged in?" + isLoggedIn)
+    if (isLoggedIn){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+    
+  }
+
+  isAuthenticated() {
+    if(!(localStorage.getItem("isAdmin") === "true") && localStorage.getItem("name") === ''){
+      return false;
+    } 
+    return true;
+  }
+
   setName(name: string) {
     this.name = name;
   }
@@ -36,24 +67,21 @@ export class AuthService {
     return this.name;
   }
 
-  addAccount(name: String): void {
-    this.http
-      .post('http://localhost:8080/accounts', name, this.httpOptions)
-      .pipe(catchError(this.handleError<Account>('addAccount')))
-      .subscribe({
-        next: (response) => {
-          console.log('Now logged in as ' + name + ':', response);
-        },
-        error: (err) => {
-          console.error('Error logging in:', err);
-        },
-      });
+
+  addAccount(name: string, passwordHash: string): Observable<any> {
+    const body = {name, passwordHash };
+    return this.http
+      .post(this.AccountURL, body, this.httpOptions)
+      .pipe(catchError((error) => {
+        console.error('Error occurred:', error);
+        return throwError(error);
+      }))
   }
 
   getBasketNeeds(): Observable<BasketNeed[]> {
     return this.http
       .get<BasketNeed[]>(
-        'http://localhost:8080/accounts/' + this.name + '/needs'
+        this.AccountURL + '/' + this.name + '/needs'
       )
       .pipe(
         tap((_) => console.log('get basket needs')),
@@ -61,10 +89,20 @@ export class AuthService {
       );
   }
 
+  getAccount(name: string): Observable<Account>{
+    return this.http
+      .get<Account>(
+        this.AccountURL + '/' + name
+      ).pipe(
+        tap((_) => console.log('get account' + name)),
+        catchError(this.handleError<Account>('account'))
+      );
+  }
+
   checkoutBasket(): Observable<boolean> {
     return this.http
       .put<boolean>(
-        'http://localhost:8080/accounts/' + this.name + '/checkout',
+        this.AccountURL + '/' + this.name + '/checkout',
         null,
         this.httpOptions
       ).pipe(
@@ -76,11 +114,11 @@ export class AuthService {
   addToBasket(amount: number, need?: Need): void {
     console.log('changing by', amount);
     console.log(
-      'http://localhost:8080/accounts/' + this.name + '/needs/' + amount
+      this.AccountURL + '/' + this.name + '/needs/' + amount
     );
     this.http
       .put(
-        'http://localhost:8080/accounts/' + this.name + '/needs/' + amount,
+        this.AccountURL + '/' + this.name + '/needs/' + amount,
         need,
         this.httpOptions
       )
