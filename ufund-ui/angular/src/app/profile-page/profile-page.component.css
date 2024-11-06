@@ -1,0 +1,53 @@
+.profile-container {
+  margin: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  font-family: Arial, sans-serif;
+}
+
+.profile-box {
+  width: 84vh;
+  padding: 2vh;
+  border-radius: 1vh;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+}
+
+.profile-box img {
+  width: 18vh;
+  height: 18vh;
+  border-radius: 50%;
+}
+
+.edit-profile-btn {
+  float: right;
+  position: absolute;
+  top: 5vh;
+  right: 5vh;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 2vh;
+  max-width: 20vh;
+}
+
+.username {
+  font-size: x-large;
+  font-weight: 500;
+  margin: 1vh 0;
+}
+
+.profileSection {
+  width: 12vh;
+  text-wrap: balance;
+  text-align: left;
+  margin-top: 2vh;
+}
