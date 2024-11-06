@@ -1,4 +1,5 @@
 package com.ufund.api.ufundapi.persistence;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,7 @@ public interface AccountDAO{
      * 
      * @throws IOException if an issue with underlying storage
      */
-    public Account createAccount(String name) throws IOException;
+    public Account createAccount(String name, String passwordHash) throws IOException;
 
     /**
      * Retrieves an account by its name.
@@ -70,6 +71,26 @@ public interface AccountDAO{
      */
     Account getAccount(String accountName) throws IOException;
 
+    /**
+     * Add a profile picture to an account
+     *
+     * @param accountName the name of the account to retrieve
+     * @param img the file to be stored as an image
+     * @return the link to the new image
+     * @throws IOException if there is an error reading from the data source
+     */
+    String addImage(String accountName, byte[] img) throws IOException;
+
+    /**
+     * Accounts may not always have the most up to date rank,
+     * But all ranks will have been defined at the same time
+     * There is no accessor for a rank list because you should ALWAYS
+     * update the rank before accessing it
+     * 
+     * @return List<Account> of lists starting with Rank1, then Rank2, and so on
+     *         Use `list.indexOf(account) + 1` to find the rank of a specific account
+     */
+    public List<Account> getRankList();
     /**
       * Retrieves all {@linkplain ProfileInfo} profile information
       *

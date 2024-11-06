@@ -34,6 +34,7 @@ import { BasketPageComponent } from './basket-page/basket-page.component';
 import { BasketNeedComponent } from './basket-need/basket-need.component';
 import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ProfilePicComponent } from './profile-pic/profile-pic.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ViewChangeButtonComponent,
     BasketPageComponent,
     BasketNeedComponent,
-    PostCheckoutComponent
+    PostCheckoutComponent,
+    ProfilePicComponent
   ],
   imports: [
     BrowserModule,

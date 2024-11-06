@@ -39,6 +39,8 @@ and for administrators of the NYS Paws & Claws Foundation to be able to manage t
 | UUID | Universally Unique Identifier |
 | REST | Representational State Transfer |
 | OO | Object-Oriented |
+| rank | A helper's position on the leaderboard (rank 1 is best) |
+| level | Status based on donations made (higher level = better) |
 
 
 
@@ -265,4 +267,7 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > - (2024/10/20) Changed editing need in basket quantity to numerical input instead of increment/decrement methods
 > - (2024/10/20) Needs are not allowed to be added to the basket if they would overflow the maximum available quantity. We're not sure if the Paws and Claws foundation has the space to store surplus, and we don't want it to go to waste. 
 > - (2024/10/20) All Needs are auto-sorted by Demand rating in the UI
-> - (2024/10/22) If two users both try to fund the same basket need at the same time and there's not enough to go around, the first one to fund the needs gets to fund them and the later person gets an error message. 
+> - (2024/10/22) If two users both try to fund the same basket need at the same time and there's not enough to go around, the first one to fund the needs gets to fund them and the later person gets an error message.
+>
+> **[Sprint 3] decisions**
+> - (2024/11/05) Determine rank first by moneyFunded, then use the number of needsFunded, then consider whoever made the most recent donation to be a better rank

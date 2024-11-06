@@ -69,4 +69,13 @@ public class BasketNeedTest {
 
         assertEquals(0, bNeed1.getQuantity());
     }
+
+    @Test
+    public void testGetCost() {
+        BasketNeed bNeed = new BasketNeed(
+            new Need("id", "name", "description", 0, 2, 12.1), 5);
+        
+        double cost = bNeed.getCost();
+        assertEquals(60.5, cost);
+    }
 }

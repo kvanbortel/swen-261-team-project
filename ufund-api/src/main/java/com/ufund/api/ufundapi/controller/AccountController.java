@@ -1,5 +1,24 @@
 package com.ufund.api.ufundapi.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
@@ -33,20 +52,15 @@ public class AccountController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Account> createAccount(@RequestBody String name) {
-        LOG.info("POST /accounts " + name);
-
-        String usernameRegex = "^[a-zA-Z][a-zA-Z0-9]{0,12}$";
-        if (!name.matches(usernameRegex)) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
+    public ResponseEntity<Account> createAccount(@RequestBody AccountRequest accountRequest) {
+        LOG.info("POST /accounts " + accountRequest.getName());
+        
         try {
-            Account newAccount = accountDAO.createAccount(name);
+            Account newAccount = accountDAO.createAccount(accountRequest.getName(), accountRequest.getPasswordHash());
             if (newAccount != null) {
                 return new ResponseEntity<>(newAccount, HttpStatus.CREATED);
             }
-            return new ResponseEntity<>(this.accountDAO.getAccount(name), HttpStatus.OK);
+            return new ResponseEntity<Account>(this.accountDAO.getAccount(accountRequest.getName()), HttpStatus.OK);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
@@ -142,6 +156,50 @@ public class AccountController {
             return new ResponseEntity<ProfileInfo>(profileInfo, HttpStatus.OK);
         }
         catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Responds to the GET request for a specific {@linkplain Account account} 
+     * 
+     * @return ResponseEntity with an {@link Account account} objects
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if no such account exists
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("/{accountName}")
+    public ResponseEntity<Account> getAccount(@PathVariable String accountName) {
+        LOG.info("GET /accounts/" + accountName);
+        try {
+            Account account = accountDAO.getAccount(accountName);
+            if(account != null){
+                return new ResponseEntity<Account>(account, HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/{accountName}/image")
+    public ResponseEntity<String> handleImageUpload(@PathVariable String accountName, @RequestParam("image") MultipartFile imageFile) {
+        LOG.info("POST /accounts/" + accountName + "/image");
+        try {
+            byte[] imageBytes = imageFile.getBytes();
+
+            String upload = accountDAO.addImage(accountName, imageBytes);
+
+            if(upload == null){
+                return  new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+            }
+            return ResponseEntity.ok(upload);
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

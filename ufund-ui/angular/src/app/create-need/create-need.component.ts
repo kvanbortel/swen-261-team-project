@@ -56,5 +56,9 @@ export class CreateNeedComponent {
       this.authService.setName(name);
       this.isAdmin = this.authService.isAdmin();
     }
+    let image = localStorage.getItem("image")
+    if(image != null){
+      this.authService.setImage(image);
+    }
   }
 }
