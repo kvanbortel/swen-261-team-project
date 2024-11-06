@@ -1,4 +1,6 @@
 <header>
-    <img class="logo" src="assets/Paws&Claws.png">
-    <h1>The NYS Paws and Claws Foundation U-Fund</h1>
+        <img class="logo" src="assets/Paws&Claws.png">
+        <h1>The NYS Paws and Claws Foundation U-Fund</h1>
+    <app-pic-button *ngIf="this.authService.isAuthenticated() && !this.authService.isAdmin()"  class="pic"></app-pic-button>
+    <div *ngIf="!this.authService.isAuthenticated() || this.authService.isAdmin()"></div>
 </header>

@@ -2,8 +2,7 @@
   display: flex; 
   justify-content: center;
   align-items: stretch;
-  margin: 2vh; 
-  margin-bottom: 0vh; 
+  margin-bottom: -2vh; /* hacky but okay */
 }
 
 /* Container for the search component */

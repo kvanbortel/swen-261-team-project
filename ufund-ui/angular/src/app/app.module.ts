@@ -36,6 +36,7 @@ import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfilePicComponent } from './profile-pic/profile-pic.component';
 import { AdminDashComponent } from './admin-dash/admin-dash.component';
+import { PicButtonComponent } from './pic-button/pic-button.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AdminDashComponent } from './admin-dash/admin-dash.component';
     BasketNeedComponent,
     PostCheckoutComponent,
     ProfilePicComponent,
-    AdminDashComponent
+    AdminDashComponent,
+    PicButtonComponent
   ],
   imports: [
     BrowserModule,
