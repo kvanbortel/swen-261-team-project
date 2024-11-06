@@ -2,6 +2,15 @@
     margin-top: 2vh;
 }
 
+.button-area{
+  position: absolute;
+  right: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
 .popup-area {
   position: fixed;
   top: 30vh;

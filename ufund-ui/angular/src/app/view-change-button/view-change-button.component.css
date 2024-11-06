@@ -3,8 +3,6 @@
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   background-color: var(--baseOrange);
-  position: absolute;
-  right: 3vh;
   padding: 10px;
   border-radius: 5px;
   border-style: none;
@@ -16,6 +14,7 @@
   width: auto;
   height: 50px;
   cursor: pointer;
+  margin-bottom: 2vh;
 }
 
 /* Hover effect for the entire item */

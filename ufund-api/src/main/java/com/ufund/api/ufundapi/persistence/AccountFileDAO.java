@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 
+import com.ufund.api.ufundapi.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -293,4 +294,40 @@ public class AccountFileDAO implements AccountDAO {
         return accountList;
     }
 
+    /**
+     ** {@inheritDoc}
+     */
+    @Override
+    public ProfileInfo getProfileInfo(String accountName) throws IOException {
+        if (accountName == null) {
+            throw new IllegalArgumentException("accountName cannot be null");
+        }
+        return accounts.get(accountName).getProfileInfo();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProfileInfo updateProfileInfo(String account, ProfileInfo info) throws IOException {
+        // Validate input parameters
+        if (account == null || info == null) {
+            throw new IllegalArgumentException("Account and ProfileInfo cannot be null");
+        }
+
+        // Retrieve the account object
+        Account accountObj = accounts.get(account);
+        if (accountObj == null) {
+            return null; // Account does not exist
+        }
+
+        // Update the profile information
+        accountObj.getProfileInfo().updateProfileInfo(info);
+
+        // Persist the changes
+        save();
+
+        // Return the updated ProfileInfo
+        return accountObj.getProfileInfo();
+    }
 }
