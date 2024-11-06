@@ -7,7 +7,10 @@
                     <mat-label>Alias</mat-label>
                     <input matInput formControlName="alias" />
                     <mat-error>
-                        {{ getErrorMessage(profileForm.get('alias'), 'Alias', {}) }}
+                        {{ getErrorMessage(profileForm.get('alias'), 'Alias', {
+                            pattern: 'Alias must start with a letter and contain only letters and numbers.',
+                            maxLength: 'Alias cannot be longer than 13 characters.'
+                    }) }}
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -25,7 +28,9 @@
                     <mat-label>Pronouns</mat-label>
                     <input matInput formControlName="pronouns" />
                     <mat-error>
-                        {{ getErrorMessage(profileForm.get('pronouns'), 'Pronouns', {}) }}
+                        {{ getErrorMessage(profileForm.get('pronouns'), 'Pronouns', {
+                            maxLength: 'Pronouns cannot exceed 50 characters.'
+                    }) }}
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -34,7 +39,9 @@
                     <mat-label>Bio</mat-label>
                     <input matInput formControlName="bio" />
                     <mat-error>
-                        {{ getErrorMessage(profileForm.get('bio'), 'Bio', {}) }}
+                        {{ getErrorMessage(profileForm.get('bio'), 'Bio', {
+                            maxLength: 'Bio cannot exceed 250 characters.'
+                    }) }}
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -43,7 +50,9 @@
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email" />
                     <mat-error>
-                        {{ getErrorMessage(profileForm.get('email'), 'Email', {}) }}
+                        {{ getErrorMessage(profileForm.get('email'), 'Email', {
+                            email: 'Please enter a valid email address.'
+                    }) }}
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -52,7 +61,9 @@
                     <mat-label>Phone Number</mat-label>
                     <input matInput formControlName="phoneNumber" />
                     <mat-error>
-                        {{ getErrorMessage(profileForm.get('phoneNumber'), 'Phone Number', {}) }}
+                        {{ getErrorMessage(profileForm.get('phoneNumber'), 'Phone Number', {
+                            pattern: 'Phone number must be in the format (XXX) XXX-XXXX.'
+                    }) }}
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -61,7 +72,9 @@
                     <mat-label>SSN</mat-label>
                     <input matInput formControlName="ssn" />
                     <mat-error>
-                        {{ getErrorMessage(profileForm.get('ssn'), 'SSN', {}) }}
+                        {{ getErrorMessage(profileForm.get('ssn'), 'SSN', {
+                            pattern: 'SSN must be in the format XXX-XX-XXXX'
+                    }) }}
                     </mat-error>
                 </mat-form-field>
             </div>

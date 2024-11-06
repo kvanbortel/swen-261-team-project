@@ -23,12 +23,12 @@ export class EditProfileDialogComponent {
     private profileSectionService: ProfileSectionService
   ) {
     this.profileForm = this.formBuilder.group({
-      alias: [''],
+      alias: ['', [Validators.pattern(/^[a-zA-Z][a-zA-Z0-9]*$/), Validators.maxLength(13)]],
       region: ['', Validators.required],
-      pronouns: [''],
-      bio: ['', Validators.max(150)],
+      pronouns: ['', Validators.maxLength(50)],
+      bio: ['', Validators.maxLength(250)],
       email: ['', Validators.email],
-      phoneNumber: ['', Validators.pattern(/(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/)],
+      phoneNumber: ['', Validators.pattern(/^\(\d{3}\) \d{3}-\d{4}$/)],
       ssn: ['', Validators.pattern(/^\d{3}-\d{2}-\d{4}$/)]
     });
 
