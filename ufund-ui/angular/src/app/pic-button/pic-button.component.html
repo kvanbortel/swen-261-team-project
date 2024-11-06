@@ -3,7 +3,7 @@
       <img class="pic" src="{{ this.authService.getImage() }}" />
     </button>
     <div class="dropdown-menu" *ngIf="dropdownOpen">
-      <a (click)="profile()" class="dropdown-item">View Profile</a>
-      <a (click)="logout()" routerLink = "/" class="dropdown-item">Logout &nbsp;<i class="fa-solid fa-right-from-bracket"></i></a>
+      <a routerLink="/profile" class="dropdown-item">View Profile</a>
+      <a (click)="logout()" routerLink="/" class="dropdown-item">Logout &nbsp;<i class="fa-solid fa-right-from-bracket"></i></a>
     </div>
   </div>
