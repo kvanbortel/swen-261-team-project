@@ -6,12 +6,8 @@
   border-radius: 5px;
   border: 2px solid #ddd;
   transition: border-color 0.3s ease;
-  width: 10vw;
-  margin: auto 20px;
-  padding: 12px;
-  outline: none;
+  padding: 10px 20px;
   transition-duration: 0.4s;
-  vertical-align: middle;
 }
 
 .edit-button:hover {

@@ -1,0 +1,13 @@
+.profile-section {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.profile-section p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.profile-section p span {
+  font-weight: bold;
+}

@@ -1,23 +1,23 @@
 <div class="profile-section">
   <div *ngIf="profileInfo?.alias">
-    <strong>Alias:</strong> {{ profileInfo.alias }}
+    <p><span>Alias:</span> {{ profileInfo.alias }}</p>
   </div>
   <div *ngIf="profileInfo?.region && profileInfo.region !== Region.NONE">
-    <strong>Region:</strong> {{ profileInfo.region }}
+    <p><span>Region:</span> {{ profileInfo.region }}</p>
   </div>
   <div *ngIf="profileInfo?.pronouns">
-    <strong>Pronouns:</strong> {{ profileInfo.pronouns }}
+      <p><span>Pronouns:</span> {{ profileInfo.pronouns }}</p>
   </div>
   <div *ngIf="profileInfo?.bio">
-    <strong>Bio:</strong> {{ profileInfo.bio }}
+      <p><span>Bio:</span> {{ profileInfo.bio }}</p>
   </div>
   <div *ngIf="profileInfo?.email">
-    <strong>Email:</strong> {{ profileInfo.email }}
+      <p><span>Email:</span> {{ profileInfo.email }}</p>
   </div>
   <div *ngIf="profileInfo?.phoneNumber">
-    <strong>Phone Number:</strong> {{ profileInfo.phoneNumber }}
+      <p><span>Phone Number:</span> {{ profileInfo.phoneNumber }}</p>
   </div>
   <div *ngIf="profileInfo?.ssn">
-    <strong>SSN:</strong> {{ profileInfo.ssn }}
+      <p><span>SSN:</span> {{ profileInfo.ssn }}</p>
   </div>
 </div>
