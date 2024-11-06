@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.ufund.api.ufundapi.model.*;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,10 +24,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Basket;
-import com.ufund.api.ufundapi.model.BasketNeed;
-import com.ufund.api.ufundapi.model.Need;
 
 import java.time.*;
 
@@ -35,6 +32,8 @@ import java.time.*;
  */
 @Tag("Persistence-tier")
 public class AccountFileDAOTest {
+    private static final ProfileInfo TEST_PROFILE_INFO = new ProfileInfo();
+    private static final Level TEST_LEVEL = Level.NOOB;
 
     AccountFileDAO accountFileDAO;
     Account[] testAccounts;
@@ -88,9 +87,9 @@ public class AccountFileDAOTest {
         // accounts baskets match the related index in testBaskets
         testAccounts = new Account[4];
         testAccounts[0] = new Account("Max", "pass");
-        testAccounts[1] = new Account("Kayla", testBaskets[1], "pass");
-        testAccounts[2] = new Account("Jonah", testBaskets[2], "pass");
-        testAccounts[3] = new Account("Ryan", testBaskets[3], "pass");
+        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
+        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
+        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the need array above
