@@ -32,6 +32,10 @@ public class Account implements Comparable<Account> {
     @JsonProperty double moneyFunded = 0;
     // number of needs funded
     @JsonProperty int needsFunded = 0;
+    // profile info
+    @JsonProperty ProfileInfo profileInfo;
+    // current level
+    @JsonProperty Level level;
 
     /**
      * Add an amount to money funded
@@ -88,8 +92,6 @@ public class Account implements Comparable<Account> {
     public int getNeedsFunded() {
         return needsFunded;
     }
-    @JsonProperty ProfileInfo profileInfo;
-    @JsonProperty Level level;
 
     /**
      * Constructs an account object using a given name and a given Basket
@@ -126,6 +128,7 @@ public class Account implements Comparable<Account> {
         // set to date that the account was created
         this.lastCheckoutInstant = Instant.now();
         this.profileInfo = new ProfileInfo();
+        this.level = Level.NOOB;
     }
 
     /**
