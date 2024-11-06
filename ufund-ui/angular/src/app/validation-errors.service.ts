@@ -21,6 +21,12 @@ export class ValidationErrorsService {
     if (control?.hasError('max') && errorMessages['max']) {
       return errorMessages['max'];
     }
+    if (control?.hasError('maxlength') && errorMessages['maxLength']) {
+      return errorMessages['maxLength'];
+    }
+    if (control?.hasError('email') && errorMessages['email']) {
+      return errorMessages['email'];
+    }
     return ''; // No error
   }
 }

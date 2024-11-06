@@ -12,10 +12,11 @@ import { CreateNeedComponent } from './create-need/create-need.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {
+  MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
-  MatDialogModule,
+  MatDialogModule, MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -35,6 +36,11 @@ import { BasketNeedComponent } from './basket-need/basket-need.component';
 import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfilePicComponent } from './profile-pic/profile-pic.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import {MatOption, MatSelect} from "@angular/material/select";
+import { ProfileSectionComponent } from './profile-section/profile-section.component';
+import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-dialog.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AdminDashComponent } from './admin-dash/admin-dash.component';
 import { PicButtonComponent } from './pic-button/pic-button.component';
 
@@ -59,7 +65,12 @@ import { PicButtonComponent } from './pic-button/pic-button.component';
     PostCheckoutComponent,
     ProfilePicComponent,
     AdminDashComponent,
-    PicButtonComponent
+    PicButtonComponent,
+    PostCheckoutComponent,
+    ProfilePageComponent,
+    ProfileSectionComponent,
+    EditProfileDialogComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,9 +87,14 @@ import { PicButtonComponent } from './pic-button/pic-button.component';
     MatDialogActions,
     MatDialogClose,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSelect,
+    MatOption
   ],
-  providers: [LoginComponent],
+  providers: [LoginComponent,
+              {provide: MatDialogRef, useValue: {}},
+              {provide: MAT_DIALOG_DATA, useValue: {}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
