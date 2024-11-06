@@ -1,6 +1,8 @@
 package com.ufund.api.ufundapi.persistence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Need;
 
@@ -179,5 +182,20 @@ public class NeedFileDAOTest {
         assertEquals(needs.length,2);
         assertEquals(needs[0],testNeeds[1]);
         assertEquals(needs[1],testNeeds[2]);
+    }
+
+    @Test
+    public void testIsEmptyTrue() throws IOException {
+        Need[] needs = new Need[0];
+        when(mockObjectMapper
+            .readValue(new File("doesnt_matter.txt"),Need[].class))
+                .thenReturn(needs);
+        needFileDAO = new NeedFileDAO("doesnt_matter.txt",mockObjectMapper);
+        assertTrue(needFileDAO.isEmpty(), Arrays.toString(needFileDAO.getNeeds()));
+    }
+
+    @Test
+    public void testIsEmptyFalse() throws IOException {
+        assertFalse(needFileDAO.isEmpty());
     }
 }
