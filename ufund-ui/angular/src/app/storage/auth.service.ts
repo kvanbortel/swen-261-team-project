@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../Account';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { Need } from '../Need';
 import { BasketNeed } from '../BasketNeed';
 import { Basket } from '../Basket';
@@ -13,6 +13,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
+  image: string = '';
 
   private AccountURL = "http://localhost:8080/accounts";
 
@@ -67,18 +68,23 @@ export class AuthService implements CanActivate{
     return this.name;
   }
 
-  addAccount(name: String): void {
-    this.http
-      .post(this.AccountURL, name, this.httpOptions)
-      .pipe(catchError(this.handleError<Account>('addAccount')))
-      .subscribe({
-        next: (response) => {
-          console.log('Now logged in as ' + name + ':', response);
-        },
-        error: (err) => {
-          console.error('Error logging in:', err);
-        },
-      });
+  setImage(img: string){
+    this.image = img; 
+  }
+
+  getImage() {
+    return this.image;
+  }
+
+
+  addAccount(name: string, passwordHash: string): Observable<any> {
+    const body = {name, passwordHash };
+    return this.http
+      .post(this.AccountURL, body, this.httpOptions)
+      .pipe(catchError((error) => {
+        console.error('Error occurred:', error);
+        return throwError(error);
+      }))
   }
 
   getBasketNeeds(): Observable<BasketNeed[]> {
@@ -89,6 +95,16 @@ export class AuthService implements CanActivate{
       .pipe(
         tap((_) => console.log('get basket needs')),
         catchError(this.handleError<BasketNeed[]>('basketNeeds', []))
+      );
+  }
+
+  getAccount(name: string): Observable<Account>{
+    return this.http
+      .get<Account>(
+        this.AccountURL + '/' + name
+      ).pipe(
+        tap((_) => console.log('get account' + name)),
+        catchError(this.handleError<Account>('account'))
       );
   }
 
@@ -104,24 +120,37 @@ export class AuthService implements CanActivate{
       );
   }
 
-  addToBasket(amount: number, need?: Need): void {
-    console.log('changing by', amount);
-    console.log(
-      this.AccountURL + '/' + this.name + '/needs/' + amount
-    );
-    this.http
-      .put(
+  addToBasket(amount: number, need?: Need): Observable<BasketNeed> {
+    return this.http
+      .put<BasketNeed>(
         this.AccountURL + '/' + this.name + '/needs/' + amount,
         need,
         this.httpOptions
       )
-      .pipe(catchError(this.handleError<Account>('updateBasketNeed')))
+      .pipe(
+          tap((response) => console.log('need added to basket', response)),
+          catchError(this.handleError<BasketNeed>('basketNeeds'))
+        );
+  }
+
+  postImage(image: File): void{
+    const formData = new FormData();
+    formData.append('image', image);
+
+
+    console.log("posting image")
+    console.log(image)
+    this.http
+      .post(this.AccountURL + '/' + this.name + "/image", formData, { responseType: 'text' })
+      .pipe(catchError(this.handleError<String>('addAccount')))
       .subscribe({
         next: (response) => {
-          console.log('Need added to basket successfully:', response);
+          console.log('Image posted successfully:', response);
+          localStorage.setItem("image", response as string)
+          this.image = response as string
         },
         error: (err) => {
-          console.error('Error adding to basket:', err);
+          console.error('Error logging in:', err);
         },
       });
   }

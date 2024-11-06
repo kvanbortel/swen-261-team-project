@@ -1,6 +1,10 @@
 package com.ufund.api.ufundapi.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -17,6 +21,8 @@ import static org.mockito.Mockito.when;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ufund.api.ufundapi.persistence.AccountDAO;
 
@@ -32,6 +38,7 @@ public class AccountControllerTest {
 
     // Local test data variables
     private static final String TEST_NAME = "AccountA1";
+    private static final String TEST_PASSWORD_HASH = "thisisnotahash";
     private static final Need TEST_NEED = new Need("123456", "NeedA1", "Need for testing", 0, 1, 0);
     private static final ProfileInfo TEST_PROFILE_INFO = new ProfileInfo();
     private static final Level TEST_LEVEL = Level.NOOB;
@@ -54,12 +61,13 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountNoBasket() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME);
+        Account account = new Account(TEST_NAME, TEST_PASSWORD_HASH);
 
-        when(mockAccountDAO.createAccount(TEST_NAME)).thenReturn(account);
+        when(mockAccountDAO.createAccount(TEST_NAME, TEST_PASSWORD_HASH)).thenReturn(account);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.createAccount(TEST_NAME);
+        AccountRequest accountRequest = new AccountRequest(TEST_NAME, TEST_PASSWORD_HASH);
+        ResponseEntity<Account> response = accountController.createAccount(accountRequest);
 
         // Analyze
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -70,12 +78,13 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountBasket() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
 
-        when(mockAccountDAO.createAccount(TEST_NAME)).thenReturn(account);
+        when(mockAccountDAO.createAccount(TEST_NAME, TEST_PASSWORD_HASH)).thenReturn(account);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.createAccount(TEST_NAME);
+        AccountRequest accountRequest = new AccountRequest(TEST_NAME, TEST_PASSWORD_HASH);
+        ResponseEntity<Account> response = accountController.createAccount(accountRequest);
 
         // Analyze
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -86,12 +95,13 @@ public class AccountControllerTest {
     @Test
     public void testCreateExistingAccount() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
 
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
-        ResponseEntity<Account> response = accountController.createAccount(TEST_NAME);
+        AccountRequest accountRequest = new AccountRequest(TEST_NAME, TEST_PASSWORD_HASH);
+        ResponseEntity<Account> response = accountController.createAccount(accountRequest);
 
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -102,10 +112,11 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountHandleException() throws Exception {
         
-        doThrow(new IOException()).when(mockAccountDAO).createAccount(TEST_NAME);
+        doThrow(new IOException()).when(mockAccountDAO).createAccount(TEST_NAME, TEST_PASSWORD_HASH);
 
         // Invoke
-        var response = accountController.createAccount(TEST_NAME);
+        AccountRequest accountRequest = new AccountRequest(TEST_NAME, TEST_PASSWORD_HASH);
+        ResponseEntity<Account> response = accountController.createAccount(accountRequest);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
@@ -148,7 +159,6 @@ public class AccountControllerTest {
     @Test
     public void testIncrementNeedNotFound() throws Exception {
         
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL);
         when((mockAccountDAO).updateNeed(TEST_NAME, TEST_NEED, 1)).thenReturn(null);
 
         // Invoke
@@ -216,7 +226,7 @@ public class AccountControllerTest {
     @Test
     public void testGetNeeds() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL);
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
@@ -235,6 +245,106 @@ public class AccountControllerTest {
 
         // Invoke
         var response = accountController.getNeeds(TEST_NAME);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    //test getting an account that does exist 
+    @Test
+    public void testGetAccountTrue() throws IOException {
+        // Setup
+        
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
+
+        // Invoke
+        var response = accountController.getAccount(TEST_NAME);
+
+        // Analyze.to
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(account, response.getBody());
+    }
+
+    //test http response when getting an account that doesnt exist 
+    @Test
+    public void testGetAccountNotFound() throws IOException {
+        // Setup
+        when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(null);
+
+        // Invoke
+        var response = accountController.getAccount(TEST_NAME);
+
+        // Analyze.to
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
+    }
+
+    //test handling exception when getting accounts
+    @Test
+    public void testGetAccountHandleException() throws IOException {
+        // Setup
+        doThrow(new IOException()).when(mockAccountDAO).getAccount(TEST_NAME);
+
+        // Invoke
+        
+        ResponseEntity<Account> response = accountController.getAccount(TEST_NAME);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    //test sucessful image upload
+    @Test
+    public void testUploadImageSuccess() throws IOException {
+        // Setup
+
+        String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
+        
+        byte[] img = Files.readAllBytes(Paths.get(path));
+        when(mockAccountDAO.addImage(TEST_NAME, img)).thenReturn(path);
+
+        // Invoke
+        MultipartFile result = new MockMultipartFile("image", new FileInputStream(new File(path)));
+        var response = accountController.handleImageUpload(TEST_NAME, result);
+
+        // Analyze.to
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(path, response.getBody());
+    }
+
+    //test unsucessful image upload
+    @Test
+    public void testUploadImageFail() throws IOException {
+        // Setup
+
+        String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
+        
+        byte[] img = Files.readAllBytes(Paths.get(path));
+        when(mockAccountDAO.addImage(TEST_NAME, img)).thenReturn(null);
+
+        // Invoke
+        MultipartFile result = new MockMultipartFile("image", new FileInputStream(new File(path)));
+        var response = accountController.handleImageUpload(TEST_NAME, result);
+
+        // Analyze.to
+        assertEquals(HttpStatus.UNSUPPORTED_MEDIA_TYPE, response.getStatusCode());
+    }
+
+    //test throw database error
+    @Test
+    public void testUploadImageException() throws IOException {
+        // Setup
+
+        String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
+        
+        byte[] img = Files.readAllBytes(Paths.get(path));
+
+        doThrow(new IOException()).when(mockAccountDAO).addImage(TEST_NAME, img);
+
+        // Invoke
+        MultipartFile result = new MockMultipartFile("image", new FileInputStream(new File(path)));
+        var response = accountController.handleImageUpload(TEST_NAME, result);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());

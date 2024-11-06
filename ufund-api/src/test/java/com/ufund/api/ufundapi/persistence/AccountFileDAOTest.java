@@ -9,15 +9,23 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.ufund.api.ufundapi.model.*;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.time.*;
 
 /**
  * 
@@ -34,6 +42,8 @@ public class AccountFileDAOTest {
     BasketNeed[] testBasketNeeds;
     ObjectMapper mockObjectMapper;
     NeedDAO mockNeedDAO;
+
+    String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
 
     /**
      * Before each test, we will create and inject a Mock Object Mapper to
@@ -76,10 +86,10 @@ public class AccountFileDAOTest {
 
         // accounts baskets match the related index in testBaskets
         testAccounts = new Account[4];
-        testAccounts[0] = new Account("Max");
-        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL);
-        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL);
-        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL);
+        testAccounts[0] = new Account("Max", "pass");
+        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
+        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
+        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the need array above
@@ -96,6 +106,10 @@ public class AccountFileDAOTest {
         accountFileDAO = new AccountFileDAO("doesnt_matter.txt",mockObjectMapper, mockNeedDAO);
     }
 
+    /**
+     * Tests getting an account
+     * @throws IOException
+     */
     @Test
     public void testGetAccount() throws IOException {
         // Invoke
@@ -105,6 +119,10 @@ public class AccountFileDAOTest {
         assertEquals(testAccounts[0], acc);
     }
 
+    /**
+     * Tests getting needs for an Account
+     * @throws IOException
+     */
     @Test
     public void testGetNeeds() throws IOException {
         // Invoke
@@ -113,6 +131,10 @@ public class AccountFileDAOTest {
         assertEquals(testBaskets[1].getNeeds(), needs);
     }
 
+    /**
+     * Tests getting needs for an account that doesn't exist
+     * @throws IOException
+     */
     @Test
     public void testGetNeedsNullAccount() throws IOException {
         // Invoke
@@ -121,6 +143,10 @@ public class AccountFileDAOTest {
         assertNull(needs);
     }
 
+    /**
+     * Tests removing a null Need
+     * @throws IOException
+     */
     @Test
     public void testRemoveNullNeed() throws IOException {
         // Setup
@@ -134,6 +160,10 @@ public class AccountFileDAOTest {
         assertTrue(needs.size() == 1);
     }
 
+    /**
+     * Tests the FileDAO returning a decreased need
+     * @throws IOException
+     */
     @Test
     public void testDropDecreasedNeed() throws IOException {
         // Setup
@@ -153,6 +183,10 @@ public class AccountFileDAOTest {
         }
     }
 
+    /**
+     * tests the checkout functionality
+     * @throws IOException
+     */
     @Test 
     public void testCheckout() throws IOException {
         // Setup to fufill all of one need
@@ -171,6 +205,10 @@ public class AccountFileDAOTest {
         assertEquals(needs.size(), 0);
     }
 
+    /**
+     * tests checking out for a null account
+     * @throws IOException
+     */
     @Test 
     public void testCheckoutNullAccount() throws IOException {
         // Invoke
@@ -180,6 +218,10 @@ public class AccountFileDAOTest {
         assertTrue(!checkedout);
     }
 
+    /**
+     * Tests checkout for a need with a low quantity (checks out to become zero quantity)
+     * @throws IOException
+     */
     @Test 
     public void testCheckoutLowNeed() throws IOException {
         // Setup 
@@ -195,6 +237,10 @@ public class AccountFileDAOTest {
         assertTrue(!checkedout);
     }
 
+    /**
+     * checks out a null need
+     * @throws IOException
+     */
     @Test 
     public void testCheckoutNullNeed() throws IOException {
         // Setup 
@@ -207,21 +253,33 @@ public class AccountFileDAOTest {
         assertTrue(!checkedout);
     }
 
+    /**
+     * tests creating an account
+     * @throws IOException
+     */
     @Test
     public void testCreateAccount() throws IOException {
-        Account created = accountFileDAO.createAccount("Bichael");
+        Account created = accountFileDAO.createAccount("Bichael", "pass");
         Account gotten = accountFileDAO.getAccount("Bichael");
 
         assertEquals(created, gotten);
     }
 
+    /**
+     * Tests attempting to create an already existing account
+     * @throws IOException
+     */
     @Test
     public void testCreateExistingAccount() throws IOException {
-        Account created = accountFileDAO.createAccount("Max");
+        Account created = accountFileDAO.createAccount("Max", "pass");
 
         assertNull(created);
     }
 
+    /**
+     * tests adding a need to an account's basket
+     * @throws IOException
+     */
     @Test
     public void testAddNeed() throws IOException {
         BasketNeed ryanNeed = accountFileDAO.updateNeed("Ryan", testNeeds[0], 1);
@@ -229,6 +287,10 @@ public class AccountFileDAOTest {
         assertEquals(ryanNeed.getQuantity(), 2);
     }
 
+    /**
+     * tests removing a need from a basket
+     * @throws IOException
+     */
     @Test
     public void testRemoveNeed() throws IOException {
         BasketNeed kaylaNeed = accountFileDAO.updateNeed("Kayla", testNeeds[1], -1);
@@ -236,10 +298,72 @@ public class AccountFileDAOTest {
         assertEquals(2, kaylaNeed.getQuantity());
     }
 
+    /**
+     * tests updating a need when the account doesn't exist
+     * @throws IOException
+     */
     @Test
     public void testUpdateNeedForFakeAccount() throws IOException {
         assertNull(accountFileDAO.updateNeed("FAKE", testNeeds[1], 1));
     }
+
+    @Test
+    public void testAddImage() throws IOException {
+        byte[] img = Files.readAllBytes(Paths.get(path));
+
+        assertEquals("http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730819252/Kayla.png", accountFileDAO.addImage("Kayla", img));
+    }
+
+    @Test
+    public void testAddImageFakeAccount() throws IOException {
+        byte[] img = Files.readAllBytes(Paths.get(path));
+
+        assertNull(accountFileDAO.addImage("FAKE", img));
+    }
+
+    /**
+     * tests that checkout updates an account's moneyFunded and needsFunded
+     * @throws IOException
+     */
+    @Test 
+    public void testCheckoutUpdatesFundingData() throws IOException {
+        Account account = accountFileDAO.getAccount("Kayla");
+
+        double expectedMoney = testBaskets[1].getCost();
+        int expectedCount = testBaskets[1].getNeedCount();
+
+        boolean checked = accountFileDAO.checkout("Kayla");
+
+        assertEquals(expectedMoney, account.getMoneyFunded());
+        assertEquals(expectedCount, account.getNeedsFunded());
+
+    }
+
+    /**
+     * tests getting all accounts in order of rank
+     * @throws IOException
+     */
+    @Test
+    public void testGetRanks() throws IOException {
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        Account max = accountFileDAO.getAccount("Max");
+        Account jonah = accountFileDAO.getAccount("Jonah");
+        Account ryan = accountFileDAO.getAccount("Ryan");
+
+        kayla.addMoneyFunded(12); 
+        max.addMoneyFunded(2); 
+        jonah.addMoneyFunded(19); 
+        ryan.addMoneyFunded(7); 
+
+        List<Account> expected = new ArrayList<>();
+        expected.add(jonah); // rank 1
+        expected.add(kayla);
+        expected.add(ryan);
+        expected.add(max); // max doesn't wanna save the world
+
+        assertEquals(expected, accountFileDAO.getRankList());
+    }
+
 
     
 }

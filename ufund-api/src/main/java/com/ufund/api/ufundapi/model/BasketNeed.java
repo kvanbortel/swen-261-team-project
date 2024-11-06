@@ -58,4 +58,14 @@ public class BasketNeed {
     public String toString() {
         return "{need: " + need.toString() + ", quantity: " + quantity + "}";
     }
+
+    /**
+     * Gets the cost of the BasketNeed.
+     * This is equal to the need_cost * basket_quantity
+     * 
+     * @return float: cost of this basketNeed
+     */
+    public double getCost() {
+        return this.need.getCost() * this.quantity;
+    }
 }

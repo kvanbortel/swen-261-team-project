@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Message } from './message';
+import { Message } from './Message';
 
 @Injectable({
   providedIn: 'root',
@@ -7,14 +7,16 @@ import { Message } from './message';
 export class MessageService {
   messages: Message[] = [];
 
-  add(message: string) {
+  add(message: string, timeout: boolean) {
     const id: string = this.generateFakeUUID()
     const data: Message = {message: message, id: id}
     this.messages.push(data);
 
-    setTimeout(() => {
-      this.messages = this.messages.filter(m => m.id !== id);
-    }, 2000);
+    if(timeout){
+      setTimeout(() => {
+        this.messages = this.messages.filter(m => m.id !== id);
+      }, 2000);
+    }
   }
 
   clear() {

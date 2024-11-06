@@ -35,6 +35,7 @@ import { BasketPageComponent } from './basket-page/basket-page.component';
 import { BasketNeedComponent } from './basket-need/basket-need.component';
 import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ProfilePicComponent } from './profile-pic/profile-pic.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import {MatOption, MatSelect} from "@angular/material/select";
 import { ProfileSectionComponent } from './profile-section/profile-section.component';
@@ -59,6 +60,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     ViewChangeButtonComponent,
     BasketPageComponent,
     BasketNeedComponent,
+    PostCheckoutComponent,
+    ProfilePicComponent,
     PostCheckoutComponent,
     ProfilePageComponent,
     ProfileSectionComponent,
