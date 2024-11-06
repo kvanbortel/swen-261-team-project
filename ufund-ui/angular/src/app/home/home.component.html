@@ -1,7 +1,8 @@
 <div class="main">
+    <div class="button-area">
     <app-view-change-button *ngIf="!isAdmin" [text]="'View Basket'" [icon]="' fa-solid fa-basket-shopping '" [path]="'basket'"></app-view-change-button>
-    <br *ngIf="!isAdmin"><br *ngIf="!isAdmin"><br *ngIf="!isAdmin">
     <app-view-change-button [text]="'Logout'" [icon]="' fa-solid fa-right-from-bracket '" (click) = this.authService.logout();></app-view-change-button>
+  </div>
     <ul class="popup-area">
         <div class="popup" *ngFor='let message of messageService.messages' @fade> {{message.message}} </div>
       </ul>
