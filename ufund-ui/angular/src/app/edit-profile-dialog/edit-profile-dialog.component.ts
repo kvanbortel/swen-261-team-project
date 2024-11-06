@@ -27,7 +27,6 @@ export class EditProfileDialogComponent {
       region: ['', Validators.required],
       pronouns: [''],
       bio: ['', Validators.max(150)],
-      password: ['', Validators.required],
       email: ['', Validators.email],
       phoneNumber: ['', Validators.pattern(/(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/)],
       ssn: ['', Validators.pattern(/^\d{3}-\d{2}-\d{4}$/)]
@@ -38,7 +37,6 @@ export class EditProfileDialogComponent {
       region: this.data.region,
       pronouns: this.data.pronouns,
       bio: this.data.bio,
-      password: this.data.password,
       email: this.data.email,
       phoneNumber: this.data.phoneNumber,
       ssn: this.data.ssn
@@ -60,7 +58,6 @@ export class EditProfileDialogComponent {
       region: this.getRegionKey(this.profileForm.value.region),
       pronouns: this.profileForm.value.pronouns,
       bio: this.profileForm.value.bio,
-      password: this.profileForm.value.password,
       email: this.profileForm.value.email,
       phoneNumber: this.profileForm.value.phoneNumber,
       ssn: this.profileForm.value.ssn

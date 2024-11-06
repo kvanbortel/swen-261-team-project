@@ -6,7 +6,6 @@ export class ProfileInfo {
   region: Region;
   pronouns: string;
   bio: string;
-  password: string;
   email: string;
   phoneNumber: string;
   ssn: string;
@@ -17,7 +16,6 @@ export class ProfileInfo {
     this.region = Region[data.region as keyof typeof Region];
     this.pronouns = data.pronouns;
     this.bio = data.bio;
-    this.password = data.password;
     this.email = data.email;
     this.phoneNumber = data.phoneNumber;
     this.ssn = data.ssn;
@@ -30,7 +28,6 @@ export class ProfileInfo {
       region: Object.keys(Region).find(k => Region[k as keyof typeof Region] === this.region) ?? Region.NONE,
       pronouns: this.pronouns,
       bio: this.bio,
-      password: this.password,
       email: this.email,
       phoneNumber: this.phoneNumber,
       ssn: this.ssn,

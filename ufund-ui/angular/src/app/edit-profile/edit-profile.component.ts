@@ -29,7 +29,7 @@ export class EditProfileComponent {
       console.log('The dialog was closed');
       if (result) {
         this.profileInfo = result;
-        this.dataFromChild.emit();
+        this.dataFromChild.emit(this.profileInfo);
       }
     });
   }
