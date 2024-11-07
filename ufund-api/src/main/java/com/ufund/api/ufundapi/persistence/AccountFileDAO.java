@@ -140,7 +140,7 @@ public class AccountFileDAO implements AccountDAO {
      * 
      * @throws IOException when file cannot be accessed or written to
      */
-    private boolean save() throws IOException {
+    boolean save() throws IOException {
         Account[] accountsArray = getAccountsArray();
 
         // Serializes the Java Objects to JSON objects into the file
