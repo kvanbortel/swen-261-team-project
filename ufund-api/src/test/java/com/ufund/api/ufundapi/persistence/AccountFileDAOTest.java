@@ -1,11 +1,8 @@
 package com.ufund.api.ufundapi.persistence;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.booleanThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,6 +37,7 @@ public class AccountFileDAOTest {
     Basket[] testBaskets;
     Need[] testNeeds;
     BasketNeed[] testBasketNeeds;
+    ProfileInfo[] testProfileInfos;
     ObjectMapper mockObjectMapper;
     NeedDAO mockNeedDAO;
 
@@ -84,12 +82,17 @@ public class AccountFileDAOTest {
         testBaskets[3] = new Basket(); // need0: 1
         testBaskets[3].addNeed(testNeeds[0]);
 
+        testProfileInfos = new ProfileInfo[2];
+        testProfileInfos[0] = new ProfileInfo(null, "pronouns", "my-alias", "bio", Region.CENTRAL_NEW_YORK, "(123) 123-1233", "me@me.com", "111-11-1111");
+        testProfileInfos[1] = new ProfileInfo(null, "he/him", "alias", "bio", Region.CENTRAL_NEW_YORK, "(123) 123-1233", "me@me.com", "111-11-1111");
+
         // accounts baskets match the related index in testBaskets
-        testAccounts = new Account[4];
+        testAccounts = new Account[5];
         testAccounts[0] = new Account("Max", "pass");
         testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
         testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
         testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
+        testAccounts[4] = new Account("KaylaInfo", testBaskets[1], testProfileInfos[0], TEST_LEVEL, "pass");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the need array above
@@ -349,21 +352,72 @@ public class AccountFileDAOTest {
         Account max = accountFileDAO.getAccount("Max");
         Account jonah = accountFileDAO.getAccount("Jonah");
         Account ryan = accountFileDAO.getAccount("Ryan");
+        Account kaylainfo = accountFileDAO.getAccount("KaylaInfo");
 
         kayla.addMoneyFunded(12); 
         max.addMoneyFunded(2); 
         jonah.addMoneyFunded(19); 
-        ryan.addMoneyFunded(7); 
+        ryan.addMoneyFunded(7);
+        kaylainfo.addMoneyFunded(5);
 
         List<Account> expected = new ArrayList<>();
         expected.add(jonah); // rank 1
         expected.add(kayla);
         expected.add(ryan);
+        expected.add(kaylainfo);
         expected.add(max); // max doesn't wanna save the world
 
         assertEquals(expected, accountFileDAO.getRankList());
     }
 
+    // Successfully retrieve a valid account's profileInfo
+    @Test
+    public void testGetProfileInfo_ValidAccount() throws IOException {
+        Account kaylaInfo = accountFileDAO.getAccount("KaylaInfo");
+        ProfileInfo expectedInfo = testProfileInfos[0];
 
-    
+        ProfileInfo result = accountFileDAO.getProfileInfo("KaylaInfo");
+
+        assertEquals(expectedInfo, result);
+    }
+
+    // Exception when trying to retrieve profileInfo with null account name
+    @Test
+    public void testGetProfileInfo_NullAccountName() throws IOException {
+        assertThrows(IllegalArgumentException.class, () -> accountFileDAO.getProfileInfo(null));
+    }
+
+    // Successfully update ProfileInfo of a valid account
+    @Test
+    public void testUpdateProfileInfo_ValidAccount() throws IOException {
+        Account kaylaInfo = accountFileDAO.getAccount("KaylaInfo");
+        ProfileInfo newProfileInfo = testProfileInfos[1];
+
+        ProfileInfo result = accountFileDAO.updateProfileInfo("KaylaInfo", newProfileInfo);
+
+        assertEquals(newProfileInfo, result);
+        // verify(kaylaInfo.getProfileInfo()).updateProfileInfo(newProfileInfo);
+        //verify(accountFileDAO, times(1)).save();
+    }
+
+    // Exception if updating profileInfo with null account
+    @Test
+    public void testUpdateProfileInfo_NullAccount() throws IOException {
+        ProfileInfo newProfileInfo = testProfileInfos[1];
+        assertThrows(IllegalArgumentException.class, () -> accountFileDAO.updateProfileInfo(null, new ProfileInfo()));
+    }
+
+    // Exception if updating profileInfo with null info
+    @Test
+    public void testUpdateProfileInfo_NullInfo() throws IOException {
+        Account kaylaInfo = accountFileDAO.getAccount("KaylaInfo");
+        assertThrows(IllegalArgumentException.class, () -> accountFileDAO.updateProfileInfo("KaylaInfo", null));
+    }
+
+    // Null if updating profileInfo of nonexistent account
+    @Test
+    public void testUpdateProfileInfo_NonExistentAccount() throws IOException {
+        ProfileInfo newProfileInfo = testProfileInfos[1];
+        assertNull(accountFileDAO.updateProfileInfo("nonExistentAccount", newProfileInfo));
+    }
 }
