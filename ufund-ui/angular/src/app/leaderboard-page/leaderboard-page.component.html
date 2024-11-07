@@ -1,0 +1,19 @@
+<div class = "lb">
+    
+    <div class="basket-head"><h3>U-fund Leaderboard</h3></div>
+    <div class = "container">
+        <ul class="main">
+            <ul class = "leaderboard" *ngIf="(accounts$ | async)?.length !== 0" class="search-result">
+                <li *ngFor="let acc of accounts$ | async; let i = index;">
+                    <app-leaderboard-account
+                    [account]="acc" [index]= "i"
+                    ></app-leaderboard-account>
+                </li>
+            </ul>
+        </ul>
+        <div class="button-area">
+            <app-view-change-button [text]="'Home'" [icon]="' fa-solid fa-home'" [path]="'home'"></app-view-change-button>
+        </div>
+    </div>
+    
+  </div>

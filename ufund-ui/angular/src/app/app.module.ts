@@ -45,6 +45,7 @@ import { AdminDashComponent } from './admin-dash/admin-dash.component';
 import { PicButtonComponent } from './pic-button/pic-button.component';
 import { LeaderboardAccountComponent } from './leaderboard-account/leaderboard-account.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     ProfileSectionComponent,
     EditProfileDialogComponent,
     EditProfileComponent,
+    LeaderboardPageComponent,
   ],
   imports: [
     BrowserModule,
