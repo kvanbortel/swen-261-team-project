@@ -48,6 +48,7 @@ public class AccountControllerTest {
     private static BasketNeed[] basketNeedArray = {(new BasketNeed(TEST_NEED, 1))};
     private static final ArrayList<BasketNeed> basketNeeds = new ArrayList<>(Arrays.asList(basketNeedArray));
     private static final Basket TEST_BASKET = new Basket();
+    String TEST_IMG =  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
 
     /**
      * Before each test, create a new Accoount Controller object and inject
@@ -80,7 +81,7 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountBasket() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
 
         when(mockAccountDAO.createAccount(TEST_NAME, TEST_PASSWORD_HASH)).thenReturn(account);
 
@@ -97,7 +98,7 @@ public class AccountControllerTest {
     @Test
     public void testCreateExistingAccount() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
 
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
@@ -228,7 +229,7 @@ public class AccountControllerTest {
     @Test
     public void testGetNeeds() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
@@ -257,7 +258,7 @@ public class AccountControllerTest {
     public void testGetAccountTrue() throws IOException {
         // Setup
         
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke

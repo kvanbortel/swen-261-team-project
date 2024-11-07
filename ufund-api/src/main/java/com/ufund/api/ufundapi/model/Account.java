@@ -105,13 +105,13 @@ public class Account implements Comparable<Account> {
             @JsonProperty("basket") Basket basket,
             @JsonProperty("profileInfo") ProfileInfo profileInfo,
             @JsonProperty("level") Level level,
-            @JsonProperty("passwordHash") String passwordHash 
-
+            @JsonProperty("passwordHash") String passwordHash ,
+            @JsonProperty("imageLink") String imgLink
             ) {
         this.name = name;
         this.basket = basket;
         this.passwordHash = passwordHash;
-        this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
+        this.imageLink = imgLink;
         this.profileInfo = profileInfo;
         this.level = level;
     }

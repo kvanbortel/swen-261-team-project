@@ -57,6 +57,8 @@ public class AccountFileDAOTest {
         testNeeds[1] = new Need("MOCKID-1","NeedB1", "Description2", 2.9, 10, 5.4);
         testNeeds[2] = new Need("MOCKID-2","NeedB2", "Description3", 1.3, 6, 12.32);
 
+        String TEST_IMG =  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
         testBasketNeeds = new BasketNeed[5];
         testBasketNeeds[0] = new BasketNeed(testNeeds[0], 1);
         testBasketNeeds[1] = new BasketNeed(testNeeds[1], 1);
@@ -89,10 +91,10 @@ public class AccountFileDAOTest {
         // accounts baskets match the related index in testBaskets
         testAccounts = new Account[5];
         testAccounts[0] = new Account("Max", "pass");
-        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
-        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
-        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
-        testAccounts[4] = new Account("KaylaInfo", testBaskets[1], testProfileInfos[0], TEST_LEVEL, "pass");
+        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL, "pass", TEST_IMG);
+        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL, "pass", TEST_IMG);
+        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL, "pass", TEST_IMG);
+        testAccounts[4] = new Account("KaylaInfo", testBaskets[1], testProfileInfos[0], TEST_LEVEL, "pass", TEST_IMG);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the need array above
