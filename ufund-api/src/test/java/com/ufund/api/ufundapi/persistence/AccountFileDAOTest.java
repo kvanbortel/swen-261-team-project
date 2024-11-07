@@ -521,5 +521,16 @@ public class AccountFileDAOTest {
         assertEquals(kayla, accountFileDAO.getGod());
     }
 
+    @Test
+    void testSetGodOldNotNull() throws IOException {
+        Account max = accountFileDAO.getAccount("Max");
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        accountFileDAO.setGod(max);
+        accountFileDAO.setGod(kayla);
+
+        assertEquals(kayla, accountFileDAO.getGod());
+        assertFalse(max.getIsGod());
+    }
+
     
 }
