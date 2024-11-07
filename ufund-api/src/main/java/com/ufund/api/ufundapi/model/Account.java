@@ -98,21 +98,44 @@ public class Account implements Comparable<Account> {
      * @param basket the user's basket object
      * @param profileInfo the user's profile information
      * @param level the user's level
+     * @param lastCheckoutInstant last time the user checked out
      */
     public Account(
             @JsonProperty("name") String name,
             @JsonProperty("basket") Basket basket,
             @JsonProperty("profileInfo") ProfileInfo profileInfo,
             @JsonProperty("level") Level level,
-            @JsonProperty("passwordHash") String passwordHash 
-
+            @JsonProperty("passwordHash") String passwordHash,
+            @JsonProperty("lastCheckoutInstant") Instant lastCheckoutInstant
             ) {
         this.name = name;
         this.basket = basket;
         this.passwordHash = passwordHash;
         this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
         this.profileInfo = profileInfo;
+        if (lastCheckoutInstant == null) {
+            this.setLastCheckoutInstant();
+        } else {
+            this.lastCheckoutInstant = Instant.EPOCH;
+        }
         this.level = level;
+    }
+
+    /**
+     * Constructs an account object using a given name and a given Basket
+     * @param name the username
+     * @param basket the user's basket object
+     * @param profileInfo the user's profile information
+     * @param level the user's level
+     */
+    public Account(
+            String name,
+            Basket basket,
+            ProfileInfo profileInfo,
+            Level level,
+            String passwordHash
+            ) {
+        this(name, basket, profileInfo, level, passwordHash, null);
     }
 
     /**
