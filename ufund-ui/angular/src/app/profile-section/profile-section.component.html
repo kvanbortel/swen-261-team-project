@@ -1,0 +1,23 @@
+<div class="profile-section">
+  <div class="block" *ngIf="profileInfo?.alias">
+    <p><span>Alias:</span> {{ profileInfo.alias }}</p>
+  </div>
+  <div class="block" *ngIf="profileInfo?.region && profileInfo.region !== Region.NONE">
+    <p><span>Region:</span> {{ profileInfo.region }}</p>
+  </div>
+  <div class="block" *ngIf="profileInfo?.pronouns">
+      <p><span>Pronouns:</span> {{ profileInfo.pronouns }}</p>
+  </div>
+  <div class="block" *ngIf="profileInfo?.bio">
+      <p><span>Bio:</span> {{ profileInfo.bio }}</p>
+  </div>
+  <div class="block" *ngIf="profileInfo?.email">
+      <p><span>Email:</span> {{ profileInfo.email }}</p>
+  </div>
+  <div class="block" *ngIf="profileInfo?.phoneNumber">
+      <p><span>Phone Number:</span> {{ profileInfo.phoneNumber }}</p>
+  </div>
+  <div class="block" *ngIf="profileInfo?.ssn">
+      <p><span>SSN:</span> {{ profileInfo.ssn }}</p>
+  </div>
+</div>

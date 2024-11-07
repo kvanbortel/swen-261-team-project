@@ -25,12 +25,14 @@ public class AccountTest {
     private static final String TEST_NAME = "Max";
     private static final Basket TEST_BASKET = new Basket();
     private static final String TEST_PASSWORD_HASH = "thisisnotahash";
+    private static final ProfileInfo TEST_PROFILE_INFO = new ProfileInfo();
+    private static final Level TEST_LEVEL = Level.NOOB;
     
     private Account account;
 
     @BeforeEach
     public void setUp() {
-        account = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
+        account = new Account(TEST_NAME, (TEST_BASKET), (TEST_PROFILE_INFO), TEST_LEVEL, TEST_PASSWORD_HASH);
     }
 
     //Test for creating an account with no basket parameter
@@ -44,10 +46,14 @@ public class AccountTest {
     //Test for creating an account with basket parameter
     @Test
     public void testConstructorBasket() {
-        Account newAccount =  new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
+        Account newAccount =  new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
         assertEquals(TEST_NAME, account.getName());
         assertEquals(TEST_BASKET, account.getBasket());
     }
+
+    // test for getting profileInfo of an account
+    @Test
+    public void testGetProfileInfo() { assertEquals(TEST_PROFILE_INFO, account.getProfileInfo()); }
 
     //test for getting name of account
     @Test
@@ -64,40 +70,32 @@ public class AccountTest {
     //test for true equality between two accounts
     @Test
     public void testAccountEqualTrue() {
-        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
-        Account account2 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account2 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
         assertEquals(account1, account2);
     }
 
     //test for false equality between two accounts depending on name
     @Test
     public void testAccountEqualFalseName() {
-        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
-        Account account2 = new Account("Different Name", TEST_BASKET, TEST_PASSWORD_HASH);
-        assertNotEquals(account1, account2);
-    }
-
-    //test for false equality between two accounts depending on password hash
-    @Test
-    public void testAccountEqualFalsePasswordHash() {
-        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
-        Account account2 = new Account(TEST_NAME, TEST_BASKET, "badpass");
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account2 = new Account("Different Name", (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
         assertNotEquals(account1, account2);
     }
 
     //test for false equality between two accounts depending on basket
     @Test
     public void testAccountEqualFalseBasket() {
-        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
         BasketNeed[] needs = {new BasketNeed(new Need("hello", "hello", "hello", 10, 10, 0), 0)};
-        Account account2 = new Account(TEST_NAME, new Basket(Arrays.asList(needs)), TEST_PASSWORD_HASH);
+        Account account2 = new Account(TEST_NAME, new Basket(Arrays.asList(needs)), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
         assertNotEquals(account1, account2);
     }
 
     //test for false equality between an account and an object
     @Test
     public void testAccountEqualObjNotNeed() {
-        Account account1 = new Account(TEST_NAME, TEST_BASKET, TEST_PASSWORD_HASH);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
         Object account2 = null;
         assertNotEquals(account1, account2);
     }

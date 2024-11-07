@@ -66,7 +66,7 @@ export class CreateNeedDialogComponent {
       // Call the service to add the need
       this.cupboardService.addNeed(needData).subscribe({
         next: (response) => {
-          console.log(`Sucessfully added need: ${response}`)
+          console.log(`Successfully added need: ${response}`)
           this.dialogRef.close(response);
         },
         error: (error) => {
@@ -78,7 +78,7 @@ export class CreateNeedDialogComponent {
       // Call the service to update the need
       this.cupboardService.updateNeed(needData).subscribe({
         next: (response) => {
-          console.log(`Sucessfully updated need: ${response}`)
+          console.log(`Successfully updated need: ${response}`)
           this.dialogRef.close(response);
         },
         error: (error) => {

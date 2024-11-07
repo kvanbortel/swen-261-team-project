@@ -1,0 +1,30 @@
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 20vw;
+}
+
+.profile-section p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.profile-section p span {
+  font-weight: bold;
+}
+
+.block{
+  max-width: 60vw ;
+  padding: 1vh;
+  padding-left: 2vh;
+  padding-right: 1vw;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 1vh;
+}

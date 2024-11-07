@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Basket;
-import com.ufund.api.ufundapi.model.BasketNeed;
-import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.*;
 
 public interface AccountDAO{
 
@@ -94,4 +91,28 @@ public interface AccountDAO{
      *         Use `list.indexOf(account) + 1` to find the rank of a specific account
      */
     public List<Account> getRankList();
+    /**
+      * Retrieves all {@linkplain ProfileInfo} profile information
+      *
+      * @param account {String account} Account name
+      *
+      * @return A {@link ProfileInfo Info} object, may be empty
+      *
+      * @throws IOException if an issue with underlying storage
+      */
+    ProfileInfo getProfileInfo(String account) throws IOException;
+
+    /**
+     * Updates a user's {@linkplain ProfileInfo profileInfo} with given data
+     *
+     * @param account {String account} Account name
+     *
+     * @param info {ProfileInfo info} profile info data
+     *
+     * @return the {@link ProfileInfo} if the profileInfo was updated
+     * null if the Account with the given id does not exist
+     *
+     * @throws IOException if underlying storage cannot be accessed
+     */
+    ProfileInfo updateProfileInfo(String account, ProfileInfo info) throws IOException;
 }

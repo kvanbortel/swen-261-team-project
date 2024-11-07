@@ -8,16 +8,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Class representing an account in the model tier
  * 
- * @author Max Klot
+ * @author Max Klot, Kayla Van Bortel
  * 
  */
 public class Account implements Comparable<Account> {
 
     private static final Logger LOG = Logger.getLogger(Account.class.getName());
 
-    //serializable name
+    // Serializable variables
     @JsonProperty String name;
-    //serializable basket
     @JsonProperty Basket basket;
     //serializable password hash
     @JsonProperty String passwordHash;
@@ -32,6 +31,10 @@ public class Account implements Comparable<Account> {
     @JsonProperty int needsFunded = 0;
     // last checkout 
     @JsonProperty Instant lastCheckoutInstant;
+    // profile info
+    @JsonProperty ProfileInfo profileInfo;
+    // current level
+    @JsonProperty Level level;
 
     /**
      * Add an amount to money funded
@@ -91,14 +94,25 @@ public class Account implements Comparable<Account> {
 
     /**
      * Constructs an account object using a given name and a given Basket
-     * @param name a name for the account object
-     * @param basket a basket for the account object
+     * @param name the username
+     * @param basket the user's basket object
+     * @param profileInfo the user's profile information
+     * @param level the user's level
      */
-    public Account(@JsonProperty("name") String name, @JsonProperty("basket") Basket basket, @JsonProperty("passwordHash") String passwordHash) {
+    public Account(
+            @JsonProperty("name") String name,
+            @JsonProperty("basket") Basket basket,
+            @JsonProperty("profileInfo") ProfileInfo profileInfo,
+            @JsonProperty("level") Level level,
+            @JsonProperty("passwordHash") String passwordHash 
+
+            ) {
         this.name = name;
         this.basket = basket;
         this.passwordHash = passwordHash;
         this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
+        this.profileInfo = profileInfo;
+        this.level = level;
     }
 
     /**
@@ -112,6 +126,8 @@ public class Account implements Comparable<Account> {
         this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
         // set to date that the account was created
         this.lastCheckoutInstant = Instant.now();
+        this.profileInfo = new ProfileInfo();
+        this.level = Level.NOOB;
     }
 
     /**
@@ -146,6 +162,20 @@ public class Account implements Comparable<Account> {
     public void setImageLink(String imageLink){
         this.imageLink = imageLink;
     }
+
+    /**
+     * Returns the profileInfo for an account object
+     * @return the profileInfo for an account object
+     */
+    public ProfileInfo getProfileInfo() {
+        return this.profileInfo;
+    }
+
+    /**
+     * Returns the level of the user
+     * @return the user's level (noob, pro, master, champion)
+     */
+    public Level getLevel() { return level; }
 
     /**
      * {@inheritDoc}

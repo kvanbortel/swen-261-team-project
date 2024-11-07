@@ -22,20 +22,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.ProfileInfo;
 import com.ufund.api.ufundapi.persistence.AccountDAO;
-import com.ufund.api.ufundapi.persistence.NeedDAO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("accounts")
 public class AccountController {
 
     private static final Logger LOG = Logger.getLogger(AccountController.class.getName());
-    private AccountDAO accountDAO;
+    private final AccountDAO accountDAO;
 
     /**
-     * Creates a REST API controller to reponds to requests
+     * Creates a REST API controller to respond to requests
      * 
-     * @param accountDao The {@link AccountDAO Need Data Access Object} to perform CRUD operations
+     * @param accountDAO The {@link AccountDAO Need Data Access Object} to perform CRUD operations
      * 
      * This dependency is injected by the Spring Framework
      */
@@ -50,7 +58,7 @@ public class AccountController {
         try {
             Account newAccount = accountDAO.createAccount(accountRequest.getName(), accountRequest.getPasswordHash());
             if (newAccount != null) {
-                return new ResponseEntity<Account>(newAccount, HttpStatus.CREATED);
+                return new ResponseEntity<>(newAccount, HttpStatus.CREATED);
             }
             return new ResponseEntity<Account>(this.accountDAO.getAccount(accountRequest.getName()), HttpStatus.OK);
         }
@@ -63,9 +71,9 @@ public class AccountController {
     /**
      * Updates the quantity of a specified need in an account.
      * 
-     * @param accountName the name of the account 
+     * @param accountName the name of the account
+     * @param amount the quantity of Needs
      * @param need the basketNeed to be updated
-     * @param increment int the quantity of the need to be changed
      * @return 200 OK if the update was successful
      * 404 NOT FOUND if the account does not exist
      * 500 INTERNAL SERVER ERROR otherwise
@@ -78,7 +86,7 @@ public class AccountController {
             if (found == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } 
-            return new ResponseEntity<BasketNeed>(found, HttpStatus.OK);
+            return new ResponseEntity<>(found, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -99,9 +107,9 @@ public class AccountController {
         try {
             boolean success = accountDAO.checkout(accountName);
             if (!success) {
-                return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
             } 
-            return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+            return new ResponseEntity<>(true, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -121,9 +129,33 @@ public class AccountController {
     public ResponseEntity<ArrayList<BasketNeed>> getNeeds(@PathVariable String accountName) {
         LOG.info("GET /accounts/" + accountName + "/needs");
         try {
-            Account account = accountDAO.getAccount(accountName);
             ArrayList<BasketNeed> needs = accountDAO.getNeeds(accountName);
-            return new ResponseEntity<ArrayList<BasketNeed>>(needs, HttpStatus.OK);
+            return new ResponseEntity<>(needs, HttpStatus.OK);
+        }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Responds to the GET request for a {@linkplain ProfileInfo info} in a specific account
+     *
+     * @param accountName the name of the account to retrieve
+     *
+     * @return ResponseEntity a {@link ProfileInfo info} object (may be empty) and
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("/{accountName}/profileInfo")
+    public ResponseEntity<ProfileInfo> getProfileInfo(@PathVariable String accountName) {
+        LOG.info("GET /accounts/" + accountName + "/profileInfo");
+        try {
+            ProfileInfo profileInfo = accountDAO.getProfileInfo(accountName);
+            if (profileInfo == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<ProfileInfo>(profileInfo, HttpStatus.OK);
         }
         catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
@@ -191,6 +223,32 @@ public class AccountController {
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Update the ProfileInfo for a specified account
+     * @param accountName the name of the user to update info for
+     * @param profileInfo the info to update the user with
+     * @return 200 OK if the update was successful
+     * 404 NOT FOUND if the account does not exist
+     * 500 INTERNAL SERVER ERROR otherwise
+     */
+    @PutMapping("/{accountName}/profileInfo")
+    public ResponseEntity<ProfileInfo> updateProfileInfo(@PathVariable String accountName, @RequestBody ProfileInfo profileInfo) {
+        LOG.info("PUT /accounts/" + accountName + "/profileInfo");
+
+        try {
+            ProfileInfo updatedProfileInfo = accountDAO.updateProfileInfo(accountName, profileInfo);
+
+            if (updatedProfileInfo == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Account not found
+            }
+
+            return new ResponseEntity<>(updatedProfileInfo, HttpStatus.OK); // Successfully updated
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // Handle internal errors
         }
     }
 }
