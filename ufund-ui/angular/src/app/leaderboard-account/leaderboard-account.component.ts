@@ -15,6 +15,9 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../storage/auth.service';
 import numeral, { Numeral } from 'numeral'
+import { ProfileInfo } from '../profile-info';
+import { ProfileInfoJSON } from '../ProfileInfoJSON';
+import { Region } from '../region';
 
 @Component({
   selector: 'app-leaderboard-account',
@@ -30,7 +33,8 @@ export class LeaderboardAccountComponent {
     imageLink: '',
     basket: {needs: []},
     moneyFunded: 0.0,
-    needsFunded: 0
+    needsFunded: 0,
+    profileInfo: new ProfileInfo({alias: '', region: Region.FINGER_LAKES, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
 
   };
 
@@ -55,6 +59,14 @@ export class LeaderboardAccountComponent {
 
   formatMoney(): string{
     return numeral(this.account.moneyFunded).format("($ 0.00 a)")
+  }
+
+  getAlias(): string{
+    console.log(this.account.profileInfo.alias)
+    if(this.account.profileInfo.alias == ''){
+      return "anon"
+    }
+    return this.account.profileInfo.alias;
   }
   
 }

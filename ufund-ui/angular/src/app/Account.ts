@@ -1,12 +1,13 @@
 import { Basket } from "./Basket";
+import { ProfileInfo } from "./profile-info";
 
 export interface Account {
     name: String,
     basket: Basket,
-    passwordHash: String,
+    passwordHash: string,
     imageLink: string,
     moneyFunded: number,
-    needsFunded: number;
-
+    needsFunded: number,
+    profileInfo: ProfileInfo;
     
   }
