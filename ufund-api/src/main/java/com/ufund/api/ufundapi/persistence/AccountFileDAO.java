@@ -69,7 +69,6 @@ public class AccountFileDAO implements AccountDAO {
     public void setGod(Account newGod) { 
         // dethrone old god (if there was one)
         if (god != null) { god.setIsGod(false); }
-        god.setIsGod(false);
 
         // assign new god
         god = newGod; 

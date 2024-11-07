@@ -112,8 +112,6 @@ public class AccountFileDAOTest {
             when(mockNeedDAO.getNeed(n.getId())).thenReturn(n);
         }
 
-        // make max god
-        testAccounts[0].setIsGod(true);
         accountFileDAO = new AccountFileDAO("doesnt_matter.txt",mockObjectMapper, mockNeedDAO);
     }
 
@@ -392,6 +390,11 @@ public class AccountFileDAOTest {
      */
     @Test
     public void testGodLoad() throws IOException {
+        // make max god
+        testAccounts[0].setIsGod(true);
+
+        accountFileDAO = new AccountFileDAO("doesnt_matter.txt",mockObjectMapper, mockNeedDAO);
+
         Account max = accountFileDAO.getAccount("Max");
         Account god = accountFileDAO.getGod();
 
@@ -499,14 +502,23 @@ public class AccountFileDAOTest {
 
     @Test
     public void testCheckoutNoSwapGod() throws IOException {
-        Account max = accountFileDAO.getAccount("Max");
-        Account kayla = accountFileDAO.getAccount("Kayla");
-
         when(mockNeedDAO.isEmpty()).thenReturn(false);
         accountFileDAO.checkout("Kayla");
 
+        assertNull(accountFileDAO.getGod());
+    }
 
-        assertEquals(max, accountFileDAO.getGod());
+    @Test
+    void testLoadNoGod() throws IOException {
+        assertNull(accountFileDAO.getGod());
+    }    
+
+    @Test
+    void testSetGodOldIsNull() throws IOException {
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        accountFileDAO.setGod(kayla);
+
+        assertEquals(kayla, accountFileDAO.getGod());
     }
 
     
