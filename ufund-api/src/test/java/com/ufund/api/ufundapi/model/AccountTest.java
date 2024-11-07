@@ -30,9 +30,11 @@ public class AccountTest {
     
     private Account account;
 
+    String TEST_IMG =  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
     @BeforeEach
     public void setUp() {
-        account = new Account(TEST_NAME, (TEST_BASKET), (TEST_PROFILE_INFO), TEST_LEVEL, TEST_PASSWORD_HASH);
+        account = new Account(TEST_NAME, (TEST_BASKET), (TEST_PROFILE_INFO), TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
     }
 
     //Test for creating an account with no basket parameter
@@ -46,7 +48,7 @@ public class AccountTest {
     //Test for creating an account with basket parameter
     @Test
     public void testConstructorBasket() {
-        Account newAccount =  new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account newAccount =  new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
         assertEquals(TEST_NAME, account.getName());
         assertEquals(TEST_BASKET, account.getBasket());
     }
@@ -70,32 +72,32 @@ public class AccountTest {
     //test for true equality between two accounts
     @Test
     public void testAccountEqualTrue() {
-        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
-        Account account2 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account2 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
         assertEquals(account1, account2);
     }
 
     //test for false equality between two accounts depending on name
     @Test
     public void testAccountEqualFalseName() {
-        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
-        Account account2 = new Account("Different Name", (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account2 = new Account("Different Name", (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
         assertNotEquals(account1, account2);
     }
 
     //test for false equality between two accounts depending on basket
     @Test
     public void testAccountEqualFalseBasket() {
-        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
         BasketNeed[] needs = {new BasketNeed(new Need("hello", "hello", "hello", 10, 10, 0), 0)};
-        Account account2 = new Account(TEST_NAME, new Basket(Arrays.asList(needs)), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account2 = new Account(TEST_NAME, new Basket(Arrays.asList(needs)), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
         assertNotEquals(account1, account2);
     }
 
     //test for false equality between an account and an object
     @Test
     public void testAccountEqualObjNotNeed() {
-        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
         Object account2 = null;
         assertNotEquals(account1, account2);
     }
