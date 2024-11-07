@@ -2,6 +2,11 @@
     margin-top: 2vh;
 }
 
+.body{
+  display: flex;
+  flex-direction: row;
+}
+
 .button-area{
   position: absolute;
   right: 3vh;

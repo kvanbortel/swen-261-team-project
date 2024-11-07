@@ -43,6 +43,7 @@ import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-d
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AdminDashComponent } from './admin-dash/admin-dash.component';
 import { PicButtonComponent } from './pic-button/pic-button.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { PicButtonComponent } from './pic-button/pic-button.component';
     MatDialogModule,
     BrowserAnimationsModule,
     MatSelect,
-    MatOption
+    MatOption,
+    MatTabsModule
   ],
   providers: [LoginComponent,
               {provide: MatDialogRef, useValue: {}},
