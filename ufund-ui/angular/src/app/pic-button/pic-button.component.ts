@@ -24,6 +24,7 @@ export class PicButtonComponent {
 
   profile() {
     // go to the profile page
+    this.dropdownOpen = false;
   }
 
   logout() {

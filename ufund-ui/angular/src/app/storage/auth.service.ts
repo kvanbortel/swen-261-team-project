@@ -14,6 +14,7 @@ export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
   image: string = '';
+  loadingImg: string = "https://media1.tenor.com/m/On7kvXhzml4AAAAC/loading-gif.gif";
 
   private AccountURL = "http://localhost:8080/accounts";
 
@@ -139,6 +140,8 @@ export class AuthService implements CanActivate{
 
 
     console.log("posting image")
+    localStorage.setItem("image", this.loadingImg)
+    this.image = this.loadingImg
     console.log(image)
     this.http
       .post(this.AccountURL + '/' + this.name + "/image", formData, { responseType: 'text' })

@@ -1,11 +1,24 @@
+<ul class="popup-area">
+  <div class="popup" *ngFor='let message of messageService.messages' @fade> {{message.message}} </div>
+</ul>
+
+<div class="button-area">
 <app-view-change-button [text]="'Home'" [icon]="' fa-solid fa-home'" [path]="'home'"></app-view-change-button>
+</div>
 <div class="profile-container">
-    <div class="profile-box">
-      <div class="flex-container">
-        <img src="assets/Paws&Claws.png">
-        <label *ngIf="!this.authService.isAdmin()" class="username">{{this.authService.getName()}}</label>
+      <div class="head">
+      <label *ngIf="!this.authService.isAdmin()" class="username">Welcome to your profile, <b>{{this.authService.getName()}}</b></label>  
+      <div class="pic-container">
+        <app-profile-pic></app-profile-pic>
       </div>
-      <app-edit-profile class="edit-profile-btn" [profileInfo] = "this.profileInfo" (dataFromChild)="this.setProfileInfo($event)"></app-edit-profile>
+      </div>
+      <div class="edit-button-section">
+          <input type="file" id="fileInput" class="file-input" (change)="onFileSelected($event)" accept="image/*"/>
+          <label for="fileInput" class="file-upload-button">
+              <i class="fa-solid fa-file-arrow-up"></i> Upload New Picture
+          </label>
+
+          <app-edit-profile class="edit-profile-btn" [profileInfo] = "this.profileInfo" (dataFromChild)="this.setProfileInfo($event)"></app-edit-profile>
+      </div>
       <app-profile-section class="profileSection" *ngIf="this.accountName" [accountName]="this.accountName" [profileInfo]="this.profileInfo"></app-profile-section>
-    </div>
 </div>
