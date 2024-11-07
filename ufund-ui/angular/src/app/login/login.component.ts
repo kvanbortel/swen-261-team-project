@@ -29,6 +29,15 @@ export class LoginComponent {
   ) {}
 
   login(name: string, password: string) {
+    console.log(this.authService.getAccountsSorted().subscribe({ //add new account if it doesn't exist
+      next: (response) => {
+          console.log(response)
+      },
+      error: (err) => {
+          console.error("hmm...")
+      }
+  }))
+  
     this.messageLoginService.clear()
     let passwordHash = md5(password)
     if(name == 'admin'){

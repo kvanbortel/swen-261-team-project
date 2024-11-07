@@ -1,8 +1,8 @@
 package com.ufund.api.ufundapi.model;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.logging.Logger;
-import java.time.Instant;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -23,8 +23,6 @@ public class Account implements Comparable<Account> {
     @JsonProperty String passwordHash;
     // link to the profile picture
     @JsonProperty String imageLink;
-    // last checkout 
-    @JsonProperty Instant lastCheckoutInstant;
 
     /// THIS WILL CAUSE A MERGE CONFLICT!!!
     // REMOVE BEFORE MERGE
@@ -32,6 +30,8 @@ public class Account implements Comparable<Account> {
     @JsonProperty double moneyFunded = 0;
     // number of needs funded
     @JsonProperty int needsFunded = 0;
+    // last checkout 
+    @JsonProperty Instant lastCheckoutInstant;
 
     /**
      * Add an amount to money funded

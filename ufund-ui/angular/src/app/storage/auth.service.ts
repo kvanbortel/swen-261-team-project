@@ -108,6 +108,16 @@ export class AuthService implements CanActivate{
       );
   }
 
+  getAccountsSorted(): Observable<Account[]>{
+    return this.http
+      .get<Account[]>(
+        this.AccountURL
+      ).pipe(
+        tap((_) => console.log('get account' + name)),
+        catchError(this.handleError<Account[]>('account'))
+      );
+  }
+
   checkoutBasket(): Observable<boolean> {
     return this.http
       .put<boolean>(

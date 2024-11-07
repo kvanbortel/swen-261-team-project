@@ -108,6 +108,8 @@ public class AccountController {
         }
     }
 
+
+
     /**
      * Responds to the GET request for all {@linkplain BasketNeed needs} in a specific account
      * 
@@ -151,6 +153,25 @@ public class AccountController {
         }
         catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Responds to the GET request for all {@linkplain Account accounts}, sorted for the leaderboard
+     * 
+     * @return ResponseEntity with all {@link Account account} objects
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("")
+    public ResponseEntity<List<Account>> getAccountsSorted() {
+        LOG.info("GET /accounts");
+        List<Account> accounts = accountDAO.getRankList();
+        if(accounts != null){
+            return new ResponseEntity<List<Account>>(accounts, HttpStatus.OK);
+        }
+        else{
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

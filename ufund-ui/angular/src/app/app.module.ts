@@ -35,6 +35,8 @@ import { BasketNeedComponent } from './basket-need/basket-need.component';
 import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfilePicComponent } from './profile-pic/profile-pic.component';
+import { LeaderboardAccountComponent } from './leaderboard-account/leaderboard-account.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { ProfilePicComponent } from './profile-pic/profile-pic.component';
     BasketPageComponent,
     BasketNeedComponent,
     PostCheckoutComponent,
-    ProfilePicComponent
+    ProfilePicComponent,
+    LeaderboardComponent,
+    LeaderboardAccountComponent
   ],
   imports: [
     BrowserModule,
