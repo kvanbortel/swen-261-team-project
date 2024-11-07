@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../storage/auth.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-profile-pic',
@@ -11,7 +12,7 @@ export class ProfilePicComponent {
   selectedFile: File | null = null;
   errored = false;
 
-  constructor(public authService: AuthService){}
+  constructor(public authService: AuthService, public messageService: MessageService){}
 
   // whenever a file is uploaded:
   onFileSelected(event: Event): void {
@@ -29,6 +30,7 @@ export class ProfilePicComponent {
         // TODO: Handle error
         this.errored = true;
         console.log("file too large")
+        this.messageService.add("File is too large!", true)
         return
       }
     }

@@ -12,11 +12,17 @@ body {
 }
 
 .logo{
+    align-content: center;
     width: 8vh;
     height: 8vh;
     margin-left: 20px;
     margin-right: 40px;
-    margin-top: -1vh;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 
 header {
@@ -24,13 +30,21 @@ header {
     padding: 2vh;
     text-align: center;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
     border-radius: 6px;
     text-overflow: wrap;
+}
+
+.pic{
+    align-content: center;
+    margin-right: 20px;
 }
 
 header h1 {
     color: #fff; /* White text */
     font-size: calc(min(4vh, 4vw)); /* Increase font size for the title */
     letter-spacing: 2px; /* Space out the letters */
+    margin-right: 40px;
+    align-content: center;
 }

@@ -41,6 +41,8 @@ import {MatOption, MatSelect} from "@angular/material/select";
 import { ProfileSectionComponent } from './profile-section/profile-section.component';
 import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-dialog.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { AdminDashComponent } from './admin-dash/admin-dash.component';
+import { PicButtonComponent } from './pic-button/pic-button.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     BasketNeedComponent,
     PostCheckoutComponent,
     ProfilePicComponent,
+    AdminDashComponent,
+    PicButtonComponent,
     PostCheckoutComponent,
     ProfilePageComponent,
     ProfileSectionComponent,
