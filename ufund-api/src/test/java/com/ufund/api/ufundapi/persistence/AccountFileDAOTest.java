@@ -497,5 +497,17 @@ public class AccountFileDAOTest {
         assertEquals(kayla, accountFileDAO.getGod());
     }
 
+    @Test
+    public void testCheckoutNoSwapGod() throws IOException {
+        Account max = accountFileDAO.getAccount("Max");
+        Account kayla = accountFileDAO.getAccount("Kayla");
+
+        when(mockNeedDAO.isEmpty()).thenReturn(false);
+        accountFileDAO.checkout("Kayla");
+
+
+        assertEquals(max, accountFileDAO.getGod());
+    }
+
     
 }
