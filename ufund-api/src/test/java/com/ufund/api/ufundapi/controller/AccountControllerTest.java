@@ -14,6 +14,8 @@ import com.ufund.api.ufundapi.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -348,5 +350,70 @@ public class AccountControllerTest {
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    // Successfully get ProfileInfo when account exists
+    @Test
+    void testGetProfileInfo_AccountExists() throws IOException {
+        when(mockAccountDAO.getProfileInfo(TEST_NAME)).thenReturn(TEST_PROFILE_INFO);
+
+        ResponseEntity<ProfileInfo> response = accountController.getProfileInfo(TEST_NAME);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(TEST_PROFILE_INFO, response.getBody());
+    }
+
+    // NOT_FOUND when getting ProfileInfo of account that doesn't exist
+    @Test
+    void testGetProfileInfo_NonExistentAccount() throws IOException {
+        when(mockAccountDAO.getProfileInfo("NonExistent")).thenReturn(null);
+
+        ResponseEntity<ProfileInfo> response = accountController.getProfileInfo("NonExistent");
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
+    }
+
+    // test server error when getting ProfileInfo
+    @Test
+    void testGetProfileInfo_InternalServerError() throws IOException {
+        when(mockAccountDAO.getProfileInfo(TEST_NAME)).thenThrow(new IOException());
+
+        ResponseEntity<ProfileInfo> response = accountController.getProfileInfo(TEST_NAME);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertNull(response.getBody());
+    }
+
+    // test successful ProfileInfo update
+    @Test
+    void testUpdateProfileInfo_SuccessfulUpdate() throws IOException {
+        when(mockAccountDAO.updateProfileInfo(TEST_NAME, TEST_PROFILE_INFO)).thenReturn(TEST_PROFILE_INFO);
+
+        ResponseEntity<ProfileInfo> response = accountController.updateProfileInfo(TEST_NAME, TEST_PROFILE_INFO);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(TEST_PROFILE_INFO, response.getBody());
+    }
+
+    // test update ProfileInfo when account doesn't exist
+    @Test
+    void testUpdateProfileInfo_NonExistentAccount() throws IOException {
+        when(mockAccountDAO.updateProfileInfo(TEST_NAME, TEST_PROFILE_INFO)).thenReturn(null);
+
+        ResponseEntity<ProfileInfo> response = accountController.updateProfileInfo(TEST_NAME, TEST_PROFILE_INFO);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
+    }
+
+    // test update ProfileInfo when internal server error
+    @Test
+    void testUpdateProfileInfo_InternalServerError() throws IOException {
+        when(mockAccountDAO.updateProfileInfo(TEST_NAME, TEST_PROFILE_INFO)).thenThrow(new IOException());
+
+        ResponseEntity<ProfileInfo> response = accountController.updateProfileInfo(TEST_NAME, TEST_PROFILE_INFO);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertNull(response.getBody());
     }
 }

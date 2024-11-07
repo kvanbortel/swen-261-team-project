@@ -32,7 +32,7 @@ public class AccountTest {
 
     @BeforeEach
     public void setUp() {
-        account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH);
+        account = new Account(TEST_NAME, (TEST_BASKET), (TEST_PROFILE_INFO), TEST_LEVEL, TEST_PASSWORD_HASH);
     }
 
     //Test for creating an account with no basket parameter
@@ -50,6 +50,10 @@ public class AccountTest {
         assertEquals(TEST_NAME, account.getName());
         assertEquals(TEST_BASKET, account.getBasket());
     }
+
+    // test for getting profileInfo of an account
+    @Test
+    public void testGetProfileInfo() { assertEquals(TEST_PROFILE_INFO, account.getProfileInfo()); }
 
     //test for getting name of account
     @Test
