@@ -1,10 +1,12 @@
-<div class="basket-head"><h3>U-fund Leaderboard</h3></div>
-<ul class="main">
-    <ul class = "leaderboard" *ngIf="(accounts$ | async)?.length !== 0" class="search-result">
-      <li *ngFor="let acc of accounts$ | async; let i = index;">
-        <app-leaderboard-account
-          [account]="acc" [index]= "i"
-        ></app-leaderboard-account>
-      </li>
-    </ul>
-</ul>
+<div class = "lb">
+  <div class="basket-head"><h3>U-fund Leaderboard</h3></div>
+  <ul class="main">
+      <ul class = "leaderboard" *ngIf="(accounts$ | async)?.length !== 0" class="search-result">
+        <li *ngFor="let acc of accounts$ | async; let i = index;">
+          <app-leaderboard-account
+            [account]="acc" [index]= "i"
+          ></app-leaderboard-account>
+        </li>
+      </ul>
+  </ul>
+</div>

@@ -27,6 +27,11 @@ export class PicButtonComponent {
     this.dropdownOpen = false;
   }
 
+  leaderboard(){
+    // go to the leaderboard page
+    this.dropdownOpen = false;
+  }
+
   logout() {
     this.authService.logout();
   }
