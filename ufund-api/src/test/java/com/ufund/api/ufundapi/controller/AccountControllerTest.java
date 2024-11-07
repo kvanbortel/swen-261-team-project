@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -37,6 +39,7 @@ import com.ufund.api.ufundapi.persistence.AccountDAO;
 public class AccountControllerTest {
     private AccountController accountController;
     private AccountDAO mockAccountDAO;
+    private Account mockAccount;
 
     // Local test data variables
     private static final String TEST_NAME = "AccountA1";
@@ -49,12 +52,15 @@ public class AccountControllerTest {
     private static final ArrayList<BasketNeed> basketNeeds = new ArrayList<>(Arrays.asList(basketNeedArray));
     private static final Basket TEST_BASKET = new Basket();
 
+
+    
     /**
      * Before each test, create a new Accoount Controller object and inject
      * a mock Account DAO
      */
     @BeforeEach
     public void setupAccountController() {
+        mockAccount = mock(Account.class);
         mockAccountDAO = mock(AccountDAO.class);
         accountController = new AccountController(mockAccountDAO);
     }
@@ -415,5 +421,68 @@ public class AccountControllerTest {
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertNull(response.getBody());
+    }
+
+    //test succesfully returning a sorted list of accounts
+    @Test
+    void testgetAccountsSortedReturn(){
+        List<Account> list = new ArrayList<Account>();
+        when(mockAccountDAO.getRankList()).thenReturn(list);
+
+        ResponseEntity<List<Account>> response = accountController.getAccountsSorted();
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(list, response.getBody());
+    }
+
+    //test unsucessfully returning a sorted list of accounts
+    @Test
+    void testgetAccountsSortedNoReturn(){
+        when(mockAccountDAO.getRankList()).thenReturn(null);
+
+        ResponseEntity<List<Account>> response = accountController.getAccountsSorted();
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());        
+    }
+
+    //test succesfully returning a sorted list of the top 3 accounts
+    @Test
+    void testgetAccountsSortedTop3(){
+        List<Account> list = new ArrayList<Account>();
+        when(mockAccountDAO.getRankListTop3()).thenReturn(list);
+
+        ResponseEntity<List<Account>> response = accountController.getAccountsSortedTop3();
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(list, response.getBody());
+    }
+
+    //test unsuccessfully returning a sorted list of the top 3 accounts
+    @Test
+    void testgetAccountsSortedTop3NoReturn(){
+        when(mockAccountDAO.getRankListTop3()).thenReturn(null);
+
+        ResponseEntity<List<Account>> response = accountController.getAccountsSortedTop3();
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());        
+    }
+
+    //test successfully returning the rank of an account
+    @Test
+    void tetgetRankSuccessful() throws IOException{
+
+        when(mockAccountDAO.getRank(TEST_NAME)).thenReturn(1);
+        ResponseEntity<Integer> response = accountController.getRank(TEST_NAME);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals((Integer)1, response.getBody());
+        
+    }
+
+    //test UNsuccessfully returning the rank of an account
+    @Test
+    void testgetRankUnuccessful() throws IOException{
+        doThrow(new IOException()).when(mockAccountDAO).getRank(TEST_NAME);
+        ResponseEntity<Integer> response = accountController.getRank(TEST_NAME);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 }

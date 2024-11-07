@@ -268,8 +268,8 @@ public class AccountTest {
 
         assertEquals("Account(ACCOUNT_NAME)", account.toString());
     }
-
-    /** tests getting the rank of an account */
+/**
+    // tests getting the rank of an account
     @Test
     public void testRank3() throws InterruptedException {
         Account account1 = new Account("account1", "PASS");
@@ -287,9 +287,9 @@ public class AccountTest {
         accounts.add(account2);
         accounts.add(account3);
         accounts.add(account4);
-        assertEquals(3, account3.getRank(accounts));
+        assertEquals(3, .getRank(accounts));
 
-    }
+    }*/
 
     /** tests setting the last checkout instant */
     @Test

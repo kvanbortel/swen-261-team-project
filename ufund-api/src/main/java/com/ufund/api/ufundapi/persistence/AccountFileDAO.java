@@ -293,6 +293,21 @@ public class AccountFileDAO implements AccountDAO {
     /**
      * @inheritdoc
      */
+    public int getRank(String accountName) throws IOException {
+        int rank = 1; // minimum possible rank
+        Account account = getAccount(accountName);
+        List<Account> accounts = getRankList();
+        for (Account account1 : accounts) {
+            // increment the rank for every user that is a lower (better) rank
+            if (account.compareTo(account1) == 1)
+                rank++;
+        }
+        return rank;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public List<Account> getRankListTop3(){
         List<Account> accountList = new ArrayList<>(this.accounts.values());
         Collections.sort(accountList);

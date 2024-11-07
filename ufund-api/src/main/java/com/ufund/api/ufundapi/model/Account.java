@@ -210,25 +210,6 @@ public class Account implements Comparable<Account> {
         return 0;
     }
 
-    /**
-     * Gets a users rank given an alread-sorted list of accounts. 
-     * This allows us to avoid sorting a list many times
-     *  (ie get the rank for 5 different users)
-     * Accounts are also not aware of other accounts and therefore cannot
-     *  sort themselves without the outside information of a list of Accounts
-     * 
-     * @param sortedAccounts a list of accounts sorted by rank
-     */
-    public int getRank(List<Account> accounts) {
-        int rank = 1; // minimum possible rank
-        for (Account account : accounts) {
-            // increment the rank for every user that is a lower (better) rank
-            if (this.compareTo(account) == 1)
-                rank++;
-        }
-        return rank;
-    }
-
     @Override
     public String toString() {
         return "Account(" + name + ")";

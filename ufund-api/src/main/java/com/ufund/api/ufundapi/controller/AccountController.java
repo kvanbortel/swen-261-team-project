@@ -232,8 +232,7 @@ public class AccountController {
         LOG.info("GET /accounts/" + accountName + "/rank");
         List<Account> accounts = accountDAO.getRankList();
         try{
-            Account account = accountDAO.getAccount(accountName);
-            return new ResponseEntity<Integer>((Integer) account.getRank(accounts), HttpStatus.OK);
+            return new ResponseEntity<Integer>((Integer)accountDAO.getRank(accountName), HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

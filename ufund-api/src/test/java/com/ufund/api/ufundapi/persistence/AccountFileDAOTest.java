@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import com.ufund.api.ufundapi.model.*;
 import org.hamcrest.MatcherAssert;
@@ -419,5 +420,22 @@ public class AccountFileDAOTest {
     public void testUpdateProfileInfo_NonExistentAccount() throws IOException {
         ProfileInfo newProfileInfo = testProfileInfos[1];
         assertNull(accountFileDAO.updateProfileInfo("nonExistentAccount", newProfileInfo));
+    }
+
+    @Test
+    public void testgetRankSuccessful() throws InterruptedException, IOException{
+
+        accountFileDAO.createAccount("account1", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
+        accountFileDAO.createAccount("account2", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
+        accountFileDAO.createAccount("account3", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
+        accountFileDAO.createAccount("account4", "PASS");
+
+        // ordered by time because there are no needs or money funded
+
+
+        assertEquals(3, accountFileDAO.getRank("account3"));
     }
 }

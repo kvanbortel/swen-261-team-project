@@ -114,6 +114,17 @@ public interface AccountDAO{
       */
     ProfileInfo getProfileInfo(String account) throws IOException;
 
+     /**
+     * Gets a users rank given an alread-sorted list of accounts. 
+     * This allows us to avoid sorting a list many times
+     *  (ie get the rank for 5 different users)
+     * Accounts are also not aware of other accounts and therefore cannot
+     *  sort themselves without the outside information of a list of Accounts
+     * 
+     * @param sortedAccounts a list of accounts sorted by rank
+     */
+    public int getRank(String accountName) throws IOException;
+
     /**
      * Updates a user's {@linkplain ProfileInfo profileInfo} with given data
      *
