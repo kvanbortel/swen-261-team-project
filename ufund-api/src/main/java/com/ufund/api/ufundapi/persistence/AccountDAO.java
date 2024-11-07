@@ -115,4 +115,13 @@ public interface AccountDAO{
      * @throws IOException if underlying storage cannot be accessed
      */
     ProfileInfo updateProfileInfo(String account, ProfileInfo info) throws IOException;
+
+    /**
+     * Retrieve a {@linkplain AdminInfo} object that contains user demographic information for the admins
+     *
+     * @return the {@link AdminInfo} the information of the users
+     *
+     * @throws IOException if underlying storage cannot be accessed
+     */
+    AdminInfo getUserStats() throws IOException;
 }
