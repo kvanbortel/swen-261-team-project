@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.context.annotation.Profile;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 public class ProfileInfo {
 
@@ -128,5 +129,24 @@ public class ProfileInfo {
                 }
             }
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof ProfileInfo){
+            ProfileInfo otherProfileInfo = (ProfileInfo) other;
+            return Objects.equals(this.profilePic, otherProfileInfo.getProfilePic()) &&
+                    this.pronouns.equals(otherProfileInfo.getPronouns()) &&
+                    this.alias.equals(otherProfileInfo.getAlias()) &&
+                    this.bio.equals(otherProfileInfo.getBio()) &&
+                    this.region.equals(otherProfileInfo.getRegion()) &&
+                    this.phoneNumber.equals(otherProfileInfo.getPhoneNumber()) &&
+                    this.email.equals(otherProfileInfo.getEmail()) &&
+                    this.ssn.equals(otherProfileInfo.getSsn());
+        }
+        return false;
     }
 }
