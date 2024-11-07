@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import com.ufund.api.ufundapi.model.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,11 +17,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Basket;
-import com.ufund.api.ufundapi.model.BasketNeed;
-import com.ufund.api.ufundapi.model.Need;
-
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -292,6 +288,15 @@ public class AccountFileDAO implements AccountDAO {
         // sort it
         Collections.sort(accountList);
         return accountList;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public List<Account> getRankListTop3(){
+        List<Account> accountList = new ArrayList<>(this.accounts.values());
+        Collections.sort(accountList);
+        return accountList.stream().limit(3).collect(Collectors.toList());
     }
 
     /**

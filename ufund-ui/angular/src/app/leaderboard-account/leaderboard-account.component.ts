@@ -40,7 +40,6 @@ export class LeaderboardAccountComponent {
 
   style: String = ""
 
-  ngOnInit(){console.log(this.account.basket)}
 
   @Input() account: Account;
   @Input() index: number;
@@ -67,6 +66,9 @@ export class LeaderboardAccountComponent {
       return "anon"
     }
     return this.account.profileInfo.alias;
+  }
+
+  ngOnInit(){
   }
   
 }

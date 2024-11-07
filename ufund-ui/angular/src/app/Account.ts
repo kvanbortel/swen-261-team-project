@@ -2,7 +2,7 @@ import { Basket } from "./Basket";
 import { ProfileInfo } from "./profile-info";
 
 export interface Account {
-    name: String,
+    name: string,
     basket: Basket,
     passwordHash: string,
     imageLink: string,

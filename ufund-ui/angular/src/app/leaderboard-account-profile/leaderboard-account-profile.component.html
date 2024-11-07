@@ -1,0 +1,11 @@
+<div *ngIf = "this.rank > 3" class="cupboard-need">
+    <div class="row">
+      <img class="pic" src="{{this.account.imageLink}}">
+      <span class="need-title">
+      {{ this.rank }}. 
+      {{ this.getAlias() }}
+      </span>
+      <span class="need-description">{{ this.formatMoney() }}</span>
+    </div>
+
+</div>

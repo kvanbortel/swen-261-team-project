@@ -54,6 +54,17 @@ export class AuthService implements CanActivate{
     
   }
 
+  getRank(name: string | null): Observable<number>{
+    console.log(this.AccountURL + '/' + name + "/rank")
+    return this.http
+      .get<number>(
+        this.AccountURL + '/' + name + "/rank"
+      ).pipe(
+        tap((_) => console.log('get account rank ' + name)),
+        catchError(this.handleError<number>('account'))
+      );
+  }
+
   isAuthenticated() {
     if(!(localStorage.getItem("isAdmin") === "true") && localStorage.getItem("name") === ''){
       return false;
@@ -99,7 +110,7 @@ export class AuthService implements CanActivate{
       );
   }
 
-  getAccount(name: string): Observable<Account>{
+  getAccount(name: string | null): Observable<Account>{
     return this.http
       .get<Account>(
         this.AccountURL + '/' + name
@@ -113,6 +124,16 @@ export class AuthService implements CanActivate{
     return this.http
       .get<Account[]>(
         this.AccountURL
+      ).pipe(
+        tap((_) => console.log('get account' + name)),
+        catchError(this.handleError<Account[]>('account'))
+      );
+  }
+
+  getAccountsSortedTop3(): Observable<Account[]>{
+    return this.http
+      .get<Account[]>(
+        this.AccountURL + "/top3"
       ).pipe(
         tap((_) => console.log('get account' + name)),
         catchError(this.handleError<Account[]>('account'))

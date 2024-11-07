@@ -91,6 +91,18 @@ public interface AccountDAO{
      *         Use `list.indexOf(account) + 1` to find the rank of a specific account
      */
     public List<Account> getRankList();
+
+     /**
+     * Accounts may not always have the most up to date rank,
+     * But all ranks will have been defined at the same time
+     * There is no accessor for a rank list because you should ALWAYS
+     * update the rank before accessing it
+     * 
+     * @return List<Account> of lists starting with Rank1, then Rank2, and so on
+     *         Use `list.indexOf(account) + 1` to find the rank of a specific account. Only returns top 3 accounts.
+     */
+    public List<Account> getRankListTop3();
+
     /**
       * Retrieves all {@linkplain ProfileInfo} profile information
       *

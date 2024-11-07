@@ -208,6 +208,39 @@ public class AccountController {
         }
     }
 
+     /**
+     * Responds to the GET request for all {@linkplain Account accounts}, sorted for the leaderboard
+     * 
+     * @return ResponseEntity with all {@link Account account} objects
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("/top3")
+    public ResponseEntity<List<Account>> getAccountsSortedTop3() {
+        LOG.info("GET /accounts/top3");
+        List<Account> accounts = accountDAO.getRankListTop3();
+        if(accounts != null){
+            return new ResponseEntity<List<Account>>(accounts, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{accountName}/rank")
+    public ResponseEntity<Integer> getRank(@PathVariable String accountName){
+        LOG.info("GET /accounts/" + accountName + "/rank");
+        List<Account> accounts = accountDAO.getRankList();
+        try{
+            Account account = accountDAO.getAccount(accountName);
+            return new ResponseEntity<Integer>((Integer) account.getRank(accounts), HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+    }
+
     @PostMapping("/{accountName}/image")
     public ResponseEntity<String> handleImageUpload(@PathVariable String accountName, @RequestParam("image") MultipartFile imageFile) {
         LOG.info("POST /accounts/" + accountName + "/image");
