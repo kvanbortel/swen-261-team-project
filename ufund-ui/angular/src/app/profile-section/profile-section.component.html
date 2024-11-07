@@ -1,4 +1,4 @@
-<div class="profile-section">
+<div class="profile-section" *ngIf="!(!profileInfo?.alias && (!profileInfo?.region || profileInfo.region === Region.NONE) && !profileInfo?.pronouns && !profileInfo?.bio && !profileInfo?.email && !profileInfo?.phoneNumber && !profileInfo?.ssn)">
   <div class="block" *ngIf="profileInfo?.alias">
     <p><span>Alias:</span> {{ profileInfo.alias }}</p>
   </div>
@@ -20,4 +20,8 @@
   <div class="block" *ngIf="profileInfo?.ssn">
       <p><span>SSN:</span> {{ profileInfo.ssn }}</p>
   </div>
+</div>
+
+<div class="block no-info" *ngIf="!profileInfo?.alias && (!profileInfo?.region || profileInfo.region === Region.NONE) && !profileInfo?.pronouns && !profileInfo?.bio && !profileInfo?.email && !profileInfo?.phoneNumber && !profileInfo?.ssn">
+  <p>Edit your profile to add some info!</p>
 </div>
