@@ -33,6 +33,12 @@
   justify-content: space-between;
 }
 
+/* this is bad practice but I'm tired and don't want to add another dynamic */
+::ng-deep app-leaderboard .main {
+  max-height: 40vh;
+  margin-right: 2vw;
+}
+
 .head-title {
   display: block;
   font-size: 1.2rem;

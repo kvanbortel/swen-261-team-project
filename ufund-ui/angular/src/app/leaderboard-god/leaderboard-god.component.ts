@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Account } from '../Account';
 import { ProfileInfo } from '../profile-info';
 import { Region } from '../region';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-leaderboard-god',
@@ -36,6 +37,7 @@ export class LeaderboardGodComponent {
   constructor(
     public authService: AuthService,
     public formBuilder: FormBuilder,
+    public router: Router
   ) {
     this.god = null;
     this.isGod = false;
@@ -71,8 +73,14 @@ export class LeaderboardGodComponent {
     return ''
   }
 
-  
-  
+  routeProfile(){
+    this.router.navigate(['/user'], {
+      state: {
+        profileInfo: this.god!.profileInfo,
+        profileImg: this.god!.imageLink
+      },
+    });
+  }
 
   ngOnInit(){
     

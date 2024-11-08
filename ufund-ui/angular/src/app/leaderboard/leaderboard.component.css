@@ -5,13 +5,11 @@ ul{
 
 .main{
     padding-left: 2vw;
-    width: 32vw;
     margin-top: 2vh;
-    margin-bottom: 2vh;
 }
 
-.basket-head{
-    padding-left: 2vw;
+.leader-head{
+    text-align: center;
 }
 
 @media only screen and (max-width: 600px) {
