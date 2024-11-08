@@ -425,6 +425,12 @@ public class AccountFileDAOTest {
     @Test
     public void testgetRankSuccessful() throws InterruptedException, IOException{
 
+        // make new accountFileDAO so we have just the new 4 accounts
+        when(mockObjectMapper
+            .readValue(new File("doesnt_matter.txt"),Account[].class))
+                .thenReturn(new Account[0]);
+        accountFileDAO = new AccountFileDAO("doesnt_matter.txt", mockObjectMapper, mockNeedDAO);
+
         accountFileDAO.createAccount("account1", "PASS");
         TimeUnit.MILLISECONDS.sleep(10);
         accountFileDAO.createAccount("account2", "PASS");
@@ -434,7 +440,6 @@ public class AccountFileDAOTest {
         accountFileDAO.createAccount("account4", "PASS");
 
         // ordered by time because there are no needs or money funded
-
 
         assertEquals(3, accountFileDAO.getRank("account3"));
     }
