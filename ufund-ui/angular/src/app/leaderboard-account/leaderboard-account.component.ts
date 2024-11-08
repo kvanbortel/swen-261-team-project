@@ -19,6 +19,7 @@ import numeral, { Numeral } from 'numeral'
 import { ProfileInfo } from '../profile-info';
 import { ProfileInfoJSON } from '../ProfileInfoJSON';
 import { Region } from '../region';
+import { Router, RouterModule } from '@angular/router';
 import { map, Observable } from 'rxjs';
 
 @Component({
@@ -69,7 +70,8 @@ export class LeaderboardAccountComponent{
 
   constructor(
     public authService: AuthService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public router: Router
   ) {}
 
   getDynamicStyles() {
@@ -106,6 +108,15 @@ export class LeaderboardAccountComponent{
     localStorage.setItem("profile-image", this.account.imageLink)
     this.authService.profileInfo = this.account.profileInfo
     this.authService.profileImage = this.account.imageLink
+  }
+
+  routeProfile(){
+    this.router.navigate(['/profileother'], {
+      state: {
+        profileInfo: this.account.profileInfo,
+        profileImg: this.account.imageLink
+      },
+    });
   }
 
   getRank(): Observable<number> {
