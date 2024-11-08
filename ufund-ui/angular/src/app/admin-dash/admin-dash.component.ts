@@ -56,15 +56,15 @@ export class AdminDashComponent {
               }
             }
           });
-
-          this.createRegionChart();
-          this.createFundingChart();
         }
       },
     });
   }
 
   createRegionChart(){
+    if (this.chartRegion) {
+      this.chartRegion.destroy();
+    }
     this.chartRegion = new Chart(this.chartRegionCanvas.nativeElement, {
       type: 'pie', 
 
@@ -105,7 +105,10 @@ export class AdminDashComponent {
   }
 
   createFundingChart(){
-    this.chartRegion = new Chart(this.chartFundingCanvas.nativeElement, {
+    if (this.chartFunding) {
+      this.chartFunding.destroy();
+    }
+    this.chartFunding = new Chart(this.chartFundingCanvas.nativeElement, {
       type: 'pie', 
 
       data: {
