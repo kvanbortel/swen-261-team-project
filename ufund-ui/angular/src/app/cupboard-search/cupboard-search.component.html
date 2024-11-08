@@ -1,5 +1,5 @@
 <div class="main">
-  <div id="search-component" class="search-container">
+  <div id="search-component" class="search-container" [ngStyle]="getSizeStyles()">
     <label *ngIf="!this.authService.isAdmin()" class="login"> Logged in as: "{{this.authService.getName()}}"</label>
     <hr><hr>
     <label for="search-box" class="search-title">Search for Needs</label>

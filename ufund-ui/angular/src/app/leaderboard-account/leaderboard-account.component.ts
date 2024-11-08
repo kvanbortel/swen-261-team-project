@@ -73,6 +73,12 @@ export class LeaderboardAccountComponent{
   ) {}
 
   getDynamicStyles() {
+    if(this.authService.isAdmin()){
+      return {
+        padding: "5px",
+        "padding-right" : "2vw"
+      }
+    }
     if(this.you){
       return {
         border: "4px solid rgb(241, 176, 97)"

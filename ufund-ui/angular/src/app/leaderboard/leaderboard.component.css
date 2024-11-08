@@ -4,11 +4,10 @@ ul{
 }
 
 .main{
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
     padding-left: 2vw;
     width: 32vw;
-    height: 30vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 
 .basket-head{

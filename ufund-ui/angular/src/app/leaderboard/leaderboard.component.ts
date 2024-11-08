@@ -25,16 +25,18 @@ export class LeaderboardComponent {
   god: Account | null = null;
   accounts$ = new BehaviorSubject<Account[]>([]);
   constructor(public authService: AuthService){};
+  isAdmin: boolean = this.authService.isAdmin();
   onLeaderboardBool: boolean = false;
 
   ngOnInit(){
-
-    this.authService.getAccount(localStorage.getItem("name")).subscribe({
-      next: (response) => {
-        this.account = (response);
-        console.log(response);
-      },
-    });
+    if(!this.authService.isAdmin()){
+      this.authService.getAccount(localStorage.getItem("name")).subscribe({
+        next: (response) => {
+          this.account = (response);
+          console.log(response);
+        },
+      });
+    }
 
     this.authService.getGod().subscribe({
       next: (response) => {

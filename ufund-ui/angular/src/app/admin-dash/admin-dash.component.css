@@ -20,6 +20,7 @@
 .info-section {
   border-style: solid;
   border: 2px solid #ddd;
+  margin-top: 2vh;
   border-radius: 5px;
   padding: 3vh;
   width: 45vw;

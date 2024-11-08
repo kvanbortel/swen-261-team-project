@@ -1,8 +1,8 @@
-<div class = "lb">
+<div class = "main">
   <div class="basket-head"><h3>U-fund Leaderboard</h3></div>
   <app-leaderboard-god [god] = "god"> 
   </app-leaderboard-god>
-  <ul class="main">
+  <ul class="lb">
       <ul class = "leaderboard" *ngIf="(accounts$ | async)?.length !== 0">
         <li *ngFor="let acc of accounts$ | async; let i = index;">
           <app-leaderboard-account
@@ -11,7 +11,7 @@
         </li>
       </ul>
       <app-leaderboard-account
-            *ngIf="!onLeaderboardBool" [account]="account" [index]= "-1" [you]="true"
+            *ngIf="!onLeaderboardBool && !isAdmin" [account]="account" [index]= "-1" [you]="true"
           ></app-leaderboard-account>
   </ul>
 </div>

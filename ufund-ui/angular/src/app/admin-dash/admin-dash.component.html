@@ -22,7 +22,7 @@
       </div>
 
       <div class="block" *ngIf="(adminInfo$ | async)?.userNumber">
-        <mat-tab-group id="ChartBlock">
+        <mat-tab-group id="ChartBlock" style="overflow: visible">
           <mat-tab label="Helper Regions">
             <canvas #chartRegionCanvas id="ChartRegion">{{ chartRegion }}</canvas>
             <div class="no-info" *ngIf="(adminInfo$ | async)?.userNumber && !regionCharting">
@@ -32,7 +32,7 @@
               <p>Helpers by Region</p>
             </div>
           </mat-tab>
-          <mat-tab label="Helper Funding"> 
+          <mat-tab label="Helper Funding" style="overflow-y: visible;"> 
             <canvas #chartFundingCanvas id="ChartFunding">{{ chartFunding }}</canvas>
             <div class="no-info" *ngIf="(adminInfo$ | async)?.userNumber && !fundCharting">
               <p>No funding region data available yet</p>
@@ -41,8 +41,8 @@
               <p>Funding by Region</p>
             </div>
           </mat-tab>
-          <mat-tab label="Leaderboard"> 
-            Display Leaderboard 
+          <mat-tab label="Leaderboard" style="overflow-y: visible;"> 
+            <app-leaderboard></app-leaderboard>
           </mat-tab>
         </mat-tab-group>
       </div>
