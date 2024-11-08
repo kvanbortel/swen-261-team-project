@@ -26,8 +26,6 @@ public class Account implements Comparable<Account> {
     // last checkout 
     @JsonProperty Instant lastCheckoutInstant;
 
-    /// THIS WILL CAUSE A MERGE CONFLICT!!!
-    // REMOVE BEFORE MERGE
     // amount spend on funding needs
     @JsonProperty double moneyFunded = 0;
     // number of needs funded
@@ -36,6 +34,10 @@ public class Account implements Comparable<Account> {
     @JsonProperty ProfileInfo profileInfo;
     // current level
     @JsonProperty Level level;
+
+    // indicates if a user is god
+    @JsonProperty boolean isGod = false;
+
 
     /**
      * Add an amount to money funded
@@ -91,6 +93,14 @@ public class Account implements Comparable<Account> {
 
     public int getNeedsFunded() {
         return needsFunded;
+    }
+
+    public boolean getIsGod() {
+        return isGod;
+    }
+
+    public void setIsGod(boolean newIsGod) {
+        isGod = newIsGod;
     }
 
     /**

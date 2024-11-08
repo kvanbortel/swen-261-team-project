@@ -42,6 +42,9 @@ public class AccountFileDAO implements AccountDAO {
     // Need DAO to keep the needs in sync with the database and check out
     private final NeedDAO needDAO;
 
+    // stores who is god
+    private Account god;
+
     /**
      * Creates an Account File Data Access Object
      * 
@@ -57,6 +60,16 @@ public class AccountFileDAO implements AccountDAO {
         this.objectMapper = objectMapper;
         this.needDAO = needDAO;
         load(); // load the needs from the file
+    }
+
+    public Account getGod() { return god; }
+    public void setGod(Account newGod) { 
+        // dethrone old god (if there was one)
+        if (god != null) { god.setIsGod(false); }
+
+        // assign new god
+        god = newGod; 
+        god.setIsGod(true);
     }
 
     /**
@@ -110,6 +123,10 @@ public class AccountFileDAO implements AccountDAO {
 
         // Add each need to the tree map
         for (Account account : accountArray) {
+            // Set god when loading accounts
+            if (account.getIsGod()) {
+                god = account;
+            }
             accounts.put(account.getName(), account);
         }
 
@@ -208,6 +225,9 @@ public class AccountFileDAO implements AccountDAO {
                     needDAO.updateNeed(newNeed);
                 }
                 basket.updateNeed(bNeed.getNeed(), -bNeed.getQuantity());
+            }
+            if (needDAO.isEmpty()) {
+                setGod(accountObj);
             }
             save();
             return true;
