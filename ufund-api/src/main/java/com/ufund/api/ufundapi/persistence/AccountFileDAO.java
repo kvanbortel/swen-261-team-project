@@ -2,26 +2,28 @@ package com.ufund.api.ufundapi.persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import com.ufund.api.ufundapi.model.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.cloudinary.*;
+import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ufund.api.ufundapi.model.Account;
+import com.ufund.api.ufundapi.model.Basket;
+import com.ufund.api.ufundapi.model.BasketNeed;
+import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.ProfileInfo;
+
 import io.github.cdimascio.dotenv.Dotenv;
-import org.springframework.web.multipart.MultipartFile;
-import java.time.*;
 
 @Repository
 public class AccountFileDAO implements AccountDAO {
@@ -42,7 +44,7 @@ public class AccountFileDAO implements AccountDAO {
     private final NeedDAO needDAO;
 
     // stores who is god
-    private Account god;
+    private Account god = null;
 
     /**
      * Creates an Account File Data Access Object
@@ -61,7 +63,11 @@ public class AccountFileDAO implements AccountDAO {
         load(); // load the needs from the file
     }
 
+    /**
+     * @inheritdoc
+     */
     public Account getGod() { return god; }
+    
     public void setGod(Account newGod) { 
         // dethrone old god (if there was one)
         if (god != null) { god.setIsGod(false); }

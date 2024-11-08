@@ -216,7 +216,7 @@ public class Account implements Comparable<Account> {
     public boolean equals(Object other){
         if(other instanceof Account){
             Account otherAccount = (Account) other;
-            if(this.name.equals(otherAccount.getName()) && this.getBasket().equals(otherAccount.getBasket()) && this.getPasswordHash().equals(otherAccount.getPasswordHash())){
+            if(this.name.equals(otherAccount.getName())){
             return true;
            }
         }

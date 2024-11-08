@@ -26,6 +26,7 @@ export class LeaderboardAccountProfileComponent {
   style: String = ""
   rank: number = 0;
 
+  @Input() god: Account | null;
   @Input() account: Account;
   @Input() index: number;
 
@@ -39,6 +40,7 @@ export class LeaderboardAccountProfileComponent {
   ) {
     this.account = this.emptyAccount;
     this.index = 1;
+    this.god = null;
   }
 
   formatMoney(): string{
@@ -53,6 +55,13 @@ export class LeaderboardAccountProfileComponent {
     }
     return this.account.profileInfo.alias;
     
+  }
+
+  setProfile(){
+    console.log(this.account.profileInfo)
+    localStorage.setItem("profile-image", this.account.imageLink)
+    this.authService.profileInfo = this.account.profileInfo
+    this.authService.profileImage = this.account.imageLink
   }
 
   getRank(): string{

@@ -40,7 +40,6 @@ export class LeaderboardAccountComponent {
 
   style: String = ""
 
-
   @Input() account: Account;
   @Input() index: number;
 
@@ -61,7 +60,6 @@ export class LeaderboardAccountComponent {
   }
 
   getAlias(): string{
-    console.log(this.account.profileInfo.alias)
     if(this.account.profileInfo.alias == ''){
       return "anon"
     }

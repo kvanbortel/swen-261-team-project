@@ -2,6 +2,8 @@
     
     <div class="basket-head"><h3>U-fund Leaderboard</h3></div>
     <div class = "container">
+        <app-leaderboard-god [god] = "god"> 
+        </app-leaderboard-god>
         <ul class="main">
             <ul class = "leaderboard" *ngIf="(accounts$ | async)?.length !== 0" class="search-result">
                 <li *ngFor="let acc of accounts$ | async; let i = index;">

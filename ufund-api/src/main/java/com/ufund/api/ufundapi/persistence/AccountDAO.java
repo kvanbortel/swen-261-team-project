@@ -1,10 +1,13 @@
 package com.ufund.api.ufundapi.persistence;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ufund.api.ufundapi.model.*;
+import com.ufund.api.ufundapi.model.Account;
+import com.ufund.api.ufundapi.model.Basket;
+import com.ufund.api.ufundapi.model.BasketNeed;
+import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.ProfileInfo;
 
 public interface AccountDAO{
 
@@ -70,6 +73,12 @@ public interface AccountDAO{
      * @throws IOException if there is an error reading from the data source
      */
     Account getAccount(String accountName) throws IOException;
+
+    /**
+     * 
+     * @return the account (if exists) that is god.
+     */
+    public Account getGod();
 
     /**
      * Add a profile picture to an account

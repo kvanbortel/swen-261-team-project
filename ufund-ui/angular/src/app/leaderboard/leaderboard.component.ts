@@ -21,7 +21,9 @@ export class LeaderboardComponent {
     needsFunded: 0,
     profileInfo: new ProfileInfo({alias: '', region: Region.FINGER_LAKES, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
 
-  };;
+  };
+
+  god: Account | null = null;
   accounts$ = new BehaviorSubject<Account[]>([]);
   constructor(public authService: AuthService){};
 
@@ -34,10 +36,15 @@ export class LeaderboardComponent {
       },
     });
 
+    this.authService.getGod().subscribe({
+      next: (response) => {
+        this.god = (response);
+      },
+    });
+
     this.authService.getAccountsSortedTop3().subscribe({
       next: (response) => {
         this.accounts$.next(response);
-        console.log(response);
       },
     });
     

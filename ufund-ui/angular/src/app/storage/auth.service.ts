@@ -70,6 +70,18 @@ export class AuthService implements CanActivate{
       );
   }
 
+  getGod(): Observable<Account>{
+    console.log(this.AccountURL + '/god')
+    return this.http
+      .get<Account>(
+        this.AccountURL + '/god'
+      ).pipe(
+        tap((_) => console.log('get god')),
+        catchError(this.handleError<Account>('account'))
+      );
+
+  }
+
   isAuthenticated() {
     if(!(localStorage.getItem("isAdmin") === "true") && localStorage.getItem("name") === ''){
       return false;

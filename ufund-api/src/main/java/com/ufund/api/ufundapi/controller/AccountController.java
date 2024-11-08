@@ -240,6 +240,15 @@ public class AccountController {
         
     }
 
+    @GetMapping("/god")
+    public ResponseEntity<Account> getGod(){
+        LOG.info("GET /accounts/" + "god");
+        Account account = accountDAO.getGod();
+        if(account != null)
+            return new ResponseEntity<Account>(account, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @PostMapping("/{accountName}/image")
     public ResponseEntity<String> handleImageUpload(@PathVariable String accountName, @RequestParam("image") MultipartFile imageFile) {
         LOG.info("POST /accounts/" + accountName + "/image");

@@ -486,4 +486,35 @@ public class AccountControllerTest {
         ResponseEntity<Integer> response = accountController.getRank(TEST_NAME);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
+
+    //test getting god succesfully 
+    @Test
+    public void testGetGodExists() throws IOException {
+        // Setup
+        
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
+        when(mockAccountDAO.getGod()).thenReturn(account);
+
+        // Invoke
+        var response = accountController.getGod();
+
+        // Analyze.to
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(account, response.getBody());
+    }
+
+    //test getting an account that does exist 
+    @Test
+    public void testGetGodNotExists() throws IOException {
+        // Setup
+        
+        when(mockAccountDAO.getGod()).thenReturn(null);
+
+        // Invoke
+        var response = accountController.getGod();
+
+        // Analyze.to
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+   
+    }
 }
