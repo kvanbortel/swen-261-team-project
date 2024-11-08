@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ufund.api.ufundapi.model.Account;
+import com.ufund.api.ufundapi.model.AdminInfo;
 import com.ufund.api.ufundapi.model.Basket;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
