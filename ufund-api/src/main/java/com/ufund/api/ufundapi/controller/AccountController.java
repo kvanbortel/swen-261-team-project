@@ -227,6 +227,11 @@ public class AccountController {
         }
     }
 
+    /**
+     * Gets the rank of a given account
+     * @param accountName username of given account
+     * @return rank of provided account
+     */
     @GetMapping("/{accountName}/rank")
     public ResponseEntity<Integer> getRank(@PathVariable String accountName){
         LOG.info("GET /accounts/" + accountName + "/rank");
@@ -240,6 +245,11 @@ public class AccountController {
         
     }
 
+    /**
+     * Returns god account, if one exists
+     * @return HttpStatus OL with Account object if god exists
+     * HttpStatus INTERNAL_SERVER_ERROR otherwise
+     */
     @GetMapping("/god")
     public ResponseEntity<Account> getGod(){
         LOG.info("GET /accounts/" + "god");
