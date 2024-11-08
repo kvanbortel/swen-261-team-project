@@ -6,6 +6,8 @@ import { Need } from '../Need';
 import { BasketNeed } from '../BasketNeed';
 import { Basket } from '../Basket';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ProfileInfo } from '../profile-info';
+import { Region } from '../region';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +15,10 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
-  image: string = '';
+  image: string | null= '';
+  profileInfo: ProfileInfo =  new ProfileInfo({alias: '', region: Region.FINGER_LAKES, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
   loadingImg: string = "https://media1.tenor.com/m/On7kvXhzml4AAAAC/loading-gif.gif";
+  profileImage: string | null= '';
 
   private AccountURL = "http://localhost:8080/accounts";
 
@@ -53,6 +57,7 @@ export class AuthService implements CanActivate{
     }
     
   }
+
 
   getRank(name: string | null): Observable<number>{
     console.log(this.AccountURL + '/' + name + "/rank")

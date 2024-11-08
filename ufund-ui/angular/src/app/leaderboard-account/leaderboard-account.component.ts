@@ -68,7 +68,15 @@ export class LeaderboardAccountComponent {
     return this.account.profileInfo.alias;
   }
 
+  setProfile(){
+    console.log(this.account.profileInfo)
+    localStorage.setItem("profile-image", this.account.imageLink)
+    this.authService.profileInfo = this.account.profileInfo
+    this.authService.profileImage = this.account.imageLink
+  }
+
   ngOnInit(){
+
   }
   
 }

@@ -47,6 +47,7 @@ import { LeaderboardAccountComponent } from './leaderboard-account/leaderboard-a
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
 import { LeaderboardAccountProfileComponent } from './leaderboard-account-profile/leaderboard-account-profile.component';
+import { ProfileOtherComponent } from './profile-other/profile-other.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { LeaderboardAccountProfileComponent } from './leaderboard-account-profil
     EditProfileComponent,
     LeaderboardPageComponent,
     LeaderboardAccountProfileComponent,
+    ProfileOtherComponent,
   ],
   imports: [
     BrowserModule,
