@@ -43,6 +43,7 @@ import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-d
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AdminDashComponent } from './admin-dash/admin-dash.component';
 import { PicButtonComponent } from './pic-button/pic-button.component';
+import { MatTabsModule } from '@angular/material/tabs';
 import { LeaderboardAccountComponent } from './leaderboard-account/leaderboard-account.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
@@ -101,7 +102,8 @@ import { LeaderboardGodComponent } from './leaderboard-god/leaderboard-god.compo
     MatDialogModule,
     BrowserAnimationsModule,
     MatSelect,
-    MatOption
+    MatOption,
+    MatTabsModule
   ],
   providers: [LoginComponent,
               {provide: MatDialogRef, useValue: {}},

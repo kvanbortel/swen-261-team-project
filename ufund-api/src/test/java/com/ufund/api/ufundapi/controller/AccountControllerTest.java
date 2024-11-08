@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,6 +49,16 @@ public class AccountControllerTest {
     private static final Need TEST_NEED = new Need("123456", "NeedA1", "Need for testing", 0, 1, 0);
     private static final ProfileInfo TEST_PROFILE_INFO = new ProfileInfo();
     private static final Level TEST_LEVEL = Level.NOOB;
+    private static final Map<Region, Integer> TEST_REGIONS = Map.of(
+        Region.CAPITAL_DISTRICT, 30,
+        Region.NEW_YORK_CITY, 70
+    );
+    private static final Map<Region, Double> TEST_FUNDED_BY_REGION = Map.of(
+        Region.CAPITAL_DISTRICT, 15000.0,
+        Region.NEW_YORK_CITY, 5000.0
+    );
+    private static final AdminInfo TEST_ADMIN_INFO = new AdminInfo(5, 10, 16.3, Instant.now(), TEST_REGIONS, TEST_FUNDED_BY_REGION);
+
 
     private static BasketNeed[] basketNeedArray = {(new BasketNeed(TEST_NEED, 1))};
     private static final ArrayList<BasketNeed> basketNeeds = new ArrayList<>(Arrays.asList(basketNeedArray));
@@ -422,6 +434,26 @@ public class AccountControllerTest {
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertNull(response.getBody());
+    }
+
+    // test successful get AdminInfo
+    @Test
+    void testGetAdminInfo_Successful() throws IOException {
+        when(mockAccountDAO.getUserStats()).thenReturn(TEST_ADMIN_INFO);
+
+        ResponseEntity<AdminInfo> response = accountController.getAdminInfo();
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(TEST_ADMIN_INFO, response.getBody());
+    }
+
+    // test get AdminInfo when server error
+    @Test
+    void testAdminInfo_InternalServerError() throws IOException {
+        when(mockAccountDAO.getUserStats()).thenThrow(new IOException());
+
+        ResponseEntity<AdminInfo> response = accountController.getAdminInfo();
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
     //test succesfully returning a sorted list of accounts

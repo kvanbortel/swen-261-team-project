@@ -16,6 +16,16 @@
   font-weight: bold;
 }
 
+.no-info {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #888;
+  text-align: center;
+  align-self: center;
+  width: 60vw ;
+  margin-left: 20vw;
+}
+
 .block{
   max-width: 60vw ;
   padding: 1vh;

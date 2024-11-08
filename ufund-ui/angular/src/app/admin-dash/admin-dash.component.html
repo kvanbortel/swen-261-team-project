@@ -1,1 +1,52 @@
-<p>admin-dash works!</p>
+<div class="main">
+  <div class="dash-section">
+    <div class="head-title">U-Fund Dashboard</div>
+
+    <div class="info-section">
+      <div class="no-info-section" *ngIf="!(adminInfo$ | async)?.userNumber">
+        <div class="no-info">Nobody has used your U-Fund yet :(</div>
+      </div>
+      <div class="row">
+        <div class="block" *ngIf="(adminInfo$ | async)?.userNumber">
+          <p><span><b>Total Helpers:</b></span> {{ (adminInfo$ | async)?.userNumber }}</p>
+        </div>
+        <div class="block" *ngIf="(adminInfo$ | async)?.userNumber">
+          <p><span><b>Needs Funded:</b></span> {{ (adminInfo$ | async)?.needsFunded ? (adminInfo$ | async)?.needsFunded
+            : 0}}</p>
+        </div>
+        <div class="block" *ngIf="(adminInfo$ | async)?.userNumber">
+          <p><span><b>Amount Funded:</b></span> {{ ((adminInfo$ | async)?.moneyFunded ? (adminInfo$ |
+            async)?.moneyFunded
+            : 0) | currency }}</p>
+        </div>
+      </div>
+
+      <div class="block" *ngIf="(adminInfo$ | async)?.userNumber">
+        <mat-tab-group id="ChartBlock">
+          <mat-tab label="Helper Regions">
+            <canvas #chartRegionCanvas id="ChartRegion">{{ chartRegion }}</canvas>
+            <div class="no-info" *ngIf="(adminInfo$ | async)?.userNumber && !regionCharting">
+              <p>No helper region data available yet</p>
+            </div>
+            <div class="subtitle" *ngIf="(adminInfo$ | async)?.userNumber && regionCharting">
+              <p>Helpers by Region</p>
+            </div>
+          </mat-tab>
+          <mat-tab label="Helper Funding"> 
+            <canvas #chartFundingCanvas id="ChartFunding">{{ chartFunding }}</canvas>
+            <div class="no-info" *ngIf="(adminInfo$ | async)?.userNumber && !fundCharting">
+              <p>No funding region data available yet</p>
+            </div>
+            <div class="subtitle" *ngIf="(adminInfo$ | async)?.userNumber && fundCharting">
+              <p>Funding by Region</p>
+            </div>
+          </mat-tab>
+          <mat-tab label="Leaderboard"> 
+            Display Leaderboard 
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -4,6 +4,11 @@
     flex-direction: row;
 }
 
+.body{
+  display: flex;
+  flex-direction: row;
+}
+
 .button-area{
   position: absolute;
   right: 3vh;
