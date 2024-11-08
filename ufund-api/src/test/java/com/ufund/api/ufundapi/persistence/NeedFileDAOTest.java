@@ -184,6 +184,10 @@ public class NeedFileDAOTest {
         assertEquals(needs[1],testNeeds[2]);
     }
 
+    /**
+     * Tests that needFileDAO.isEmpty returns true when the cupboard is empty
+     * @throws IOException
+     */
     @Test
     public void testIsEmptyTrue() throws IOException {
         Need[] needs = new Need[0];
@@ -194,6 +198,10 @@ public class NeedFileDAOTest {
         assertTrue(needFileDAO.isEmpty(), Arrays.toString(needFileDAO.getNeeds()));
     }
 
+    /**
+     * Checks that isEmpty returns false when the cupboard is not empty
+     * @throws IOException
+     */
     @Test
     public void testIsEmptyFalse() throws IOException {
         assertFalse(needFileDAO.isEmpty());

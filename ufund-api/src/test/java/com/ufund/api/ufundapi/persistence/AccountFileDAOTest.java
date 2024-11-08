@@ -458,35 +458,11 @@ public class AccountFileDAOTest {
         ProfileInfo newProfileInfo = testProfileInfos[1];
         assertNull(accountFileDAO.updateProfileInfo("nonExistentAccount", newProfileInfo));
     }
-    // @Test
-    // public void testCheckoutUpdateGod() throws IOException {
-    //     // empty the cupboard cause mocks weren't working
-    //     Need[] needs = mockNeedDAO.getNeeds();
-    //     for (Need need : needs) {
-    //         for (int i=0; i<need.getQuantity(); i++) {
-    //             mockNeedDAO.deleteNeed(need.getId());
-    //         }
-    //     }
 
-    //     // make sure aboe code executed properly
-    //     assertTrue(mockNeedDAO.isEmpty(), "Error occurred while clearing out the cupboard");
-
-    //     Need need = new Need("id", "name", "descr", 1, 1, 1);
-    //     // add 1 need back
-    //     mockNeedDAO.createNeed(need);
-
-    //     // make account with that 1 need in basket
-    //     Account acc = new Account("name", "pass");
-    //     acc.getBasket().addNeed(need);
-
-    //     // checkout
-    //     accountFileDAO.checkout("name");
-
-    //     // assert
-    //     assertEquals(acc, accountFileDAO.getGod());
-    //     assertTrue(acc.getIsGod());
-    // }
-
+    /**
+     * checks that a new god is assigned on checkout
+     * @throws IOException
+     */
     @Test
     public void testCheckoutSwapGod() throws IOException {
 
@@ -500,6 +476,10 @@ public class AccountFileDAOTest {
         assertEquals(kayla, accountFileDAO.getGod());
     }
 
+    /**
+     * Checks that god does not change when there are still needs left after checkout
+     * @throws IOException
+     */
     @Test
     public void testCheckoutNoSwapGod() throws IOException {
         when(mockNeedDAO.isEmpty()).thenReturn(false);
