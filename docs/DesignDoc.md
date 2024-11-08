@@ -272,3 +272,5 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > localStorage to store credentials so these persist across pages. This also allowed us to add an authentication guard to non-login pages, so indexing a route without authentication is cleaner.
 > - (2024/10/31) Decided to use an md5 library to hash passwords so they are not stored in plaintext by our backend.
 > - (2024/11/5) Changed admin loggin functionality. Password is now required, and set to "adm1n!".
+> - (2024/11/7) Leaderboard on home page only shows top three users, plus logged in user if not in top 3 users. If there is a u-fund god, they are displayed above the leaderboard.
+> - (2024/11/7) Decided to make a new component for viewing a profile that is not yours. There is a route that leads to this component, and localstorage which tracks which profile you attempt to visit
