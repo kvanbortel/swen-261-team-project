@@ -1,10 +1,10 @@
-<div (click) = "this.setProfile();" routerLink = "/profileother" class="cupboard-need">
+<div (click) = "this.setProfile();" routerLink = "/profileother" class="leaderboard-profile" [ngStyle]="getDynamicStyles()">
     <div class="row">
       <img class="pic" src="{{this.account.imageLink}}">
-      <span class="need-title">
-      {{index + 1}}. {{ this.getAlias() }}
+      <span class="acc-title">
+      {{this.rank}}. {{ this.getAlias() }}
       </span>
-      <span class="need-description">{{ this.formatMoney() }}</span>
+      <span class="acc-description">{{ this.formatMoney() }}</span>
     </div>
 
 </div>

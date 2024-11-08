@@ -50,7 +50,7 @@ export class LeaderboardGodComponent {
   getAlias(): string{
     if(this.god != null){
       if(this.god.profileInfo.alias == ''){
-        return "anon"
+        return "Anonymous"
       }
       return this.god.profileInfo.alias;
     }

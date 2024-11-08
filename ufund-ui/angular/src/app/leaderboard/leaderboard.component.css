@@ -1,7 +1,6 @@
 ul{
     list-style-type: none;
     padding: 0 0 0 0;
-    overflow: auto;
 }
 
 .main{
@@ -13,7 +12,6 @@ ul{
 }
 
 .basket-head{
-
     padding-left: 2vw;
 }
 

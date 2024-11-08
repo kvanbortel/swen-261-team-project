@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../storage/auth.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Account } from '../Account';
 import { ProfileInfo } from '../profile-info';
 import { Region } from '../region';
@@ -20,12 +20,12 @@ export class LeaderboardComponent {
     moneyFunded: 0.0,
     needsFunded: 0,
     profileInfo: new ProfileInfo({alias: '', region: Region.FINGER_LAKES, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
-
   };
 
   god: Account | null = null;
   accounts$ = new BehaviorSubject<Account[]>([]);
   constructor(public authService: AuthService){};
+  onLeaderboardBool: boolean = false;
 
   ngOnInit(){
 
@@ -45,9 +45,23 @@ export class LeaderboardComponent {
     this.authService.getAccountsSortedTop3().subscribe({
       next: (response) => {
         this.accounts$.next(response);
+        console.log(response)
       },
     });
     
+  }
+
+  onLeaderboard(k: number): Observable<boolean> {
+    return this.accounts$.pipe(
+      map(response => {
+        if (response[k] && response[k].name && response[k].name === this.account.name) {
+          this.onLeaderboardBool = true
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
   }
 
 }

@@ -3,6 +3,7 @@ import {
   EventEmitter,
   HostBinding,
   Input,
+  OnChanges,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -18,14 +19,14 @@ import numeral, { Numeral } from 'numeral'
 import { ProfileInfo } from '../profile-info';
 import { ProfileInfoJSON } from '../ProfileInfoJSON';
 import { Region } from '../region';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-leaderboard-account',
   templateUrl: './leaderboard-account.component.html',
   styleUrl: './leaderboard-account.component.css',
 })
-export class LeaderboardAccountComponent {
-  
+export class LeaderboardAccountComponent{
 
   emptyAccount: Account = {
     name: '',
@@ -40,19 +41,44 @@ export class LeaderboardAccountComponent {
 
   style: String = ""
 
-  @Input() account: Account;
-  @Input() index: number;
+  @Input() account: Account = this.emptyAccount;
+  @Input() index: number = -1;
+  @Input() you: boolean | null = false;
+  
+  rank = 0;
 
   ngOnChanges(changes: SimpleChanges) {
-    this.account = changes['account'].currentValue; // fetch the current value
+    // fetch updated values
+    if (changes['account']) {
+      this.account = changes['account'].currentValue;
+    }
+    if (changes['index']) {
+      this.index = changes['index'].currentValue;
+      this.rank = this.index + 1
+      if(this.index == -1){
+        this.getRank().subscribe((result) => {
+          this.rank = result
+          console.log(this.rank)
+        })
+      }
+    }
+    if (changes['you']) {
+      this.you = changes['you'].currentValue;
+    }
   }
 
   constructor(
     public authService: AuthService,
     public formBuilder: FormBuilder
-  ) {
-    this.account = this.emptyAccount;
-    this.index = 1;
+  ) {}
+
+  getDynamicStyles() {
+    if(this.you){
+      return {
+        border: "4px solid rgb(241, 176, 97)"
+      };
+    }
+    return
   }
 
   formatMoney(): string{
@@ -60,8 +86,11 @@ export class LeaderboardAccountComponent {
   }
 
   getAlias(): string{
+    if(this.you){
+      return "You"
+    }
     if(this.account.profileInfo.alias == ''){
-      return "anon"
+      return "Anonymous"
     }
     return this.account.profileInfo.alias;
   }
@@ -73,8 +102,22 @@ export class LeaderboardAccountComponent {
     this.authService.profileImage = this.account.imageLink
   }
 
-  ngOnInit(){
+  getRank(): Observable<number> {
+    return this.authService.getRank(localStorage.getItem("name")).pipe(
+      map(response => {
+        if(response){ 
+          return response;
+        }
+        else{
+          console.log(this.account.name + "could not find account")
+          return -1;
+        }})
+      );
+  }
+  
 
+  ngOnInit(){
+  
   }
   
 }

@@ -3,14 +3,15 @@
   <app-leaderboard-god [god] = "god"> 
   </app-leaderboard-god>
   <ul class="main">
-      <ul class = "leaderboard" *ngIf="(accounts$ | async)?.length !== 0" class="search-result">
+      <ul class = "leaderboard" *ngIf="(accounts$ | async)?.length !== 0">
         <li *ngFor="let acc of accounts$ | async; let i = index;">
           <app-leaderboard-account
-            [account]="acc" [index]= "i"
+            [account]="acc" [index]= "i" [you]="onLeaderboard(i) | async"
           ></app-leaderboard-account>
         </li>
       </ul>
+      <app-leaderboard-account
+            *ngIf="!onLeaderboardBool" [account]="account" [index]= "-1" [you]="true"
+          ></app-leaderboard-account>
   </ul>
-  <app-leaderboard-account-profile [account] = "account"> 
-  </app-leaderboard-account-profile>
 </div>
