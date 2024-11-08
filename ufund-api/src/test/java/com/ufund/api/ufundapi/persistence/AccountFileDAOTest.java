@@ -1,29 +1,31 @@
 package com.ufund.api.ufundapi.persistence;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.booleanThat;
-import static org.mockito.Mockito.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
-import com.ufund.api.ufundapi.model.*;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.time.*;
+import com.ufund.api.ufundapi.model.Account;
+import com.ufund.api.ufundapi.model.Basket;
+import com.ufund.api.ufundapi.model.BasketNeed;
+import com.ufund.api.ufundapi.model.Level;
+import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.ProfileInfo;
+import com.ufund.api.ufundapi.model.Region;
 
 /**
  * 
@@ -58,6 +60,8 @@ public class AccountFileDAOTest {
         testNeeds[1] = new Need("MOCKID-1","NeedB1", "Description2", 2.9, 10, 5.4);
         testNeeds[2] = new Need("MOCKID-2","NeedB2", "Description3", 1.3, 6, 12.32);
 
+        String TEST_IMG =  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
         testBasketNeeds = new BasketNeed[5];
         testBasketNeeds[0] = new BasketNeed(testNeeds[0], 1);
         testBasketNeeds[1] = new BasketNeed(testNeeds[1], 1);
@@ -90,10 +94,10 @@ public class AccountFileDAOTest {
         // accounts baskets match the related index in testBaskets
         testAccounts = new Account[5];
         testAccounts[0] = new Account("Max", "pass");
-        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
-        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
-        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL, "pass");
-        testAccounts[4] = new Account("KaylaInfo", testBaskets[1], testProfileInfos[0], TEST_LEVEL, "pass");
+        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL, "pass", TEST_IMG);
+        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL, "pass", TEST_IMG);
+        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL, "pass", TEST_IMG);
+        testAccounts[4] = new Account("KaylaInfo", testBaskets[1], testProfileInfos[0], TEST_LEVEL, "pass", TEST_IMG);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the need array above
@@ -376,11 +380,43 @@ public class AccountFileDAOTest {
     public void testGetProfileInfo_ValidAccount() throws IOException {
         Account kaylaInfo = accountFileDAO.getAccount("KaylaInfo");
         ProfileInfo expectedInfo = testProfileInfos[0];
-
         ProfileInfo result = accountFileDAO.getProfileInfo("KaylaInfo");
 
         assertEquals(expectedInfo, result);
     }
+    /**
+     * asserts that the user with isGod = true is loaded on startup
+     */
+    @Test
+    public void testGodLoad() throws IOException {
+        // make max god
+        testAccounts[0].setIsGod(true);
+
+        accountFileDAO = new AccountFileDAO("doesnt_matter.txt",mockObjectMapper, mockNeedDAO);
+
+        Account max = accountFileDAO.getAccount("Max");
+        Account god = accountFileDAO.getGod();
+
+        assertEquals(max, god);
+    }    
+
+    /**
+     * Tests if get and set god are working
+     * @throws IOException
+     */
+    @Test
+    public void testGetSetGod() throws IOException {
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        Account max = accountFileDAO.getAccount("Max");
+
+        accountFileDAO.setGod(kayla);
+
+        // max is no longer god
+        // kayla is god
+        assertFalse(max.getIsGod());
+        assertTrue(kayla.getIsGod());
+    }
+
 
     // Exception when trying to retrieve profileInfo with null account name
     @Test
@@ -421,6 +457,61 @@ public class AccountFileDAOTest {
         ProfileInfo newProfileInfo = testProfileInfos[1];
         assertNull(accountFileDAO.updateProfileInfo("nonExistentAccount", newProfileInfo));
     }
+
+    /**
+     * checks that a new god is assigned on checkout
+     * @throws IOException
+     */
+    @Test
+    public void testCheckoutSwapGod() throws IOException {
+
+        Account max = accountFileDAO.getAccount("Max");
+        Account kayla = accountFileDAO.getAccount("Kayla");
+
+        when(mockNeedDAO.isEmpty()).thenReturn(true);
+        accountFileDAO.checkout("Kayla");
+
+
+        assertEquals(kayla, accountFileDAO.getGod());
+    }
+
+    /**
+     * Checks that god does not change when there are still needs left after checkout
+     * @throws IOException
+     */
+    @Test
+    public void testCheckoutNoSwapGod() throws IOException {
+        when(mockNeedDAO.isEmpty()).thenReturn(false);
+        accountFileDAO.checkout("Kayla");
+
+        assertNull(accountFileDAO.getGod());
+    }
+
+    @Test
+    void testLoadNoGod() throws IOException {
+        assertNull(accountFileDAO.getGod());
+    }    
+
+    @Test
+    void testSetGodOldIsNull() throws IOException {
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        accountFileDAO.setGod(kayla);
+
+        assertEquals(kayla, accountFileDAO.getGod());
+    }
+
+    @Test
+    void testSetGodOldNotNull() throws IOException {
+        Account max = accountFileDAO.getAccount("Max");
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        accountFileDAO.setGod(max);
+        accountFileDAO.setGod(kayla);
+
+        assertEquals(kayla, accountFileDAO.getGod());
+        assertFalse(max.getIsGod());
+    }
+
+    
 
     @Test
     public void testgetRankSuccessful() throws InterruptedException, IOException{

@@ -1,7 +1,6 @@
 package com.ufund.api.ufundapi.model;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,8 +22,6 @@ public class Account implements Comparable<Account> {
     // link to the profile picture
     @JsonProperty String imageLink;
 
-    /// THIS WILL CAUSE A MERGE CONFLICT!!!
-    // REMOVE BEFORE MERGE
     // amount spend on funding needs
     @JsonProperty double moneyFunded = 0;
     // number of needs funded
@@ -35,6 +32,10 @@ public class Account implements Comparable<Account> {
     @JsonProperty ProfileInfo profileInfo;
     // current level
     @JsonProperty Level level;
+
+    // indicates if a user is god
+    @JsonProperty boolean isGod = false;
+
 
     /**
      * Add an amount to money funded
@@ -92,6 +93,14 @@ public class Account implements Comparable<Account> {
         return needsFunded;
     }
 
+    public boolean getIsGod() {
+        return isGod;
+    }
+
+    public void setIsGod(boolean newIsGod) {
+        isGod = newIsGod;
+    }
+
     /**
      * Constructs an account object using a given name and a given Basket
      * @param name the username
@@ -105,13 +114,13 @@ public class Account implements Comparable<Account> {
             @JsonProperty("basket") Basket basket,
             @JsonProperty("profileInfo") ProfileInfo profileInfo,
             @JsonProperty("level") Level level,
-            @JsonProperty("passwordHash") String passwordHash,
-            @JsonProperty("lastCheckoutInstant") Instant lastCheckoutInstant
+            @JsonProperty("passwordHash") String passwordHash ,
+            @JsonProperty("imageLink") String imgLink
             ) {
         this.name = name;
         this.basket = basket;
         this.passwordHash = passwordHash;
-        this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
+        this.imageLink = imgLink;
         this.profileInfo = profileInfo;
         if (lastCheckoutInstant == null) {
             this.setLastCheckoutInstant();
