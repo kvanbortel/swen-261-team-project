@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -323,5 +324,19 @@ public class AccountTest {
             && after.compareTo(account.getLastCheckoutInstant()) > 0;
 
         assertTrue(isBetween);
+    }
+
+    /**
+     * Tests that isGod defaults to false and that it can be set
+     */
+    @Test
+    void testIsGodGetSet() {
+        Account account = new Account("name", "pas");
+
+        assertFalse(account.getIsGod());
+
+        account.setIsGod(true);
+
+        assertTrue(account.getIsGod());
     }
 }

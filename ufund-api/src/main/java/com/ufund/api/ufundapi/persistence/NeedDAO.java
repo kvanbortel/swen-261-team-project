@@ -76,4 +76,13 @@ public interface NeedDAO {
      * @throws IOException if underlying storage cannot be accessed
      */
     boolean deleteNeed(String id) throws IOException;
+
+    /**
+     * Returns whether or not the cupboard is empty
+     * 
+     * @throws IOException if underlying storage cannoot be accessed
+     * 
+     * @return true if there are no needs left in this.needs
+     */
+    boolean isEmpty() throws IOException;
 }
