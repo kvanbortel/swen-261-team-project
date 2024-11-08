@@ -1,4 +1,3 @@
-/* Container for each need item */
 .god-box {    
     padding: 10px;
     padding-left: 15px;
@@ -32,7 +31,6 @@
     padding: 10px;
   }
 
-  /* Title of each need item */
   .god-title {
     font-size: 1.3rem;
     font-weight: 600;
@@ -41,7 +39,6 @@
     margin-left: 1vw;
   }
   
-
   /* Hover effect for the entire item */
   .god-box:hover {
     transform: translateY(-3px);

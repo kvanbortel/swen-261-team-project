@@ -34,20 +34,19 @@ export class LeaderboardComponent {
       this.authService.getAccount(localStorage.getItem("name")).subscribe({
         next: (response) => {
           this.account = (response);
-          console.log(response);
+
+          this.authService.getGod().subscribe({
+            next: (response) => {
+              this.god = (response);
+              if(this.account.name == this.god.name){
+                this.isGod = true;
+                console.log("I AM GOD")
+              }
+            },
+          });
         },
       });
     }
-
-    this.authService.getGod().subscribe({
-      next: (response) => {
-        this.god = (response);
-        if(this.account.name == this.god.name){
-          this.isGod = true;
-          console.log("I AM GOD")
-        }
-      },
-    });
 
     this.authService.getAccountsSortedTop3().subscribe({
       next: (response) => {
