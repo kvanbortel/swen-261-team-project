@@ -36,6 +36,15 @@ export class ProfileSectionService {
       );
   }
 
+  getAllAccounts(): Observable<Account[]> {
+    return this.http.get<Account[]>(this.usersUrl).pipe(
+      tap((response) => {
+        console.log("Fetched Accounts:", response);  // Debugging the fetched accounts
+      }),
+      catchError(this.handleError<Account[]>('getAllAccounts', []))
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

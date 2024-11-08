@@ -50,6 +50,7 @@ import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.co
 import { LeaderboardAccountProfileComponent } from './leaderboard-account-profile/leaderboard-account-profile.component';
 import { ProfileOtherComponent } from './profile-other/profile-other.component';
 import { LeaderboardGodComponent } from './leaderboard-god/leaderboard-god.component';
+import { UserLevelComponent } from './user-level/user-level.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { LeaderboardGodComponent } from './leaderboard-god/leaderboard-god.compo
     LeaderboardAccountProfileComponent,
     ProfileOtherComponent,
     LeaderboardGodComponent,
+    UserLevelComponent,
   ],
   imports: [
     BrowserModule,
