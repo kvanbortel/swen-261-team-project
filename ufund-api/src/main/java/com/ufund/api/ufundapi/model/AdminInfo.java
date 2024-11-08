@@ -1,6 +1,7 @@
 package com.ufund.api.ufundapi.model;
 
 import java.util.Map;
+import java.util.Objects;
 import java.time.Instant;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,7 +10,7 @@ public class AdminInfo {
     // these are json properties even though it's not stored on the backend because it should be able to be turned into a json object when passed to the frontend
     @JsonProperty int userNumber;
     @JsonProperty int needsFunded;
-    @JsonProperty int moneyFunded;
+    @JsonProperty double moneyFunded;
     @JsonProperty Instant lastFundedInstant;
     @JsonProperty Map<Region, Integer> regions;
     @JsonProperty Map<Region, Double> fundedByRegion;
@@ -26,7 +27,7 @@ public class AdminInfo {
     public AdminInfo(
         @JsonProperty("userNumber") int userNumber,
         @JsonProperty("needsFunded") int needsFunded,
-        @JsonProperty("moneyFunded") int moneyFunded,
+        @JsonProperty("moneyFunded") double moneyFunded,
         @JsonProperty("lastFundedInstant") Instant lastFundedInstant,
         @JsonProperty("regions") Map<Region, Integer> regions,
         @JsonProperty("fundedByRegion") Map<Region, Double> fundedByRegion
@@ -37,5 +38,20 @@ public class AdminInfo {
         this.lastFundedInstant = lastFundedInstant;
         this.regions = regions;
         this.fundedByRegion = fundedByRegion;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AdminInfo that = (AdminInfo) o;
+
+        return userNumber == that.userNumber &&
+               needsFunded == that.needsFunded &&
+               moneyFunded == that.moneyFunded &&
+               Objects.equals(lastFundedInstant, that.lastFundedInstant) &&
+               Objects.equals(regions, that.regions) &&
+               Objects.equals(fundedByRegion, that.fundedByRegion);
     }
 }

@@ -117,9 +117,9 @@ public interface AccountDAO{
     ProfileInfo updateProfileInfo(String account, ProfileInfo info) throws IOException;
 
     /**
-     * Retrieve a {@linkplain AdminInfo} object that contains user demographic information for the admins
+     * Retrieve a {@linkplain AdminInfoTest} object that contains user demographic information for the admins
      *
-     * @return the {@link AdminInfo} the information of the users
+     * @return the {@link AdminInfoTest} the information of the users
      *
      * @throws IOException if underlying storage cannot be accessed
      */

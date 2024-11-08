@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -108,7 +109,7 @@ public class AccountFileDAOTest {
             when(mockNeedDAO.getNeed(n.getId())).thenReturn(n);
         }
 
-        accountFileDAO = new AccountFileDAO("doesnt_matter.txt",mockObjectMapper, mockNeedDAO);
+        accountFileDAO = new AccountFileDAO("doesnt_matter.txt", mockObjectMapper, mockNeedDAO);
     }
 
     /**
@@ -421,5 +422,45 @@ public class AccountFileDAOTest {
     public void testUpdateProfileInfo_NonExistentAccount() throws IOException {
         ProfileInfo newProfileInfo = testProfileInfos[1];
         assertNull(accountFileDAO.updateProfileInfo("nonExistentAccount", newProfileInfo));
+    }
+
+    // Successfully getting AdminInfo
+    @Test
+    public void testGetAdminInfo() throws IOException {
+        int userNumber = 0;
+        int needsFunded = 0;
+        int moneyFunded = 0;
+        Instant lastFundedInstant = Instant.MIN;
+        Map<Region, Integer> regions = new EnumMap<>(Region.class);
+        Map<Region, Double> fundedByRegion = new EnumMap<>(Region.class);
+
+        for (Region region : Region.values()) {
+            regions.put(region, 0);
+            fundedByRegion.put(region, 0.0);
+        }
+
+        testAccounts[0].setLastCheckoutInstant(Instant.parse("2023-01-01T10:15:30Z"));
+        testAccounts[1].setLastCheckoutInstant(Instant.parse("2023-02-01T10:15:30Z")); // Latest
+        testAccounts[2].setLastCheckoutInstant(null);
+
+        for(Account acc : testAccounts){
+            userNumber++;
+            needsFunded += acc.getNeedsFunded();
+            moneyFunded += acc.getMoneyFunded();
+            if(acc.getLastCheckoutInstant() != null){
+                if(lastFundedInstant.isBefore(acc.getLastCheckoutInstant())){
+                    lastFundedInstant = acc.getLastCheckoutInstant();
+                }
+            }
+            Region region = acc.getProfileInfo().getRegion();
+            regions.put(region, regions.get(region) + 1);
+            fundedByRegion.put(region, fundedByRegion.get(region) + acc.getMoneyFunded());
+        }
+
+        AdminInfo result = accountFileDAO.getUserStats();
+
+        AdminInfo expected = new AdminInfo(userNumber, needsFunded, moneyFunded, lastFundedInstant, regions, fundedByRegion);
+
+        assertEquals(expected, result);
     }
 }

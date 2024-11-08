@@ -349,8 +349,10 @@ public class AccountFileDAO implements AccountDAO {
             userNumber++;
             needsFunded += acc.getNeedsFunded();
             moneyFunded += acc.getMoneyFunded();
-            if(lastFundedInstant.isBefore(acc.getLastCheckoutInstant())){
-                lastFundedInstant = acc.getLastCheckoutInstant();
+            if(acc.getLastCheckoutInstant() != null){
+                if(lastFundedInstant.isBefore(acc.getLastCheckoutInstant())){
+                    lastFundedInstant = acc.getLastCheckoutInstant();
+                }
             }
             Region region = acc.getProfileInfo().getRegion();
             regions.put(region, regions.get(region) + 1);
