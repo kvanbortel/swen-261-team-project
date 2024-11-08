@@ -1,0 +1,39 @@
+ul{
+    list-style-type: none;
+    padding: 0 0 0 0;
+    overflow: auto;
+}
+
+.main{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    padding-left: 2vw;
+    width: 50vw;
+    height: 80vh;
+}
+
+.basket-head{
+
+    padding-left: 2vw;
+}
+
+.lb{
+    align-items: center;
+    justify-items: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-area{
+    position: absolute;
+    top: 20vh;
+    right: 0vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }

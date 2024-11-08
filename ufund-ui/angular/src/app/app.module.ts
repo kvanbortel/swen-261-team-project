@@ -44,6 +44,12 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AdminDashComponent } from './admin-dash/admin-dash.component';
 import { PicButtonComponent } from './pic-button/pic-button.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { LeaderboardAccountComponent } from './leaderboard-account/leaderboard-account.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
+import { LeaderboardAccountProfileComponent } from './leaderboard-account-profile/leaderboard-account-profile.component';
+import { ProfileOtherComponent } from './profile-other/profile-other.component';
+import { LeaderboardGodComponent } from './leaderboard-god/leaderboard-god.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +71,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     BasketNeedComponent,
     PostCheckoutComponent,
     ProfilePicComponent,
+    LeaderboardComponent,
+    LeaderboardAccountComponent,
     AdminDashComponent,
     PicButtonComponent,
     PostCheckoutComponent,
@@ -72,6 +80,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     ProfileSectionComponent,
     EditProfileDialogComponent,
     EditProfileComponent,
+    LeaderboardPageComponent,
+    LeaderboardAccountProfileComponent,
+    ProfileOtherComponent,
+    LeaderboardGodComponent,
   ],
   imports: [
     BrowserModule,

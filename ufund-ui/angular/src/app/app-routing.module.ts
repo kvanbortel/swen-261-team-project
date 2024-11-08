@@ -9,6 +9,9 @@ import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 import { AuthService } from './storage/auth.service';
 import {ProfilePageComponent} from "./profile-page/profile-page.component";
 import { AdminDashComponent } from './admin-dash/admin-dash.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
+import { ProfileOtherComponent } from './profile-other/profile-other.component';
 
 const routes: Routes = [
 
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'post-checkout', component: PostCheckoutComponent, canActivate: [AuthService]},
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthService]},
   { path: 'admin-dash', component: AdminDashComponent, canActivate: [AuthService]},
+  { path: 'profileother', component: ProfileOtherComponent, canActivate: [AuthService]},
+  { path: 'leaderboard', component: LeaderboardPageComponent, canActivate: [AuthService]},
+
   //{ path: 'login', loadChildren: () => import('./login/login.component').then(m => m.LoginComponent )}
 ];
 

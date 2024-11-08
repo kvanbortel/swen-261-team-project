@@ -1,10 +1,14 @@
 package com.ufund.api.ufundapi.persistence;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ufund.api.ufundapi.model.*;
+import com.ufund.api.ufundapi.model.Account;
+import com.ufund.api.ufundapi.model.AdminInfo;
+import com.ufund.api.ufundapi.model.Basket;
+import com.ufund.api.ufundapi.model.BasketNeed;
+import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.ProfileInfo;
 
 public interface AccountDAO{
 
@@ -72,6 +76,12 @@ public interface AccountDAO{
     Account getAccount(String accountName) throws IOException;
 
     /**
+     * 
+     * @return the account (if exists) that is god.
+     */
+    public Account getGod();
+
+    /**
      * Add a profile picture to an account
      *
      * @param accountName the name of the account to retrieve
@@ -91,6 +101,18 @@ public interface AccountDAO{
      *         Use `list.indexOf(account) + 1` to find the rank of a specific account
      */
     public List<Account> getRankList();
+
+     /**
+     * Accounts may not always have the most up to date rank,
+     * But all ranks will have been defined at the same time
+     * There is no accessor for a rank list because you should ALWAYS
+     * update the rank before accessing it
+     * 
+     * @return List<Account> of lists starting with Rank1, then Rank2, and so on
+     *         Use `list.indexOf(account) + 1` to find the rank of a specific account. Only returns top 3 accounts.
+     */
+    public List<Account> getRankListTop3();
+
     /**
       * Retrieves all {@linkplain ProfileInfo} profile information
       *
@@ -101,6 +123,17 @@ public interface AccountDAO{
       * @throws IOException if an issue with underlying storage
       */
     ProfileInfo getProfileInfo(String account) throws IOException;
+
+     /**
+     * Gets a users rank given an alread-sorted list of accounts. 
+     * This allows us to avoid sorting a list many times
+     *  (ie get the rank for 5 different users)
+     * Accounts are also not aware of other accounts and therefore cannot
+     *  sort themselves without the outside information of a list of Accounts
+     * 
+     * @param sortedAccounts a list of accounts sorted by rank
+     */
+    public int getRank(String accountName) throws IOException;
 
     /**
      * Updates a user's {@linkplain ProfileInfo profileInfo} with given data

@@ -1,9 +1,7 @@
 package com.ufund.api.ufundapi.model;
 
-import java.util.List;
 import java.time.Instant;
 import java.util.logging.Logger;
-import java.time.Instant;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -23,13 +21,13 @@ public class Account implements Comparable<Account> {
     @JsonProperty String passwordHash;
     // link to the profile picture
     @JsonProperty String imageLink;
-    // last checkout 
-    @JsonProperty Instant lastCheckoutInstant;
 
     // amount spend on funding needs
     @JsonProperty double moneyFunded = 0;
     // number of needs funded
     @JsonProperty int needsFunded = 0;
+    // last checkout 
+    @JsonProperty Instant lastCheckoutInstant;
     // profile info
     @JsonProperty ProfileInfo profileInfo;
     // current level
@@ -109,6 +107,7 @@ public class Account implements Comparable<Account> {
      * @param basket the user's basket object
      * @param profileInfo the user's profile information
      * @param level the user's level
+     * @param lastCheckoutInstant last time the user checked out
      */
     public Account(
             @JsonProperty("name") String name,
@@ -123,7 +122,29 @@ public class Account implements Comparable<Account> {
         this.passwordHash = passwordHash;
         this.imageLink = imgLink;
         this.profileInfo = profileInfo;
+        if (lastCheckoutInstant == null) {
+            this.setLastCheckoutInstant();
+        } else {
+            this.lastCheckoutInstant = Instant.EPOCH;
+        }
         this.level = level;
+    }
+
+    /**
+     * Constructs an account object using a given name and a given Basket
+     * @param name the username
+     * @param basket the user's basket object
+     * @param profileInfo the user's profile information
+     * @param level the user's level
+     */
+    public Account(
+            String name,
+            Basket basket,
+            ProfileInfo profileInfo,
+            Level level,
+            String passwordHash
+            ) {
+        this(name, basket, profileInfo, level, passwordHash, null);
     }
 
     /**
@@ -195,7 +216,7 @@ public class Account implements Comparable<Account> {
     public boolean equals(Object other){
         if(other instanceof Account){
             Account otherAccount = (Account) other;
-            if(this.name.equals(otherAccount.getName()) && this.getBasket().equals(otherAccount.getBasket()) && this.getPasswordHash().equals(otherAccount.getPasswordHash())){
+            if(this.name.equals(otherAccount.getName())){
             return true;
            }
         }
@@ -219,25 +240,6 @@ public class Account implements Comparable<Account> {
         if (this.getLastCheckoutInstant().compareTo(other.getLastCheckoutInstant()) > 0) { return 1; }
         // only possible if they are the same account
         return 0;
-    }
-
-    /**
-     * Gets a users rank given an alread-sorted list of accounts. 
-     * This allows us to avoid sorting a list many times
-     *  (ie get the rank for 5 different users)
-     * Accounts are also not aware of other accounts and therefore cannot
-     *  sort themselves without the outside information of a list of Accounts
-     * 
-     * @param sortedAccounts a list of accounts sorted by rank
-     */
-    public int getRank(List<Account> accounts) {
-        int rank = 1; // minimum possible rank
-        for (Account account : accounts) {
-            // increment the rank for every user that is a lower (better) rank
-            if (this.compareTo(account) == 1)
-                rank++;
-        }
-        return rank;
     }
 
     @Override

@@ -8,9 +8,7 @@ import java.util.TreeMap;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import org.apache.logging.log4j.util.PropertySource.Comparator;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -211,6 +209,7 @@ public class NeedFileDAO implements NeedDAO{
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isEmpty() {
         return (needs.size() == 0);
     }

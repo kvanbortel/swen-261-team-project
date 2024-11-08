@@ -7,6 +7,8 @@ import { BasketNeed } from '../BasketNeed';
 import { Basket } from '../Basket';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AdminInfo } from '../AdminInfo';
+import { ProfileInfo } from '../profile-info';
+import { Region } from '../region';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +16,10 @@ import { AdminInfo } from '../AdminInfo';
 export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
-  image: string = '';
+  image: string | null= '';
+  profileInfo: ProfileInfo =  new ProfileInfo({alias: '', region: Region.FINGER_LAKES, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
   loadingImg: string = "https://media1.tenor.com/m/On7kvXhzml4AAAAC/loading-gif.gif";
+  profileImage: string | null= '';
 
   private AccountURL = "http://localhost:8080/accounts";
 
@@ -53,6 +57,30 @@ export class AuthService implements CanActivate{
       return false;
     }
     
+  }
+
+
+  getRank(name: string | null): Observable<number>{
+    console.log(this.AccountURL + '/' + name + "/rank")
+    return this.http
+      .get<number>(
+        this.AccountURL + '/' + name + "/rank"
+      ).pipe(
+        tap((_) => console.log('get account rank ' + name)),
+        catchError(this.handleError<number>('account'))
+      );
+  }
+
+  getGod(): Observable<Account>{
+    console.log(this.AccountURL + '/god')
+    return this.http
+      .get<Account>(
+        this.AccountURL + '/god'
+      ).pipe(
+        tap((_) => console.log('get god')),
+        catchError(this.handleError<Account>('account'))
+      );
+
   }
 
   isAuthenticated() {
@@ -100,13 +128,33 @@ export class AuthService implements CanActivate{
       );
   }
 
-  getAccount(name: string): Observable<Account>{
+  getAccount(name: string | null): Observable<Account>{
     return this.http
       .get<Account>(
         this.AccountURL + '/' + name
       ).pipe(
         tap((_) => console.log('get account' + name)),
         catchError(this.handleError<Account>('account'))
+      );
+  }
+
+  getAccountsSorted(): Observable<Account[]>{
+    return this.http
+      .get<Account[]>(
+        this.AccountURL
+      ).pipe(
+        tap((_) => console.log('get account' + name)),
+        catchError(this.handleError<Account[]>('account'))
+      );
+  }
+
+  getAccountsSortedTop3(): Observable<Account[]>{
+    return this.http
+      .get<Account[]>(
+        this.AccountURL + "/top3"
+      ).pipe(
+        tap((_) => console.log('get account' + name)),
+        catchError(this.handleError<Account[]>('account'))
       );
   }
 

@@ -22,6 +22,7 @@ export class ProfileInfo {
     this.profilePic = data.profilePic;
   }
 
+
   get json(): ProfileInfoJSON {
     return {
       alias: this.alias,

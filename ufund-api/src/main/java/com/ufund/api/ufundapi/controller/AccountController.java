@@ -117,6 +117,8 @@ public class AccountController {
         }
     }
 
+
+
     /**
      * Responds to the GET request for all {@linkplain BasketNeed needs} in a specific account
      * 
@@ -186,6 +188,76 @@ public class AccountController {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * Responds to the GET request for all {@linkplain Account accounts}, sorted for the leaderboard
+     * 
+     * @return ResponseEntity with all {@link Account account} objects
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("")
+    public ResponseEntity<List<Account>> getAccountsSorted() {
+        LOG.info("GET /accounts");
+        List<Account> accounts = accountDAO.getRankList();
+        if(accounts != null){
+            return new ResponseEntity<List<Account>>(accounts, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+     /**
+     * Responds to the GET request for all {@linkplain Account accounts}, sorted for the leaderboard
+     * 
+     * @return ResponseEntity with all {@link Account account} objects
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("/top3")
+    public ResponseEntity<List<Account>> getAccountsSortedTop3() {
+        LOG.info("GET /accounts/top3");
+        List<Account> accounts = accountDAO.getRankListTop3();
+        if(accounts != null){
+            return new ResponseEntity<List<Account>>(accounts, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Gets the rank of a given account
+     * @param accountName username of given account
+     * @return rank of provided account
+     */
+    @GetMapping("/{accountName}/rank")
+    public ResponseEntity<Integer> getRank(@PathVariable String accountName){
+        LOG.info("GET /accounts/" + accountName + "/rank");
+        List<Account> accounts = accountDAO.getRankList();
+        try{
+            return new ResponseEntity<Integer>((Integer)accountDAO.getRank(accountName), HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+    }
+
+    /**
+     * Returns god account, if one exists
+     * @return HttpStatus OL with Account object if god exists
+     * HttpStatus INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("/god")
+    public ResponseEntity<Account> getGod(){
+        LOG.info("GET /accounts/" + "god");
+        Account account = accountDAO.getGod();
+        if(account != null)
+            return new ResponseEntity<Account>(account, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @PostMapping("/{accountName}/image")

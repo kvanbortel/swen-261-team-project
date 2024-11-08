@@ -4,6 +4,8 @@
     </button>
     <div class="dropdown-menu" *ngIf="dropdownOpen">
       <a (click)="profile()" routerLink="/profile" class="dropdown-item">View Profile &nbsp;<i class="fa-solid fa-user"></i></a>
+      <a (click)="leaderboard()" routerLink="/leaderboard" class = "dropdown-item">Leaderboard &nbsp;<i class="fa-solid fa-clipboard-list"></i></a>
       <a (click)="logout()" routerLink="/" class="dropdown-item">Logout &nbsp;<i class="fa-solid fa-right-from-bracket"></i></a>
+      
     </div>
   </div>

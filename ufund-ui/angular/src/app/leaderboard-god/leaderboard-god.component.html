@@ -1,0 +1,13 @@
+<div *ngIf = "this.god" (click) = "this.setProfile();" routerLink = "/profileother" class="cupboard-need">
+    <div class = "god">
+        <span >U-FUND GOD</span>
+    </div>
+    <br>
+    <div class="row">
+      <img class="pic" src="{{this.god.imageLink}}">
+      <span class="need-title">
+      {{ this.getAlias() }}
+      </span>
+    </div>
+
+</div>

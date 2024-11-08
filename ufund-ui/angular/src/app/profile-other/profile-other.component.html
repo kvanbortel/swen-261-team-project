@@ -1,0 +1,17 @@
+
+
+  <div class="profile-container">
+        <div class="head"> 
+            <div class="pic-container">
+                <img class = "profile-pic" src = {{this.authService.profileImage}}>
+            </div>
+            <div class = "home">
+                <app-view-change-button  [text]="'Home'" [icon]="' fa-solid fa-home'" [path]="'home'"></app-view-change-button> 
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <app-profile-section class="profileSection" *ngIf="this.accountName" [accountName]="this.accountName" [profileInfo]="this.profileInfo"></app-profile-section>
+        
+    </div>

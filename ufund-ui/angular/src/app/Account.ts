@@ -1,8 +1,13 @@
 import { Basket } from "./Basket";
+import { ProfileInfo } from "./profile-info";
 
 export interface Account {
-    name: String,
-    passwordHash: String,
+    name: string,
+    basket: Basket,
+    passwordHash: string,
     imageLink: string,
-    basket: Basket;
+    moneyFunded: number,
+    needsFunded: number,
+    profileInfo: ProfileInfo;
+    
   }

@@ -47,12 +47,12 @@
 }
 
 .edit-button-section{
-  margin-left: 19vw;
+  margin-left: 32vw;
   max-width: 63vw;
   margin-top: -3vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: right;
 }
 
 .error{

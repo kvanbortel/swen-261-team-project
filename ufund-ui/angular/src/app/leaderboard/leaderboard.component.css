@@ -1,0 +1,24 @@
+ul{
+    list-style-type: none;
+    padding: 0 0 0 0;
+    overflow: auto;
+}
+
+.main{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    padding-left: 2vw;
+    width: 32vw;
+    height: 30vh;
+}
+
+.basket-head{
+
+    padding-left: 2vw;
+}
+
+@media only screen and (max-width: 600px) {
+    .lb {
+      display: none;
+    }
+  }

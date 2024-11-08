@@ -1,33 +1,36 @@
 package com.ufund.api.ufundapi.persistence;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.booleanThat;
-import static org.mockito.Mockito.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-import com.ufund.api.ufundapi.model.*;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.time.*;
+import com.ufund.api.ufundapi.model.Account;
+import com.ufund.api.ufundapi.model.AdminInfo;
+import com.ufund.api.ufundapi.model.Basket;
+import com.ufund.api.ufundapi.model.BasketNeed;
+import com.ufund.api.ufundapi.model.Level;
+import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.ProfileInfo;
+import com.ufund.api.ufundapi.model.Region;
 
 /**
  * 
@@ -44,7 +47,7 @@ public class AccountFileDAOTest {
     BasketNeed[] testBasketNeeds;
     ProfileInfo[] testProfileInfos;
     ObjectMapper mockObjectMapper;
-    NeedDAO mockNeedDAO;
+    NeedFileDAO mockNeedDAO;
 
     String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
 
@@ -107,7 +110,7 @@ public class AccountFileDAOTest {
             .readValue(new File("doesnt_matter.txt"),Account[].class))
                 .thenReturn(testAccounts);
 
-        mockNeedDAO = mock(NeedDAO.class);
+        mockNeedDAO = mock(NeedFileDAO.class);
 
         for(Need n: testNeeds){
             when(mockNeedDAO.getNeed(n.getId())).thenReturn(n);
@@ -489,11 +492,13 @@ public class AccountFileDAOTest {
         assertNull(accountFileDAO.getGod());
     }
 
+    //test for no god
     @Test
     void testLoadNoGod() throws IOException {
         assertNull(accountFileDAO.getGod());
     }    
 
+    //test for getting old god, null
     @Test
     void testSetGodOldIsNull() throws IOException {
         Account kayla = accountFileDAO.getAccount("Kayla");
@@ -502,6 +507,7 @@ public class AccountFileDAOTest {
         assertEquals(kayla, accountFileDAO.getGod());
     }
 
+    //test for getting old god, not null
     @Test
     void testSetGodOldNotNull() throws IOException {
         Account max = accountFileDAO.getAccount("Max");
@@ -553,5 +559,27 @@ public class AccountFileDAOTest {
         AdminInfo expected = new AdminInfo(userNumber, needsFunded, moneyFunded, lastFundedInstant, regions, fundedByRegion);
 
         assertEquals(expected, result);
+    }
+    //test for getting a rank successfully
+    @Test
+    public void testgetRankSuccessful() throws InterruptedException, IOException{
+
+        // make new accountFileDAO so we have just the new 4 accounts
+        when(mockObjectMapper
+            .readValue(new File("doesnt_matter.txt"),Account[].class))
+                .thenReturn(new Account[0]);
+        accountFileDAO = new AccountFileDAO("doesnt_matter.txt", mockObjectMapper, mockNeedDAO);
+
+        accountFileDAO.createAccount("account1", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
+        accountFileDAO.createAccount("account2", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
+        accountFileDAO.createAccount("account3", "PASS");
+        TimeUnit.MILLISECONDS.sleep(10);
+        accountFileDAO.createAccount("account4", "PASS");
+
+        // ordered by time because there are no needs or money funded
+
+        assertEquals(3, accountFileDAO.getRank("account3"));
     }
 }
