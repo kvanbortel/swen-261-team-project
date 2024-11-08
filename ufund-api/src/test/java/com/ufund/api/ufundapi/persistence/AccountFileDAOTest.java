@@ -1,6 +1,10 @@
 package com.ufund.api.ufundapi.persistence;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.booleanThat;
 import static org.mockito.Mockito.*;
 
@@ -377,11 +381,43 @@ public class AccountFileDAOTest {
     public void testGetProfileInfo_ValidAccount() throws IOException {
         Account kaylaInfo = accountFileDAO.getAccount("KaylaInfo");
         ProfileInfo expectedInfo = testProfileInfos[0];
-
         ProfileInfo result = accountFileDAO.getProfileInfo("KaylaInfo");
 
         assertEquals(expectedInfo, result);
     }
+    /**
+     * asserts that the user with isGod = true is loaded on startup
+     */
+    @Test
+    public void testGodLoad() throws IOException {
+        // make max god
+        testAccounts[0].setIsGod(true);
+
+        accountFileDAO = new AccountFileDAO("doesnt_matter.txt",mockObjectMapper, mockNeedDAO);
+
+        Account max = accountFileDAO.getAccount("Max");
+        Account god = accountFileDAO.getGod();
+
+        assertEquals(max, god);
+    }    
+
+    /**
+     * Tests if get and set god are working
+     * @throws IOException
+     */
+    @Test
+    public void testGetSetGod() throws IOException {
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        Account max = accountFileDAO.getAccount("Max");
+
+        accountFileDAO.setGod(kayla);
+
+        // max is no longer god
+        // kayla is god
+        assertFalse(max.getIsGod());
+        assertTrue(kayla.getIsGod());
+    }
+
 
     // Exception when trying to retrieve profileInfo with null account name
     @Test
@@ -422,4 +458,59 @@ public class AccountFileDAOTest {
         ProfileInfo newProfileInfo = testProfileInfos[1];
         assertNull(accountFileDAO.updateProfileInfo("nonExistentAccount", newProfileInfo));
     }
+
+    /**
+     * checks that a new god is assigned on checkout
+     * @throws IOException
+     */
+    @Test
+    public void testCheckoutSwapGod() throws IOException {
+
+        Account max = accountFileDAO.getAccount("Max");
+        Account kayla = accountFileDAO.getAccount("Kayla");
+
+        when(mockNeedDAO.isEmpty()).thenReturn(true);
+        accountFileDAO.checkout("Kayla");
+
+
+        assertEquals(kayla, accountFileDAO.getGod());
+    }
+
+    /**
+     * Checks that god does not change when there are still needs left after checkout
+     * @throws IOException
+     */
+    @Test
+    public void testCheckoutNoSwapGod() throws IOException {
+        when(mockNeedDAO.isEmpty()).thenReturn(false);
+        accountFileDAO.checkout("Kayla");
+
+        assertNull(accountFileDAO.getGod());
+    }
+
+    @Test
+    void testLoadNoGod() throws IOException {
+        assertNull(accountFileDAO.getGod());
+    }    
+
+    @Test
+    void testSetGodOldIsNull() throws IOException {
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        accountFileDAO.setGod(kayla);
+
+        assertEquals(kayla, accountFileDAO.getGod());
+    }
+
+    @Test
+    void testSetGodOldNotNull() throws IOException {
+        Account max = accountFileDAO.getAccount("Max");
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        accountFileDAO.setGod(max);
+        accountFileDAO.setGod(kayla);
+
+        assertEquals(kayla, accountFileDAO.getGod());
+        assertFalse(max.getIsGod());
+    }
+
+    
 }

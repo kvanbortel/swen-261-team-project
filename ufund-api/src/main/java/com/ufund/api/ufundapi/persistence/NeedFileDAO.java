@@ -207,4 +207,11 @@ public class NeedFileDAO implements NeedDAO{
             }
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean isEmpty() {
+        return (needs.size() == 0);
+    }
 }
