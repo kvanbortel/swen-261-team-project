@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -42,7 +43,7 @@ public class AccountFileDAOTest {
     BasketNeed[] testBasketNeeds;
     ProfileInfo[] testProfileInfos;
     ObjectMapper mockObjectMapper;
-    NeedDAO mockNeedDAO;
+    NeedFileDAO mockNeedDAO;
 
     String path = "../ufund-ui/angular/src/assets/Paws&Claws.png";
 
@@ -105,7 +106,7 @@ public class AccountFileDAOTest {
             .readValue(new File("doesnt_matter.txt"),Account[].class))
                 .thenReturn(testAccounts);
 
-        mockNeedDAO = mock(NeedDAO.class);
+        mockNeedDAO = mock(NeedFileDAO.class);
 
         for(Need n: testNeeds){
             when(mockNeedDAO.getNeed(n.getId())).thenReturn(n);
