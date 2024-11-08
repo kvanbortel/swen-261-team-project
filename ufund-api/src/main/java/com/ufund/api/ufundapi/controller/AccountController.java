@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ufund.api.ufundapi.model.Account;
+import com.ufund.api.ufundapi.model.AdminInfo;
 import com.ufund.api.ufundapi.model.BasketNeed;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.model.ProfileInfo;
@@ -228,6 +229,27 @@ public class AccountController {
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // Handle internal errors
+        }
+    }
+
+        /**
+     * Responds to the GET request for a specific {@linkplain Account account} 
+     * 
+     * @return ResponseEntity with an {@link Account account} objects
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if no such account exists
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("/adminInfo")
+    public ResponseEntity<AdminInfo> getAdminInfo() {
+        LOG.info("GET /adminInfo");
+        try {
+            AdminInfo adminInfo = accountDAO.getUserStats();
+            return new ResponseEntity<AdminInfo>(adminInfo, HttpStatus.OK);
+        }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -6,5 +6,9 @@
     <ul class="popup-area">
         <div class="popup" *ngFor='let message of messageService.messages' @fade> {{message.message}} </div>
       </ul>
-    <app-cupboard-search></app-cupboard-search>
+
+    <div class="body">
+      <app-cupboard-search></app-cupboard-search>
+      <app-admin-dash *ngIf="isAdmin"></app-admin-dash>
+    </div>  
 </div>

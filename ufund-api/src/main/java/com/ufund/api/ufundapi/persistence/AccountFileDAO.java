@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +16,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.model.Account;
-import com.ufund.api.ufundapi.model.Basket;
-import com.ufund.api.ufundapi.model.BasketNeed;
-import com.ufund.api.ufundapi.model.Need;
-
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -349,5 +346,39 @@ public class AccountFileDAO implements AccountDAO {
 
         // Return the updated ProfileInfo
         return accountObj.getProfileInfo();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public AdminInfo getUserStats() throws IOException {
+        int userNumber = 0;
+        int needsFunded = 0;
+        int moneyFunded = 0;
+        Instant lastFundedInstant = Instant.MIN;
+        Map<Region, Integer> regions = new EnumMap<>(Region.class);
+        Map<Region, Double> fundedByRegion = new EnumMap<>(Region.class);
+
+        for (Region region : Region.values()) {
+            regions.put(region, 0);
+            fundedByRegion.put(region, 0.0);
+        }
+
+        for(String accKey : accounts.keySet()){
+            Account acc = accounts.get(accKey);
+            userNumber++;
+            needsFunded += acc.getNeedsFunded();
+            moneyFunded += acc.getMoneyFunded();
+            if(acc.getLastCheckoutInstant() != null){
+                if(lastFundedInstant.isBefore(acc.getLastCheckoutInstant())){
+                    lastFundedInstant = acc.getLastCheckoutInstant();
+                }
+            }
+            Region region = acc.getProfileInfo().getRegion();
+            regions.put(region, regions.get(region) + 1);
+            fundedByRegion.put(region, fundedByRegion.get(region) + acc.getMoneyFunded());
+        }
+
+        return new AdminInfo(userNumber, needsFunded, moneyFunded, lastFundedInstant, regions, fundedByRegion);
     }
 }

@@ -8,6 +8,7 @@ import { BasketPageComponent } from './basket-page/basket-page.component';
 import { PostCheckoutComponent } from './post-checkout/post-checkout.component';
 import { AuthService } from './storage/auth.service';
 import {ProfilePageComponent} from "./profile-page/profile-page.component";
+import { AdminDashComponent } from './admin-dash/admin-dash.component';
 
 const routes: Routes = [
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'basket', component: BasketPageComponent, canActivate: [AuthService]},
   { path: 'post-checkout', component: PostCheckoutComponent, canActivate: [AuthService]},
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthService]},
+  { path: 'admin-dash', component: AdminDashComponent, canActivate: [AuthService]},
   //{ path: 'login', loadChildren: () => import('./login/login.component').then(m => m.LoginComponent )}
 ];
 

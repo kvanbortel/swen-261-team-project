@@ -6,6 +6,7 @@ import { Need } from '../Need';
 import { BasketNeed } from '../BasketNeed';
 import { Basket } from '../Basket';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { AdminInfo } from '../AdminInfo';
 
 @Injectable({
   providedIn: 'root',
@@ -156,6 +157,17 @@ export class AuthService implements CanActivate{
           console.error('Error logging in:', err);
         },
       });
+  }
+
+  getAdminInfo(): Observable<AdminInfo> {
+    return this.http
+      .get<AdminInfo>(
+        this.AccountURL + '/adminInfo'
+      )
+      .pipe(
+        tap((_) => console.log('getting admin info')),
+        catchError(this.handleError<AdminInfo>("error"))
+      );
   }
 
   /**
