@@ -10,6 +10,8 @@ import { AuthService } from '../storage/auth.service';
 })
 export class LeaderboardPageComponent {
 
+
+  god: Account | null = null;
   accounts$ = new BehaviorSubject<Account[]>([]);
   constructor(public authService: AuthService){};
 
@@ -21,5 +23,18 @@ export class LeaderboardPageComponent {
         console.log(response);
       },
     });
+
+    this.authService.getGod().subscribe({
+      next: (response) => {
+        this.god = (response);
+      },
+    });
+
+    let image = localStorage.getItem("image")
+
+    if(image != null){
+      this.authService.setImage(image);
+
+    }
   }
 }
