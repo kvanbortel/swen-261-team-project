@@ -20,7 +20,6 @@ export class LeaderboardPageComponent {
     this.authService.getAccountsSorted().subscribe({
       next: (response) => {
         this.accounts$.next(response);
-        console.log(response);
       },
     });
 

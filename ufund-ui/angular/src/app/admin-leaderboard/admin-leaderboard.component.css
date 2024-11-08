@@ -1,0 +1,21 @@
+ul{
+    list-style-type: none;
+    padding: 0 0 0 0;
+}
+
+.main{
+    padding-left: 2vw;
+    margin-top: 2vh;
+    max-height: 40vh;
+    margin-right: 2vw;
+}
+
+.leader-head{
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .lb {
+      display: none;
+    }
+  }
