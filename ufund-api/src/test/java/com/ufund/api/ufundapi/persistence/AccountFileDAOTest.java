@@ -488,11 +488,13 @@ public class AccountFileDAOTest {
         assertNull(accountFileDAO.getGod());
     }
 
+    //test for no god
     @Test
     void testLoadNoGod() throws IOException {
         assertNull(accountFileDAO.getGod());
     }    
 
+    //test for getting old god, null
     @Test
     void testSetGodOldIsNull() throws IOException {
         Account kayla = accountFileDAO.getAccount("Kayla");
@@ -501,6 +503,7 @@ public class AccountFileDAOTest {
         assertEquals(kayla, accountFileDAO.getGod());
     }
 
+    //test for getting old god, not null
     @Test
     void testSetGodOldNotNull() throws IOException {
         Account max = accountFileDAO.getAccount("Max");
@@ -513,7 +516,7 @@ public class AccountFileDAOTest {
     }
 
     
-
+    //test for getting a rank successfully
     @Test
     public void testgetRankSuccessful() throws InterruptedException, IOException{
 
