@@ -1,4 +1,4 @@
-<div (click) = "routeProfile();" class="cupboard-need">
+<div (click) = "routeProfile();" class="leaderboard-profile" [ngStyle]="getDynamicStyles()">
     <div class="row">
       <img class="pic" src="{{this.account.imageLink}}">
       <span class="acc-title">

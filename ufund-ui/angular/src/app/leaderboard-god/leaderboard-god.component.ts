@@ -26,10 +26,11 @@ export class LeaderboardGodComponent {
   rank: number = 0;
 
   @Input() god: Account | null;
-
+  @Input() isGod: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
     this.god = changes['god'].currentValue; // fetch the current value
+    this.isGod = changes['isGod'].currentValue;
   }
 
   constructor(
@@ -37,6 +38,7 @@ export class LeaderboardGodComponent {
     public formBuilder: FormBuilder,
   ) {
     this.god = null;
+    this.isGod = false;
   }
 
   setProfile(){
@@ -47,7 +49,19 @@ export class LeaderboardGodComponent {
     }
   }
 
+  getDynamicStyles() {
+    if(this.isGod){
+      return {
+        border: "4px solid rgb(241, 176, 97)"
+      };
+    }
+    return
+  }
+
   getAlias(): string{
+    if(this.isGod){
+      return "You"
+    }
     if(this.god != null){
       if(this.god.profileInfo.alias == ''){
         return "Anonymous"

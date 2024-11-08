@@ -1,11 +1,11 @@
-<div *ngIf = "this.god" (click) = "this.setProfile();" routerLink = "/profileother" class="cupboard-need">
+<div *ngIf = "this.god" (click) = "this.setProfile();" routerLink = "/profileother" class="god-box" [ngStyle]="getDynamicStyles()">
     <div class = "god">
         <span >U-FUND GOD</span>
     </div>
     <br>
     <div class="row">
       <img class="pic" src="{{this.god.imageLink}}">
-      <span class="need-title">
+      <span class="god-title">
       {{ this.getAlias() }}
       </span>
     </div>

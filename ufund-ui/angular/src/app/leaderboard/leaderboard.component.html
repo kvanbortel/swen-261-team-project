@@ -1,6 +1,6 @@
 <div class = "main">
   <div class="basket-head"><h3>U-fund Leaderboard</h3></div>
-  <app-leaderboard-god [god] = "god"> 
+  <app-leaderboard-god [god] = "god" [isGod] = "isGod"> 
   </app-leaderboard-god>
   <ul class="lb">
       <ul class = "leaderboard" *ngIf="(accounts$ | async)?.length !== 0">

@@ -23,6 +23,7 @@ export class LeaderboardComponent {
   };
 
   god: Account | null = null;
+  isGod: boolean = false;
   accounts$ = new BehaviorSubject<Account[]>([]);
   constructor(public authService: AuthService){};
   isAdmin: boolean = this.authService.isAdmin();
@@ -41,6 +42,10 @@ export class LeaderboardComponent {
     this.authService.getGod().subscribe({
       next: (response) => {
         this.god = (response);
+        if(this.account.name == this.god.name){
+          this.isGod = true;
+          console.log("I AM GOD")
+        }
       },
     });
 
