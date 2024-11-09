@@ -74,6 +74,10 @@ export class LeaderboardGodComponent {
   }
 
   routeProfile(){
+    if(this.god!.name == this.authService.getName()){
+      this.router.navigate(['/profile']);
+      return;
+    }
     this.router.navigate(['/user'], {
       state: {
         profileInfo: this.god!.profileInfo,

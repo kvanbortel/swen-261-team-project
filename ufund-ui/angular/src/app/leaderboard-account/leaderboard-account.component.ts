@@ -111,6 +111,10 @@ export class LeaderboardAccountComponent{
   }
 
   routeProfile(){
+    if(this.account.name == this.authService.getName()){
+      this.router.navigate(['/profile']);
+      return;
+    }
     this.router.navigate(['/user'], {
       state: {
         profileInfo: this.account.profileInfo,
