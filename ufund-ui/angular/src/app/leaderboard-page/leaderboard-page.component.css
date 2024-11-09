@@ -9,7 +9,12 @@ ul{
     padding: 0 0 0 0;
     padding-left: 2vw;
     width: 50vw;
-    height: 80vh;
+    height: 60vh;
+}
+
+::ng-deep app-leaderboard-page .god-box{
+    width: 46.5vw;
+    margin-left: 2.1vw;
 }
 
 .basket-head{
@@ -30,8 +35,7 @@ ul{
 
 .button-area{
     position: absolute;
-    top: 20vh;
-    right: 0vh;
+    right: 3vh;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

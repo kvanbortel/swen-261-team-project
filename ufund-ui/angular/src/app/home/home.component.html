@@ -1,11 +1,11 @@
 <div class="main">
-  <app-leaderboard></app-leaderboard>
     
     <ul class="popup-area">
         <div class="popup" *ngFor='let message of messageService.messages' @fade> {{message.message}} </div>
       </ul>
 
     <div class="body">
+      <app-leaderboard *ngIf="!isAdmin" style="max-height:60vh; margin-right:3vw; width: 36vw;"></app-leaderboard>
       <app-cupboard-search></app-cupboard-search>
       <app-admin-dash *ngIf="isAdmin"></app-admin-dash>
     </div>  

@@ -17,7 +17,7 @@ export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
   image: string | null= '';
-  profileInfo: ProfileInfo =  new ProfileInfo({alias: '', region: Region.FINGER_LAKES, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
+  profileInfo: ProfileInfo =  new ProfileInfo({alias: '', region: Region.NONE, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
   loadingImg: string = "https://media1.tenor.com/m/On7kvXhzml4AAAAC/loading-gif.gif";
   profileImage: string | null= '';
 

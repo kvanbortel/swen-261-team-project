@@ -148,7 +148,7 @@ public class Account implements Comparable<Account> {
         this.name = name;
         this.basket = new Basket();
         this.passwordHash = passwordHash;
-        this.imageLink = "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730683024/a.png"; // default profile picture 
+        this.imageLink = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"; // default profile picture 
         // set to date that the account was created
         this.lastCheckoutInstant = Instant.now();
         this.profileInfo = new ProfileInfo();
