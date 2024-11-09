@@ -17,8 +17,17 @@
   background-color: #F4F4F4;
 }
 
+
+
 .edit-profile.mat-mdc-dialog-content {
   max-height: 90vh !important;
+}
+
+.slider{
+  margin-bottom: 16px;
+  width: 26vw;
+  border: 0px solid;
+
 }
 
 .form-field {

@@ -29,7 +29,8 @@ export class EditProfileDialogComponent {
       bio: ['', Validators.maxLength(250)],
       email: ['', Validators.email],
       phoneNumber: ['', Validators.pattern(/^\(\d{3}\) \d{3}-\d{4}$/)],
-      ssn: ['', Validators.pattern(/^\d{3}-\d{2}-\d{4}$/)]
+      ssn: ['', Validators.pattern(/^\d{3}-\d{2}-\d{4}$/)],
+      privacy: ['']
     });
 
     this.profileForm.patchValue({
@@ -39,9 +40,14 @@ export class EditProfileDialogComponent {
       bio: this.data.bio,
       email: this.data.email,
       phoneNumber: this.data.phoneNumber,
-      ssn: this.data.ssn
+      ssn: this.data.ssn,
+      privacy: this.data.privacy
     });
+
+
   }
+
+
 
   getErrorMessage(control: AbstractControl | null, fieldName: string, errorMessages: { [key: string]: string }): string {
     return this.validationService.getErrorMessage(control, fieldName, errorMessages);
@@ -60,7 +66,8 @@ export class EditProfileDialogComponent {
       bio: this.profileForm.value.bio,
       email: this.profileForm.value.email,
       phoneNumber: this.profileForm.value.phoneNumber,
-      ssn: this.profileForm.value.ssn
+      ssn: this.profileForm.value.ssn,
+      privacy: this.profileForm.value.privacy
     });
 
     // Call the service to update the profileInfo
@@ -74,6 +81,8 @@ export class EditProfileDialogComponent {
       }
     });
   }
+
+
 
   // Helper function to get the enum key from the string value
   private getRegionKey(regionValue: string): Region {

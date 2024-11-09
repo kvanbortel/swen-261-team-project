@@ -17,7 +17,7 @@ export class AuthService implements CanActivate{
   admin: boolean = false;
   name: string = '';
   image: string | null= '';
-  profileInfo: ProfileInfo =  new ProfileInfo({alias: '', region: Region.FINGER_LAKES, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
+  profileInfo: ProfileInfo =  new ProfileInfo({alias: '', region: Region.NONE, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: '', privacy: "Private"})
   loadingImg: string = "https://media1.tenor.com/m/On7kvXhzml4AAAAC/loading-gif.gif";
   profileImage: string | null= '';
 
@@ -215,6 +215,17 @@ export class AuthService implements CanActivate{
       .pipe(
         tap((_) => console.log('getting admin info')),
         catchError(this.handleError<AdminInfo>("error"))
+      );
+  }
+
+  togglePrivacy(accountName: string){
+    console.log(this.AccountURL + '/' + accountName + "/privacy")
+    return this.http
+      .put(
+        this.AccountURL + '/' + accountName + "/rank", null
+      ).pipe(
+        tap((_) => console.log('toggle account privacy ' + accountName)),
+        catchError(this.handleError('account'))
       );
   }
 

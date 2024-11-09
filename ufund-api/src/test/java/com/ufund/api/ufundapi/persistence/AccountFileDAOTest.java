@@ -93,8 +93,8 @@ public class AccountFileDAOTest {
         testBaskets[3].addNeed(testNeeds[0]);
 
         testProfileInfos = new ProfileInfo[2];
-        testProfileInfos[0] = new ProfileInfo(null, "pronouns", "my-alias", "bio", Region.CENTRAL_NEW_YORK, "(123) 123-1233", "me@me.com", "111-11-1111");
-        testProfileInfos[1] = new ProfileInfo(null, "he/him", "alias", "bio", Region.CENTRAL_NEW_YORK, "(123) 123-1233", "me@me.com", "111-11-1111");
+        testProfileInfos[0] = new ProfileInfo(null, "pronouns", "my-alias", "bio", Region.CENTRAL_NEW_YORK, "(123) 123-1233", "me@me.com", "111-11-1111", "Private");
+        testProfileInfos[1] = new ProfileInfo(null, "he/him", "alias", "bio", Region.CENTRAL_NEW_YORK, "(123) 123-1233", "me@me.com", "111-11-1111", "Private");
 
         // accounts baskets match the related index in testBaskets
         testAccounts = new Account[5];
