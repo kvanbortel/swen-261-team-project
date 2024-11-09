@@ -22,6 +22,7 @@
 
           <app-edit-profile class="edit-profile-btn" [profileInfo] = "this.profileInfo" (dataFromChild)="this.setProfileInfo($event)"></app-edit-profile>
       </div>
-      <app-user-level [currentUserAccount]="currentUserAccount!" [allAccounts]="allAccounts"></app-user-level>
+      <app-user-level *ngIf="this.allAccounts.length > 0" [currentUserAccount]="currentUserAccount!" [allAccounts]="allAccounts"></app-user-level>
+      <app-level-progress-bar *ngIf="this.allAccounts.length > 0" [currentUserAccount]="currentUserAccount!" [allAccounts]="allAccounts"></app-level-progress-bar>
       <app-profile-section class="profileSection" *ngIf="this.accountName" [accountName]="this.accountName" [profileInfo]="this.profileInfo"></app-profile-section>
 </div>

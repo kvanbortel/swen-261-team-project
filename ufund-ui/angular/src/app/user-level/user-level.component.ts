@@ -12,24 +12,13 @@ export class UserLevelComponent implements OnInit {
   @Input() currentUserAccount?: Account;
   @Input() allAccounts: Account[] = [];
   userLevel!: UserLevel | null;
-  accountName!: string | null;
 
   constructor (private userLevelService: UserLevelService) {}
 
   ngOnInit(): void {
-    this.accountName = localStorage.getItem("name");
-    if (this.accountName != null) {
-      // Fetch all accounts to calculate the user level
-      this.userLevelService.getAllAccounts().subscribe(accounts => {
-        console.log("All Accounts:", accounts);
-        this.allAccounts = accounts;
-        this.currentUserAccount = accounts.find(account => account.name === this.accountName);
-
-        if (this.currentUserAccount) {
-          console.log("Current User Account:", this.currentUserAccount);
-          this.updateUserLevel();
-        }
-      });
+    if (this.currentUserAccount) {
+      console.log("Current User Account:", this.currentUserAccount);
+      this.updateUserLevel();
     }
   }
 

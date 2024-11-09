@@ -51,6 +51,7 @@ import { LeaderboardAccountProfileComponent } from './leaderboard-account-profil
 import { ProfileOtherComponent } from './profile-other/profile-other.component';
 import { LeaderboardGodComponent } from './leaderboard-god/leaderboard-god.component';
 import { UserLevelComponent } from './user-level/user-level.component';
+import { LevelProgressBarComponent } from './level-progress-bar/level-progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { UserLevelComponent } from './user-level/user-level.component';
     ProfileOtherComponent,
     LeaderboardGodComponent,
     UserLevelComponent,
+    LevelProgressBarComponent,
   ],
   imports: [
     BrowserModule,
