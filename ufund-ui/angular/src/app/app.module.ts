@@ -47,9 +47,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { LeaderboardAccountComponent } from './leaderboard-account/leaderboard-account.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
-import { LeaderboardAccountProfileComponent } from './leaderboard-account-profile/leaderboard-account-profile.component';
 import { ProfileOtherComponent } from './profile-other/profile-other.component';
 import { LeaderboardGodComponent } from './leaderboard-god/leaderboard-god.component';
+import { AdminLeaderboardComponent } from './admin-leaderboard/admin-leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -81,9 +81,9 @@ import { LeaderboardGodComponent } from './leaderboard-god/leaderboard-god.compo
     EditProfileDialogComponent,
     EditProfileComponent,
     LeaderboardPageComponent,
-    LeaderboardAccountProfileComponent,
     ProfileOtherComponent,
     LeaderboardGodComponent,
+    AdminLeaderboardComponent,
   ],
   imports: [
     BrowserModule,

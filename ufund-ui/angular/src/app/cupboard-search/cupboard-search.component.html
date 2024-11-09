@@ -1,5 +1,5 @@
 <div class="main">
-  <div id="search-component" class="search-container">
+  <div id="search-component" class="search-container" [ngStyle]="getSizeStyles()">
     <label *ngIf="!this.authService.isAdmin()" class="login"> Logged in as: "{{this.authService.getName()}}"</label>
     <hr><hr>
     <label for="search-box" class="search-title">Search for Needs</label>
@@ -26,6 +26,6 @@
       No needs found.
     </div>
   </div>
-
-  <app-single-need [need]="selected"></app-single-need>
+  <!-- Unused: Click on a single need to display it larger -->
+  <!-- <app-single-need [need]="selected"></app-single-need> -->
 </div>
