@@ -36,7 +36,7 @@ export class LeaderboardAccountComponent{
     basket: {needs: []},
     moneyFunded: 0.0,
     needsFunded: 0,
-    profileInfo: new ProfileInfo({alias: '', region: Region.FINGER_LAKES, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
+    profileInfo: new ProfileInfo({alias: '', region: Region.NONE, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
 
   };
 
