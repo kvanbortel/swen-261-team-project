@@ -73,11 +73,12 @@ export class AdminDashComponent {
            datasets: [{
     label: 'Helpers in Region',
     data: this.regionChartData,
-    backgroundColor:  [   'rgba(255, 99, 132, 0.7)',  // Red
+    backgroundColor:  [   
+    'rgba(255, 99, 132, 0.7)',  // Red
     'rgba(54, 162, 235, 0.7)',  // Blue
     'rgba(255, 206, 86, 0.7)',  // Yellow
     'rgba(75, 192, 192, 0.7)',  // Teal
-    'rgba(153, 102, 255, 0.7)', // Purple
+    'rgba(215, 188, 185, 0.7)', // Misty Rose
     'rgba(255, 159, 64, 0.7)',  // Orange
     'rgba(140, 140, 140, 0.7)', // Grey
     'rgba(255, 99, 71, 0.7)',   // Tomato
@@ -88,7 +89,6 @@ export class AdminDashComponent {
     'rgba(70, 130, 180, 0.7)',  // Steel Blue
     'rgba(152, 251, 152, 0.7)', // Pale Green
     'rgba(210, 105, 30, 0.7)',   // Chocolate
-    'rgba(255, 228, 225, 0.7)', // Misty Rose
     'rgba(144, 238, 144, 0.7)', // Light Green
     'rgba(32, 178, 170, 0.7)',  // Light Sea Green
     'rgba(100, 149, 237, 0.7)', // Cornflower Blue
@@ -116,11 +116,12 @@ export class AdminDashComponent {
            datasets: [{
     label: 'Amount Funded',
     data: this.fundingChartData,
-    backgroundColor:  [   'rgba(255, 99, 132, 0.7)',  // Red
+    backgroundColor:  [   
+      'rgba(255, 99, 132, 0.7)',  // Red
     'rgba(54, 162, 235, 0.7)',  // Blue
     'rgba(255, 206, 86, 0.7)',  // Yellow
     'rgba(75, 192, 192, 0.7)',  // Teal
-    'rgba(153, 102, 255, 0.7)', // Purple
+    'rgba(215, 188, 185, 0.7)', // Misty Rose
     'rgba(255, 159, 64, 0.7)',  // Orange
     'rgba(140, 140, 140, 0.7)', // Grey
     'rgba(255, 99, 71, 0.7)',   // Tomato
@@ -131,7 +132,6 @@ export class AdminDashComponent {
     'rgba(70, 130, 180, 0.7)',  // Steel Blue
     'rgba(152, 251, 152, 0.7)', // Pale Green
     'rgba(210, 105, 30, 0.7)',   // Chocolate
-    'rgba(255, 228, 225, 0.7)', // Misty Rose
     'rgba(144, 238, 144, 0.7)', // Light Green
     'rgba(32, 178, 170, 0.7)',  // Light Sea Green
     'rgba(100, 149, 237, 0.7)', // Cornflower Blue

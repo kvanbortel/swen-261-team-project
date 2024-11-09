@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../storage/auth.service';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Account } from '../Account';
-import { AuthService } from '../storage/auth.service';
 import { ProfileInfo } from '../profile-info';
 import { Region } from '../region';
 
 @Component({
-  selector: 'app-leaderboard-page',
-  templateUrl: './leaderboard-page.component.html',
-  styleUrl: './leaderboard-page.component.css'
+  selector: 'app-admin-leaderboard',
+  templateUrl: './admin-leaderboard.component.html',
+  styleUrl: './admin-leaderboard.component.css'
 })
-export class LeaderboardPageComponent {
+export class AdminLeaderboardComponent {
 
   account: Account = {
     name: '',
@@ -21,7 +21,7 @@ export class LeaderboardPageComponent {
     needsFunded: 0,
     profileInfo: new ProfileInfo({alias: '', region: Region.NONE, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
   };
-  
+
   god: Account | null = null;
   isGod: boolean = false;
   accounts$ = new BehaviorSubject<Account[]>([]);
@@ -30,37 +30,32 @@ export class LeaderboardPageComponent {
   onLeaderboardBool: boolean = false;
 
   ngOnInit(){
-
     if(!this.authService.isAdmin()){
       this.authService.getAccount(localStorage.getItem("name")).subscribe({
         next: (response) => {
           this.account = (response);
+          console.log(response);
         },
       });
     }
 
-    this.authService.getAccountsSorted().subscribe({
+    this.authService.getGod().subscribe({
       next: (response) => {
-        this.accounts$.next(response);
-
-        this.authService.getGod().subscribe({
-          next: (response) => {
-            this.god = (response);
-            if(this.account.name == this.god.name){
-              this.isGod = true;
-              console.log("I AM GOD")
-            }
-          },
-        });
+        this.god = (response);
+        if(this.account.name == this.god.name){
+          this.isGod = true;
+          console.log("I AM GOD")
+        }
       },
     });
 
-    let image = localStorage.getItem("image")
-
-    if(image != null){
-      this.authService.setImage(image);
-
-    }
+    this.authService.getAccountsSorted().subscribe({
+      next: (response) => {
+        this.accounts$.next(response);
+        console.log(response)
+      },
+    });
+    
   }
 
   onLeaderboard(k: number): Observable<boolean> {
@@ -75,4 +70,5 @@ export class LeaderboardPageComponent {
       })
     );
   }
+
 }

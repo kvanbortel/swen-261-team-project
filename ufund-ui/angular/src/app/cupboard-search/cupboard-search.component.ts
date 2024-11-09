@@ -38,6 +38,16 @@ export class CupboardSearchComponent {
     });
   }
 
+  getSizeStyles(){
+    if(this.authService.isAdmin()){
+      return {
+        "max-width" : "40vw",
+        "min-width" : "40vw",
+      };
+    }
+    return
+  }
+
   ngOnInit(): void {
     let name = localStorage.getItem("name");
     if(name != null){

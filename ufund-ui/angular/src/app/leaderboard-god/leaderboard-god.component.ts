@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Account } from '../Account';
 import { ProfileInfo } from '../profile-info';
 import { Region } from '../region';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-leaderboard-god',
@@ -25,17 +26,20 @@ export class LeaderboardGodComponent {
   rank: number = 0;
 
   @Input() god: Account | null;
-
+  @Input() isGod: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
     this.god = changes['god'].currentValue; // fetch the current value
+    this.isGod = changes['isGod'].currentValue;
   }
 
   constructor(
     public authService: AuthService,
     public formBuilder: FormBuilder,
+    public router: Router
   ) {
     this.god = null;
+    this.isGod = false;
   }
 
   setProfile(){
@@ -46,18 +50,40 @@ export class LeaderboardGodComponent {
     }
   }
 
+  getDynamicStyles() {
+    if(this.isGod){
+      return {
+        border: "4px solid rgb(241, 176, 97)"
+      };
+    }
+    return
+  }
+
   getAlias(): string{
+    if(this.isGod){
+      return "You"
+    }
     if(this.god != null){
       if(this.god.profileInfo.alias == ''){
-        return "anon"
+        return "Anonymous"
       }
       return this.god.profileInfo.alias;
     }
     return ''
   }
 
-  
-  
+  routeProfile(){
+    if(this.god!.name == this.authService.getName()){
+      this.router.navigate(['/profile']);
+      return;
+    }
+    this.router.navigate(['/user'], {
+      state: {
+        profileInfo: this.god!.profileInfo,
+        profileImg: this.god!.imageLink
+      },
+    });
+  }
 
   ngOnInit(){
     

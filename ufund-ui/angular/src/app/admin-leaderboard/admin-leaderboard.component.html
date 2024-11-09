@@ -1,0 +1,14 @@
+<div class = "main">
+    <div class="leader-head"><h3>U-fund Leaderboard</h3></div>
+    <app-leaderboard-god [god] = "god" [isGod] = "isGod"> 
+    </app-leaderboard-god>
+    <ul class="lb">
+        <ul class = "leaderboard" *ngIf="(accounts$ | async)?.length !== 0">
+          <li *ngFor="let acc of accounts$ | async; let i = index;">
+            <app-leaderboard-account
+              [account]="acc" [index]= "i" [you]="onLeaderboard(i) | async"
+            ></app-leaderboard-account>
+          </li>
+        </ul>
+    </ul>
+  </div>

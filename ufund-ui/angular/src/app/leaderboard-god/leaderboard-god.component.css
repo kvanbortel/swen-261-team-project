@@ -1,24 +1,23 @@
-/* Container for each need item */
-.cupboard-need {    
-    padding: 15px;
+.god-box {    
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 25px;
     background-image: linear-gradient(rgba(255, 245, 110, 0.705), rgba(234, 190, 79, 0.705));
     border: 1px solid #ddd;
-    width: 30.2vw;
-    justify-self: right;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    
+    margin-top: 1vh;
   }
 
   .god{
     text-align: center;
     color: rgb(60, 48, 30);
     font-weight: 800;
+    margin-bottom: -5vh;
   }
 
   .row{
-    
     display: flex;
     justify-content: space-between;
     align-items:center;
@@ -32,36 +31,16 @@
     padding: 10px;
   }
 
-  /* Title of each need item */
-  .need-title {
+  .god-title {
     font-size: 1.3rem;
     font-weight: 600;
     width: 100%;
     color: #c6af01;
-    margin-bottom: 10px;
+    margin-left: 1vw;
   }
   
-  /* Description of the need */
-  .need-description {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.5;
-    justify-content: right;
-    text-align: right;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Row of information boxes below the description */
-.need-info-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-
   /* Hover effect for the entire item */
-  .cupboard-need:hover {
+  .god-box:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     cursor: pointer;

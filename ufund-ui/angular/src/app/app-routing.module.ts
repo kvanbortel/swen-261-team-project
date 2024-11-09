@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'post-checkout', component: PostCheckoutComponent, canActivate: [AuthService]},
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthService]},
   { path: 'admin-dash', component: AdminDashComponent, canActivate: [AuthService]},
-  { path: 'profileother', component: ProfileOtherComponent, canActivate: [AuthService]},
+  { path: 'user', component: ProfileOtherComponent, canActivate: [AuthService]},
   { path: 'leaderboard', component: LeaderboardPageComponent, canActivate: [AuthService]},
 
   //{ path: 'login', loadChildren: () => import('./login/login.component').then(m => m.LoginComponent )}
