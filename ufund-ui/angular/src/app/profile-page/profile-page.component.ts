@@ -49,18 +49,6 @@ export class ProfilePageComponent implements OnInit {
       this.profileSectionService.getProfileInfo(this.accountName).subscribe(profile => {
         this.profileInfo = profile
       });
-
-      // Fetch all accounts to calculate the user level
-      this.profileSectionService.getAllAccounts().subscribe(accounts => {
-        console.log("All Accounts:", accounts);
-        this.allAccounts = accounts;
-        this.currentUserAccount = accounts.find(account => account.name === this.accountName);
-
-        if (this.currentUserAccount) {
-          console.log("Current User Account:", this.currentUserAccount);
-          this.updateUserLevel();
-        }
-      });
     }
 
     let image = localStorage.getItem("image")
@@ -71,12 +59,6 @@ export class ProfilePageComponent implements OnInit {
 
   setProfileInfo(profileInfo: ProfileInfo) {
     this.profileInfo = profileInfo;
-  }
-
-  private updateUserLevel() {
-    if (this.currentUserAccount && this.allAccounts.length > 0) {
-      this.userLevel = this.userLevelService.getUserLevel(this.currentUserAccount, this.allAccounts);
-    }
   }
 
   // whenever a file is uploaded:

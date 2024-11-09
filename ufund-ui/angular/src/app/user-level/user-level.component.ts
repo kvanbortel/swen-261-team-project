@@ -9,14 +9,33 @@ import {UserLevelService} from "../user-level.service";
   styleUrl: './user-level.component.css'
 })
 export class UserLevelComponent implements OnInit {
-  @Input() currentUserAccount: Account | null = null;
+  @Input() currentUserAccount?: Account;
   @Input() allAccounts: Account[] = [];
-  userLevel: UserLevel = UserLevel.NOOB;
+  userLevel!: UserLevel | null;
+  accountName!: string | null;
 
   constructor (private userLevelService: UserLevelService) {}
 
   ngOnInit(): void {
-    if (this.currentUserAccount && this.allAccounts)
+    this.accountName = localStorage.getItem("name");
+    if (this.accountName != null) {
+      // Fetch all accounts to calculate the user level
+      this.userLevelService.getAllAccounts().subscribe(accounts => {
+        console.log("All Accounts:", accounts);
+        this.allAccounts = accounts;
+        this.currentUserAccount = accounts.find(account => account.name === this.accountName);
+
+        if (this.currentUserAccount) {
+          console.log("Current User Account:", this.currentUserAccount);
+          this.updateUserLevel();
+        }
+      });
+    }
+  }
+
+  private updateUserLevel() {
+    if (this.currentUserAccount && this.allAccounts.length > 0) {
       this.userLevel = this.userLevelService.getUserLevel(this.currentUserAccount, this.allAccounts);
+    }
   }
 }
