@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {UserLevel} from "../UserLevel";
 import {Account} from "../Account";
 import {UserLevelService} from "../user-level.service";
+import {AuthService} from "../storage/auth.service";
 
 @Component({
   selector: 'app-user-level',
@@ -11,15 +12,23 @@ import {UserLevelService} from "../user-level.service";
 export class UserLevelComponent implements OnInit {
   @Input() currentUserAccount?: Account;
   @Input() allAccounts: Account[] = [];
+  god: Account | null = null;
   userLevel!: UserLevel | null;
 
-  constructor (private userLevelService: UserLevelService) {}
+  constructor (private userLevelService: UserLevelService, public authService: AuthService) {}
 
   ngOnInit(): void {
     if (this.currentUserAccount) {
       console.log("Current User Account:", this.currentUserAccount);
       this.updateUserLevel();
     }
+
+    this.authService.getGod().subscribe({
+      next: (response) => {
+        this.god = (response);
+        console.log("GAAD:" + this.god);
+      },
+    });
   }
 
   private updateUserLevel() {
