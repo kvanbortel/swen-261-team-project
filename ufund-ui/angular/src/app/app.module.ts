@@ -49,6 +49,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
 import { ProfileOtherComponent } from './profile-other/profile-other.component';
 import { LeaderboardGodComponent } from './leaderboard-god/leaderboard-god.component';
+import { UserLevelComponent } from './user-level/user-level.component';
+import { LevelProgressBarComponent } from './level-progress-bar/level-progress-bar.component';
 import { AdminLeaderboardComponent } from './admin-leaderboard/admin-leaderboard.component';
 
 @NgModule({
@@ -84,6 +86,8 @@ import { AdminLeaderboardComponent } from './admin-leaderboard/admin-leaderboard
     ProfileOtherComponent,
     LeaderboardGodComponent,
     AdminLeaderboardComponent,
+    UserLevelComponent,
+    LevelProgressBarComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,44 @@
+.progress-container {
+  width: 100%;
+  max-width: 45vh;
+  margin: 2vh auto;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 3vh;
+  background-color: #e0e0e0;  /* Light gray background */
+  border-radius: 1vh;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 1vh rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #4caf50;  /* Green for filled progress */
+  transition: width 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0 1vh;
+}
+
+.progress-labels {
+  margin-top: 1vh;
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.progress-percentage {
+  position: absolute;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;  /* White text for percentage */
+}
