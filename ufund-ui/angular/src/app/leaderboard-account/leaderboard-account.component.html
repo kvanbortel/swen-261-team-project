@@ -1,9 +1,11 @@
 <div (click) = "routeProfile();" class="leaderboard-profile" [ngStyle]="getDynamicStyles()">
     <div class="row">
       <img class="pic" src="{{this.account.imageLink}}">
+
       <span class="acc-title">
       {{this.rank}}. {{ this.getAlias() }}
       </span>
+      <app-badges [accountName]="this.account.name"></app-badges>
       <span class="acc-description">{{ this.formatMoney() }}</span>
     </div>
 </div>

@@ -1,30 +1,33 @@
-<div class="profile-section" *ngIf="!(!profileInfo?.alias && (!profileInfo?.region || profileInfo.region === Region.NONE) && !profileInfo?.pronouns && !profileInfo?.bio && !profileInfo?.email && !profileInfo?.phoneNumber && !profileInfo?.ssn && profileInfo.privacy == 'Private')">
+<div class="profile-section" *ngIf="!(!profileInfo?.alias && (!profileInfo?.region || profileInfo?.region === Region.NONE) && !profileInfo?.pronouns && !profileInfo?.bio && !profileInfo?.email && !profileInfo?.phoneNumber && !profileInfo?.ssn && profileInfo?.privacy == 'Private')">
+  <div class="block" >
+    <p>Badges: <app-badges [accountName]="this.accountName"></app-badges></p>
+  </div>
   <div class="block" *ngIf="profileInfo?.alias">
-    <p><span>Alias:</span> {{ profileInfo.alias }}</p>
+    <p><span>Alias:</span> {{ profileInfo?.alias }}</p>
   </div>
   <div class="block" >
-    <p><span>Region:</span> {{ profileInfo.region }}</p>
+    <p><span>Region:</span> {{ profileInfo?.region }}</p>
   </div>
   <div class="block" >
-      <p><span>Pronouns:</span> {{ profileInfo.pronouns }}</p>
+      <p><span>Pronouns:</span> {{ profileInfo?.pronouns }}</p>
   </div>
   <div class="block" >
-      <p><span>Bio:</span> {{ profileInfo.bio }}</p>
+      <p><span>Bio:</span> {{ profileInfo?.bio }}</p>
   </div>
   <div class="block" >
-      <p><span>Email:</span> {{ profileInfo.email }}</p>
+      <p><span>Email:</span> {{ profileInfo?.email }}</p>
   </div>
   <div class="block" >
-      <p><span>Phone Number:</span> {{ profileInfo.phoneNumber }}</p>
+      <p><span>Phone Number:</span> {{ profileInfo?.phoneNumber }}</p>
   </div>
   <div class="block" >
-      <p><span>SSN:</span> {{ profileInfo.ssn }}</p>
+      <p><span>SSN:</span> {{ profileInfo?.ssn }}</p>
   </div>
   <div *ngIf="other == true" class="block"> 
-    <p><span>Account Privacy:</span> {{ profileInfo.privacy }}</p>
+    <p><span>Account Privacy:</span> {{ profileInfo?.privacy }}</p>
 </div>
 </div>
 
-<div class="block no-info" *ngIf="!profileInfo?.alias && (!profileInfo?.region || profileInfo.region === Region.NONE) && !profileInfo?.pronouns && !profileInfo?.bio && !profileInfo?.email && !profileInfo?.phoneNumber && !profileInfo?.ssn && profileInfo.privacy == 'Private'">
+<div class="block no-info" *ngIf="!profileInfo?.alias && (!profileInfo?.region || profileInfo?.region === Region.NONE) && !profileInfo?.pronouns && !profileInfo?.bio && !profileInfo?.email && !profileInfo?.phoneNumber && !profileInfo?.ssn && profileInfo?.privacy == 'Private'">
   <p>Edit your profile to add some info!</p>
 </div>

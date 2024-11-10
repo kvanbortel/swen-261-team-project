@@ -28,9 +28,10 @@
   .acc-title {
     font-size: 1.3rem;
     font-weight: 600;
-    width: 100%;
+    width: auto;
     color: #333;
     margin-left: 1vw;
+    margin: 0 0 0 0;
   }
   
   .acc-description {
