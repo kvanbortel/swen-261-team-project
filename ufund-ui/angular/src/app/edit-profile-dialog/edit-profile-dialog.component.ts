@@ -28,8 +28,8 @@ export class EditProfileDialogComponent {
       pronouns: ['', Validators.maxLength(50)],
       bio: ['', Validators.maxLength(250)],
       email: ['', Validators.email],
-      phoneNumber: ['', Validators.pattern(/^\(\d{3}\) \d{3}-\d{4}$/)],
-      ssn: ['', Validators.pattern(/^\d{3}-\d{2}-\d{4}$/)],
+      phoneNumber: ['', Validators.pattern(/[^0-9]*([0-9][^0-9]*){10}$/)],
+      ssn: ['', Validators.pattern(/^\d{3}-?\d{2}-?\d{4}$/)],
       privacy: ['']
     });
 
