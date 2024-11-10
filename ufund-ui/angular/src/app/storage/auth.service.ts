@@ -218,16 +218,6 @@ export class AuthService implements CanActivate{
       );
   }
 
-  togglePrivacy(accountName: string){
-    console.log(this.AccountURL + '/' + accountName + "/privacy")
-    return this.http
-      .put(
-        this.AccountURL + '/' + accountName + "/rank", null
-      ).pipe(
-        tap((_) => console.log('toggle account privacy ' + accountName)),
-        catchError(this.handleError('account'))
-      );
-  }
 
   /**
    * Handle Http operation that failed.
