@@ -10,6 +10,28 @@
   flex-direction: column;
 }
 
+.stats-container {
+  width: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-color: var(--baseOrange);
+  border-style: solid;
+  border-radius: 1vh;
+  padding: 2vh;
+}
+
+.stats-header {
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.stats-list {
+  align-items: center;
+}
+
 .profile-box {
   padding: 2vh;
   border-radius: 1vh;

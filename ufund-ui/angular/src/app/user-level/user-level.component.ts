@@ -12,7 +12,6 @@ import {AuthService} from "../storage/auth.service";
 export class UserLevelComponent implements OnInit {
   @Input() currentUserAccount?: Account;
   @Input() allAccounts: Account[] = [];
-  god: Account | null = null;
   userLevel!: UserLevel | null;
 
   constructor (private userLevelService: UserLevelService, public authService: AuthService) {}
@@ -22,13 +21,6 @@ export class UserLevelComponent implements OnInit {
       console.log("Current User Account:", this.currentUserAccount);
       this.updateUserLevel();
     }
-
-    this.authService.getGod().subscribe({
-      next: (response) => {
-        this.god = (response);
-        console.log("GAAD:" + this.god);
-      },
-    });
   }
 
   private updateUserLevel() {

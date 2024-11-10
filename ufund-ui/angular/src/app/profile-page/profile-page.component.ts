@@ -29,9 +29,10 @@ export class ProfilePageComponent implements OnInit {
   profileInfo!: ProfileInfo;
   selectedFile: File | null = null;
   errored = false;
-  userLevel: UserLevel = UserLevel.NOOB;
   allAccounts: Account[] = [];
   currentUserAccount?: Account;
+  god: Account | null = null;
+  userIsGod: boolean = false;
 
   constructor(public authService: AuthService,
               private profileSectionService: ProfileSectionService,
@@ -54,6 +55,13 @@ export class ProfilePageComponent implements OnInit {
         this.currentUserAccount = accounts.find(account => account.name === this.accountName);
       });
     }
+
+    this.authService.getGod().subscribe({
+      next: (response) => {
+        this.god = (response);
+        this.userIsGod = this.accountName === this.god.name;
+      },
+    });
 
     let image = localStorage.getItem("image")
     if(image != null){
