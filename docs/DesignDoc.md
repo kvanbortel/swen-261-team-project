@@ -221,7 +221,8 @@ NeedController -> NeedDAO -> NeedFileDAO -> Need
 
 In both of these cases, the controller calls DAO methods, which is an abstraction of the concrete implementation FileDAO. The FileDAO calls model methods to alter instances of classes, and then saves those to our persistence system (A JSON file)
 
-There is another important principle of Object Oriented Programming called Dependency Injection. Instead of hard-coding dependencies, with dependency injection, a class does not instantiate its own dependencies, but rather is provided them by an “injector” that it is not aware of. 
+In both our controllers, the DAO abstractions are injected via the constructor. In many of our frontend modules, services and other modules are injected via the constructor as well.
+
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
