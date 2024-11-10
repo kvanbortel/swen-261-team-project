@@ -212,6 +212,16 @@ Our Need class does not comply with this principle. To add new behavior to a Nee
 
 Open/Closed is useful for maintaining backwards compatibility. By not modifying existing code, you minimize the chance of breaking old code. Instead you can build new independent functionality on top of the existing code. While the old code can run with what is now a limited feature set, the new code, which depends on new features, is also able to run - removing the need to refactor large parts of code (which depends on the thing being changed) when adding features. 
 
+### Dependency Inversion/Injection
+
+The principle of Dependency Inversion states that high level modules should not rely on low level modules. Rather, there should be levels of abstraction between these two tiers. This allows for looser coupling within the program. A good example of Dependency Inversion is the Model, View, View-Model Architecture. There are multiple instances where we implement this architecture throughout our program:
+
+AccountController -> AccountDAO -> AccountFileDAO -> Account and similarly,
+NeedController -> NeedDAO -> NeedFileDAO -> Need
+
+In both of these cases, the controller calls DAO methods, which is an abstraction of the concrete implementation FileDAO. The FileDAO calls model methods to alter instances of classes, and then saves those to our persistence system (A JSON file)
+
+There is another important principle of Object Oriented Programming called Dependency Injection. Instead of hard-coding dependencies, with dependency injection, a class does not instantiate its own dependencies, but rather is provided them by an “injector” that it is not aware of. 
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
@@ -277,4 +287,5 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > - (2024/11/5) Changed admin loggin functionality. Password is now required, and set to "adm1n!".
 > - (2024/11/7) Leaderboard on home page only shows top three users, plus logged in user if not in top 3 users. If there is a u-fund god, they are displayed above the leaderboard.
 > - (2024/11/7) Decided to make a new component for viewing a profile that is not yours. There is a route that leads to this component, and localstorage which tracks which profile you attempt to visit
-> - (2024/11/9) Added more specific password validation messages on the login screen 
+> - (2024/11/9) Added more specific password validation messages on the login screen
+> - (2024/11/9) Added a new field to profileInfo, privacy, which determines whether other users can see your profile from the leaderboard component. 
