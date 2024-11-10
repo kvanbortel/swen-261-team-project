@@ -20,7 +20,7 @@
   <div class="block" >
       <p><span>SSN:</span> {{ profileInfo.ssn }}</p>
   </div>
-  <div class="block">
+  <div *ngIf="profileInfo.privacy == 'Private'" class="block"> <!--purposefully unreachable mwahahaha-->
     <p><span>Account Privacy:</span> {{ profileInfo.privacy }}</p>
 </div>
 </div>
