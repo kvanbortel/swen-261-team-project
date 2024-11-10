@@ -28,9 +28,19 @@ export class EditProfileDialogComponent {
       pronouns: ['', Validators.maxLength(50)],
       bio: ['', Validators.maxLength(250)],
       email: ['', Validators.email],
-      phoneNumber: ['', Validators.pattern(/[^0-9]*([0-9][^0-9]*){10}$/)],
+      phoneNumber: ['', Validators.pattern(/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/)],
       ssn: ['', Validators.pattern(/^\d{3}-?\d{2}-?\d{4}$/)],
       privacy: ['']
+    });
+
+    this.profileForm.get('phoneNumber')?.valueChanges.subscribe(value => {
+      if (value)
+        this.formatPhoneNumber(value);
+    });
+
+    this.profileForm.get('ssn')?.valueChanges.subscribe(value => {
+      if (value)
+        this.formatSSN(value);
     });
 
     this.profileForm.patchValue({
@@ -39,14 +49,55 @@ export class EditProfileDialogComponent {
       pronouns: this.data.pronouns,
       bio: this.data.bio,
       email: this.data.email,
-      phoneNumber: this.data.phoneNumber,
+      phoneNumber: this.data.phoneNumber || '',
       ssn: this.data.ssn,
       privacy: this.data.privacy
     });
-
-
   }
 
+  // Dynamically format phone number as (123) 456-7890
+  formatPhoneNumber(value: string): void {
+    let cleanedValue = value.replace(/\D/g, '');  // Remove non-digit characters
+    if (cleanedValue.length < 3) {
+      cleanedValue = `(${cleanedValue}`;
+    }
+    else if (cleanedValue.length == 3) {
+      cleanedValue = `(${cleanedValue})`;
+    }
+    else if (cleanedValue.length < 6) {
+      cleanedValue = `(${cleanedValue.slice(0, 3)}) ${cleanedValue.slice(3)}`;
+    }
+    else if (cleanedValue.length == 6) {
+      cleanedValue = `(${cleanedValue.slice(0, 3)}) ${cleanedValue.slice(3)}-`;
+    }
+    else {
+      cleanedValue = `(${cleanedValue.slice(0, 3)}) ${cleanedValue.slice(3, 6)}-${cleanedValue.slice(6, 10)}`;
+    }
+
+    this.profileForm.get('phoneNumber')?.setValue(cleanedValue, { emitEvent: false });
+  }
+
+  // Dynamically format SSN as 123-45-6789
+  formatSSN(value: string): void {
+    let cleanedValue = value.replace(/\D/g, '');  // Remove non-digit characters
+    if (cleanedValue.length < 3) {
+      cleanedValue = cleanedValue.slice(0, 3);
+    }
+    else if (cleanedValue.length == 3) {
+      cleanedValue = `${cleanedValue.slice(0, 3)}-`;
+    }
+    else if (cleanedValue.length < 5) {
+      cleanedValue = `${cleanedValue.slice(0, 3)}-${cleanedValue.slice(3, 5)}`;
+    }
+    else if (cleanedValue.length == 5) {
+      cleanedValue = `${cleanedValue.slice(0, 3)}-${cleanedValue.slice(3, 5)}-`;
+    }
+    else {
+      cleanedValue = `${cleanedValue.slice(0, 3)}-${cleanedValue.slice(3, 5)}-${cleanedValue.slice(5, 9)}`;
+    }
+
+    this.profileForm.get('ssn')?.setValue(cleanedValue, { emitEvent: false });
+  }
 
 
   getErrorMessage(control: AbstractControl | null, fieldName: string, errorMessages: { [key: string]: string }): string {
