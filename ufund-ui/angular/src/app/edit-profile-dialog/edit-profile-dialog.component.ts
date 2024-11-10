@@ -28,7 +28,7 @@ export class EditProfileDialogComponent {
       pronouns: ['', Validators.maxLength(50)],
       bio: ['', Validators.maxLength(250)],
       email: ['', Validators.email],
-      phoneNumber: ['', Validators.pattern(/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/)],
+      phoneNumber: ['', Validators.pattern(/^\(\d{3}\) \d{3}-\d{4}$/)],
       ssn: ['', Validators.pattern(/^\d{3}-?\d{2}-?\d{4}$/)],
       privacy: ['']
     });
@@ -58,17 +58,11 @@ export class EditProfileDialogComponent {
   // Dynamically format phone number as (123) 456-7890
   formatPhoneNumber(value: string): void {
     let cleanedValue = value.replace(/\D/g, '');  // Remove non-digit characters
-    if (cleanedValue.length < 3) {
+    if (cleanedValue.length <= 3) {
       cleanedValue = `(${cleanedValue}`;
     }
-    else if (cleanedValue.length == 3) {
-      cleanedValue = `(${cleanedValue})`;
-    }
-    else if (cleanedValue.length < 6) {
+    else if (cleanedValue.length <= 6) {
       cleanedValue = `(${cleanedValue.slice(0, 3)}) ${cleanedValue.slice(3)}`;
-    }
-    else if (cleanedValue.length == 6) {
-      cleanedValue = `(${cleanedValue.slice(0, 3)}) ${cleanedValue.slice(3)}-`;
     }
     else {
       cleanedValue = `(${cleanedValue.slice(0, 3)}) ${cleanedValue.slice(3, 6)}-${cleanedValue.slice(6, 10)}`;
@@ -80,17 +74,11 @@ export class EditProfileDialogComponent {
   // Dynamically format SSN as 123-45-6789
   formatSSN(value: string): void {
     let cleanedValue = value.replace(/\D/g, '');  // Remove non-digit characters
-    if (cleanedValue.length < 3) {
+    if (cleanedValue.length <= 3) {
       cleanedValue = cleanedValue.slice(0, 3);
     }
-    else if (cleanedValue.length == 3) {
-      cleanedValue = `${cleanedValue.slice(0, 3)}-`;
-    }
-    else if (cleanedValue.length < 5) {
+    else if (cleanedValue.length <= 5) {
       cleanedValue = `${cleanedValue.slice(0, 3)}-${cleanedValue.slice(3, 5)}`;
-    }
-    else if (cleanedValue.length == 5) {
-      cleanedValue = `${cleanedValue.slice(0, 3)}-${cleanedValue.slice(3, 5)}-`;
     }
     else {
       cleanedValue = `${cleanedValue.slice(0, 3)}-${cleanedValue.slice(3, 5)}-${cleanedValue.slice(5, 9)}`;
