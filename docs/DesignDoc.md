@@ -277,3 +277,4 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > - (2024/11/5) Changed admin loggin functionality. Password is now required, and set to "adm1n!".
 > - (2024/11/7) Leaderboard on home page only shows top three users, plus logged in user if not in top 3 users. If there is a u-fund god, they are displayed above the leaderboard.
 > - (2024/11/7) Decided to make a new component for viewing a profile that is not yours. There is a route that leads to this component, and localstorage which tracks which profile you attempt to visit
+> - (2024/11/9) Added more specific password validation messages on the login screen 
