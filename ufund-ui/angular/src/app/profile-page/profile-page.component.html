@@ -32,6 +32,5 @@
 
           <app-edit-profile class="edit-profile-btn" [profileInfo] = "this.profileInfo" (dataFromChild)="this.setProfileInfo($event)"></app-edit-profile>
       </div>
-
-      <app-profile-section class="profileSection" *ngIf="this.accountName" [accountName]="this.accountName" [profileInfo]="this.profileInfo"></app-profile-section>
+      <app-profile-section class="profileSection" *ngIf="this.accountName" [other]= "true" [accountName]="this.accountName" [profileInfo]="this.profileInfo"></app-profile-section>
 </div>

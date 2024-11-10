@@ -36,8 +36,7 @@ export class LeaderboardAccountComponent{
     basket: {needs: []},
     moneyFunded: 0.0,
     needsFunded: 0,
-    profileInfo: new ProfileInfo({alias: '', region: Region.NONE, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: ''})
-
+    profileInfo: new ProfileInfo({alias: '', region: Region.NONE, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: '', privacy: "Private"}),
   };
 
   style: String = ""
@@ -117,7 +116,7 @@ export class LeaderboardAccountComponent{
     }
     this.router.navigate(['/user'], {
       state: {
-        profileInfo: this.account.profileInfo,
+        accountName: this.account.name,
         profileImg: this.account.imageLink
       },
     });

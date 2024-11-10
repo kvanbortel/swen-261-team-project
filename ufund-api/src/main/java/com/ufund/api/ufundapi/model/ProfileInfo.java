@@ -1,10 +1,9 @@
 package com.ufund.api.ufundapi.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.context.annotation.Profile;
-
 import java.lang.reflect.Field;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProfileInfo {
 
@@ -17,6 +16,7 @@ public class ProfileInfo {
     @JsonProperty String phoneNumber;
     @JsonProperty String email;
     @JsonProperty String ssn;
+    @JsonProperty String privacy;
 
     /**
      * Constructs a ProfileInfo object using a given name and a given Basket
@@ -37,7 +37,8 @@ public class ProfileInfo {
             @JsonProperty("region") Region region,
             @JsonProperty("phoneNumber") String phoneNumber,
             @JsonProperty("email") String email,
-            @JsonProperty("ssn") String ssn
+            @JsonProperty("ssn") String ssn,
+            @JsonProperty("privacy") String privacy
             ) {
         this.profilePic = profilePic;
         this.pronouns = pronouns;
@@ -47,6 +48,7 @@ public class ProfileInfo {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.ssn = ssn;
+        this.privacy = privacy;
     }
 
     /**
@@ -61,6 +63,7 @@ public class ProfileInfo {
         this.phoneNumber = "";
         this.email = "";
         this.ssn = "";
+        this.privacy = "Private";
     }
 
     /**

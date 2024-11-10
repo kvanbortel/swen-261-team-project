@@ -1,13 +1,15 @@
 package com.ufund.api.ufundapi.model;
 
+import java.lang.reflect.Field;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.annotation.Profile;
-
-import java.lang.reflect.Field;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Class for testing the ProfileInfo class
@@ -24,6 +26,7 @@ public class ProfileInfoTest {
     private static final String TEST_PHONE = "(123) 123-1233";
     private static final String TEST_EMAIL = "hello@me.com";
     private static final String TEST_SSN = "123-12-1234";
+    private static final String TEST_PRIVACY = "Private";
 
     private ProfileInfo profileInfo;
     private ProfileInfo profileInfo2;
@@ -37,15 +40,15 @@ public class ProfileInfoTest {
 
     @BeforeEach
     public void setUp() {
-        profileInfo = new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN);
-        profileInfo2 = new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, "new-name", "new-bio", TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN);
-        profileInfoWithNull = new ProfileInfo(null, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN);
-        profileInfoDiffPronouns =  new ProfileInfo(TEST_PROFILE_PIC, "diff-pronouns", TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN);
-        profileInfoDiffBio =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, "diff-bio", TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN);
-        profileInfoDiffRegion =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, Region.NEW_YORK_CITY, TEST_PHONE, TEST_EMAIL, TEST_SSN);
-        profileInfoDiffPhone =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, "(999) 999-9999", TEST_EMAIL, TEST_SSN);
-        profileInfoDiffEmail =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, "diff-email@email.com", TEST_SSN);
-        profileInfoDiffSsn =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, TEST_EMAIL, "999-99-9876");
+        profileInfo = new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN, TEST_PRIVACY);
+        profileInfo2 = new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, "new-name", "new-bio", TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN, TEST_PRIVACY);
+        profileInfoWithNull = new ProfileInfo(null, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN, TEST_PRIVACY);
+        profileInfoDiffPronouns =  new ProfileInfo(TEST_PROFILE_PIC, "diff-pronouns", TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN, TEST_PRIVACY);
+        profileInfoDiffBio =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, "diff-bio", TEST_REGION, TEST_PHONE, TEST_EMAIL, TEST_SSN, TEST_PRIVACY);
+        profileInfoDiffRegion =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, Region.NEW_YORK_CITY, TEST_PHONE, TEST_EMAIL, TEST_SSN, TEST_PRIVACY);
+        profileInfoDiffPhone =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, "(999) 999-9999", TEST_EMAIL, TEST_SSN, TEST_PRIVACY);
+        profileInfoDiffEmail =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, "diff-email@email.com", TEST_SSN, TEST_PRIVACY);
+        profileInfoDiffSsn =  new ProfileInfo(TEST_PROFILE_PIC, TEST_PRONOUNS, TEST_ALIAS, TEST_BIO, TEST_REGION, TEST_PHONE, TEST_EMAIL, "999-99-9876", TEST_PRIVACY);
     }
 
     // Test for constructing an empty ProfileInfo

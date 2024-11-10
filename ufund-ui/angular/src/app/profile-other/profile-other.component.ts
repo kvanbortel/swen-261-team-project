@@ -21,13 +21,20 @@ export class ProfileOtherComponent {
       const navigation = this.router.getCurrentNavigation();
       console.log(navigation)
       if (navigation?.extras.state) {
-        this.profileInfo = navigation.extras.state['profileInfo'];
+        this.accountName = navigation.extras.state['accountName']
+        //this.profileInfo = navigation.extras.state['profileInfo'];
         this.imageLink = navigation.extras.state['profileImg'];
         console.log(this.imageLink)
       } 
       else {
         this.router.navigate(['/home'])
         console.log('No data received');
+      }
+      if (this.accountName != null){
+        this.authService.setName(this.accountName);
+        this.profileSectionService.getProfileInfo(this.accountName).subscribe(profile => {
+          this.profileInfo = profile
+        });
       }
   }
 

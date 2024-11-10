@@ -79,6 +79,16 @@
                 </mat-form-field>
             </div>
 
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" class="slider" subscriptSizing="dynamic">
+                    <mat-label>Account Privacy</mat-label>
+                        <mat-select formControlName="privacy">
+                            <mat-option value="Private">Private</mat-option>
+                            <mat-option value="Public">Public</mat-option>
+                        </mat-select>                     
+                </mat-form-field>
+            </div>
+
             <button class="form-button orange-button" mat-button type="submit"
                     [disabled]="profileForm.invalid">Save</button>
             <button class="form-button gray-button" mat-button mat-dialog-close>Cancel</button>

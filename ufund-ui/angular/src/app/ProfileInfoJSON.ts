@@ -9,4 +9,5 @@ export interface ProfileInfoJSON {
   phoneNumber: string;
   ssn: string;
   profilePic: string;
+  privacy: string
 }

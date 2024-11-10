@@ -1,17 +1,21 @@
 
-
   <div class="profile-container">
         <div class="head"> 
-            <div class="pic-container">
+            <div  *ngIf="this.profileInfo.privacy == 'Public'" class ="pic-container">
                 <img class = "profile-pic" src = {{this.imageLink}}>
             </div>
             <div class = "home">
                 <app-view-change-button  [text]="'Home'" [icon]="' fa-solid fa-home'" [path]="'home'"></app-view-change-button> 
             </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <app-profile-section class="profileSection" [profileInfo]="this.profileInfo"></app-profile-section>
+        <br *ngIf="this.profileInfo.privacy == 'Public'">
+        <br *ngIf="this.profileInfo.privacy == 'Public'">
+        <br *ngIf="this.profileInfo.privacy == 'Public'">
+        
+        <div class="block no-info" *ngIf="this.profileInfo.privacy == 'Private'">
+            <p>This account is private!</p>
+        </div>
+     
+        <app-profile-section *ngIf="this.profileInfo.privacy == 'Public'" class="profileSection" [profileInfo]="this.profileInfo"></app-profile-section>
         
     </div>

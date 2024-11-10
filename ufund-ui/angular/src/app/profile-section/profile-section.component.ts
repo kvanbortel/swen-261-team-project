@@ -9,6 +9,8 @@ import {ProfileInfo} from "../profile-info";
   styleUrl: './profile-section.component.css'
 })
 export class ProfileSectionComponent {
+
+  @Input() other: boolean = false;
   @Input() accountName!: string;
   @Input() profileInfo!: ProfileInfo;
 

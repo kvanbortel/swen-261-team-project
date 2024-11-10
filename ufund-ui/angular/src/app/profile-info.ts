@@ -10,6 +10,7 @@ export class ProfileInfo {
   phoneNumber: string;
   ssn: string;
   profilePic: string;
+  privacy: string;
 
   constructor(data: ProfileInfoJSON) {
     this.alias = data.alias;
@@ -20,6 +21,7 @@ export class ProfileInfo {
     this.phoneNumber = data.phoneNumber;
     this.ssn = data.ssn;
     this.profilePic = data.profilePic;
+    this.privacy = data.privacy;
   }
 
 
@@ -33,6 +35,7 @@ export class ProfileInfo {
       phoneNumber: this.phoneNumber,
       ssn: this.ssn,
       profilePic: this.profilePic,
+      privacy: this.privacy
     }
   }
 }
