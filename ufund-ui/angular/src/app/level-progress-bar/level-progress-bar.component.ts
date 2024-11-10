@@ -18,6 +18,7 @@ export class LevelProgressBarComponent implements OnInit {
   proRequired: number = 0;
   masterRequired: number = 0;
   championRequired: number = 0;
+  userLevel: UserLevel = UserLevel.NOOB;
 
   constructor(private userLevelService: UserLevelService) {
     this.PERCENT_INDEX = this.userLevelService['PERCENT_INDEX'];
@@ -30,13 +31,13 @@ export class LevelProgressBarComponent implements OnInit {
 
   calculateProgress(): void {
     if (this.currentUserAccount && this.allAccounts.length > 0) {
-      const userLevel = this.userLevelService.getUserLevel(this.currentUserAccount, this.allAccounts);
+      this.userLevel = this.userLevelService.getUserLevel(this.currentUserAccount, this.allAccounts);
 
       const sortedAccounts = [...this.allAccounts].sort((a, b) => b.moneyFunded - a.moneyFunded);
       const maxDonation = sortedAccounts[0]?.moneyFunded;
       const topPercentIndex = Math.ceil(sortedAccounts.length * this.PERCENT_INDEX) - 1;
 
-      switch (userLevel) {
+      switch (this.userLevel) {
         case UserLevel.MASTER:
           this.championRequired = maxDonation;
           this.progress = (this.currentUserAccount.moneyFunded / this.championRequired) * 100;
@@ -56,4 +57,6 @@ export class LevelProgressBarComponent implements OnInit {
       this.progress = Math.min(this.progress, 100);
     }
   }
+
+  protected readonly UserLevel = UserLevel;
 }
