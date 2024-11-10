@@ -1,0 +1,15 @@
+.badges-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1vw;
+    border-style: 0px solid;
+    justify-content: left;
+    justify-items: left;
+    border-radius: 1vh;
+  }
+  
+  .badge{
+    width: 30px;
+    height: 30px;
+  }

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './profile-other.component.css'
 })
 export class ProfileOtherComponent {
-  accountName!: string | null;
+  accountName!: string;
   profileInfo!: ProfileInfo;
   imageLink!: string;
   selectedFile: File | null = null;
