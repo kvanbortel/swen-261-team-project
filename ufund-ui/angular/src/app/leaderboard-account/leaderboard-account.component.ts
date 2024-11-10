@@ -116,7 +116,7 @@ export class LeaderboardAccountComponent{
     }
     this.router.navigate(['/user'], {
       state: {
-        profileInfo: this.account.profileInfo,
+        accountName: this.account.name,
         profileImg: this.account.imageLink
       },
     });

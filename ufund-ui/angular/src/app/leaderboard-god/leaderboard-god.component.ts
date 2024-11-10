@@ -79,7 +79,7 @@ export class LeaderboardGodComponent {
     }
     this.router.navigate(['/user'], {
       state: {
-        profileInfo: this.god!.profileInfo,
+        accountName: this.god!.name,
         profileImg: this.god!.imageLink
       },
     });
