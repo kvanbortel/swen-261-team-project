@@ -50,21 +50,48 @@ export class LoginComponent {
       this.messageLoginService.add("Incorrect password.", false)//incorrect admin password
       return
     }
-    if(name == '' || name == null || password == ''){//check username and password aren't empty
-      this.messageLoginService.add("Username and password must have substance.", false)
+    if(name == '' || name == null){//check username and password aren't empty
+      this.messageLoginService.add("Username must have substance.", false)
+      return
+    }
+    if(password == '' || password == null){//check username and password aren't empty
+      this.messageLoginService.add("Password must have substance.", false)
       return
     }
     if(!this.onlyLettersAndNumbers(name)){//check that username only contains alphanumeric numbers
-      this.messageLoginService.add("Only usernames containing alphanumeric characters allowed.", false)
+      this.messageLoginService.add("Only usernames containing numbers and letters allowed.", false)
       return
     }
-    if(name.length > 13 || password.length > 13 || name.length < 4 || password.length < 4){ 
+    if(name.length > 13){ 
+      //check that usernames and passwords  <= 13 in length
+      this.messageLoginService.add("Only usernames of length less than or equal to 13 allowed.", false)
+      return
+    }
+    if(name.length < 4){ 
+      //check that usernames and passwords are >= than 4 in length
+      this.messageLoginService.add("Only usernames of length greater than or equal to 4 allowed.", false)
+      return
+    }
+    if(password.length < 4){ 
       //check that usernames and passwords are >= than 4 and <= 13 in length
-      this.messageLoginService.add("Only usernames and passwords of length greater than 4 and less than 13.", false)
+      this.messageLoginService.add("Only passwords of length greater than or equal to 4 allowed.", false)
       return
     }
-    if(!this.containsSymbolLetterandNum(password)){
-      this.messageLoginService.add("Passwords must contain a letter, number, and symbol.", false)
+    if(password.length > 13){ 
+      //check that usernames and passwords are >= than 4 and <= 13 in length
+      this.messageLoginService.add("Only passwords of length less than or equal to 13 allowed.", false)
+      return
+    }
+    if(!this.containsLetter(password)){
+      this.messageLoginService.add("Passwords must contain a letter.", false)
+      return
+    }
+    if(!this.containsSymbol(password)){
+      this.messageLoginService.add("Passwords must contain a symbol.", false)
+      return
+    }
+    if(!this.containsNumber(password)){
+      this.messageLoginService.add("Passwords must contain a number.", false)
       return
     }
     if(!this.isAlpha(name.substring(0, 1))){ //check that usernames start with a letter 
@@ -121,11 +148,19 @@ export class LoginComponent {
     return Boolean(str.match(/^[A-Za-z0-9]*$/));
   }
 
-  containsSymbolLetterandNum(str: string){
-    return Boolean(str.match(/[-!$%^&@#*()_+|~=`{}\[\]:";'<>?,.\/]/)) && 
-          Boolean(str.match(/\d/)) &&
-          Boolean(str.match(/[A-Za-z]/));
+  containsSymbol(str: string){
+    return Boolean(str.match(/[-!$%^&@#*()_+|~=`{}\[\]:";'<>?,.\/]/));
   }
+
+  containsLetter(str: string){
+    return Boolean(str.match(/[A-Za-z]/));
+  }
+
+  containsNumber(str: string){
+    return Boolean(str.match(/\d/));
+  }
+
+
 
   //regex function that returns whether a string only consists of letters
   isAlpha(str: string) {
