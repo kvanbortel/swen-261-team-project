@@ -34,7 +34,7 @@ export class UserLevelService {
     // Sort accounts based on moneyFunded in descending order
     const sortedAccounts = allAccounts.sort((a, b) => b.moneyFunded - a.moneyFunded);
 
-    const topPercentIndex = Math.ceil(sortedAccounts.length * -this.PERCENT_INDEX) - 1;
+    const topPercentIndex = Math.ceil(sortedAccounts.length * this.PERCENT_INDEX) - 1;
 
     if (moneyFunded === maxDonation) {
       userLevel = UserLevel.CHAMPION

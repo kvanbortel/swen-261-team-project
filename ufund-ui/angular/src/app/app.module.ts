@@ -52,6 +52,7 @@ import { LeaderboardGodComponent } from './leaderboard-god/leaderboard-god.compo
 import { UserLevelComponent } from './user-level/user-level.component';
 import { LevelProgressBarComponent } from './level-progress-bar/level-progress-bar.component';
 import { AdminLeaderboardComponent } from './admin-leaderboard/admin-leaderboard.component';
+import { BadgesComponent } from './badges/badges.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { AdminLeaderboardComponent } from './admin-leaderboard/admin-leaderboard
     AdminLeaderboardComponent,
     UserLevelComponent,
     LevelProgressBarComponent,
+    BadgesComponent,
   ],
   imports: [
     BrowserModule,
