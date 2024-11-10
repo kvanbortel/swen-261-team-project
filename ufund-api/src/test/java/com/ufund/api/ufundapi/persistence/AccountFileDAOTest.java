@@ -27,7 +27,6 @@ import com.ufund.api.ufundapi.model.Account;
 import com.ufund.api.ufundapi.model.AdminInfo;
 import com.ufund.api.ufundapi.model.Basket;
 import com.ufund.api.ufundapi.model.BasketNeed;
-import com.ufund.api.ufundapi.model.Level;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.model.ProfileInfo;
 import com.ufund.api.ufundapi.model.Region;
@@ -38,7 +37,6 @@ import com.ufund.api.ufundapi.model.Region;
 @Tag("Persistence-tier")
 public class AccountFileDAOTest {
     private static final ProfileInfo TEST_PROFILE_INFO = new ProfileInfo();
-    private static final Level TEST_LEVEL = Level.NOOB;
 
     AccountFileDAO accountFileDAO;
     Account[] testAccounts;
@@ -99,10 +97,10 @@ public class AccountFileDAOTest {
         // accounts baskets match the related index in testBaskets
         testAccounts = new Account[5];
         testAccounts[0] = new Account("Max", "pass");
-        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, TEST_LEVEL, "pass", TEST_IMG);
-        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, TEST_LEVEL, "pass", TEST_IMG);
-        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, TEST_LEVEL, "pass", TEST_IMG);
-        testAccounts[4] = new Account("KaylaInfo", testBaskets[1], testProfileInfos[0], TEST_LEVEL, "pass", TEST_IMG);
+        testAccounts[1] = new Account("Kayla", testBaskets[1], TEST_PROFILE_INFO, "pass", TEST_IMG);
+        testAccounts[2] = new Account("Jonah", testBaskets[2], TEST_PROFILE_INFO, "pass", TEST_IMG);
+        testAccounts[3] = new Account("Ryan", testBaskets[3], TEST_PROFILE_INFO, "pass", TEST_IMG);
+        testAccounts[4] = new Account("KaylaInfo", testBaskets[1], testProfileInfos[0], "pass", TEST_IMG);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the need array above

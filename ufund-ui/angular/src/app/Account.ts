@@ -9,5 +9,4 @@ export interface Account {
     moneyFunded: number,
     needsFunded: number,
     profileInfo: ProfileInfo;
-    
-  }
+}

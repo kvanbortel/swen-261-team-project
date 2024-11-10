@@ -7,13 +7,23 @@
 </div>
 <div class="profile-container">
       <div class="head">
-      <label *ngIf="!this.authService.isAdmin()" class="username">Welcome to your profile, <b>{{this.authService.getName()}}</b></label>  
+      <label *ngIf="!this.authService.isAdmin()" class="username">Welcome to your profile, <b>{{this.authService.getName()}}</b></label>
       <div class="pic-container">
         <app-profile-pic></app-profile-pic>
       </div>
       <br>
+        <label *ngIf="userIsGod"><b>You are the U-Fund God!</b></label>
       <br>
-      </div>
+        <div class="stats-container">
+          <span class="stats-header">Your Stats</span><br>
+          <div class="stats-list">
+            <span><b>Money Funded: </b>{{ currentUserAccount?.moneyFunded | currency }}</span><br>
+            <span><b>Needs Funded: </b>{{ currentUserAccount?.needsFunded}}</span><br>
+            <app-user-level *ngIf="this.allAccounts.length > 0" [currentUserAccount]="currentUserAccount!" [allAccounts]="allAccounts"></app-user-level>
+          </div>
+            <app-level-progress-bar *ngIf="this.allAccounts.length > 0" [currentUserAccount]="currentUserAccount!" [allAccounts]="allAccounts"></app-level-progress-bar>
+        </div>
+       </div>
       <div class="edit-button-section">
           <input type="file" id="fileInput" class="file-input" (change)="onFileSelected($event)" accept="image/*"/>
           <label for="fileInput" class="file-upload-button">
@@ -22,5 +32,6 @@
 
           <app-edit-profile class="edit-profile-btn" [profileInfo] = "this.profileInfo" (dataFromChild)="this.setProfileInfo($event)"></app-edit-profile>
       </div>
+
       <app-profile-section class="profileSection" *ngIf="this.accountName" [accountName]="this.accountName" [profileInfo]="this.profileInfo"></app-profile-section>
 </div>

@@ -48,7 +48,6 @@ public class AccountControllerTest {
     private static final String TEST_PASSWORD_HASH = "thisisnotahash";
     private static final Need TEST_NEED = new Need("123456", "NeedA1", "Need for testing", 0, 1, 0);
     private static final ProfileInfo TEST_PROFILE_INFO = new ProfileInfo();
-    private static final Level TEST_LEVEL = Level.NOOB;
     private static final Map<Region, Integer> TEST_REGIONS = Map.of(
         Region.CAPITAL_DISTRICT, 30,
         Region.NEW_YORK_CITY, 70
@@ -99,7 +98,7 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountBasket() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
 
         when(mockAccountDAO.createAccount(TEST_NAME, TEST_PASSWORD_HASH)).thenReturn(account);
 
@@ -116,7 +115,7 @@ public class AccountControllerTest {
     @Test
     public void testCreateExistingAccount() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
 
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
@@ -247,7 +246,7 @@ public class AccountControllerTest {
     @Test
     public void testGetNeeds() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
@@ -276,7 +275,7 @@ public class AccountControllerTest {
     public void testGetAccountTrue() throws IOException {
         // Setup
         
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
@@ -524,7 +523,7 @@ public class AccountControllerTest {
     public void testGetGodExists() throws IOException {
         // Setup
         
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_LEVEL, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
         when(mockAccountDAO.getGod()).thenReturn(account);
 
         // Invoke

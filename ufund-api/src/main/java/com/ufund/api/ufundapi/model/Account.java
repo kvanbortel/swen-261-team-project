@@ -30,8 +30,6 @@ public class Account implements Comparable<Account> {
     @JsonProperty Instant lastCheckoutInstant;
     // profile info
     @JsonProperty ProfileInfo profileInfo;
-    // current level
-    @JsonProperty Level level;
 
     // indicates if a user is god
     @JsonProperty boolean isGod = false;
@@ -106,14 +104,12 @@ public class Account implements Comparable<Account> {
      * @param name the username
      * @param basket the user's basket object
      * @param profileInfo the user's profile information
-     * @param level the user's level
      * @param lastCheckoutInstant last time the user checked out
      */
     public Account(
             @JsonProperty("name") String name,
             @JsonProperty("basket") Basket basket,
             @JsonProperty("profileInfo") ProfileInfo profileInfo,
-            @JsonProperty("level") Level level,
             @JsonProperty("passwordHash") String passwordHash ,
             @JsonProperty("imageLink") String imgLink
             ) {
@@ -127,7 +123,6 @@ public class Account implements Comparable<Account> {
         } else {
             this.lastCheckoutInstant = Instant.EPOCH;
         }
-        this.level = level;
     }
 
     /**
@@ -135,16 +130,14 @@ public class Account implements Comparable<Account> {
      * @param name the username
      * @param basket the user's basket object
      * @param profileInfo the user's profile information
-     * @param level the user's level
      */
     public Account(
             String name,
             Basket basket,
             ProfileInfo profileInfo,
-            Level level,
             String passwordHash
             ) {
-        this(name, basket, profileInfo, level, passwordHash, null);
+        this(name, basket, profileInfo, passwordHash, null);
     }
 
     /**
@@ -159,7 +152,6 @@ public class Account implements Comparable<Account> {
         // set to date that the account was created
         this.lastCheckoutInstant = Instant.now();
         this.profileInfo = new ProfileInfo();
-        this.level = Level.NOOB;
     }
 
     /**
@@ -189,7 +181,7 @@ public class Account implements Comparable<Account> {
 
     /**
      * Set the profile picture of an account object
-     * @param imageL the new image link for a profile picture
+     * @param imageLink the new image link for a profile picture
      */
     public void setImageLink(String imageLink){
         this.imageLink = imageLink;
@@ -202,12 +194,6 @@ public class Account implements Comparable<Account> {
     public ProfileInfo getProfileInfo() {
         return this.profileInfo;
     }
-
-    /**
-     * Returns the level of the user
-     * @return the user's level (noob, pro, master, champion)
-     */
-    public Level getLevel() { return level; }
 
     /**
      * {@inheritDoc}

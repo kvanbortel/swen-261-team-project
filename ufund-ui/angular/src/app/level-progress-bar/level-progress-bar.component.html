@@ -1,0 +1,17 @@
+<div class="progress-container">
+  <div class="progress-bar">
+    <div
+      class="progress-fill"
+      [style.width.%]="progress"
+      [attr.aria-valuenow]="progress"
+      [attr.aria-valuemin]="0"
+      [attr.aria-valuemax]="100">
+      <span class="progress-percentage">{{ progress | number: '1.0-0' }}%</span>
+    </div>
+  </div>
+  <div class="progress-labels">
+    <span *ngIf="proRequired">Pro Criteria: Donation Goal ({{proRequired | currency}})</span>
+    <span *ngIf="masterRequired">Master Criteria: Top 5% ({{masterRequired | currency}})</span>
+    <span *ngIf="championRequired">Champion Criteria: Top Donator: ({{championRequired | currency}})</span>
+  </div>
+</div>
