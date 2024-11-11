@@ -84,6 +84,15 @@ export class BasketNeedComponent {
         this.need.need
       ).subscribe();
       this.need.quantity = this.quantityForm.value.quantity
+      var lastBasket = JSON.parse(localStorage.getItem("basket")!) as BasketNeed[];
+      console.log("last", lastBasket)
+      for(var i = 0; i < lastBasket.length; i++){
+        if(lastBasket[i].need.id == this.need.need.id){
+          lastBasket[i].quantity = this.quantityForm.value.quantity
+          localStorage.setItem("basket", JSON.stringify(lastBasket))
+        }
+      }
+      console.log("new", lastBasket)
     }
   }
 
