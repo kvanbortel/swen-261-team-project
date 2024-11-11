@@ -19,6 +19,11 @@
   color: var(--hoverOrange);
 }
 
+.row{
+  display: flex;
+  flex-direction: row;
+}
+
 .stat-button{
   background-color: var(--baseOrange);
   color: #000;

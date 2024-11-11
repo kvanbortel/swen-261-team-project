@@ -9,6 +9,7 @@
     <div class="stats-list">
       <span><b>Money Funded: </b>{{ currentUserAccount?.moneyFunded | currency }}</span><br>
       <span><b>Needs Funded: </b>{{ currentUserAccount?.needsFunded}}</span><br>
+      <span class="row" style="margin-top: 1vh;"><b>Your Badges:</b><app-badges [accountName]="this.authService.getName()"></app-badges></span>
       <app-user-level *ngIf="this.allAccounts.length > 0" [currentUserAccount]="currentUserAccount!"
         [allAccounts]="allAccounts"></app-user-level>
     </div>
@@ -24,8 +25,8 @@
   <div class="head">
     <label *ngIf="!this.authService.isAdmin()" class="username">Welcome to your profile,
       <b>{{this.authService.getName()}}</b></label>
-      <div><i>Your profile is {{this.profileInfo.privacy ? this.profileInfo.privacy : "Private"}}</i>&nbsp;<span class="link" (click)="switchProfileVisibility()"><i>(<u>switch to {{this.profileInfo.privacy == "Public" ? "Private": "Public"}}</u>)</i></span></div>
-      <div style="margin-top: 1vh; font-size:small"><i>{{this.profileInfo.privacy ? this.profileInfo.privacy == "Public" ? "Other users will be able to see your information on your page." : "Other users cannot see your information." : "Other users cannot see your information."}}</i></div>
+      <div><i>Your profile is {{this.profileInfo?.privacy ? this.profileInfo?.privacy : "Private"}}</i>&nbsp;<span class="link" (click)="switchProfileVisibility()"><i>(<u>switch to {{this.profileInfo?.privacy == "Public" ? "Private": "Public"}}</u>)</i></span></div>
+      <div style="margin-top: 1vh; font-size:small"><i>{{this.profileInfo?.privacy ? this.profileInfo?.privacy == "Public" ? "Other users will be able to see your information on your page." : "Other users cannot see your information." : "Other users cannot see your information."}}</i></div>
 
     <div class="pic-container">
       <app-profile-pic></app-profile-pic>
