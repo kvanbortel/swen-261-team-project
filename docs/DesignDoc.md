@@ -289,4 +289,6 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > - (2024/11/7) Leaderboard on home page only shows top three users, plus logged in user if not in top 3 users. If there is a u-fund god, they are displayed above the leaderboard.
 > - (2024/11/7) Decided to make a new component for viewing a profile that is not yours. There is a route that leads to this component, and localstorage which tracks which profile you attempt to visit
 > - (2024/11/9) Added more specific password validation messages on the login screen
-> - (2024/11/9) Added a new field to profileInfo, privacy, which determines whether other users can see your profile from the leaderboard component. 
+> - (2024/11/9) Added a new field to profileInfo, privacy, which determines whether other users can see your profile from the leaderboard component.
+> - (2024/11/10) When you tie the moneyFunded for the Top 5% Index of funders, you become a Master as well, even if cut off by to 5% math
+> - (2024/11/10) When progressing towards the next level, your percentage is never rounded up to 100%
