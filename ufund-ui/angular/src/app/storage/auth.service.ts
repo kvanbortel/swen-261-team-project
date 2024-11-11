@@ -20,6 +20,7 @@ export class AuthService implements CanActivate{
   profileInfo: ProfileInfo =  new ProfileInfo({alias: '', region: Region.NONE, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: '', privacy: "Private"})
   loadingImg: string = "https://media1.tenor.com/m/On7kvXhzml4AAAAC/loading-gif.gif";
   profileImage: string | null= '';
+  basketNeedsCheck: BasketNeed[] | null = null;
 
   private AccountURL = "http://localhost:8080/accounts";
 
@@ -28,6 +29,10 @@ export class AuthService implements CanActivate{
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+
+  getLastBasketNeeds(){
+    return this.basketNeedsCheck
+  }
 
   isAdmin(): boolean {
     if (this.name === 'admin') {
@@ -123,7 +128,10 @@ export class AuthService implements CanActivate{
         this.AccountURL + '/' + this.name + '/needs'
       )
       .pipe(
-        tap((_) => console.log('get basket needs')),
+        tap((response) => {
+          console.log('get basket needs', response)
+          this.basketNeedsCheck = response
+        }),
         catchError(this.handleError<BasketNeed[]>('basketNeeds', []))
       );
   }

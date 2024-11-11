@@ -1,5 +1,6 @@
 <ul class="main">
   <div class="basket-head"><h3>Your Funding Basket</h3></div>
+  <div *ngIf="changes"><h3>Items in your basket have changed</h3></div>
   <ul *ngIf="(basketNeeds$ | async)?.length !== 0" class="search-result">
     <li *ngFor="let bNeed of basketNeeds$ | async">
       <app-basket-need

@@ -17,6 +17,7 @@ import { CurrencyPipe } from '@angular/common';
 export class BasketListComponent {
   basketNeeds$ = new BehaviorSubject<BasketNeed[]>([]);
   errored: boolean = false;
+  changes = false;
 
   constructor(
     public authService: AuthService,
@@ -36,9 +37,15 @@ export class BasketListComponent {
   }
 
   ngOnInit(): void {
+    var checkBasket = this.authService.getLastBasketNeeds()
     this.authService.getBasketNeeds().subscribe({
       next: (response) => {
         this.basketNeeds$.next(response);
+        if(checkBasket != response){
+          this.changes = true;
+          console.log("basket changed!")
+          console.log(checkBasket + " does not equal " + response)
+        }
         console.log(response);
       },
     });
