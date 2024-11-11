@@ -319,10 +319,10 @@ public class AccountFileDAOTest {
     }
 
     @Test
-    public void testAddImage() throws IOException {//failing
+    public void testAddImage() throws IOException {
         byte[] img = Files.readAllBytes(Paths.get(path));
 
-        assertEquals("http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730819252/Kayla.png", accountFileDAO.addImage("Kayla", img));
+        assertEquals("http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731292614/Kayla.png", accountFileDAO.addImage("Kayla", img));
     }
 
     @Test
