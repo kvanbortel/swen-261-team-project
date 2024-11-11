@@ -1,16 +1,16 @@
-.main{
-    margin-top: 2vh;
-    display: flex;
-    flex-direction: row;
+.main {
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: row;
 }
 
-.body{
+.body {
   display: flex;
   flex-direction: row;
   max-height: 50vh;
 }
 
-.button-area{
+.button-area {
   position: absolute;
   right: 3vh;
   display: flex;
@@ -37,7 +37,7 @@
   padding: 1vw;
 }
 
-.buttons{
+.buttons {
   width: 30vw;
   text-align: right;
   display: flex;
@@ -45,14 +45,26 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .button-area{
-    position: absolute;
-    right: -1vw;
-    top: 32vh;
+  .button-area {
+    margin-top: 6vh;
+    margin-right: -10vw;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     justify-content: flex-start;
-    gap: 2vw
+    gap: 2vw;
+  }
+
+  .popup-area {
+    position: fixed;
+    top: 17vh;
+    right: 12vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+  }
+
+  .popup {
+    padding: 3vw;
   }
 }

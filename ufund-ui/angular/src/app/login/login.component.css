@@ -68,7 +68,7 @@ html{
 
 .eye-click{
     position: absolute;
-    margin-left: -5.5vh;
+    margin-left: max(-7.5vw, -5.5vh);
     margin-top: -1vh;
 }
 

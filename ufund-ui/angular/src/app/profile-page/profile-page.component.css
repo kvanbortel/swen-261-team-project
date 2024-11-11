@@ -181,8 +181,7 @@
 
   .button-area{
       right: -1vw;
-      top: 23vh;
-      display: flex;
+      margin-top: -9vh;
     }
 
     .edit-button-section{

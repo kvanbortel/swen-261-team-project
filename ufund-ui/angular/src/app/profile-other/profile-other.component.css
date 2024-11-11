@@ -141,6 +141,11 @@
     flex-direction: column;
   }
 
+  .button-area{
+    right: -1vw;
+    display: flex;
+  }
+
   .no-info {
     margin-top: 10vh;
     width: 60vw;

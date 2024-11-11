@@ -19,7 +19,7 @@ export class UserLevelService {
   getAllAccounts(): Observable<Account[]> {
     return this.http.get<Account[]>(this.usersUrl).pipe(
       tap((response) => {
-        console.log("Fetched Accounts:", response);  // Debugging the fetched accounts
+        console.log("Fetched Accounts:");
       }),
       catchError(this.handleError<Account[]>('getAllAccounts', []))
     );

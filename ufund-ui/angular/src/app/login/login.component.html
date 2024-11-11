@@ -8,13 +8,11 @@
     <h3>If you already have an account, please enter your existing username and password.</h3>
     <p style="margin-top:0; margin-bottom:4vh"><b>Otherwise, enter a new username and password to create an account.</b></p>
     <div class = "input-container">
-        <label class="login-title" for="login-box">Username:</label>
-        <input id="login" class="login-input" (keydown)="submitEnter($event, userBox.value, passwordBox.value)" type="text" #userBox id="login-box" />
+        <input id="login" placeholder="Username" class="login-input" (keydown)="submitEnter($event, userBox.value, passwordBox.value)" type="text" #userBox id="login-box" />
     </div>
     <br />
     <div class="input-container">
-        <label class="login-title" for="login-box">Password:</label>
-        <input id="login-box" class="login-input" 
+        <input placeholder="Password" id="login-box" class="login-input" 
                (keydown)="submitEnter($event, userBox.value, passwordBox.value)" 
                [type]="showPassword ? 'text' : 'password'" 
                #passwordBox />

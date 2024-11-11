@@ -48,4 +48,14 @@
   .profile-section {
     margin-left: 0;
   }
+
+  .no-info {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #888;
+    text-align: center;
+    align-self: center;
+    width: 80vw;
+    margin-left: 2vw;
+  }
 }
