@@ -35,7 +35,9 @@ export class LevelProgressBarComponent implements OnInit {
 
       const sortedAccounts = [...this.allAccounts].sort((a, b) => b.moneyFunded - a.moneyFunded);
       const maxDonation = sortedAccounts[0]?.moneyFunded;
-      const topPercentIndex = Math.ceil(sortedAccounts.length * this.PERCENT_INDEX) - 1;
+      const topPercentIndex = this.allAccounts.length >= 20 ?
+      Math.floor(sortedAccounts.length * this.PERCENT_INDEX) - 1:
+      Math.floor(sortedAccounts.length * this.PERCENT_INDEX);
 
       switch (this.userLevel) {
         case UserLevel.MASTER:
