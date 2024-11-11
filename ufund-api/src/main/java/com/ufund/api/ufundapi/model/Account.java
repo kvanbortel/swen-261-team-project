@@ -111,13 +111,15 @@ public class Account implements Comparable<Account> {
             @JsonProperty("basket") Basket basket,
             @JsonProperty("profileInfo") ProfileInfo profileInfo,
             @JsonProperty("passwordHash") String passwordHash ,
-            @JsonProperty("imageLink") String imgLink
+            @JsonProperty("imageLink") String imgLink,
+            @JsonProperty("lastCheckoutInstant") Instant lastCheckoutInstant
             ) {
         this.name = name;
         this.basket = basket;
         this.passwordHash = passwordHash;
         this.imageLink = imgLink;
         this.profileInfo = profileInfo;
+        this.lastCheckoutInstant = lastCheckoutInstant;
         if (lastCheckoutInstant == null) {
             this.setLastCheckoutInstant();
         } else {
@@ -126,10 +128,11 @@ public class Account implements Comparable<Account> {
     }
 
     /**
-     * Constructs an account object using a given name and a given Basket
+     * Constructs an account object using a given name, basket, password hash, and profileInfo
      * @param name the username
      * @param basket the user's basket object
      * @param profileInfo the user's profile information
+     * @param passwordHash
      */
     public Account(
             String name,
@@ -137,7 +140,7 @@ public class Account implements Comparable<Account> {
             ProfileInfo profileInfo,
             String passwordHash
             ) {
-        this(name, basket, profileInfo, passwordHash, null);
+        this(name, basket, profileInfo, passwordHash, null, null);
     }
 
     /**
@@ -176,6 +179,14 @@ public class Account implements Comparable<Account> {
      */
     public String getPasswordHash(){
         return this.passwordHash;
+    }
+
+    /**
+     * Returns the image Link for an account object
+     * @return the image Link for an account object
+     */
+    public String getImageLink(){
+        return this.imageLink;
     }
 
 

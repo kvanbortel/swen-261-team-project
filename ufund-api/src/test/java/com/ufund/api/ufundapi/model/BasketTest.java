@@ -299,11 +299,18 @@ public class BasketTest {
 
     //test false equality of two unequal basket objects
     @Test
-    public void testBasketEqualFalse(){
+    public void testBasketEqualFalseDir1(){
         Basket basket = createTestBasket();
         Basket basket2 = new Basket();
         assertNotEquals(basket, basket2);
     }
+     //test false equality of two unequal basket objects
+     @Test
+     public void testBasketEqualFalseDir2(){
+         Basket basket = createTestBasket();
+         Basket basket2 = new Basket();
+         assertNotEquals(basket2, basket);
+     }
 
     //test (false) equality of a basket and an object
     @Test
