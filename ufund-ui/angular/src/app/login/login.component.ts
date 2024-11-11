@@ -128,6 +128,20 @@ export class LoginComponent {
       }
     })
   }
+  
+  popup = true;
+  closeDiv() {
+    this.popup = false;
+  }
+
+  showDiv(){
+    if(!this.popup){
+      return{
+        display: "none"
+      }
+    }
+    return
+  }
 
   //function mapping enter key to login function for input fields in login component
   submitEnter(event: KeyboardEvent, name: string, passwordHash: string) {

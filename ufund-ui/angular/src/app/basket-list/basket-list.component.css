@@ -9,6 +9,11 @@
   display: none; 
 }
 
+.changed-text{
+  text-align: center;
+  margin-bottom: 3vh;
+}
+
 /* Styling for the search result list */
 .search-result {
   list-style-type: none;
