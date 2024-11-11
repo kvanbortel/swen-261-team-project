@@ -98,7 +98,7 @@ public class AccountControllerTest {
     @Test
     public void testCreateAccountBasket() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
 
         when(mockAccountDAO.createAccount(TEST_NAME, TEST_PASSWORD_HASH)).thenReturn(account);
 
@@ -115,7 +115,7 @@ public class AccountControllerTest {
     @Test
     public void testCreateExistingAccount() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, TEST_BASKET, TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
 
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
@@ -246,7 +246,7 @@ public class AccountControllerTest {
     @Test
     public void testGetNeeds() throws IOException {
         // Setup
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
@@ -275,7 +275,7 @@ public class AccountControllerTest {
     public void testGetAccountTrue() throws IOException {
         // Setup
         
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
         when(mockAccountDAO.getAccount(TEST_NAME)).thenReturn(account);
 
         // Invoke
@@ -523,7 +523,7 @@ public class AccountControllerTest {
     public void testGetGodExists() throws IOException {
         // Setup
         
-        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
         when(mockAccountDAO.getGod()).thenReturn(account);
 
         // Invoke

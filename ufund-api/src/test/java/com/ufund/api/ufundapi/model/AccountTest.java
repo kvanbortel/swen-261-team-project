@@ -34,7 +34,7 @@ public class AccountTest {
 
     @BeforeEach
     public void setUp() {
-        account = new Account(TEST_NAME, (TEST_BASKET), (TEST_PROFILE_INFO), TEST_PASSWORD_HASH, TEST_IMG);
+        account = new Account(TEST_NAME, (TEST_BASKET), (TEST_PROFILE_INFO), TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
     }
 
     //Test for creating an account with no basket parameter
@@ -45,10 +45,26 @@ public class AccountTest {
         assertEquals(new Basket(), account.getBasket());
     }
 
-    //Test for creating an account with basket parameter
+    //Test for creating an account with basket parameter and image
     @Test
     public void testConstructorBasket() {
-        Account newAccount =  new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account newAccount =  new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG,null);
+        assertEquals(TEST_NAME, account.getName());
+        assertEquals(TEST_BASKET, account.getBasket());
+    }
+
+     //Test for creating an account with non null instant parameter
+     @Test
+     public void testConstructorNoInstant() {
+        Instant instant = Instant.now();
+         Account newAccount =  new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, instant);
+         assertEquals(Instant.EPOCH, newAccount.getLastCheckoutInstant());
+     }
+
+    //Test for creating an account with no image parameter
+    @Test
+    public void testConstructorNoImg() {
+        Account newAccount =  new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH);
         assertEquals(TEST_NAME, account.getName());
         assertEquals(TEST_BASKET, account.getBasket());
     }
@@ -63,41 +79,59 @@ public class AccountTest {
         assertEquals(TEST_NAME, account.getName());
     }
 
+    //test for getting passwordHash of account
+    @Test
+    public void testget() {
+        assertEquals(TEST_NAME, account.getName());
+    }
+
     //test for getting basket of an account 
     @Test
     public void testgetBasket() {
         assertEquals(TEST_BASKET, account.getBasket());
     }
 
+    //test for getting name of account
+    @Test
+    public void testgetImageLink() {
+        assertEquals(TEST_IMG, account.getImageLink());
+    }
+
+    //test for getting name of account
+    @Test
+    public void testgetPasswordHash() {
+        assertEquals(TEST_PASSWORD_HASH, account.getPasswordHash());
+    }
+
     //test for true equality between two accounts
     @Test
     public void testAccountEqualTrue() {
-        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
-        Account account2 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
+        Account account2 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
         assertEquals(account1, account2);
     }
 
     //test for false equality between two accounts depending on name
     @Test
     public void testAccountEqualFalseName() {
-        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
-        Account account2 = new Account("Different Name", (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
+        Account account2 = new Account("Different Name", (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
         assertNotEquals(account1, account2);
     }
 
     //test for false equality between two accounts depending on basket
     @Test
     public void testAccountEqualFalseBasket() {
-        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
         BasketNeed[] needs = {new BasketNeed(new Need("hello", "hello", "hello", 10, 10, 0), 0)};
-        Account account2 = new Account(TEST_NAME, new Basket(Arrays.asList(needs)), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account2 = new Account(TEST_NAME, new Basket(Arrays.asList(needs)), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
         assertEquals(account1, account2);
     }
 
     //test for false equality between an account and an object
     @Test
     public void testAccountEqualObjNotNeed() {
-        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG);
+        Account account1 = new Account(TEST_NAME, (TEST_BASKET), TEST_PROFILE_INFO, TEST_PASSWORD_HASH, TEST_IMG, Instant.now());
         Object account2 = null;
         assertNotEquals(account1, account2);
     }
@@ -270,28 +304,6 @@ public class AccountTest {
 
         assertEquals("Account(ACCOUNT_NAME)", account.toString());
     }
-/**
-    // tests getting the rank of an account
-    @Test
-    public void testRank3() throws InterruptedException {
-        Account account1 = new Account("account1", "PASS");
-        TimeUnit.MILLISECONDS.sleep(10);
-        Account account2 = new Account("account2", "PASS");
-        TimeUnit.MILLISECONDS.sleep(10);
-        Account account3 = new Account("account3", "PASS");
-        TimeUnit.MILLISECONDS.sleep(10);
-        Account account4 = new Account("account4", "PASS");
-
-        // ordered by time because there are no needs or money funded
-
-        List<Account> accounts = new ArrayList<>();
-        accounts.add(account1);
-        accounts.add(account2);
-        accounts.add(account3);
-        accounts.add(account4);
-        assertEquals(3, .getRank(accounts));
-
-    }*/
 
     /** tests setting the last checkout instant */
     @Test
@@ -304,6 +316,18 @@ public class AccountTest {
 
         assertEquals(instant, account.getLastCheckoutInstant());
     }
+
+     /** tests setting the image Link */
+     @Test
+     public void testSetImageLink() {
+
+        Account account = new Account("ACCOUNT", "PASS");
+        String imageLink = "thisisalinktoanimage";
+        account.setImageLink(imageLink);
+ 
+        assertEquals(imageLink, account.getImageLink());
+     }
+ 
 
     /** tests that setting lastCheckoutInstant works when nothing is passed */
     @Test 
