@@ -16,6 +16,7 @@ import { waitForAsync } from '@angular/core/testing';
 export class LoginComponent {
   name: string = '';
   admin: number = 0;
+  showPassword = false;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

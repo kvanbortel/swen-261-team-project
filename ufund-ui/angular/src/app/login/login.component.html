@@ -1,13 +1,24 @@
 <html>
 <div class="main">
+    <div class="title-box">
+        <h1 style="display: flex; align-items: center; justify-content: center;"> <img class="logo" src="assets/Paws&Claws.png"> &nbsp;Welcome to the Paws and Claws Foundation U-Fund&nbsp; <img class="logo" src="assets/Paws&Claws.png"></h1>
+        <p style="margin-top:0"><i>Funding needs and supporting the shelters of the NYS Paws and Claws animal rescue foundation since 2024.</i></p>
+    </div>
+    <h3>If you already have an account, please enter your existing username and password.</h3>
+    <p style="margin-top:0; margin-bottom:4vh"><b>Otherwise, enter a new username and password to create an account.</b></p>
     <div class = "input-container">
-        <label class="login-title" for="login-box">Please enter a valid username:</label>
+        <label class="login-title" for="login-box">Username:</label>
         <input id="login" class="login-input" (keydown)="submitEnter($event, userBox.value, passwordBox.value)" type="text" #userBox id="login-box" />
     </div>
     <br />
-    <div class = "input-container">
-        <label class="login-title" for="login-box">Please enter a valid password:</label>
-        <input id="login" class="login-input" (keydown)="submitEnter($event, userBox.value, passwordBox.value)" type="text" #passwordBox id="login-box" />
+    <div class="input-container">
+        <label class="login-title" for="login-box">Password:</label>
+        <input id="login-box" class="login-input" 
+               (keydown)="submitEnter($event, userBox.value, passwordBox.value)" 
+               [type]="showPassword ? 'text' : 'password'" 
+               #passwordBox />
+
+               <span (click)="showPassword = !showPassword"><i [class]="showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" class="eye-click"></i></span>
     </div>
     <button class="login-button" type="button" (click)="login(userBox.value, passwordBox.value)">
         Login
