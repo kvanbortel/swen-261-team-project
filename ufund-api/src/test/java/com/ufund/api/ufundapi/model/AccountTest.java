@@ -79,12 +79,6 @@ public class AccountTest {
         assertEquals(TEST_NAME, account.getName());
     }
 
-    //test for getting passwordHash of account
-    @Test
-    public void testget() {
-        assertEquals(TEST_NAME, account.getName());
-    }
-
     //test for getting basket of an account 
     @Test
     public void testgetBasket() {
