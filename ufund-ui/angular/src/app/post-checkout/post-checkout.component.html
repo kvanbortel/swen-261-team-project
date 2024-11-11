@@ -1,5 +1,6 @@
 <div class="main">
-    <h3 *ngIf="error" class="errored">There was an error funding, please try again.</h3>
+    <h3 *ngIf="error" class="errored">Some items in your basket have already been funded.</h3>
+    <p *ngIf="error">Please try again.</p>
 
     <h3 *ngIf="!error">Thank you!</h3>
     <p *ngIf="!error">You just funded <b>{{amount}} needs</b>, for a total of <b>{{cost | currency}}</b></p>

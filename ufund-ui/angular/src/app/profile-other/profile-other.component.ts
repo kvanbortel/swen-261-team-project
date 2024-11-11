@@ -19,12 +19,10 @@ export class ProfileOtherComponent {
 
   constructor(public authService: AuthService, private profileSectionService: ProfileSectionService, public messageService: MessageService, public router: Router) {
       const navigation = this.router.getCurrentNavigation();
-      console.log(navigation)
       if (navigation?.extras.state) {
         this.accountName = navigation.extras.state['accountName']
         //this.profileInfo = navigation.extras.state['profileInfo'];
         this.imageLink = navigation.extras.state['profileImg'];
-        console.log(this.imageLink)
       } 
       else {
         this.router.navigate(['/home'])

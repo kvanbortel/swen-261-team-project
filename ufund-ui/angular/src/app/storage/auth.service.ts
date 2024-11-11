@@ -123,7 +123,10 @@ export class AuthService implements CanActivate{
         this.AccountURL + '/' + this.name + '/needs'
       )
       .pipe(
-        tap((_) => console.log('get basket needs')),
+        tap((response) => {
+          console.log('get basket needs')
+          localStorage.setItem("basket", JSON.stringify(response))
+        }),
         catchError(this.handleError<BasketNeed[]>('basketNeeds', []))
       );
   }
@@ -187,11 +190,8 @@ export class AuthService implements CanActivate{
     const formData = new FormData();
     formData.append('image', image);
 
-
-    console.log("posting image")
     localStorage.setItem("image", this.loadingImg)
     this.image = this.loadingImg
-    console.log(image)
     this.http
       .post(this.AccountURL + '/' + this.name + "/image", formData, { responseType: 'text' })
       .pipe(catchError(this.handleError<String>('addAccount')))

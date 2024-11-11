@@ -24,7 +24,6 @@ export class CupboardNeedComponent {
   }
 
   addToBasket() {
-    console.log(this.need);
     this.authService.addToBasket(1, this.need).subscribe({
         next: (response) => {
           if(response.quantity > response.need.quantity){

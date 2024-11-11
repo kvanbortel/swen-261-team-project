@@ -52,7 +52,6 @@ export class ProfilePageComponent implements OnInit {
       this.profileSectionService.getProfileInfo(this.accountName).subscribe(profile => {
         this.profileInfo = profile });
       this.userLevelService.getAllAccounts().subscribe(accounts => {
-        console.log("All Accounts:", accounts);
         this.allAccounts = accounts;
         this.currentUserAccount = accounts.find(account => account.name === this.accountName);
       });

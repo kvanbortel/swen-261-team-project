@@ -1,7 +1,9 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   HostBinding,
+  HostListener,
   Input,
   Output,
   SimpleChanges,
@@ -56,7 +58,8 @@ export class BasketNeedComponent {
 
   constructor(
     public authService: AuthService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private elementRef: ElementRef
   ) {
     this.need = this.emptyBNeed;
     this.quantityForm = formBuilder.group({
@@ -65,6 +68,13 @@ export class BasketNeedComponent {
         [Validators.min(1), Validators.max(this.getNeed().quantity)],
       ],
     });
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.quantityForm.setValue({"quantity": this.need.quantity})
+    }
   }
 
   addQuantity() {

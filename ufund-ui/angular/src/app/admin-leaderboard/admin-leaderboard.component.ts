@@ -34,7 +34,6 @@ export class AdminLeaderboardComponent {
       this.authService.getAccount(localStorage.getItem("name")).subscribe({
         next: (response) => {
           this.account = (response);
-          console.log(response);
         },
       });
     }
@@ -52,7 +51,6 @@ export class AdminLeaderboardComponent {
     this.authService.getAccountsSorted().subscribe({
       next: (response) => {
         this.accounts$.next(response);
-        console.log(response)
       },
     });
     

@@ -20,17 +20,13 @@ export class BadgesComponent {
 
   ngOnInit(){
     this.userLevelService.getAllAccounts().subscribe(accounts => {
-      console.log("All Accounts:", accounts);
       this.allAccounts = accounts;
       this.currentUserAccount = accounts.find(account => account.name === this.accountName);
       if(this.currentUserAccount){
         this.level = this.userLevelService.getUserLevel(this.currentUserAccount, this.allAccounts)
       }
-      console.log(this.level)
     });
-    this.updateUserLevel()
-    console.log(this.accountName)
-    
+    this.updateUserLevel()    
   }
 
   showSuit(){

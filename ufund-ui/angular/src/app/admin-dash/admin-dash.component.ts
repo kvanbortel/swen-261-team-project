@@ -38,7 +38,6 @@ export class AdminDashComponent {
     this.authService.getAdminInfo().subscribe({
       next: (response: AdminInfo) => {
         this.adminInfo$.next(response);
-        console.log(response);
         // add to pie chart
         if(response?.regions){
           Object.keys(response.regions).forEach(key => {

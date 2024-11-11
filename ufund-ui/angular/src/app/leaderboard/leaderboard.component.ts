@@ -51,7 +51,6 @@ export class LeaderboardComponent {
     this.authService.getAccountsSortedTop3().subscribe({
       next: (response) => {
         this.accounts$.next(response);
-        console.log(response)
       },
     });
     
