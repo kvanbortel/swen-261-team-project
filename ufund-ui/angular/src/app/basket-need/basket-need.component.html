@@ -1,9 +1,12 @@
 <div *ngIf="need" class="basket-need">
+  <h3 *ngIf="this.isMobile" class="need-title">
+    {{ getNeed().name }}
+  </h3>
   <div class="row">
-    <h3 class="need-title">
+    <h3 *ngIf="!this.isMobile" class="need-title">
       {{ getNeed().name }}
     </h3>
-    <div style="display: flex; gap: 10px"></div>
+    <div *ngIf="!this.isMobile" style="display: flex; gap: 10px"></div>
     <div class="row">
       <div>Edit Current Quantity:</div>
       <div style="display: flex; gap: 100px">&nbsp;</div>

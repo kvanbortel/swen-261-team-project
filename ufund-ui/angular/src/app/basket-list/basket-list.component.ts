@@ -37,6 +37,7 @@ export class BasketListComponent {
 
   ngOnInit(): void {
     var lastBasket = JSON.parse(localStorage.getItem("basket")!) as BasketNeed[];
+    console.log("last basket", lastBasket)
 
     this.authService.getBasketNeeds().subscribe({
       next: (response) => {
@@ -59,6 +60,8 @@ export class BasketListComponent {
     );
 
     this.basketNeeds$.next(updatedNeeds);
+    localStorage.setItem("basket", JSON.stringify(updatedNeeds))
+    console.log("storage set to", updatedNeeds)
   }
 
   getTotalQuantity(): number {

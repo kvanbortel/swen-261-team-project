@@ -10,3 +10,12 @@
     align-items: flex-end;
     justify-content: flex-start;
   }
+
+  @media only screen and (max-width: 600px) {
+
+    .button-area{
+        right: -1vw;
+        top: 23vh;
+        display: flex;
+      }
+  }

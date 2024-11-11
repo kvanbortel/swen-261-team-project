@@ -5,7 +5,7 @@
       <span class="acc-title">
       {{this.rank}}. {{ this.getAlias() }}
       </span>
-      <app-badges [accountName]="this.account.name"></app-badges>
+      <app-badges *ngIf="!this.isMobile" [accountName]="this.account.name"></app-badges>
       <span class="acc-description">{{ this.formatMoney() }}</span>
     </div>
 </div>

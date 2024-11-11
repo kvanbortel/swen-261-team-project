@@ -41,3 +41,20 @@ ul{
     align-items: flex-end;
     justify-content: flex-start;
   }
+
+  @media only screen and (max-width: 600px) {
+    .main{
+        width: 90vw;
+    }
+
+    ::ng-deep app-leaderboard-page .god-box{
+        width: 75vw;
+        margin-left: 2.1vw;
+    }
+
+    .button-area{
+        right: -1vw;
+        top: 23vh;
+        display: flex;
+      }
+  }

@@ -42,6 +42,8 @@ export class AuthService implements CanActivate{
     this.admin = false;
     this.name = '';
     localStorage.setItem("name", '');
+    localStorage.removeItem("image");
+    localStorage.removeItem("basket");
   }
 
   canActivate(
@@ -168,7 +170,10 @@ export class AuthService implements CanActivate{
         null,
         this.httpOptions
       ).pipe(
-        tap((_) => console.log('get basket needs')),
+        tap((response) => {
+          console.log('get basket needs')
+          localStorage.setItem("basket", JSON.stringify(response))
+        }),
         catchError(this.handleError<boolean>('basketNeeds', false))
       );
   }
@@ -181,7 +186,9 @@ export class AuthService implements CanActivate{
         this.httpOptions
       )
       .pipe(
-          tap((response) => console.log('need added to basket', response)),
+          tap((response) => {
+            console.log('need added to basket', response)
+          }),
           catchError(this.handleError<BasketNeed>('basketNeeds'))
         );
   }

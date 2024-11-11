@@ -29,5 +29,7 @@
 
   <div *ngIf="(basketNeeds$ | async)?.length === 0" class="no-results">
     Your basket is empty. Time to get funding!
+
+    <div *ngIf="changed" class="item" style="color:rgba(181, 19, 19, 1)"><b>Items in your basket were funded while you were away!</b></div>
   </div>
 </ul>

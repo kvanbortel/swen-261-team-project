@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   HostBinding,
+  HostListener,
   Input,
   OnChanges,
   Output,
@@ -132,10 +133,20 @@ export class LeaderboardAccountComponent{
         }})
       );
   }
+
+  isMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 600;
+  }
   
 
   ngOnInit(){
-  
+    this.checkScreenSize();
   }
   
 }

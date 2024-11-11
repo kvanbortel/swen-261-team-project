@@ -5,11 +5,13 @@
       </ul>
 
     <div class="body">
-      <app-leaderboard *ngIf="!isAdmin" style="max-height:60vh; margin-right:3vw; width: 36vw;"></app-leaderboard>
+      <app-leaderboard *ngIf="!isAdmin && !isMobile" style="max-height:60vh; margin-right:3vw; width: 36vw;"></app-leaderboard>
       <app-cupboard-search></app-cupboard-search>
       <app-admin-dash *ngIf="isAdmin"></app-admin-dash>
     </div>  
     <div class="button-area">
+      <app-view-change-button *ngIf="isMobile" [text]="'Leaderboard'" [icon]="' fa-solid fa-arrow-trend-up '" [path]="'leaderboard'"></app-view-change-button>
+
       <app-view-change-button *ngIf="!isAdmin" [text]="'View Basket'" [icon]="' fa-solid fa-basket-shopping '" [path]="'basket'"></app-view-change-button>
       <app-view-change-button *ngIf="isAdmin" [text]="'Logout'" [icon]="' fa-solid fa-right-from-bracket '" (click) = this.authService.logout();></app-view-change-button>
     </div>
