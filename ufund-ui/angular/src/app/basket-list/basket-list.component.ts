@@ -49,7 +49,6 @@ export class BasketListComponent {
     this.checkScreenSize()
 
     var lastBasket = JSON.parse(localStorage.getItem("basket")!) as BasketNeed[];
-    console.log("last basket", lastBasket)
 
     this.authService.getBasketNeeds().subscribe({
       next: (response) => {

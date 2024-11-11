@@ -10,12 +10,17 @@ export class MessageService {
   add(message: string, timeout: boolean) {
     const id: string = this.generateFakeUUID()
     const data: Message = {message: message, id: id}
-    this.messages.push(data);
+    if(this.messages.length > 0){
+      this.messages[0].message = message;
+    }
+    else{
+      this.messages.push(data);
 
-    if(timeout){
-      setTimeout(() => {
-        this.messages = this.messages.filter(m => m.id !== id);
-      }, 2000);
+      if(timeout){
+        setTimeout(() => {
+          this.messages = this.messages.filter(m => m.id !== id);
+        }, 2000);
+      }
     }
   }
 
