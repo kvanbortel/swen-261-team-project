@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild} from '@angular/core';
 import {AuthService} from "../storage/auth.service";
 import {ProfileSectionService} from "../profile-section.service";
 import {ProfileInfo} from "../profile-info";
@@ -33,11 +33,13 @@ export class ProfilePageComponent implements OnInit {
   currentUserAccount?: Account;
   god: Account | null = null;
   userIsGod: boolean = false;
+  statsOpen: boolean = false;
 
   constructor(public authService: AuthService,
               private profileSectionService: ProfileSectionService,
               public messageService: MessageService,
-              public userLevelService: UserLevelService
+              public userLevelService: UserLevelService,
+              private elementRef: ElementRef
   ) {
   }
 
@@ -66,6 +68,19 @@ export class ProfilePageComponent implements OnInit {
     let image = localStorage.getItem("image")
     if(image != null){
       this.authService.setImage(image);
+    }
+  }
+
+  showStats(){
+    this.statsOpen = !this.statsOpen
+  }
+
+  @ViewChild('statsContainer', { static: false }) statsContainer!: ElementRef;
+
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    if (this.statsContainer && !this.statsContainer.nativeElement.contains(event.target)) {
+      this.statsOpen = false;
     }
   }
 
@@ -102,5 +117,25 @@ export class ProfilePageComponent implements OnInit {
     }
 
     this.authService.postImage(this.selectedFile)
+  }
+
+  switchProfileVisibility(){
+    var newProfile = this.profileInfo
+    if(!newProfile.privacy){
+      newProfile.privacy = "Public"
+    }
+    else{
+      newProfile.privacy = newProfile.privacy == "Public" ? "Private" : "Public" 
+    }
+
+    // Call the service to update the profileInfo
+    this.profileSectionService.updateProfileInfo(newProfile).subscribe({
+      next: (response) => {
+        console.log(`Successfully updated profileInfo: ${response}`);
+      },
+      error: (error) => {
+        console.error('Error updating profileInfo', error);
+      }
+    });
   }
 }

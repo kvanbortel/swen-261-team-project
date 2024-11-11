@@ -59,4 +59,14 @@ export class LevelProgressBarComponent implements OnInit {
   }
 
   protected readonly UserLevel = UserLevel;
+
+  getDynamicProgressStyle(){
+    if(this.progress < 20){
+      return {
+        "margin-left": "4vw", // if the progress is low, show it outside the bar
+        "color": "black"
+      }
+    }
+    return
+  }
 }

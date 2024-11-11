@@ -6,12 +6,12 @@
       [attr.aria-valuenow]="progress"
       [attr.aria-valuemin]="0"
       [attr.aria-valuemax]="100">
-      <span class="progress-percentage">{{ progress | number: '1.0-0' }}%</span>
+      <span class="progress-percentage" [ngStyle]="getDynamicProgressStyle()">{{ progress | number: '1.0-0' }}%</span>
     </div>
   </div>
   <div class="progress-labels">
-    <span *ngIf="proRequired">Pro Criteria: Donation Goal ({{proRequired | currency}})</span>
-    <span *ngIf="masterRequired">Master Criteria: Top 5% ({{masterRequired | currency}})</span>
-    <span *ngIf="championRequired">Champion Criteria: Top Donator: ({{championRequired | currency}})</span>
+    <span *ngIf="proRequired"><i>Pro Criteria: Donation Goal ({{proRequired | currency}})</i></span>
+    <span *ngIf="masterRequired"><i>Master Criteria: Top 5% ({{masterRequired | currency}})</i></span>
+    <span *ngIf="championRequired"><i>Champion Criteria: Top Donator: ({{championRequired | currency}})</i></span>
   </div>
 </div>

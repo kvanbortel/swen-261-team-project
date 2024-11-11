@@ -33,8 +33,6 @@ export class BadgesComponent {
     
   }
 
- 
-
   showSuit(){
     if(this.level == UserLevel.NOOB || this.level == UserLevel.PRO || this.level == UserLevel.MASTER || this.level == UserLevel.CHAMPION){
       //console.log("NOOB")
@@ -61,7 +59,6 @@ export class BadgesComponent {
   }
 
   showCard(){
-    
     if(this.level == UserLevel.CHAMPION){
       //console.log("CHAMPION")
       return true
