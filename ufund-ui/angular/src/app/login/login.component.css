@@ -7,6 +7,16 @@ html{
     align-content: center;
 }
 
+.title-box{
+    border-style: solid;
+    border-radius: 5px;
+    border-color: var(--baseOrange);
+    border-width: 3px;
+    padding: 4vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
 .main{
     align-content: center;
     display: block;
@@ -16,16 +26,18 @@ html{
     align-items: center;
 }
 
+.logo{
+    width: 8vh;
+    height: 8vh;
+}
+
 /* Styling for the label */
 .login-title {
     display: block;
     font-size: 1.2rem;
-    margin-top: -30px;
     color: #333;
-    margin-bottom: 10px;
     font-weight: 600;
-    width: 20vw;
-    text-align: right;
+    text-align: left;
     padding-right: 1vw;
 }
 
@@ -34,6 +46,7 @@ html{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
 }
 
 /* Styling for the search input */
@@ -44,12 +57,17 @@ html{
     border: 2px solid #ddd;
     border-radius: 5px;
     transition: border-color 0.3s ease;
-    margin-bottom: 20px;
     outline: none;
 }
 
 .login-input:focus {
     border-color: var(--baseOrange);
+}
+
+.eye-click{
+    position: absolute;
+    margin-left: -5.5vh;
+    bottom: 28.5vh;
 }
 
 .login-button {
@@ -62,6 +80,7 @@ html{
     transition: border-color 0.3s ease;
     width: 100px;
     margin: auto 20px;
+    margin-top: 2vh;
     padding: 12px;
     outline: none;
     transition-duration: 0.4s;
