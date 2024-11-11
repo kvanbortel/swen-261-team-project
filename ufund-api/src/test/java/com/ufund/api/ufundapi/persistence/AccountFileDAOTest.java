@@ -317,13 +317,13 @@ public class AccountFileDAOTest {
     public void testUpdateNeedForFakeAccount() throws IOException {
         assertNull(accountFileDAO.updateNeed("FAKE", testNeeds[1], 1));
     }
-/**
+
     @Test
-    public void testAddImage() throws IOException {//failing
+    public void testAddImage() throws IOException {
         byte[] img = Files.readAllBytes(Paths.get(path));
 
-        assertEquals("http://res.cloudinary.com/dc5ifh1f7/image/upload/v1730819252/Kayla.png", accountFileDAO.addImage("Kayla", img));
-    }*/
+        assertEquals("http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731292614/Kayla.png", accountFileDAO.addImage("Kayla", img));
+    }
 
     @Test
     public void testAddImageFakeAccount() throws IOException {
@@ -376,6 +376,31 @@ public class AccountFileDAOTest {
         expected.add(max); // max doesn't wanna save the world
 
         assertEquals(expected, accountFileDAO.getRankList());
+    }
+
+    /**
+     * tests getting all accounts in order of rank
+     * @throws IOException
+     */
+    @Test
+    public void testGetRankListTop3() throws IOException {
+        Account kayla = accountFileDAO.getAccount("Kayla");
+        Account max = accountFileDAO.getAccount("Max");
+        Account jonah = accountFileDAO.getAccount("Jonah");
+        Account ryan = accountFileDAO.getAccount("Ryan");
+        Account kaylainfo = accountFileDAO.getAccount("KaylaInfo");
+
+        kayla.addMoneyFunded(12); 
+        max.addMoneyFunded(2); 
+        jonah.addMoneyFunded(19); 
+        ryan.addMoneyFunded(7);
+        kaylainfo.addMoneyFunded(5);
+
+        List<Account> expected = new ArrayList<>();
+        expected.add(jonah); // rank 1
+        expected.add(kayla);
+        expected.add(ryan);
+        assertEquals(expected, accountFileDAO.getRankListTop3());
     }
 
     // Successfully retrieve a valid account's profileInfo
