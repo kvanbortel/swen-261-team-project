@@ -40,15 +40,15 @@ export class LevelProgressBarComponent implements OnInit {
       switch (this.userLevel) {
         case UserLevel.MASTER:
           this.championRequired = maxDonation;
-          this.progress = (this.currentUserAccount.moneyFunded / this.championRequired) * 100;
+          this.progress = Math.floor((this.currentUserAccount.moneyFunded / this.championRequired) * 100);
           break;
         case UserLevel.PRO:
           this.masterRequired = sortedAccounts[topPercentIndex]?.moneyFunded || 0;
-          this.progress = (this.currentUserAccount.moneyFunded / this.masterRequired) * 100;
+          this.progress = Math.floor((this.currentUserAccount.moneyFunded / this.masterRequired) * 100);
           break;
         case UserLevel.NOOB:
           this.proRequired = this.PRO_MIN_FUNDED;
-          this.progress = (this.currentUserAccount.moneyFunded / this.PRO_MIN_FUNDED) * 100;
+          this.progress = Math.floor((this.currentUserAccount.moneyFunded / this.PRO_MIN_FUNDED) * 100);
           break;
         default:
           this.progress = 100; // You are already a Master
