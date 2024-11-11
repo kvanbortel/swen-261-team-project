@@ -55,7 +55,7 @@
 
 .stats-container {
   width: 40vh;
-  position:absolute;
+  position: absolute;
   margin-top: 1vh;
   margin-left: 3vw;
   display: flex;
@@ -175,9 +175,34 @@
 
 @media only screen and (max-width: 600px) {
 
+  .username {
+    font-size: large;
+  }
+
   .button-area{
       right: -1vw;
       top: 23vh;
       display: flex;
+    }
+
+    .edit-button-section{
+      margin-top: 1vh;
+      max-width: 90vw;
+      margin-left: 0;
+    }
+
+    .stats-container {
+      margin-top: -7vh;
+    }
+
+    .stat-button{
+      border-radius: 5px;
+      height: 50px;
+      margin-top: -2vh;
+      margin-left: -1vw;
+    }
+
+    .profile-container {
+      margin-top: 10vh;
     }
 }
