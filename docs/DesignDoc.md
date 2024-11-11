@@ -283,11 +283,14 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > **[Sprint 3] decisions**
 > - (2024/10/24) Refactored logout system. Previously, we were using local service variables to store authenticated usernames. However, on any page refresh/initialization these credentials were removed. The application now instead uses
 > localStorage to store credentials so these persist across pages. This also allowed us to add an authentication guard to non-login pages, so indexing a route without authentication is cleaner.
+> - (2024/10/30) Decided to create a ProfileInfo model to store an accounts profile information since these values are only ever changed by the user and aesthetic
 > - (2024/10/31) Decided to use an md5 library to hash passwords so they are not stored in plaintext by our backend.
 > - (2024/11/5) Determine rank first by moneyFunded, then use the number of needsFunded, then consider whoever made the most recent donation to be a better rank
 > - (2024/11/5) Changed admin loggin functionality. Password is now required, and set to "adm1n!".
+> - (2024/11/6) User level-up no longer requires an account age factor because the focus should be more on the amount of money funded than the amount of time it took for a user to do it
 > - (2024/11/7) Leaderboard on home page only shows top three users, plus logged in user if not in top 3 users. If there is a u-fund god, they are displayed above the leaderboard.
 > - (2024/11/7) Decided to make a new component for viewing a profile that is not yours. There is a route that leads to this component, and localstorage which tracks which profile you attempt to visit
+> - (2024/11/8) Decided to do phone number and SNN formatting for profile info in angular rather than making the user do it so that they have an easier time updating their information
 > - (2024/11/9) Added more specific password validation messages on the login screen
 > - (2024/11/9) Added a new field to profileInfo, privacy, which determines whether other users can see your profile from the leaderboard component.
 > - (2024/11/10) When you tie the moneyFunded for the Top 5% Index of funders, you become a Master as well, even if cut off by to 5% math
