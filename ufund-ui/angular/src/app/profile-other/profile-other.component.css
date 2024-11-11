@@ -4,7 +4,7 @@
     font-family: Arial, sans-serif;
   }
   
-  .head{
+  .pic-box{
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -18,11 +18,9 @@
     background-color: #f0f0f0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    position: relative;
   }
   
   .no-info {
-    margin-top: 20px;
     font-size: 1rem;
     color: #888;
     text-align: center;
@@ -50,14 +48,11 @@
   }
 
   .profileSection{
-    margin-top: 10vh;
   }
   
   .pic-container {
     display: flex;
     width: 50vw;
-    padding-top: 5vh;
-    position:absolute;    
     flex-direction: column;
   }
   
@@ -74,9 +69,8 @@
 
   }
 
-  
   .button-area{
-    position: absolute;
+    position: fixed;
     right: 3vh;
     display: flex;
     flex-direction: column;
