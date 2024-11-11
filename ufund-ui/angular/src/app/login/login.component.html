@@ -1,6 +1,7 @@
 <html>
 <div class="main">
-    <div class="title-box">
+    <div class="title-box" [ngStyle]="showDiv()">
+        <span class="close-button" (click)="closeDiv()">x</span>
         <h1 style="display: flex; align-items: center; justify-content: center;"> <img class="logo" src="assets/Paws&Claws.png"> &nbsp;Welcome to the Paws and Claws Foundation U-Fund&nbsp; <img class="logo" src="assets/Paws&Claws.png"></h1>
         <p style="margin-top:0"><i>Funding needs and supporting the shelters of the NYS Paws and Claws animal rescue foundation since 2024.</i></p>
     </div>

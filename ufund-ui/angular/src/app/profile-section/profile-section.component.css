@@ -38,3 +38,14 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin-bottom: 1vh;
 }
+
+@media only screen and (max-width: 600px) {
+  .block{
+    max-width: 86vw;
+    width: 86vw;
+  }
+
+  .profile-section {
+    margin-left: 0;
+  }
+}

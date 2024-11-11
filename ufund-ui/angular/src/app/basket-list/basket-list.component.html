@@ -1,5 +1,7 @@
 <ul class="main">
   <div class="basket-head"><h3>Your Funding Basket</h3></div>
+  <div *ngIf="changed && isMobile" class="changed-text" style="color:rgba(181, 19, 19, 1)"><b> Items in your basket have changed since your last visit! <br><br>Please review before funding.</b></div>
+
   <ul *ngIf="(basketNeeds$ | async)?.length !== 0" class="search-result">
     <li *ngFor="let bNeed of basketNeeds$ | async">
       <app-basket-need
@@ -12,7 +14,7 @@
   <div *ngIf="(basketNeeds$ | async)?.length !== 0" class="checkout-summary">
     <h3><u>Basket Summary</u></h3>
 
-    <div *ngIf="changed" class="item" style="color:rgba(181, 19, 19, 1)"><b> Items in your basket have changed since your last visit! <br><br>Please review before funding.</b></div>
+    <div *ngIf="changed && !isMobile" class="item" style="color:rgba(181, 19, 19, 1)"><b> Items in your basket have changed since your last visit! <br><br>Please review before funding.</b></div>
 
     <ul class="summary-list" [ngStyle]="getDynamicStyle()">
       <li *ngFor="let bNeed of basketNeeds$ | async" class="item">
@@ -29,5 +31,7 @@
 
   <div *ngIf="(basketNeeds$ | async)?.length === 0" class="no-results">
     Your basket is empty. Time to get funding!
+
+    <div *ngIf="changed" class="item" style="color:rgba(181, 19, 19, 1)"><b>Items in your basket were funded while you were away!</b></div>
   </div>
 </ul>

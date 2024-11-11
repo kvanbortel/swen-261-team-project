@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 import { AuthService } from '../storage/auth.service';
 import { async, BehaviorSubject } from 'rxjs';
@@ -35,8 +35,21 @@ export class BasketListComponent {
     }
   }
 
+  isMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 600;
+  }
+
   ngOnInit(): void {
+    this.checkScreenSize()
+
     var lastBasket = JSON.parse(localStorage.getItem("basket")!) as BasketNeed[];
+    console.log("last basket", lastBasket)
 
     this.authService.getBasketNeeds().subscribe({
       next: (response) => {
@@ -59,6 +72,8 @@ export class BasketListComponent {
     );
 
     this.basketNeeds$.next(updatedNeeds);
+    localStorage.setItem("basket", JSON.stringify(updatedNeeds))
+    console.log("storage set to", updatedNeeds)
   }
 
   getTotalQuantity(): number {
@@ -75,7 +90,7 @@ export class BasketListComponent {
   }
 
   getDynamicStyle(){
-    if(this.changed){
+    if(this.changed && !this.isMobile){
       return {
         height: "41vh"
       }

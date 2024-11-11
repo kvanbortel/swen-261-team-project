@@ -43,3 +43,16 @@
   display: flex;
   flex-direction: column;
 }
+
+@media only screen and (max-width: 600px) {
+  .button-area{
+    position: absolute;
+    right: -1vw;
+    top: 32vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 2vw
+  }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../storage/auth.service';
 import { MessageService } from '../message.service';
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -24,6 +24,16 @@ export class HomeComponent {
 
   constructor(public authService: AuthService, public messageService: MessageService) {}
 
+  isMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 600;
+  }
+
   isAdmin: boolean = this.authService.isAdmin();
 
   ngOnInit(){
@@ -36,5 +46,7 @@ export class HomeComponent {
       this.authService.setImage(image);
     }
     this.isAdmin = this.authService.isAdmin();
+
+    this.checkScreenSize();
   }
 }

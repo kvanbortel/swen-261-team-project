@@ -34,6 +34,7 @@ export class ProfilePageComponent implements OnInit {
   god: Account | null = null;
   userIsGod: boolean = false;
   statsOpen: boolean = false;
+  isMobile: boolean = false;
 
   constructor(public authService: AuthService,
               private profileSectionService: ProfileSectionService,
@@ -46,6 +47,7 @@ export class ProfilePageComponent implements OnInit {
   @Output() dataFromChild = new EventEmitter<null>();
 
   ngOnInit(): void {
+    this.checkScreenSize()
     this.accountName = localStorage.getItem("name");
     if (this.accountName != null) {
       this.authService.setName(this.accountName);
@@ -116,6 +118,14 @@ export class ProfilePageComponent implements OnInit {
     }
 
     this.authService.postImage(this.selectedFile)
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 600;
   }
 
   switchProfileVisibility(){
