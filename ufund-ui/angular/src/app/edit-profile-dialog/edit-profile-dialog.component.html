@@ -62,7 +62,7 @@
                     <input matInput formControlName="phoneNumber" />
                     <mat-error>
                         {{ getErrorMessage(profileForm.get('phoneNumber'), 'Phone Number', {
-                            pattern: 'Phone number must be in the format (XXX) XXX-XXXX.'
+                            pattern: 'Phone number must be 10 digits.'
                     }) }}
                     </mat-error>
                 </mat-form-field>
@@ -73,7 +73,7 @@
                     <input matInput formControlName="ssn" />
                     <mat-error>
                         {{ getErrorMessage(profileForm.get('ssn'), 'SSN', {
-                            pattern: 'SSN must be in the format XXX-XX-XXXX'
+                            pattern: 'SSN must be 9 digits.'
                     }) }}
                     </mat-error>
                 </mat-form-field>
@@ -85,7 +85,7 @@
                         <mat-select formControlName="privacy">
                             <mat-option value="Private">Private</mat-option>
                             <mat-option value="Public">Public</mat-option>
-                        </mat-select>                     
+                        </mat-select>
                 </mat-form-field>
             </div>
 
