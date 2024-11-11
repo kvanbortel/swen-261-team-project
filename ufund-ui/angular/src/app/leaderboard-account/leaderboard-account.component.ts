@@ -58,7 +58,6 @@ export class LeaderboardAccountComponent{
       if(this.index == -1){
         this.getRank().subscribe((result) => {
           this.rank = result
-          console.log(this.rank)
         })
       }
     }
@@ -103,7 +102,6 @@ export class LeaderboardAccountComponent{
   }
 
   setProfile(){
-    console.log(this.account.profileInfo)
     localStorage.setItem("profile-image", this.account.imageLink)
     this.authService.profileInfo = this.account.profileInfo
     this.authService.profileImage = this.account.imageLink

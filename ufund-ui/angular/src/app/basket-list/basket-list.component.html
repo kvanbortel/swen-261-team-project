@@ -1,6 +1,5 @@
 <ul class="main">
   <div class="basket-head"><h3>Your Funding Basket</h3></div>
-  <div *ngIf="changes"><h3>Items in your basket have changed</h3></div>
   <ul *ngIf="(basketNeeds$ | async)?.length !== 0" class="search-result">
     <li *ngFor="let bNeed of basketNeeds$ | async">
       <app-basket-need
@@ -13,13 +12,9 @@
   <div *ngIf="(basketNeeds$ | async)?.length !== 0" class="checkout-summary">
     <h3><u>Basket Summary</u></h3>
 
-    <div class="item">
-      <b>Different Needs:</b> {{ (basketNeeds$ | async)?.length }}
-    </div>
+    <div *ngIf="changed" class="item" style="color:rgba(181, 19, 19, 1)"><b> Items in your basket have changed since your last visit! <br><br>Please review before funding.</b></div>
 
-    <div class="item"><b>Total Need Quantity:</b> {{ getTotalQuantity() }}</div>
-
-    <ul class="summary-list">
+    <ul class="summary-list" [ngStyle]="getDynamicStyle()">
       <li *ngFor="let bNeed of basketNeeds$ | async" class="item">
         {{ bNeed.quantity }}x <i>{{ bNeed.need.name }}</i
         ><br />&nbsp; {{ bNeed.quantity * bNeed.need.cost | currency }}

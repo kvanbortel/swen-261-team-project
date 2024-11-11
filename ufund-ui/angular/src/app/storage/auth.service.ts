@@ -20,7 +20,6 @@ export class AuthService implements CanActivate{
   profileInfo: ProfileInfo =  new ProfileInfo({alias: '', region: Region.NONE, pronouns: '', bio: '', email: '', phoneNumber: '', ssn: '', profilePic: '', privacy: "Private"})
   loadingImg: string = "https://media1.tenor.com/m/On7kvXhzml4AAAAC/loading-gif.gif";
   profileImage: string | null= '';
-  basketNeedsCheck: BasketNeed[] | null = null;
 
   private AccountURL = "http://localhost:8080/accounts";
 
@@ -29,10 +28,6 @@ export class AuthService implements CanActivate{
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-
-  getLastBasketNeeds(){
-    return this.basketNeedsCheck
-  }
 
   isAdmin(): boolean {
     if (this.name === 'admin') {
@@ -129,8 +124,8 @@ export class AuthService implements CanActivate{
       )
       .pipe(
         tap((response) => {
-          console.log('get basket needs', response)
-          this.basketNeedsCheck = response
+          console.log('get basket needs')
+          localStorage.setItem("basket", JSON.stringify(response))
         }),
         catchError(this.handleError<BasketNeed[]>('basketNeeds', []))
       );
@@ -195,11 +190,8 @@ export class AuthService implements CanActivate{
     const formData = new FormData();
     formData.append('image', image);
 
-
-    console.log("posting image")
     localStorage.setItem("image", this.loadingImg)
     this.image = this.loadingImg
-    console.log(image)
     this.http
       .post(this.AccountURL + '/' + this.name + "/image", formData, { responseType: 'text' })
       .pipe(catchError(this.handleError<String>('addAccount')))

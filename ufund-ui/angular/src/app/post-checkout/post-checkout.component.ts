@@ -13,13 +13,10 @@ export class PostCheckoutComponent {
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
-    console.log(navigation)
     if (navigation?.extras.state) {
       this.error = navigation.extras.state['error'];
       this.amount = navigation.extras.state['amount'];
       this.cost = navigation.extras.state['cost'];
-      console.log('Amount:', this.amount);
-      console.log('Cost:', this.cost);
     } 
     else {
       console.log('No data received');

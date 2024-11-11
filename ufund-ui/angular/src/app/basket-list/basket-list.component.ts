@@ -17,7 +17,7 @@ import { CurrencyPipe } from '@angular/common';
 export class BasketListComponent {
   basketNeeds$ = new BehaviorSubject<BasketNeed[]>([]);
   errored: boolean = false;
-  changes = false;
+  changed: boolean = false;
 
   constructor(
     public authService: AuthService,
@@ -26,7 +26,6 @@ export class BasketListComponent {
     private currencyPipe: CurrencyPipe
   ) {
     const navigation = this.router.getCurrentNavigation();
-    console.log(navigation)
     if (navigation?.extras.state) {
       this.errored = navigation.extras.state['error'];
       console.log('Error:', this.errored);
@@ -37,16 +36,17 @@ export class BasketListComponent {
   }
 
   ngOnInit(): void {
-    var checkBasket = this.authService.getLastBasketNeeds()
+    var lastBasket = JSON.parse(localStorage.getItem("basket")!) as BasketNeed[];
+
     this.authService.getBasketNeeds().subscribe({
       next: (response) => {
+        this.changed = false;
         this.basketNeeds$.next(response);
-        if(checkBasket != response){
-          this.changes = true;
-          console.log("basket changed!")
-          console.log(checkBasket + " does not equal " + response)
+        for(var i = 0; i < lastBasket.length; i++){
+          if(i >= response.length || response[i].quantity < lastBasket[i].quantity){
+            this.changed = true
+          }
         }
-        console.log(response);
       },
     });
   }
@@ -74,6 +74,15 @@ export class BasketListComponent {
     );
   }
 
+  getDynamicStyle(){
+    if(this.changed){
+      return {
+        height: "41vh"
+      }
+    }
+    return
+  }
+
   checkout(): void {
     if (this.getTotalQuantity() > 0) {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -91,10 +100,10 @@ export class BasketListComponent {
         if (result) {
           this.authService.checkoutBasket().subscribe((result2) => {
             if (result2) {
-              console.log("checking out in basket")
 
               const totalQuantity = this.getTotalQuantity();
               const totalCost = this.getTotalCost();
+              localStorage.setItem("basket", JSON.stringify([]))
 
               this.router.navigate(['/post-checkout'], {
                 state: {
