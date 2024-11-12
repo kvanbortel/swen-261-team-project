@@ -15,9 +15,7 @@
             : 0}}</p>
         </div>
         <div class="block" *ngIf="(adminInfo$ | async)?.userNumber">
-          <p><span><b>Amount Funded:</b></span> {{ ((adminInfo$ | async)?.moneyFunded ? (adminInfo$ |
-            async)?.moneyFunded
-            : 0) | currency }}</p>
+          <p><span><b>Amount Funded:</b></span> {{ formatMoney() | async }}</p>
         </div>
       </div>
 

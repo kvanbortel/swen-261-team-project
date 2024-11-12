@@ -28,6 +28,10 @@
   </div>
 </div>
 
-<div class="block no-info" *ngIf="!profileInfo?.alias && (!profileInfo?.region || profileInfo?.region === Region.NONE) && !profileInfo?.pronouns && !profileInfo?.bio && !profileInfo?.email && !profileInfo?.phoneNumber && !profileInfo?.ssn">
+<div class="block no-info" *ngIf="!other && !profileInfo?.alias && (!profileInfo?.region || profileInfo?.region === Region.NONE) && !profileInfo?.pronouns && !profileInfo?.bio && !profileInfo?.email && !profileInfo?.phoneNumber && !profileInfo?.ssn">
   <p>Edit your profile to add some info!</p>
+</div>
+
+<div class="block no-info" *ngIf="other && !profileInfo?.alias && (!profileInfo?.region || profileInfo?.region === Region.NONE) && !profileInfo?.pronouns && !profileInfo?.bio && !profileInfo?.email && !profileInfo?.phoneNumber && !profileInfo?.ssn">
+  <p>This account profile has no information</p>
 </div>
