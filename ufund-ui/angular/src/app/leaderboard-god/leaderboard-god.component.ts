@@ -29,8 +29,10 @@ export class LeaderboardGodComponent {
   @Input() isGod: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
-    this.god = changes['god'].currentValue; // fetch the current value
-    this.isGod = changes['isGod'].currentValue;
+    if(changes['god'] && changes['isGod']){
+      this.god = changes['god'].currentValue; // fetch the current value
+      this.isGod = changes['isGod'].currentValue;
+    }
   }
 
   constructor(

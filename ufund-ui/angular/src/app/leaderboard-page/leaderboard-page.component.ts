@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Account } from '../Account';
 import { AuthService } from '../storage/auth.service';
@@ -29,7 +29,29 @@ export class LeaderboardPageComponent {
   isAdmin: boolean = this.authService.isAdmin();
   onLeaderboardBool: boolean = false;
 
+  isMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 600;
+  }
+
   ngOnInit(){
+
+    this.checkScreenSize()
+
+    let name = localStorage.getItem("name");
+    if(name != null){
+      this.authService.setName(name);
+    }
+    let image = localStorage.getItem("image")
+    if(image != null){
+      this.authService.setImage(image);
+    }
+    this.isAdmin = this.authService.isAdmin();
 
     if(!this.authService.isAdmin()){
       this.authService.getAccount(localStorage.getItem("name")).subscribe({
@@ -55,17 +77,21 @@ export class LeaderboardPageComponent {
       },
     });
 
-    let image = localStorage.getItem("image")
+    if(!this.authService.isAdmin()){
+      let image = localStorage.getItem("image")
 
-    if(image != null){
-      this.authService.setImage(image);
-
+      if(image != null){
+        this.authService.setImage(image);
+      }
     }
   }
 
   onLeaderboard(k: number): Observable<boolean> {
     return this.accounts$.pipe(
       map(response => {
+        if(this.isAdmin){
+          return false;
+        }
         if (response[k] && response[k].name && response[k].name === this.account.name) {
           this.onLeaderboardBool = true
           return true;

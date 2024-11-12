@@ -3,7 +3,8 @@
 </div>
 <div class = "lb">
     
-    <div class="basket-head"><h3>U-fund Leaderboard</h3></div>
+    <div class="basket-head"><h3>U-Fund Leaderboard</h3></div>
+    <p style="text-align:center" *ngIf="isAdmin && isMobile"><i>Check out the U-Fund Dashboard on the desktop version of our web app!</i></p>
     <div class = "container">
         <app-leaderboard-god [god] = "god" [isGod] = "isGod"> 
         </app-leaderboard-god>
