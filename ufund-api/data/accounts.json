@@ -1,1 +1,1403 @@
-[{"name":"Dobby","basket":{"needs":[{"need":{"id":"449841ec-9f6e-40d8-a6a2-6c7223dd161a","name":"Dog Need","description":"We need lots of dogs to make sure that the need feed scroll properly on mobile probably also","demandRating":34.0,"quantity":93,"cost":1534.4,"fulfillmentStatus":false},"quantity":1,"cost":1534.4},{"need":{"id":"24d22038-693c-4e98-9788-d080f3b163df","name":"Long need","description":"This is a long need with a long long long long long long long long long long long long long description.","demandRating":32.0,"quantity":3,"cost":15.3,"fulfillmentStatus":false},"quantity":1,"cost":15.3}],"needCount":2,"cost":1549.7},"profileInfo":{"profilePic":null,"pronouns":"","alias":"Hi","bio":"","region":"HUDSON_VALLEY","phoneNumber":"","email":"","ssn":"","privacy":"Private"},"passwordHash":"d7cb56033799d427cb8248fe03abef91","imageLink":"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png","lastCheckoutInstant":"1970-01-01T00:00:00Z","moneyFunded":0.0,"needsFunded":0,"isGod":false},{"name":"Frankie","basket":{"needs":[],"needCount":0,"cost":0.0},"profileInfo":{"profilePic":null,"pronouns":"","alias":"JoeyF","bio":"","region":"NONE","phoneNumber":"","email":"","ssn":"","privacy":"Private"},"passwordHash":"8247d95522d9b63f984577495f765b92","imageLink":"http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731337979/Frankie.png","lastCheckoutInstant":"1970-01-01T00:00:00Z","moneyFunded":352000.0,"needsFunded":352,"isGod":false},{"name":"Mobby","basket":{"needs":[],"needCount":0,"cost":0.0},"profileInfo":{"profilePic":null,"pronouns":"","alias":"","bio":"","region":"NONE","phoneNumber":"","email":"","ssn":"","privacy":"Private"},"passwordHash":"c120206b1d98ea8cf3ad916bcc733f8d","imageLink":"http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731340304/Mobby.png","lastCheckoutInstant":"1970-01-01T00:00:00Z","moneyFunded":0.0,"needsFunded":0,"isGod":false},{"name":"NewUser","basket":{"needs":[],"needCount":0,"cost":0.0},"profileInfo":{"profilePic":null,"pronouns":"","alias":"","bio":"","region":"NONE","phoneNumber":"","email":"","ssn":"","privacy":"Public"},"passwordHash":"b7383dc209ad10b9ee3665f2dacc3432","imageLink":"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png","lastCheckoutInstant":"2024-11-12T13:52:51.993209100Z","moneyFunded":0.0,"needsFunded":0,"isGod":false},{"name":"Trobby","basket":{"needs":[],"needCount":0,"cost":0.0},"profileInfo":{"profilePic":null,"pronouns":"","alias":"","bio":"","region":"NONE","phoneNumber":"","email":"","ssn":"","privacy":"Private"},"passwordHash":"83221d9c817db7be07da74ec7e4f160b","imageLink":"http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731340328/Trobby.png","lastCheckoutInstant":"1970-01-01T00:00:00Z","moneyFunded":0.0,"needsFunded":0,"isGod":false},{"name":"jonah","basket":{"needs":[{"need":{"id":"449841ec-9f6e-40d8-a6a2-6c7223dd161a","name":"Dog Need","description":"We need lots of dogs to make sure that the need feed scroll properly on mobile probably also","demandRating":34.0,"quantity":93,"cost":1534.4,"fulfillmentStatus":false},"quantity":48,"cost":73651.20000000001},{"need":{"id":"24d22038-693c-4e98-9788-d080f3b163df","name":"Long need","description":"This is a long need with a long long long long long long long long long long long long long description.","demandRating":32.0,"quantity":3,"cost":15.3,"fulfillmentStatus":false},"quantity":15,"cost":229.5}],"needCount":63,"cost":73880.70000000001},"profileInfo":{"profilePic":null,"pronouns":"he/him","alias":"JONAHHHHHHHHH","bio":"Hi I'm jonah","region":"HUDSON_VALLEY","phoneNumber":"","email":"jonah@test.com","ssn":"","privacy":"Public"},"passwordHash":"e8dbecd64a8f87512ff46ca7716058a8","imageLink":"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png","lastCheckoutInstant":"1970-01-01T00:00:00Z","moneyFunded":56685.4,"needsFunded":208,"isGod":true}]
+[
+  {
+    "name": "Adam",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Adam",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "086ce63ff1f3c9cb629ee608a93f5ebf",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353247/Adam.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:25:27.195350419Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Adler",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Adler",
+      "bio": "",
+      "region": "CAPITAL_DISTRICT",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "bfabe29f3decc2425ac3470f881cd1b0",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353557/Adler.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:32:18.956077398Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Amanda",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Amanda",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "7806d6882a5019803365f5a8aeb6d692",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353386/Amanda.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:24:55.135349839Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Amy123",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "She/Her",
+      "alias": "Amy",
+      "bio": "",
+      "region": "LONG_ISLAND",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "345-67-8909",
+      "privacy": "Private"
+    },
+    "passwordHash": "6fd35889578f1f03147b23fe7cd6e0d8",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731419298/Amy123.jpg",
+    "lastCheckoutInstant": "2024-11-12T13:49:55.329790259Z",
+    "moneyFunded": 123908.0,
+    "needsFunded": 1,
+    "isGod": false
+  },
+  {
+    "name": "Angela",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Angela",
+      "bio": "",
+      "region": "LONG_ISLAND",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "07ea11ab665b8bffe292cee1fdb8e0ef",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353636/Angela.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:33:43.702582172Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Apostrophe",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Apostrophe",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "7bb1665d5533432f3afa62b77818d9dc",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353272/Apostrophe.jpg",
+    "lastCheckoutInstant": "2024-11-11T20:09:43.835361334Z",
+    "moneyFunded": 580.27,
+    "needsFunded": 13,
+    "isGod": false
+  },
+  {
+    "name": "Baldwin",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "CAPITAL_DISTRICT",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353449/Baldwin.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:30:41.899317187Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Barbara",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "Barbara",
+      "alias": "BarbTheFunder",
+      "bio": "I have a problem. My husband, Roald, told me about this amazing app U-fund. Once I started... I couldn't stop. I ended up embezzling money from the pet store I work at, just so I could fund. Now, I'm paying for my crimes....",
+      "region": "SOUTHERN_TIER",
+      "phoneNumber": "",
+      "email": "barbarathefunder@gmail.com",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "217b2ca9d289f5ef7b015a1c63b88154",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731354109/Barbara.jpg",
+    "lastCheckoutInstant": "2024-11-11T20:06:33.474114541Z",
+    "moneyFunded": 454301.42,
+    "needsFunded": 27,
+    "isGod": false
+  },
+  {
+    "name": "BenEFactor",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "a00ca8477742d35241801e5c635eda3b",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:41:32.007360457Z",
+    "moneyFunded": 2935.52,
+    "needsFunded": 56,
+    "isGod": false
+  },
+  {
+    "name": "Brobert",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "6c51e58f912b97314d87fd566dda3cd8",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:47:53.609096181Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Bryant",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "9f79d4efc8beb9f514521a30f78d7af4",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353312/Bryant.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:28:07.344809907Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Emma",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "she/her",
+      "alias": "Emmy",
+      "bio": "",
+      "region": "NORTH_COUNTRY",
+      "phoneNumber": "(123) 456-7987",
+      "email": "kimberly@aol.com",
+      "ssn": "022-22-2232",
+      "privacy": "Public"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353697/Emma.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:35:49.888299996Z",
+    "moneyFunded": 1534.4,
+    "needsFunded": 1,
+    "isGod": false
+  },
+  {
+    "name": "Evbo",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "evbo",
+      "bio": "I love cats!",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "(888) 747-5568",
+      "email": "evbo@yahoo.com",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "dbb35b4fdd7f5ed0dc63bbac63c46cac",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731358515/Evbo.jpg",
+    "lastCheckoutInstant": "2024-11-12T13:42:20.671370260Z",
+    "moneyFunded": 896999.0,
+    "needsFunded": 417,
+    "isGod": false
+  },
+  {
+    "name": "FakeAcc",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "LONG_ISLAND",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "58899094f5670e8f2a69ae9a9f068691",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-11T20:31:35.945297048Z",
+    "moneyFunded": 101688.58,
+    "needsFunded": 44,
+    "isGod": false
+  },
+  {
+    "name": "Frankie",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "FrankieDaMan",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "8247d95522d9b63f984577495f765b92",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731337979/Frankie.png",
+    "lastCheckoutInstant": "1970-01-01T00:00:00Z",
+    "moneyFunded": 352000.0,
+    "needsFunded": 352,
+    "isGod": false
+  },
+  {
+    "name": "Genene",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "she/they",
+      "alias": "GeneneGreen",
+      "bio": "",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "geneneg@workmail.work",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "381110b9c689a07e8d9e7aefca664c8e",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353726/Genene.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:36:25.825372707Z",
+    "moneyFunded": 1534.4,
+    "needsFunded": 1,
+    "isGod": false
+  },
+  {
+    "name": "GiovanniP",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "He/Him",
+      "alias": "Gio",
+      "bio": "",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "5e06b84ac4f276aa03afc04fd1e82856",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:41:08.885712061Z",
+    "moneyFunded": 104.84,
+    "needsFunded": 2,
+    "isGod": false
+  },
+  {
+    "name": "Gregor",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Gregor",
+      "bio": "I am Gregor",
+      "region": "WESTERN_NEW_YORK",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "5f43ffc0223b3c305ff3189fffdab143",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353430/Gregor.jpg",
+    "lastCheckoutInstant": "2024-11-11T20:12:45.419192537Z",
+    "moneyFunded": 154271.2,
+    "needsFunded": 43,
+    "isGod": false
+  },
+  {
+    "name": "Grover",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Grover",
+      "bio": "My name is Grover. I am the leading U-fund analyst and I am the founder of U-fund talks, a non-for-profit awareness podcast about the best application in the world. ",
+      "region": "SOUTHERN_TIER",
+      "phoneNumber": "(091) 892-7818",
+      "email": "grover@ufundtalks.com",
+      "ssn": "090-23-9782",
+      "privacy": "Public"
+    },
+    "passwordHash": "b279484761d7f1fd60ff862979fdb257",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353885/Grover.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:37:46.895733126Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Helena",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "She/Her",
+      "alias": "Helena",
+      "bio": "My name is Helena. I am the borough president of Staten Island and I own seven corgis. I am currently on a mission to be the top U-funder. ",
+      "region": "NEW_YORK_CITY",
+      "phoneNumber": "",
+      "email": "Helena@helena.com",
+      "ssn": "134-90-8221",
+      "privacy": "Public"
+    },
+    "passwordHash": "510f0d7d3ac5172d3b516bc60bc3d460",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353752/Helena.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:35:47.428702833Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Jake",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "074a52b7a7d27dd59d8a7058bbfb385a",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:50:50.120761451Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Jimmy",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "PantsPooper",
+      "bio": "Jimmy misses his parents. After his parents (Roald and Barbara) were arrested, Jimmy turned to a life of crime and u-funding. He has been begging for money on the streets of Bushwick, following his parents, Jimmy spends his earnings on U-Fund. ",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "927-92-7492",
+      "privacy": "Private"
+    },
+    "passwordHash": "364300ac00fb22ad32c2b94c29e1ca51",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731354229/Jimmy.png",
+    "lastCheckoutInstant": "2024-11-11T20:07:27.188256109Z",
+    "moneyFunded": 613992.36,
+    "needsFunded": 56,
+    "isGod": false
+  },
+  {
+    "name": "Kayla",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "she/her",
+      "alias": "kayla",
+      "bio": "I love saving the animals. I own 27 dogs and 3 cats.",
+      "region": "FINGER_LAKES",
+      "phoneNumber": "(875) 568-3445",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353240/Kayla.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:27:05.707855535Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Leucy",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353392/Leucy.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:29:45.509239829Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Lily",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Lily",
+      "bio": "Account managed by parents",
+      "region": "SOUTHERN_TIER",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "4c045faf8a7612e8c23ca301efd996a8",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353730/Lily.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:35:10.097016801Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "LongIslander",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "LongIslander",
+      "bio": "",
+      "region": "LONG_ISLAND",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "98d110288c635ef6290dc47007e20838",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731419550/LongIslander.png",
+    "lastCheckoutInstant": "2024-11-12T13:53:08.470362511Z",
+    "moneyFunded": 371724.0,
+    "needsFunded": 3,
+    "isGod": true
+  },
+  {
+    "name": "Loui",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "she/her",
+      "alias": "Lulu",
+      "bio": "",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "194-62-9344",
+      "privacy": "Public"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353621/Loui.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:33:34.013491970Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Luca",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Luca",
+      "bio": "",
+      "region": "WESTERN_NEW_YORK",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "747b72cbff91e587cb1d1db737fee38c",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353363/Luca.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:29:17.604477447Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Mara",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Funderzzz",
+      "bio": "",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "b7260775f1aa25c5c8a1886cb11c2b20",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353444/Mara.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:30:38.285460422Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Marcy",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "LONG_ISLAND",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353540/Marcy.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:32:13.044315430Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Markous",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "Fern",
+      "bio": "",
+      "region": "FINGER_LAKES",
+      "phoneNumber": "(345) 678-9089",
+      "email": "jeffERNson@yahoo.com",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353942/Markous.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:39:55.747313250Z",
+    "moneyFunded": 45.900000000000006,
+    "needsFunded": 3,
+    "isGod": false
+  },
+  {
+    "name": "Maxbklot",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "He/Him",
+      "alias": "Max",
+      "bio": "Hi! I'm Max. I'm one of the founders of the NYS Paws and Claws Foundation App!! I am so happy to be a part of this organization and it's mission. Fund safely and responsibly!!",
+      "region": "NEW_YORK_CITY",
+      "phoneNumber": "(917) 886-1108",
+      "email": "maxbklot@gmail.com",
+      "ssn": "292-90-9721",
+      "privacy": "Public"
+    },
+    "passwordHash": "7c0ce766d33ac3bca2db7bfc5eb15d96",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731272597/maxbklot.png",
+    "lastCheckoutInstant": "2024-11-11T19:56:01.861215637Z",
+    "moneyFunded": 53704.0,
+    "needsFunded": 35,
+    "isGod": false
+  },
+  {
+    "name": "Mobby",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "c120206b1d98ea8cf3ad916bcc733f8d",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731340304/Mobby.png",
+    "lastCheckoutInstant": "1970-01-01T00:00:00Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "NEWUSER",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "f578f4fc6163705836bb2f2ec500ec19",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:43:23.245627359Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Nikki",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353577/Nikki.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:32:52.390764429Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Officer",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "He/Him",
+      "alias": "Officer",
+      "bio": "A year ago, I arrested a man for a series of bank robberies. At trial, he reasoned his actions with the U-fund app. I couldn't shake what he said... I just had to try it for myself. Now I'm on the payroll of NYC's most violent gang. I need to fund.",
+      "region": "NEW_YORK_CITY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "7c1261977146728f37b3cc5412721c9c",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731354843/Officer.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:56:25.846051989Z",
+    "moneyFunded": 4603.200000000001,
+    "needsFunded": 3,
+    "isGod": false
+  },
+  {
+    "name": "Parson",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NEW_YORK_CITY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "14614c97ab871eade7319b7fb47361d8",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353861/Parson.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:37:34.466961029Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Rachel",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "d92cbc65a48047cacc709c81a708e068",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353423/Rachel.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:30:06.716986364Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Rebecca",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Becky",
+      "bio": "Becky loves her dogs. She has 8 chihuahuas and 3 cats. She does not like the cats. ",
+      "region": "MOHAWK_VALLEY",
+      "phoneNumber": "",
+      "email": "topdoglover@gmail.com",
+      "ssn": "082-73-9872",
+      "privacy": "Public"
+    },
+    "passwordHash": "6a75742d9ed74326a8578cb99ff4d760",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353958/Rebecca.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:38:38.209305776Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Reid",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "Reid",
+      "bio": "",
+      "region": "NEW_YORK_CITY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "222-22-8898",
+      "privacy": "Private"
+    },
+    "passwordHash": "d143d784694af34ae9a9859d67e299e1",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353571/Reid.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:32:40.672856578Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Richard",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Ricky",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "88577251738cfed3ec9475132491471a",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353358/Richard.png",
+    "lastCheckoutInstant": "2024-11-11T19:26:04.438003260Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Ricky",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Jake",
+      "bio": "",
+      "region": "NEW_YORK_CITY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "1147b059784d27ab7839d93caacfe2dc",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731355873/Ricky.jpg",
+    "lastCheckoutInstant": "2024-11-11T20:10:36.468070408Z",
+    "moneyFunded": 1764.8600000000001,
+    "needsFunded": 18,
+    "isGod": false
+  },
+  {
+    "name": "Roald",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "OldTownRoald",
+      "bio": "Roald has succssfully robbed 3 banks to afford his u-fund addictions. He is now serving community service for his crimes, helping clean trash off of the highway. Be like Roald",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "oldtownroald@yahoo.com",
+      "ssn": "000-00-0001",
+      "privacy": "Public"
+    },
+    "passwordHash": "14d385bc574f77b319497407ebb2279f",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353686/Roald.jpg",
+    "lastCheckoutInstant": "2024-11-11T20:07:52.170358162Z",
+    "moneyFunded": 501868.92,
+    "needsFunded": 116,
+    "isGod": false
+  },
+  {
+    "name": "Robertson",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353311/Robertson.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:27:42.597269873Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Roxanne",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "Roxanne",
+      "bio": "",
+      "region": "SOUTHERN_TIER",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "37eca40d73b84926cb477ee517a7cb48",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353691/Roxanne.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:34:17.483080995Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Ryan",
+    "basket": {
+      "needs": [
+        {
+          "need": {
+            "id": "82409b4f-0035-4296-a7e9-0a5c3b0c5524",
+            "name": "Cleaning Supplies",
+            "description": "Disinfectants, mops, and wipes to maintain a clean and safe environment for all animals.",
+            "demandRating": 67.0,
+            "quantity": 33,
+            "cost": 52.42,
+            "fulfillmentStatus": false
+          },
+          "quantity": 1,
+          "cost": 52.42
+        }
+      ],
+      "cost": 52.42,
+      "needCount": 1
+    },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "Ryan",
+      "bio": "Ryan sells out arenas with his band @courtyardtheband to raise money for his u-fund journey",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "(518) 286-8008",
+      "email": "ryan@courtyardtheband.com",
+      "ssn": "111-11-1111",
+      "privacy": "Public"
+    },
+    "passwordHash": "c2891d68a3c6e691c581b8920e73d04d",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731354691/ryan.png",
+    "lastCheckoutInstant": "2024-11-11T19:53:47.036045175Z",
+    "moneyFunded": 15344.0,
+    "needsFunded": 10,
+    "isGod": false
+  },
+  {
+    "name": "Sarah",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "donut",
+      "bio": "",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353868/Sarah.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:37:40.462333782Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Team4D",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "6caa286947c647ffbdd3f1aa5dab1657",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:42:19.205264708Z",
+    "moneyFunded": 240.0,
+    "needsFunded": 6,
+    "isGod": false
+  },
+  {
+    "name": "Team7G",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "24317fdf690bd7c27621b486a4aa499e",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:42:48.182844792Z",
+    "moneyFunded": 6044.4400000000005,
+    "needsFunded": 274,
+    "isGod": false
+  },
+  {
+    "name": "Terry",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "dfed14d3487cc3690913965e3640ee5c",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353259/Terry.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:26:47.952813622Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Tristate",
+    "basket": {
+      "needs": [
+        {
+          "need": {
+            "id": "408a126c-b4f7-4141-874e-47aa34b74aa7",
+            "name": "Dog Food Supply",
+            "description": "High-quality dog food for all breeds and sizes to keep our rescued pups healthy and strong.",
+            "demandRating": 54.5,
+            "quantity": 17,
+            "cost": 40.0,
+            "fulfillmentStatus": false
+          },
+          "quantity": 1,
+          "cost": 40.0
+        }
+      ],
+      "cost": 40.0,
+      "needCount": 1
+    },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "0638c8659171f4bb469c93f5902013a0",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:42:30.555163033Z",
+    "moneyFunded": 1729.8600000000001,
+    "needsFunded": 33,
+    "isGod": false
+  },
+  {
+    "name": "Trobby",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "83221d9c817db7be07da74ec7e4f160b",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731340328/Trobby.png",
+    "lastCheckoutInstant": "1970-01-01T00:00:00Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "Tyson",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "TysonTheBison",
+      "bio": "Hi I'm Tyson, I like long walks on the beach and funding needs (especially when they rescue animals)",
+      "region": "FINGER_LAKES",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "223-51-2351",
+      "privacy": "Public"
+    },
+    "passwordHash": "9d967bc4ac879e0b7646b20bb69f4e4a",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353598/Tyson.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:34:15.738817087Z",
+    "moneyFunded": 3068.8,
+    "needsFunded": 2,
+    "isGod": false
+  },
+  {
+    "name": "Whatsup",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "thatguy",
+      "bio": "",
+      "region": "LONG_ISLAND",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "a1a67a4aaa3b1dd95d5bdeee388a98f7",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731356997/Whatsup.jpg",
+    "lastCheckoutInstant": "2024-11-11T20:30:41.906666874Z",
+    "moneyFunded": 55849.69,
+    "needsFunded": 32,
+    "isGod": false
+  },
+  {
+    "name": "Wilbert",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "they/them",
+      "alias": "Treeson",
+      "bio": "",
+      "region": "CENTRAL_NEW_YORK",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353784/Wilbert.jpg",
+    "lastCheckoutInstant": "2024-11-11T19:36:17.201108231Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "chris",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "UFUNDGOD",
+      "bio": "I always make the jump to donate a plane",
+      "region": "NONE",
+      "phoneNumber": "(123) 456-7890",
+      "email": "ufundgod@ufundgod.com",
+      "ssn": "123-45-6789",
+      "privacy": "Public"
+    },
+    "passwordHash": "240a9b51046105c4a1d57a5ef87f056c",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:46:59.342700434Z",
+    "moneyFunded": 1.0000000089598227e14,
+    "needsFunded": 114,
+    "isGod": false
+  },
+  {
+    "name": "jake",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "84ad84c56c2684eeb0ff32a3f2cd6555",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:51:05.394963842Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "john",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "JohnWick",
+      "bio": "After what happened to my dog, U-Fund is the only way I can grieve.",
+      "region": "CAPITAL_DISTRICT",
+      "phoneNumber": "(127) 554-2222",
+      "email": "johnny@aol.com",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731355330/john.jpg",
+    "lastCheckoutInstant": "2024-11-11T20:04:40.109566678Z",
+    "moneyFunded": 1050.8,
+    "needsFunded": 32,
+    "isGod": false
+  },
+  {
+    "name": "jonah",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "he/him",
+      "alias": "JONAHHHHHHHHH",
+      "bio": "Hi I'm jonah",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "jonah@test.com",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "e8dbecd64a8f87512ff46ca7716058a8",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731353049/jonah.jpg",
+    "lastCheckoutInstant": "2024-11-12T13:33:33.182551236Z",
+    "moneyFunded": 56817.94,
+    "needsFunded": 212,
+    "isGod": false
+  },
+  {
+    "name": "kayla",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:35:14.735881617Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "newUser",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "6964f527f011df8756f87c3e8a76884f",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:31:06.953932874Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "newer",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "692215c35b4ea0a1da73c3380f54a41d",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-11T20:53:09.404289267Z",
+    "moneyFunded": 2.49754305654e9,
+    "needsFunded": 52223,
+    "isGod": false
+  },
+  {
+    "name": "newerUser",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "18be0526df173ff2743dafe5001af283",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:31:35.290093162Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  },
+  {
+    "name": "newuser",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "HUDSON_VALLEY",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Public"
+    },
+    "passwordHash": "dbb342c8604b24b466a1920002a14858",
+    "imageLink": "http://res.cloudinary.com/dc5ifh1f7/image/upload/v1731418800/newuser.jpg",
+    "lastCheckoutInstant": "2024-11-12T13:38:33.629729334Z",
+    "moneyFunded": 209.68,
+    "needsFunded": 4,
+    "isGod": false
+  },
+  {
+    "name": "ufundgod",
+    "basket": { "needs": [], "cost": 0.0, "needCount": 0 },
+    "profileInfo": {
+      "profilePic": null,
+      "pronouns": "",
+      "alias": "",
+      "bio": "",
+      "region": "NONE",
+      "phoneNumber": "",
+      "email": "",
+      "ssn": "",
+      "privacy": "Private"
+    },
+    "passwordHash": "d7bbc2fc85d24b7ce64dddefcc38b255",
+    "imageLink": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "lastCheckoutInstant": "2024-11-12T13:55:24.279592384Z",
+    "moneyFunded": 0.0,
+    "needsFunded": 0,
+    "isGod": false
+  }
+]

@@ -389,7 +389,7 @@ public class AccountFileDAO implements AccountDAO {
     public AdminInfo getUserStats() throws IOException {
         int userNumber = 0;
         int needsFunded = 0;
-        int moneyFunded = 0;
+        double moneyFunded = 0;
         Instant lastFundedInstant = Instant.MIN;
         Map<Region, Integer> regions = new EnumMap<>(Region.class);
         Map<Region, Double> fundedByRegion = new EnumMap<>(Region.class);
