@@ -56,9 +56,8 @@
   }
   
   .popup-area {
-    position: fixed;
-    top: 17vh;
-    right: 12vw;
+    position: absolute;
+    margin-top: 3vh;
     display: flex;
     flex-direction: column;
     gap: 1vw;
