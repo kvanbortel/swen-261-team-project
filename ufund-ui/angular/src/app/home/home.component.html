@@ -7,7 +7,7 @@
     <div class="body">
       <app-leaderboard *ngIf="!isAdmin && !isMobile" style="max-height:60vh; margin-right:3vw; width: 36vw;"></app-leaderboard>
       <app-cupboard-search></app-cupboard-search>
-      <app-admin-dash *ngIf="isAdmin"></app-admin-dash>
+      <app-admin-dash *ngIf="isAdmin && !isMobile"></app-admin-dash>
     </div>  
     <div class="button-area">
       <app-view-change-button *ngIf="isMobile" [text]="'Leaderboard'" [icon]="' fa-solid fa-arrow-trend-up '" [path]="'leaderboard'"></app-view-change-button>

@@ -54,6 +54,7 @@ ul{
 
     .button-area{
         right: -1vw;
+        margin-top: -1vh;
         display: flex;
       }
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable, startWith, Subject, switchMap, take } from 'rxjs';
 import { CupboardService } from '../cupboard.service';
 import { Need } from '../Need';
@@ -38,8 +38,18 @@ export class CupboardSearchComponent {
     });
   }
 
+  isMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 600;
+  }
+
   getSizeStyles(){
-    if(this.authService.isAdmin()){
+    if(this.authService.isAdmin() && !this.isMobile){
       return {
         "max-width" : "40vw",
         "min-width" : "40vw",
@@ -49,6 +59,7 @@ export class CupboardSearchComponent {
   }
 
   ngOnInit(): void {
+    this.checkScreenSize()
     let name = localStorage.getItem("name");
     if(name != null){
       this.authService.setName(name);

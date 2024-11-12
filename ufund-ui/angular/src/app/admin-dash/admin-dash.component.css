@@ -76,3 +76,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin-bottom: 1vh;
 }
+
+@media only screen and (max-width: 600px) {
+  
+}
