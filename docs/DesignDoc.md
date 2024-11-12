@@ -267,8 +267,8 @@ Then, after retesting our acceptance criteria, we reached 100% acceptance criter
 >_**[Sprint 2, 3 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
 
-![Coverage](Jacoco_Coverage_Report_2024-10-21.png)
-_Anomaly Note:_ The missing one percent coverage is the main method running the Spring application, which theoretically shouldn't ever fail.
+![Coverage2](Jacoco_Coverage_Report_2024-11-11.png)
+_Anomaly Note:_ The missing one percent in the model tier is a branch that catches an access error, given our current code structure it was evaluated to be a low-priority enough branch that no test was needed. The other missing coverage is the main method running the Spring application, which theoretically shouldn't ever fail.
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
@@ -292,6 +292,7 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > localStorage to store credentials so these persist across pages. This also allowed us to add an authentication guard to non-login pages, so indexing a route without authentication is cleaner.
 > - (2024/10/30) Decided to create a ProfileInfo model to store an accounts profile information since these values are only ever changed by the user and aesthetic
 > - (2024/10/31) Decided to use an md5 library to hash passwords so they are not stored in plaintext by our backend.
+> - (2024/11/2) Using the Cloudinary API for creating and storing image links in the cloud for profile images. 
 > - (2024/11/5) Determine rank first by moneyFunded, then use the number of needsFunded, then consider whoever made the most recent donation to be a better rank
 > - (2024/11/5) Changed admin loggin functionality. Password is now required, and set to "adm1n!".
 > - (2024/11/6) User level-up no longer requires an account age factor because the focus should be more on the amount of money funded than the amount of time it took for a user to do it
@@ -302,3 +303,5 @@ _Anomaly Note:_ The missing one percent coverage is the main method running the 
 > - (2024/11/9) Added a new field to profileInfo, privacy, which determines whether other users can see your profile from the leaderboard component.
 > - (2024/11/10) When you tie the moneyFunded for the Top 5% Index of funders, you become a Master as well, even if cut off by to 5% math
 > - (2024/11/10) When progressing towards the next level, your percentage is never rounded up to 100%
+> - (2024/11/10) The admin can see user demographic statistics, but they should also be able to see the leaderboard. We gave them a tabular dashboard page so that all three of these menus are avilable.
+> - (2024/11/11) The CSS on the Dashboard is difficult enough that it's not going to be presented in the mobile version of the app; admins on mobile will see text reminding them that they can check out the desktop web app to view the descriptive statistics.
