@@ -34,6 +34,9 @@ On some Chrome browsers with certain font packs installed, the website icons fai
 
 Admin username: "admin", password: "adm1n!"
 
+Handling surplus:  
+As we are not accountable for the physical storage space of the Paws & Claws foundation, we are not accepting surplus donations at this time. A Helper is not capable of funding more of a Need than its quantity allows.
+
 ## How to test it
 
 The Maven build script provides hooks for run unit tests and generate code coverage
