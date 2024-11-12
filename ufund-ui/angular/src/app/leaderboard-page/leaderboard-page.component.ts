@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Account } from '../Account';
 import { AuthService } from '../storage/auth.service';
@@ -29,7 +29,19 @@ export class LeaderboardPageComponent {
   isAdmin: boolean = this.authService.isAdmin();
   onLeaderboardBool: boolean = false;
 
+  isMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 600;
+  }
+
   ngOnInit(){
+
+    this.checkScreenSize()
 
     let name = localStorage.getItem("name");
     if(name != null){
