@@ -31,6 +31,7 @@ An online U-Fund system built in Java 21=> and Angular 17.0
 ## Known bugs and disclaimers
 
 On some Chrome browsers with certain font packs installed, the website icons fail to load (only in the [cloud hosted app](https://pawsnclaws.pages.dev)).
+Admin username: "admin", password: "adm1n!"
 
 ## How to test it
 
