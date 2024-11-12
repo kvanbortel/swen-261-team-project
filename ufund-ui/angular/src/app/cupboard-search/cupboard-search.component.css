@@ -103,6 +103,10 @@
       padding: 2vh;
     }
 
+    .main { 
+      margin: 0;
+    }
+
     /* Styling for the search input */
     .search-input {
       width: 50vw;
