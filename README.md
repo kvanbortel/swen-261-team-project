@@ -32,6 +32,11 @@ An online U-Fund system built in Java 21=> and Angular 17.0
 
 On some Chrome browsers with certain font packs installed, the website icons fail to load (only in the [cloud hosted app](https://pawsnclaws.pages.dev)).
 
+Admin username: `admin`, password: `adm1n!`
+
+Handling surplus:  
+As we are not accountable for the physical storage space of the Paws & Claws foundation, we are not accepting surplus donations at this time. A Helper is not capable of funding more of a Need than its quantity allows.
+
 ## How to test it
 
 The Maven build script provides hooks for run unit tests and generate code coverage

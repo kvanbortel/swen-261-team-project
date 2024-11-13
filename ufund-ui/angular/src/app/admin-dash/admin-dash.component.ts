@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { AuthService } from '../storage/auth.service';
 import { AdminInfo } from '../AdminInfo';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 import Chart from 'chart.js/auto';
+import numeral from 'numeral';
 
 @Component({
   selector: 'app-admin-dash',
@@ -32,6 +33,12 @@ export class AdminDashComponent {
     if (this.chartFundingCanvas && !this.chartFunding) {
       this.createFundingChart();
     }
+  }
+
+  formatMoney(): Observable<string> {
+    return this.adminInfo$.pipe(
+      map(value => numeral(value?.moneyFunded || 0).format("($ 0.00 a)"))
+    );
   }
 
   ngOnInit(): void {
