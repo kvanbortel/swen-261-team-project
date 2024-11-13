@@ -37,6 +37,12 @@ Admin username: `admin`, password: `adm1n!`
 Handling surplus:  
 As we are not accountable for the physical storage space of the Paws & Claws foundation, we are not accepting surplus donations at this time. A Helper is not capable of funding more of a Need than its quantity allows.
 
+## Deployment
+
+Our server is currently running in the cloud, hosted by [fly.io](https://fly.io) with the persistent data stored on a volume that's mounted to the machine. The code is deployed from the `ufund-api` directory by running `fly deploy` after generating a target executable for the Java code with `mvn clean package`.
+
+The domain is provided by [Cloudflare](https://cloudflare.com/), and pulls the frontend code directly to our codebase repository.   
+
 ## How to test it
 
 The Maven build script provides hooks for run unit tests and generate code coverage
@@ -60,13 +66,7 @@ To run tests on all the tiers in isolation do this:
 4. To view the Persistence tier tests open in your browser the file at `PROJECT_API_HOME/target/site/jacoco/model/index.html`
 
 *(Consider using `mvn clean verify` to attest you have reached the target threshold for coverage)
-  
-  
-## How to generate the Design documentation PDF
 
-1. Access the `PROJECT_DOCS_HOME/` directory
-2. Execute `mvn exec:exec@docs`
-3. The generated PDF will be in `PROJECT_DOCS_HOME/` directory
 
 ## License
 
