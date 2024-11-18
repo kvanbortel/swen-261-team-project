@@ -189,7 +189,26 @@ The main class for our ViewModel implementation is our NeedsController class. Th
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
-> Tier above._
+> Tier above._  
+
+The ViewModel tier includes the AccountRequest, AccountController, and NeedController classes.  
+**AccountRequest**  
+This provides a constructor that includes the account name and hashed password, as well as getters for each.  
+**AccountController**  
+When a Helper enters a new username and password, a request to "createAccount" is made. This uses an AccountRequest in the parameter to add a new account with the unique name.  
+When a Helper adds or subtracts from the quantity of a need in their basket, "updateNeed" is called, which updates the quantity of their need in the basket.  
+When a Helper checks out their basket, "checkout" is called, which uses the accountDAO to check out the needs.  
+When a Helper views their basket, "getNeeds" retrieves all the needs associated with their account.  
+When a Helper views their profile, "getProfileInfo" is called to display the information they have previously entered.  
+When a Helper updates their profile information, "updateProfileInfo" is called to make these changes associated with their account in the ProfileInfo object.  
+When a Helper uploads a new image to be their profile picture, "handleImageUpload" is called with the account name and file.  
+"getAccount" retrieves a specific account, "getAccountsSorted" retrieves the accounts in a sorted order for the leaderboard, "getRank" retrieves a Helper's leaderboard rank, "getGod" retrieves whether they are of U-Fund God status, and "getAdminInfo" retrieves the collection of Helper statistics to display on the Manager dashboard.  
+**NeedController**  
+When a Manager adds a new need, "createNeed" is called to add this need to the DAO.  
+When a Manager edits a need, "updateNeed" is called to persist this new information.  
+When a Manager deletes a need, "deleteNeed" is called to permanently remove this need from storage.  
+When a Helper or Manager uses the search bar to search for a need, "searchNeeds" is called to retrieve the given needs where the text matches.  
+"getNeed" retrieves a single need by id, and "getNeeds" retrieves all needs to be displayed in the cupboard.  
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
