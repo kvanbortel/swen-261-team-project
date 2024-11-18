@@ -155,7 +155,7 @@ Then, a user is redirected to the cupboard page, where they can search, select, 
 > Describe the types of components in the tier and describe their
 > responsibilities.  This should be a narrative description, i.e. it has
 > a flow or "story line" that the reader can follow._
-.
+
 The user is first presented with the login page. Here, they enter their username and password in input boxes and click the "Login" button.  
 **A Helper logs in.**  
 On the home page, they are greeted with a leaderboard on the left displaying the top 3 donors and the U-Fund God. On the right, they see a list of needs with a search bar above to find specific ones. Each need has an add-to-basket button, which, when clicked, displays a notification on that right that tells the Helper the quantity of that need now in their basket.  
