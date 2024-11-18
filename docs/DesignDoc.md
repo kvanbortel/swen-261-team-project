@@ -133,7 +133,7 @@ The following Tiers/Layers model shows a high-level view of the webapp's archite
 
 ![The Tiers & Layers of the Architecture](6f-architecture-tiers-and-layers.png)
 
-The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
+The web application is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 
 The Model stores the application data objects including any functionality to provide persistance. 
 
