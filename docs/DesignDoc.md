@@ -230,6 +230,14 @@ In both of these cases, the controller calls DAO methods, which is an abstractio
 
 In both our controllers, the DAO abstractions are injected via the constructor. In many of our frontend modules, services and other modules are injected via the constructor as well.
 
+### Pure Fabrication
+
+The principle of Pure Fabrication involves creating modules that are not within the problem domain in order to make implementation, cleaner, more reusable, and more efficient. Pure Fabrication is an effective to way to solve problems that violate the Single Responsibility principle. That is, if you find yourself writing a module that does more than one significant thing, you should probably make a different module to handle whatever it is you're implementing. That way if there is any refactoring later down the line you only have to touch the module that is relevant to your problem. Below I will list some parts of our application which adhere to the Pure Fabrication principle. 
+
+Our AccountFileDAO and NeedFileDAO are responsible for the storage and accessing of accounts and needs in our database, respectively. We did this so we could seperate runtime and persistence functionality- it would be messy to have one big class that held state, functions, and managed our storage system. 
+
+We also used the Pure Fabrication principle in many places on our Front End. We found it was useful to seperate modules up and use them throughout the program. For example, we has a level service that was solely responsible for determining a user's rank. We also had an authorization service, which other components used, to verify a user was allowed to access a specific page. 
+
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
