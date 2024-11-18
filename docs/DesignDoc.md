@@ -242,6 +242,28 @@ In both our controllers, the DAO abstractions are injected via the constructor. 
 > Include any relevant screenshot(s) with each area._
 
 > _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
+>
+While we're overall quite happy with our current production code, running SonarQube highlighted a few potential areas for improvement as we continue the development process. The most significant of these are outlined below.
+
+ 1. Stacktrace printing in ProfileInfo.java. This line was added to be able to adequately handle the error that arises when an Illegal Access exception occurs, but printing the stack is not recommended for production code.
+    
+_Shown in Basket.java:_
+
+![](sonar-stack.png)
+
+2. Override hashCode methods. When we created our Model objects, we implemented equals() methods for comparison. However, it’s recommended that all objects that would override an equals() also override hashCode() to support other types of comparisons, which may be relevant depending on potential model comparisons later in development.
+
+_Example in Basket.java:_
+
+![](sonar-equals.png)
+
+3. Random number gen for message ID. We’re using Typescript’s Math.random(), which is potentially nonrandom and was highlighted as a potential security error, but should be secure enough for our current use case. These IDs are only used for message display, not handling any secure user data.
+
+_Shown in message.service.java:_
+
+![](sonar-random.png)
+
+4. Accessibility: There are a few changes in our HTML code that would make it more accessible, such as adding `<alt>` tags for images and KeyboardPress alternatives for our Click events. These changes would make the website more accessible for users who can’t view images or who don't have access to a mouse or keypad.
 
 ## Testing
 > _This section will provide information about the testing performed
