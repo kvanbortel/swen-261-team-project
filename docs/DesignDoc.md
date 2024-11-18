@@ -1,7 +1,7 @@
 ---
 geometry: margin=1in
 ---
-# PROJECT Design Documentation
+# Paws & Claws Design Documentation
 
 ## Team Information
 * Team name: HalfCourt
@@ -207,8 +207,6 @@ AdminInfo groups Helper statistics in a way that they can be usefully displayed 
 
 ## OO Design Principles
 
-> **[Sprint 1]**
-
 Single Responsibility: Each module should have one tightly focused responsibility.
 
 Open-Close: When modifying a module, you should not make changes to existing logic, but rather consider keeping it and creating new logic instead. 
@@ -299,10 +297,10 @@ When originally testing the acceptance criteria, we ran into a few problems with
 Then, after retesting our acceptance criteria, we reached 100% acceptance critera completion within our acceptance critera spreadsheet, which is where we now stand as of the current implementation.
 
 ### Unit Testing and Code Coverage
-> _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
-> achieved from unit testing of the code base. Discuss the team's
-> coverage targets, why you selected those values, and how well your
-> code coverage met your targets._
+
+Our unit testing strategy was that whenever any backend functionality was implemented, before it was pushed to our development branch the author of that code would create a Jacoco report and ensure that our overall coverage hadn't dropped. If it had, then it was the author's responsibility to add any necessary tests before creating a PR of their code. Additionally, reviewers on a backend PR would ensure that all tests were passing before marking their approval. 
+
+Our code coverage target was **95%** or above for all tiers. We felt that this was high enough to ensure that the main functionality of our code was intact without slowing down our development by trying to figure out how to write tests for obscure branches. In the end, we ended up getting almost **100%** coverage accross the board, ensuring that all the methods in our backend are working as expected. 
 
 ![Coverage2](Jacoco_Coverage_Report_2024-11-11.png)
 _Anomaly Note:_ The missing one percent in the model tier is a branch that catches an access error, given our current code structure it was evaluated to be a low-priority enough branch that no test was needed. The other missing coverage is the main method running the Spring application, which theoretically shouldn't ever fail.
