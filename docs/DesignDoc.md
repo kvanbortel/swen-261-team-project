@@ -60,6 +60,21 @@ This section describes the features of the application.
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
+> * Authentication
+>   - Helper login
+>   - Manager login
+> * Web Application
+>   - Visit webpage
+>   - Search needs
+> * Helper Donations
+>   - Add donation needs to basket
+>   - View basket needs
+>   - Remove donation needs from basket
+>   - Check out donation needs
+> * Donation Management
+>   - Add new needs
+>   - Update needs
+>   - Delete needs
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._  
