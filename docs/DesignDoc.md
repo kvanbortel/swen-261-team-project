@@ -216,15 +216,17 @@ When a Helper or Manager uses the search bar to search for a need, "searchNeeds"
 
 ### Model Tier
 > **[Sprint 1]**
->
-> The basic data class for our Model Tier implementation is our Need class. It has generalized members and functions including name, id and fullfillment status.
-> 
+>  
+The basic data class for our Model Tier implementation is our Need class. It has generalized members and functions including name, id, description, demand rating, cost, quantity, and fullfillment status.  
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
-> Tier above._
->
-> In Sprint 2, we decided to implement three new classes within our model tier, the Account and Basket and BasketNeed classes. The Account class represents an account, which has a name and a basket of needs. The basket of needs contains an arraylist of basketneeds, which are object representations of needs that stay inside a user's basket. Below is our revised UMl diagram for sprint 2:
+> Tier above._  
+
+In Sprint 2, we decided to implement three new classes within our model tier, the Account and Basket and BasketNeed classes. The Account class represents an account, which has a name and a basket of needs. The basket of needs contains an arraylist of basketneeds, which are object representations of needs that stay inside a user's basket.
+  
+By the end of the project, our Model tier includes Account, AdminInfo, Basket, BasketNeed, Need, ProfileInfo, and Region.
+AdminInfo groups Helper statistics in a way that they can be usefully displayed to the Manager in their dashboard. Similarly, ProfileInfo groups the information that a Helper enters into their profile to be displayed for themselves and for other users to see if they desire.  Region is an enum used by ProfileInfo.
 
 #### Full UML
 ![](sprint_3_full_uml.png)
