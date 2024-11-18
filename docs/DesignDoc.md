@@ -62,7 +62,16 @@ This section describes the features of the application.
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
 
 ### Enhancements
-> _**[Sprint 4]** Describe what enhancements you have implemented for the project._
+> _**[Sprint 4]** Describe what enhancements you have implemented for the project._  
+> **Gamification**  
+> * In order to encourage Helpers to donate, we gamified the U-Fund application.  
+> * A leaderboard tracks Helpers' donations and a Helper is encouraged to donate more to move up the ranks and beat their competition. The top three Helpers on the leaderboard are displayed on the front page for all to see.  
+> * At the top of the leaderboard is the U-Fund God, who is the most recent Helper to have donated the last available item in the Need cupboard, emptying it. This coveted title gets competitive when Needs start to dwindle.  
+> * A Helper's level and donation statistics are displayed on their profile page with a progress bar showing the criteria for them to reach the next level and earn their next collectible badge. Levels include Noob, Pro, Master, and Champion.
+> 
+> **Profile Info**  
+> * A Helper can update their profile information and set their profile to public so that others can view them and learn more about them. A Helper can view others' profile info from the leaderboard, with a chance to connect with them if that Helper has provided their email or phone number.  
+> * Using the profile info provided by Helpers, a Manager can view Helper statistics with visualized breakdowns.
 
 
 ## Application Domain
