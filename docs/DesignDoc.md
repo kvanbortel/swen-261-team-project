@@ -264,7 +264,7 @@ Our AccountFileDAO and NeedFileDAO are responsible for the storage and accessing
 
 We also used the Pure Fabrication principle in many places on our Front End. We found it was useful to seperate modules up and use them throughout the program. For example, we has a level service that was solely responsible for determining a user's rank. We also had an authorization service, which other components used, to verify a user was allowed to access a specific page. 
 
-## Static Code Analysis/Future Design Improvements
+## Static Code Analysis
 
 While we're overall quite happy with our current production code, running SonarQube highlighted a few potential areas for improvement as we continue the development process. The most significant of these are outlined below.
 
@@ -287,6 +287,11 @@ _Shown in message.service.java:_
 ![](sonar-random.png)
 
 4. Accessibility: There are a few changes in our HTML code that would make it more accessible, such as adding `<alt>` tags for images and KeyboardPress alternatives for our Click events. These changes would make the website more accessible for users who can’t view images or who don't have access to a mouse or keypad.
+
+## Future Design Improvements
+1. We should have used an authentication service from the start. This would have increased security, and made our job easier for setting username and password requirements, separating create account and login (which we did not do), and managing sessions.
+2. We would like to have used a database rather than a file for storing data. We could have stored data in persistent storage rather than memory, greatly decreasing server resource usage. This would have allowed for easy sorting and searching of users, as well as efficiently finding calculated data for a user.
+3. AccountDAO is dependent on NeedDAO for checkout. On checkout, AccountDAO has to modify the NeedDAO (deleting or decreasing need quantities). We believe there may be a more elegant solution, than directly calling the NeedDAO. Maybe we could pass a functional interface that is called to checkout a basket, which at runtime would call a NeedDAO but would be replaceable by any other functional interface. This interface would be returned by a factory method in NeedDAO (ie NeedDAO.getCashier()) and passed to the AccountDAO constructor. This decouples the two DAOs while maintaining the same functionality. 
 
 ## Testing
 
