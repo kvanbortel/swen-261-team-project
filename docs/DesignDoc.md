@@ -3,11 +3,6 @@ geometry: margin=1in
 ---
 # PROJECT Design Documentation
 
-> _The following template provides the headings for your Design
-> Documentation.  As you edit each section make sure you remove these
-> commentary 'blockquotes'; the lines that start with a > character
-> and appear in the generated PDF in italics but do so only **after** all team members agree that the requirements for that section and current Sprint have been met. **Do not** delete future Sprint expectations._
-
 ## Team Information
 * Team name: HalfCourt
 * Team members
@@ -21,11 +16,9 @@ geometry: margin=1in
 The New York State Paws & Claws U-Fund is an application that encourages Helpers to donate money towards supporting animals. They do this by checking out Needs, such as a donation that goes towards a bag of dog food, and fund them through their basket. Helpers are incentivized by a leveling and badge-earning system and can connect with each other by filling out their profile and viewing others'. Managers can add, edit, and delete the Needs from the cupboard, and are also able to view statistics from Helpers' profiles to see which audiences to market more towards.
 
 ### Purpose
->  _**[Sprint 2 & 4]**
-> The purpose of our U-Fund application is to allow philanthropists to be able to fund the NYS Paws & Claws foundation, and for administrators of the NYS Paws & Claws Foundation to be able to manage the application.
+The purpose of our U-Fund application is to allow philanthropists to be able to fund the NYS Paws & Claws foundation, and for administrators of the NYS Paws & Claws Foundation to be able to manage the application.
 
 ### Glossary and Acronyms
-> _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
 
 | Term | Definition |
 |------|------------|
@@ -47,55 +40,42 @@ The New York State Paws & Claws U-Fund is an application that encourages Helpers
 
 This section describes the features of the application.
 
-> _In this section you do not need to be exhaustive and list every
-> story.  Focus on top-level features from the Vision document and
-> maybe Epics and critical Stories._
-
 ### Definition of MVP
-> _**[Sprint 2 & 4]**
->
-> The user is first routed to a login page. If they enter an new username, an account is created for them and they are sent to the homepage. If they enter a username that already exists, they are logged in and sent to the homepage. If they enter "admin", they are sent a Manager version of the homepage. On the homepage, you can see a list of needs in the cupboard. If you are a Helper, you are able to search for needs, add them to your basket, and checkout. As a Manager, you can add, modify, and delete needs, and do not have a personal funding basket. Data persists from all actions of the Helper and Manager across the application.
+The user is first routed to a login page. If they enter an new username, an account is created for them and they are sent to the homepage. If they enter a username that already exists, they are logged in and sent to the homepage. If they enter "admin", they are sent a Manager version of the homepage. On the homepage, you can see a list of needs in the cupboard. If you are a Helper, you are able to search for needs, add them to your basket, and checkout. As a Manager, you can add, modify, and delete needs, and do not have a personal funding basket. Data persists from all actions of the Helper and Manager across the application.
 
 ### MVP Features
->  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
-> * Authentication
->   - Helper login
->   - Manager login
-> * Web Application
->   - Visit webpage
->   - Search needs
-> * Helper Donations
->   - Add donation needs to basket
->   - View basket needs
->   - Remove donation needs from basket
->   - Check out donation needs
-> * Donation Management
->   - Add new needs
->   - Update needs
->   - Delete needs
+* Authentication
+   - Helper login
+   - Manager login
+ * Web Application
+   - Visit webpage
+   - Search needs
+ * Helper Donations
+   - Add donation needs to basket
+   - View basket needs
+   - Remove donation needs from basket
+   - Check out donation needs
+ * Donation Management
+   - Add new needs
+   - Update needs
+   - Delete needs
 
 ### Enhancements
-> _**[Sprint 4]** Describe what enhancements you have implemented for the project._  
-> **Gamification**  
-> * In order to encourage Helpers to donate, we gamified the U-Fund application.  
-> * A leaderboard tracks Helpers' donations and a Helper is encouraged to donate more to move up the ranks and beat their competition. The top three Helpers on the leaderboard are displayed on the front page for all to see.  
-> * At the top of the leaderboard is the U-Fund God, who is the most recent Helper to have donated the last available item in the Need cupboard, emptying it. This coveted title gets competitive when Needs start to dwindle.  
-> * A Helper's level and donation statistics are displayed on their profile page with a progress bar showing the criteria for them to reach the next level and earn their next collectible badge. Levels include Noob, Pro, Master, and Champion.
-> 
-> **Profile Info**  
-> * A Helper can update their profile information and set their profile to public so that others can view them and learn more about them. A Helper can view others' profile info from the leaderboard, with a chance to connect with them if that Helper has provided their email or phone number.  
-> * Using the profile info provided by Helpers, a Manager can view Helper statistics with visualized breakdowns.
-
+**Gamification**  
+* In order to encourage Helpers to donate, we gamified the U-Fund application.  
+* A leaderboard tracks Helpers' donations and a Helper is encouraged to donate more to move up the ranks and beat their competition. The top three Helpers on the leaderboard are displayed on the front page for all to see.  
+* At the top of the leaderboard is the U-Fund God, who is the most recent Helper to have donated the last available item in the Need cupboard, emptying it. This coveted title gets competitive when Needs start to dwindle.  
+* A Helper's level and donation statistics are displayed on their profile page with a progress bar showing the criteria for them to reach the next level and earn their next collectible badge. Levels include Noob, Pro, Master, and Champion.
+ 
+**Profile Info**  
+* A Helper can update their profile information and set their profile to public so that others can view them and learn more about them. A Helper can view others' profile info from the leaderboard, with a chance to connect with them if that Helper has provided their email or phone number.  
+* Using the profile info provided by Helpers, a Manager can view Helper statistics with visualized breakdowns on the Admin Dashboard.
 
 ## Application Domain
 
 This section describes the application domain.
 
 ![Domain Model](Domain_UML.png)
-
-> _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
-> can discuss the more important domain entities and their relationship
-> to each other._
 
 The domain for this application is a New York State based wildlife and animal conservation/refuge organization called NYS Paws & Claws. The application will have:
 
@@ -109,6 +89,10 @@ The domain for this application is a New York State based wildlife and animal co
 
 - Baskets
 
+- Helper leaderboard
+
+- Admin dashboard
+
 **MVP**  
 A Helper or Manager uses authentication to log in.  
 A Helper has a basket.  
@@ -117,10 +101,9 @@ A Helper searches for needs in the cupboard.
 A Helper adds, removes, and checks out needs from their basket.  
 An Admin adds, edits, and deletes needs from the cupboard.  
 **Enhancements**  
-A Helper appears on the leaderboard.  
-A Helper fills out the profile information form.  
-A Manager sees an overview from the profile information forms.  
-
+A Helper appears on the leaderboard (with a profile picture).  
+A Helper fills out the profile information form on their profile page.  
+A Manager sees the admin dashboard with a summary of important info from the profile information forms.  
 
 ## Architecture and Design
 
@@ -141,7 +124,6 @@ The View is the client-side SPA built with Angular utilizing HTML, CSS and TypeS
 
 Both the ViewModel and Model are built using Java and Spring Framework. Details of the components within these tiers are supplied below.
 
-
 ### Overview of User Interface
 
 This section describes the web interface flow; this is how the user views and interacts with the web application.
@@ -149,14 +131,10 @@ This section describes the web interface flow; this is how the user views and in
 On page load, a user is met with a login page, prompting them to enter a username. After entering a username, their username is saved to the application (if not admin), and a new account is created for the user. 
 Then, a user is redirected to the cupboard page, where they can search, select, and add needs to their basket. They can also access their basket with a button, where they can edit quantities of needs within their basket. If a user logs in as admin, they are able to edit the needs cupboard and cannot view the funding basket. If at any time a user refreshes their page, their authentication is lost and they will have to sign in again. 
 
-
 ### View Tier
-> _**[Sprint 4]** Provide a summary of the View Tier UI of your architecture.
-> Describe the types of components in the tier and describe their
-> responsibilities.  This should be a narrative description, i.e. it has
-> a flow or "story line" that the reader can follow._
 
-The user is first presented with the login page. Here, they enter their username and password in input boxes and click the "Login" button.  
+The user is first presented with the login page. Here, they enter their username and password in input boxes and click the "Login" button.
+
 **A Helper logs in.**  
 On the home page, they are greeted with a leaderboard on the left displaying the top 3 donors and the U-Fund God. On the right, they see a list of needs with a search bar above to find specific ones. Each need has an add-to-basket button, which, when clicked, displays a notification on that right that tells the Helper the quantity of that need now in their basket.  
 If the Helper clicks on their "View Basket" button, they see the list of needs and their quantities in their basket. The quantities can be edited, or they can click the trash can button to delete the need from their basket with a prompt asking if they are sure. Then they can click "Fund It!" and the needs will be funded.
@@ -164,6 +142,7 @@ They click the button to return home.
 Back on the home page, they can click on names on the leaderboard to see that Helper's profile information. They click the home button to return to the homepage.
 The Helper can also click on their profile picture to logout, view the expanded leaderboard, or view their profile.  
 In their profile, a Helper can upload their profile image with the "Upload Photo" button, click "Edit Profile" and fill out the form fields to add information to the profile with "Save" and "Cancel" buttons, toggle their profile between private and public, or click "Show Stats" to see their donation and level statistics.  
+
 **The Helper logs out. A Manager logs in with username "admin" and password "adm1n!".**  
 With no profile or basket for the Manager, they only see a logout button in the top right corner.  
 On the left side of the homepage, there is the searchable list of needs, but now each need has a delete and edit button, prompting a confirmation dialog or a fillable form, respectively.  
@@ -183,17 +162,14 @@ On the right side of the homepage, a Manager sees Helper statistics, including t
  >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
 ### ViewModel Tier
-> **[Sprint 1]** 
 
 The main class for our ViewModel implementation is our NeedsController class. This class serves to interact with the NeedDAO interface.
 
-> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._  
+The ViewModel tier includes the AccountRequest, AccountController, and NeedController classes. 
 
-The ViewModel tier includes the AccountRequest, AccountController, and NeedController classes.  
 **AccountRequest**  
 This provides a constructor that includes the account name and hashed password, as well as getters for each.  
+
 **AccountController**  
 When a Helper enters a new username and password, a request to "createAccount" is made. This uses an AccountRequest in the parameter to add a new account with the unique name.  
 When a Helper adds or subtracts from the quantity of a need in their basket, "updateNeed" is called, which updates the quantity of their need in the basket.  
@@ -203,6 +179,7 @@ When a Helper views their profile, "getProfileInfo" is called to display the inf
 When a Helper updates their profile information, "updateProfileInfo" is called to make these changes associated with their account in the ProfileInfo object.  
 When a Helper uploads a new image to be their profile picture, "handleImageUpload" is called with the account name and file.  
 "getAccount" retrieves a specific account, "getAccountsSorted" retrieves the accounts in a sorted order for the leaderboard, "getRank" retrieves a Helper's leaderboard rank, "getGod" retrieves whether they are of U-Fund God status, and "getAdminInfo" retrieves the collection of Helper statistics to display on the Manager dashboard.  
+
 **NeedController**  
 When a Manager adds a new need, "createNeed" is called to add this need to the DAO.  
 When a Manager edits a need, "updateNeed" is called to persist this new information.  
@@ -210,18 +187,9 @@ When a Manager deletes a need, "deleteNeed" is called to permanently remove this
 When a Helper or Manager uses the search bar to search for a need, "searchNeeds" is called to retrieve the given needs where the text matches.  
 "getNeed" retrieves a single need by id, and "getNeeds" retrieves all needs to be displayed in the cupboard.  
 
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
-> 
-
 ### Model Tier
-> **[Sprint 1]**
->  
-The basic data class for our Model Tier implementation is our Need class. It has generalized members and functions including name, id, description, demand rating, cost, quantity, and fullfillment status.  
 
-> _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._  
+The basic data class for our Model Tier implementation is our Need class. It has generalized members and functions including name, id, description, demand rating, cost, quantity, and fullfillment status.  
 
 In Sprint 2, we decided to implement three new classes within our model tier, the Account and Basket and BasketNeed classes. The Account class represents an account, which has a name and a basket of needs. The basket of needs contains an arraylist of basketneeds, which are object representations of needs that stay inside a user's basket.
   
@@ -236,9 +204,6 @@ AdminInfo groups Helper statistics in a way that they can be usefully displayed 
 ![](sprint_3_account_uml.png)
 ![](sprint_3_info_uml.png)
 ![](sprint_3_need_uml.png)
-
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as associations (connections) between classes, and critical attributes and methods. (**Be sure** to revisit the Static **UML Review Sheet** to ensure your class diagrams are using correct format and syntax.)_
 
 ## OO Design Principles
 
@@ -301,19 +266,8 @@ Our AccountFileDAO and NeedFileDAO are responsible for the storage and accessing
 
 We also used the Pure Fabrication principle in many places on our Front End. We found it was useful to seperate modules up and use them throughout the program. For example, we has a level service that was solely responsible for determining a user's rank. We also had an authorization service, which other components used, to verify a user was allowed to access a specific page. 
 
-
-> _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
-
-> _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
-
 ## Static Code Analysis/Future Design Improvements
-> _**[Sprint 4]** With the results from the Static Code Analysis exercise, 
-> **Identify 3-4** areas within your code that have been flagged by the Static Code 
-> Analysis Tool (SonarQube) and provide your analysis and recommendations.  
-> Include any relevant screenshot(s) with each area._
 
-> _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
->
 While we're overall quite happy with our current production code, running SonarQube highlighted a few potential areas for improvement as we continue the development process. The most significant of these are outlined below.
 
  1. Stacktrace printing in ProfileInfo.java. This line was added to be able to adequately handle the error that arises when an Illegal Access exception occurs, but printing the stack is not recommended for production code.
@@ -337,15 +291,8 @@ _Shown in message.service.java:_
 4. Accessibility: There are a few changes in our HTML code that would make it more accessible, such as adding `<alt>` tags for images and KeyboardPress alternatives for our Click events. These changes would make the website more accessible for users who can’t view images or who don't have access to a mouse or keypad.
 
 ## Testing
-> _This section will provide information about the testing performed
-> and the results of the testing._
 
 ### Acceptance Testing
-> _**[Sprint 2 & 4]** Report on the number of user stories that have passed all their
-> acceptance criteria tests, the number that have some acceptance
-> criteria tests failing, and the number of user stories that
-> have not had any testing yet. Highlight the issues found during
-> acceptance testing and if there are any concerns._
 
 When originally testing the acceptance criteria, we ran into a few problems with specific edge cases (For example, an admin deleting a need and that need staying in a helper's basket). So, we refined our implementation and tests and explored some more edge case tests (negative numbers of Needs, users checking out while the admin was changing Need values, confirmation popups, etc) to ensure the MVP was glitch-free. 
 
@@ -357,15 +304,10 @@ Then, after retesting our acceptance criteria, we reached 100% acceptance criter
 > coverage targets, why you selected those values, and how well your
 > code coverage met your targets._
 
->_**[Sprint 2, 3 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
-> those._
-
 ![Coverage2](Jacoco_Coverage_Report_2024-11-11.png)
 _Anomaly Note:_ The missing one percent in the model tier is a branch that catches an access error, given our current code structure it was evaluated to be a low-priority enough branch that no test was needed. The other missing coverage is the main method running the Spring application, which theoretically shouldn't ever fail.
 
 ## Ongoing Rationale
->_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
->
 > **[Sprint 1] decisions**
 > - (2024/10/1) Switched from integer IDs or unique names for Needs to String UUIDs. This change was agreed upon to simplify the backend logic and limit conflicts based on hidden backend information.
 > - (2024/10/1) Decided to keep our DAO as Need/NeedFile rather than Cupboard, as the Cupboard name is a concept for the customer and holds no signficance to working with the Need classes on the backend.
