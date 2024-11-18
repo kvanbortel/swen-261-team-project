@@ -97,22 +97,29 @@ This section describes the application domain.
 > can discuss the more important domain entities and their relationship
 > to each other._
 
-The domain for this application is a New York State based wildlife and animal conservation/refuge organization called NYS Paws and Claws. The application will have:
+The domain for this application is a New York State based wildlife and animal conservation/refuge organization called NYS Paws & Claws. The application will have:
 
--Helpers
+- Users, including:
+   - Helpers
+   - Manager
 
--Admin
+- Needs
 
--Needs
+- Cupboard
 
--Cupboard
+- Baskets
 
--Baskets
-
-A Helper adds needs to the basket.
-An Admin edits needs in the cupboard.
-A Need goes in the cupboard and a basket.
-A Helper has a basket. 
+**MVP**  
+A Helper or Manager uses authentication to log in.  
+A Helper has a basket.  
+A Need goes in the cupboard and a basket.  
+A Helper searches for needs in the cupboard.  
+A Helper adds, removes, and checks out needs from their basket.  
+An Admin adds, edits, and deletes needs from the cupboard.  
+**Enhancements**  
+A Helper appears on the leaderboard.  
+A Helper fills out the profile information form.  
+A Manager sees an overview from the profile information forms.  
 
 
 ## Architecture and Design
