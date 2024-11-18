@@ -54,9 +54,7 @@ This section describes the features of the application.
 ### Definition of MVP
 > _**[Sprint 2 & 4]**
 >
-> In our Minimum Viable Product in Sprint 2, the user is first routed to a login page. If they enter an unrecognized username, a new account is created for them and they are then sent to the home page. If they enter a
-> username that already exists, they are logged in and sent to the home page. If they enter "admin", they are sent a modified "admin" version of the home page. On the home page, you can see a list of needs in the needs
-> cupboard. If you are a helper, you are able to view needs, add needs to your basket, and checkout. As an admin, you are able to modify needs, post new needs, and delete needs. 
+> The user is first routed to a login page. If they enter an new username, an account is created for them and they are sent to the homepage. If they enter a username that already exists, they are logged in and sent to the homepage. If they enter "admin", they are sent a Manager version of the homepage. On the homepage, you can see a list of needs in the cupboard. If you are a Helper, you are able to search for needs, add them to your basket, and checkout. As a Manager, you can add, modify, and delete needs, and do not have a personal funding basket. Data persists from all actions of the Helper and Manager across the application.
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
