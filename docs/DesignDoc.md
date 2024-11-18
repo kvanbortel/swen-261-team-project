@@ -155,7 +155,21 @@ Then, a user is redirected to the cupboard page, where they can search, select, 
 > Describe the types of components in the tier and describe their
 > responsibilities.  This should be a narrative description, i.e. it has
 > a flow or "story line" that the reader can follow._
-. 
+.
+The user is first presented with the login page. Here, they enter their username and password in input boxes and click the "Login" button.  
+**A Helper logs in.  **
+On the home page, they are greeted with a leaderboard on the left displaying the top 3 donors and the U-Fund God. On the right, they see a list of needs with a search bar above to find specific ones. Each need has an add-to-basket button, which, when clicked, displays a notification on that right that tells the Helper the quantity of that need now in their basket.  
+If the Helper clicks on their "View Basket" button, they see the list of needs and their quantities in their basket. The quantities can be edited, or they can click the trash can button to delete the need from their basket with a prompt asking if they are sure. Then they can click "Fund It!" and the needs will be funded.
+They click the button to return home.  
+Back on the home page, they can click on names on the leaderboard to see that Helper's profile information. They click the home button to return to the homepage.
+The Helper can also click on their profile picture to logout, view the expanded leaderboard, or view their profile.
+In their profile, a Helper can upload their profile image with the "Upload Photo" button, click "Edit Profile" and fill out the form fields to add information to the profile with "Save" and "Cancel" buttons, toggle their profile between private and public, or click "Show Stats" to see their donation and level statistics.  
+**The Helper logs out. A Manager logs in with username "admin" and password "adm1n!".  **
+With no profile or basket for the Manager, they only see a logout button in the top right corner.
+On the left side of the homepage, there is the searchable list of needs, but now each need has a delete and edit button, prompting a confirmation dialog or a fillable form, respectively.
+Beside the search bar is an "Add Need" button, which prompts a fillable form to add a new need.
+On the right side of the homepage, a Manager sees Helper statistics, including the total Helpers, needs funded, and amount funded, as well as a pie chart breakdown for Helper regions, funding by region, and the leaderboard, which are navigated to with different tabs in the dashboard.
+
 > _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
 > of the design that you are describing.  (**For example**, in a shopping experience application you might create a 
 > sequence diagram of a customer searching for an item and adding to their cart.)
