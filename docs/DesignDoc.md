@@ -200,9 +200,11 @@ AdminInfo groups Helper statistics in a way that they can be usefully displayed 
 
 ## OO Design Principles
 
-Single Responsibility: Each module should have one tightly focused responsibility.
+### Championed Principles
 
-Open-Close: When modifying a module, you should not make changes to existing logic, but rather consider keeping it and creating new logic instead. 
+Low Coupling: The principle of Low Coupling allows for modules that can interact without knowledge of each other's implementation. 
+
+Information Expert: Each class should be responsible for it's own data.
 
 ### The Single Responsibility
  A class is considered to comply with the single responsibility principle if there is one and only one reason for the class to change. One “thing” is not necessarily well defined, but it refers to one group of related behaviors and states. 
