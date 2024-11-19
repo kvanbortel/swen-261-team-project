@@ -152,7 +152,7 @@ On the right side of the homepage, a Manager sees Helper statistics, including t
 
 ![Sequence Diagram](Sequence-Diagram.png)  
 
-![Sequence Diagram Login](Sequence-Diagram-Login.png)
+![Sequence Diagram Login](Sequence_Diagram_Login.png)
 
 ### ViewModel Tier
 
