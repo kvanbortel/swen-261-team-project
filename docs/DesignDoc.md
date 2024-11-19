@@ -161,6 +161,8 @@ On the right side of the homepage, a Manager sees Helper statistics, including t
  >* _Correct labeling of relationships with proper notation for the relationship type, multiplicities, and navigation information will be important._
  >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
+![Sequence Diagram](Sequence-Diagram.png)
+
 ### ViewModel Tier
 
 The main class for our ViewModel implementation is our NeedsController class. This class serves to interact with the NeedDAO interface.
