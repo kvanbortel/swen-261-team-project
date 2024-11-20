@@ -12,9 +12,11 @@ import { BasketNeed } from '../BasketNeed';
 import { AuthService } from '../storage/auth.service';
 import { Need } from '../Need';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 
@@ -45,7 +47,7 @@ export class BasketNeedComponent {
     this.quantityForm = this.formBuilder.group({
       quantity: [
         this.need.quantity,
-        [Validators.min(1), Validators.max(this.getNeed().quantity)],
+        [Validators.min(1), Validators.max(this.getNeed().quantity), Validators.required, this.integerValidator],
       ],
     });
   }
@@ -65,9 +67,16 @@ export class BasketNeedComponent {
     this.quantityForm = formBuilder.group({
       quantity: [
         '',
-        [Validators.min(1), Validators.max(this.getNeed().quantity)],
+        [Validators.min(1), Validators.max(this.getNeed().quantity), Validators.required, this.integerValidator],
       ],
     });
+  }
+
+  integerValidator(control: AbstractControl): ValidationErrors | null {
+    if (control.value && !Number.isInteger(Number(control.value))) {
+      return { notInteger: true };
+    }
+    return null;
   }
 
   @HostListener('document:click', ['$event'])
