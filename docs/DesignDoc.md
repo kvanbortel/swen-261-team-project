@@ -149,10 +149,11 @@ On the left side of the homepage, there is the searchable list of needs, but now
 Beside the search bar is an "Add Need" button, which prompts a fillable form to add a new need.  
 On the right side of the homepage, a Manager sees Helper statistics, including the total Helpers, needs funded, and amount funded, as well as a pie chart breakdown for Helper regions, funding by region, and the leaderboard, which are navigated to with different tabs in the dashboard.  
 
-
+**Sequence Diagram #1:** Helper adding a need to their funding basket  
 ![Sequence Diagram](Sequence-Diagram.png)  
 
-![Sequence Diagram Login](Sequence_Diagram_Login.png)
+**Sequence Diagram #2:** Helper logging in  
+![Sequence Diagram Login](Sequence_Diagram_Login.png)  
 
 ### ViewModel Tier
 
