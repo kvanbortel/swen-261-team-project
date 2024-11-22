@@ -41,7 +41,15 @@ The purpose of our U-Fund application is to allow philanthropists to be able to 
 This section describes the features of the application.
 
 ### Definition of MVP
-The user is first routed to a login page. If they enter an new username, an account is created for them and they are sent to the homepage. If they enter a username that already exists, they are logged in and sent to the homepage. If they enter "admin", they are sent a Manager version of the homepage. On the homepage, you can see a list of needs in the cupboard. If you are a Helper, you are able to search for needs, add them to your basket, and checkout. As a Manager, you can add, modify, and delete needs, and do not have a personal funding basket. Data persists from all actions of the Helper and Manager across the application.
+The user is first routed to a login page. If they enter an new username, an account is created for them and they are sent to the homepage. If they enter a username that already exists, they are logged in and sent to the homepage. If they enter "admin", they are sent a Manager version of the homepage. On the homepage, you can see a list of needs in the cupboard.Listed below is the functionality available to Helpers and Managers:
+#### Helper
+-you are able to search for needs
+-add needs to your basket, and checkout. 
+#### Manager
+-you can add, modify, and delete needs
+-you do not have a personal funding basket
+
+Data persists from all actions of the Helper and Manager across the application.
 
 ### MVP Features
 * Authentication
