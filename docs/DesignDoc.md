@@ -165,12 +165,7 @@ On the right side of the homepage, a Manager sees Helper statistics, including t
 
 ### ViewModel Tier
 
-The main class for our ViewModel implementation is our NeedsController class. This class serves to interact with the NeedDAO interface.
-
-The ViewModel tier includes the AccountRequest, AccountController, and NeedController classes. 
-
-**AccountRequest**  
-This provides a constructor that includes the account name and hashed password, as well as getters for each.  
+The main classes for our ViewModel implementation are our NeedController and AccountController classes. These classes serves to interact with the our DAO interfaces.
 
 **AccountController**  
 When a Helper enters a new username and password, a request to "createAccount" is made. This uses an AccountRequest in the parameter to add a new account with the unique name.  
@@ -306,7 +301,7 @@ _Shown in message.service.java:_
 
 ### Acceptance Testing
 
-When originally testing the acceptance criteria, we ran into a few problems with specific edge cases (For example, an admin deleting a need and that need staying in a helper's basket). So, we refined our implementation and tests and explored some more edge case tests (negative numbers of Needs, users checking out while the admin was changing Need values, confirmation popups, etc) to ensure the MVP was glitch-free. 
+When originally testing the acceptance criteria, we ran into a few problems with specific edge cases (For example, when an admin deletes a need, if that need is in a helpers basket, it would stay in a helper's basket, when the desired functionality was for it to be removed). So, we refined our implementation and tests and explored some more edge case tests (negative numbers of Needs, users checking out while the admin was changing Need values, confirmation popups, etc) to ensure the MVP was glitch-free. 
 
 Then, after retesting our acceptance criteria, we reached 100% acceptance critera completion within our acceptance critera spreadsheet, which is where we now stand as of the current implementation.
 
