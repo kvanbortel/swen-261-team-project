@@ -205,7 +205,7 @@ AdminInfo groups Helper statistics in a way that they can be usefully displayed 
 
 Low Coupling: The principle of Low Coupling allows for modules that can interact without knowledge of each other's implementation. 
 
-Information Expert: Each class should be responsible for it's own data.
+Information Expert: Each class should be responsible for its own data.
 
 ### The Single Responsibility
  A class is considered to comply with the single responsibility principle if there is one and only one reason for the class to change. One “thing” is not necessarily well defined, but it refers to one group of related behaviors and states. 
