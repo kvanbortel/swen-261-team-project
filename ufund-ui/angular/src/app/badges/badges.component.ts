@@ -54,7 +54,7 @@ export class BadgesComponent {
     return false
   }
 
-  showCard(){
+  showPlate(){
     if(this.level == UserLevel.CHAMPION){
       //console.log("CHAMPION")
       return true
