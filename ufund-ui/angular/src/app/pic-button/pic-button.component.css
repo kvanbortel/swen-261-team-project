@@ -3,6 +3,14 @@
   height: 7vh;
   width: 7vh;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pic:hover{
+  
+  box-shadow: 3px 2px 2px;
+  transition: .3s
 }
 
 .dropdown {
